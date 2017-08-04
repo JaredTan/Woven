@@ -36,7 +36,7 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 [views]: ./docs/views.md
 [api_endpoints]: ./docs/api-endpoints.md
 [component_hierarchy]: ./docs/component-hierarchy.md
-[sample_state]: ./docs/sample_schema.md
+[sample_schema]: ./docs/sample_schema.md
 [sample_state]: ./docs/sample_state.md
 
 ## Implementation Timeline
