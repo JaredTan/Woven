@@ -44,45 +44,35 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 ### Phase 2: Backbone (3 days)
 
 + Phase 2a: User Authentication (1 day):
-
- + Objective: Set up user authentication via React Native.
+  + Objective: Set up user authentication via React Native.
 
 
 + Phase 2b: Splash + Home/Index Page (1 day):
-
- + Objective: Set up functional index page for the application, that allows for easy access to other features.
+  + Objective: Set up functional index page for the application, that allows for easy access to other features.
 
 
 + Phase 2c User Profiles (1 days):
-
- + Objective: Set up User Profiles
+  + Objective: Set up User Profiles
 
 
 ### Phase 3: MVP Features  (4 days)
 
- + Phase 3a: Virtual Plant (1 day)
-
++ Phase 3a: Virtual Plant (1 day)
   + New plant
   + Name
   + Water
   + Icon
 
-
- + Phase 3b: Instant Messaging w/ [socket.io](https://socket.io/) (1 day)
-
++ Phase 3b: Instant Messaging w/ [socket.io](https://socket.io/) (1 day)
   + Stickers / Emoticons
   + Photos
   + Mood tracker / status
 
-
- + Phase 3c: Playdates (1 day)
-
++ Phase 3c: Playdates (1 day)
   + Google Calendar API
   + Google Maps API
 
-
- + Phase 3d: To-do List (1 day)
-
++ Phase 3d: To-do List (1 day)
   + Reminders + Push Notifications
   + Snail Mail
   + Highlight Updates
