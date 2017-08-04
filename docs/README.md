@@ -18,7 +18,7 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 - [ ] Home Page
 - [ ] Virtual Plant
 - [ ] Instant Messaging
-- [ ] Plan Activities via Google Maps + Google Calendar API
+- [ ] Playdates via Google Maps + Google Calendar API
 - [ ] To-do List
 - [ ] Production README
 - [ ] Uber Together (Bonus!)
@@ -30,14 +30,12 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 * [View Wireframes][views]
 * [API Endpoints][api_endpoints]
 * [React Components][component_hierarchy]
-* [Sample Schema][sample_schema]
-* [Sample State][sample_state]
+* [Sample State][sample-state]
 
-[views]: ./docs/views.md
-[api_endpoints]: ./docs/api-endpoints.md
-[component_hierarchy]: ./docs/component-hierarchy.md
-[sample-state]: ./docs/sample_schema.md
-[sample-state]: ./docs/sample_state.md
+[views]: ./views.md
+[api_endpoints]: ./api-endpoints.md
+[component_hierarchy]: ./component-hierarchy.md
+[sample-state]: ./sample-state.md
 
 ## Implementation Timeline
 
@@ -202,10 +200,6 @@ Our general workflow will look something like this:
 3) Pull request
 4) Review Api -> Approval (from all other members) / Discussion
 6) Merge master
-
-Code Standards/Guidelines
--ES6 syntax only
-
 
 
 
