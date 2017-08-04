@@ -100,7 +100,7 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 
 ## Technologies included in the MERN stack
 
-## MongoDB
+### MongoDB
 [mongoDB](https://npmjs.org/package/mongodb)
 
 + MongoDB is the database used in the MERN stack. Uses a NoSQL document-oriented database, with a flexible schema and a JSON based query language.
@@ -111,7 +111,7 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
     + Data is also retrieved in JSON format.
     + Comes with a shell built on JS runtime like Node.js. (Like Rails C but for MongoDB)
 
-## Express
+### Express.js
 [express](http://expressjs.com/)
 
 
@@ -121,11 +121,11 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 
 + Express parses request URL, headers and parameters via Regex. On the response side, it has, as expected, all functionality required by web applications. This includes setting response codes, setting cookies, sending custom headers etc. Further, you can write Express middleware, custom pieces of code that can be inserted in any request / response processing path to achieve common functionality such as logging, authentication etc.
 
-## React Native
+### React Native
 [react native](https://github.com/facebook/react-native)
 + React Native library lets you build mobile apps using Javascript and React, indistinguishable from apps built with Obj-C, Swift, or Java.
 
-## Node.js
+### Node.js
 
 [node.js](https://github.com/nodejs/node)
 + Google's V8 run-time environment used for running server-sided JavaScript. Used alongside express with MongoDB.
@@ -149,7 +149,7 @@ On the **server side**, we have a simple Express.js application which does 2 thi
 + 2) Websockets server for messages from websocket clients.
 
 
-+ Websockets: an upgrade to typical HTTP requests - allows for bi-directional data transfer between the client and server.
++ **Websockets**: an upgrade to typical HTTP requests - allows for bi-directional data transfer between the client and server.
 [socket.io](https://socket.io/) seems to be the best.
 (as opposed to HTTP unidirectional flow where the server must take on all the client requests before moving on)
 
@@ -175,15 +175,15 @@ If we were using Rails, we would need to convert to and from JSON. With Node.js,
 ## Sources
 
 + node.js
- + http://rationalappdev.com/api-backend-with-nodejs-express-and-mongodb-for-react-native-apps/
- + https://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js
+  + http://rationalappdev.com/api-backend-with-nodejs-express-and-mongodb-for-react-native-apps/
+  + https://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js
 https://www.apress.com/gp/blog/all-blog-posts/why-mern/12056000
 
 
 + react native
- + https://medium.com/@MentorMate/best-practices-for-building-an-app-with-react-native-components-7dee3b2b010f
+  + https://medium.com/@MentorMate/best-practices-for-building-an-app-with-react-native-components-7dee3b2b010f
 
 
 + node.js used w/ websockets
- + https://code.tutsplus.com/tutorials/using-nodejs-and-websockets-to-build-a-chat-service--net-34482
- + http://codular.com/node-web-sockets
+  + https://code.tutsplus.com/tutorials/using-nodejs-and-websockets-to-build-a-chat-service--net-34482
+  + http://codular.com/node-web-sockets
