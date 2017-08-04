@@ -1,9 +1,11 @@
 # Woven
-Happily stay in touch with your best friend or SO!
+Happily stay in touch with your SO or best friend!
 
 [Link]()
 
-Woven is an MERN Stack based mobile iOS application that allows a couple or two close friends to connect and share digital space through growing a virtual plant, instant messaging, to-do lists, and playdates.
+Woven is an iOS application that allows a couple or two close friends to connect and share digital space through growing a virtual plant together, instant messaging, to-do lists, and playdates.
+
+Woven will be implemented using a MERN Stack and React Native.
 
 ## Minimum Viable Product
 
@@ -103,7 +105,7 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 
 ### Cons
 
-  + Node.js is inefficient at CPU-intensive operations, but good for simultaneous actions (like chat).
+  + Node.js is inefficient at CPU-intensive operations, but good for quick simultaneous actions (like chat).
 
 
 ## Technologies included in the MERN stack
@@ -177,7 +179,7 @@ On the **client side**, we have:
 
 ### API Endpoints with MongoDB
 
-If we were using Rails, we would convert to and from JSON. With Node.js, we can simply expose JSON objects with a RESTful API for the client. With MongoDB, we don't have to worry about the conversion between JSON and ruby. Overall, we can avoid the need for multiple conversions by using a uniform data serialization format across the client, server, and database.
+If we were using Rails, we would need to convert to and from JSON. With Node.js, we can simply deliver JSON objects through RESTful APIs for the client. With MongoDB, we don't have to worry about the conversion between JSON and Ruby. Also, we avoid the need for multiple data-type conversions by using a uniform data serialization format across the client, server, and database.
 
 
 ## Sources
