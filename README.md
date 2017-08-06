@@ -96,11 +96,10 @@ The technical challenges for this application will be:
 [mongoDB](https://npmjs.org/package/mongodb)
 
 + MongoDB is the database used in the MERN stack. Uses a NoSQL document-oriented database, with a flexible schema and a JSON based query language.
-    + For example, for our app, we would have users and photos. Typically, a relational database would create two tables - one for users, one for photos with `user_id`. With a NOSQL database, we would store all the data as a single document, and fetch it all at once with any level of nesting.
-    + MongoDB has the ability to index on deeply nested fields unlike RDBMS's.
-    + Storing an object in a MongoDB database does not have to follow a schema like Rails.
-    + Data is also retrieved in JSON format.
-    + Comes with a shell built on JS runtime like Node.js. (Like Rails C but for MongoDB)
+  + For example, for our app, we would have users and photos. Typically, a relational database would create two tables - one for users, one for photos with `user_id`. With a NOSQL database, we would store all the data as a single document, and fetch it all at once with any level of nesting.
++ MongoDB has the ability to index on deeply nested fields unlike RDBMS's.
++ Storing an object in a MongoDB database does not have to follow a schema like Rails.
++ Data is also retrieved in JSON format.  + Comes with a shell built on JS runtime like Node.js. (Like Rails C but for MongoDB)
 
 ### Express.js
 [express](http://expressjs.com/)
@@ -128,7 +127,7 @@ Chat is the sweet-spot example for Node.js since it’s a lightweight, high traf
 
 **How it works in Woven**
 
-In Woven, we are dealing with a single chatroom / chatbox with two people.
+In Woven, we are dealing with a single chatroom with two people.
 
 On the **server side**, we have a simple Express.js application which does 2 things:
 
@@ -143,13 +142,13 @@ On the **server side**, we have a simple Express.js application which does 2 thi
 
 On the **client side**, we have:
 
-+ a) an HTML page with 2 handlers
-  + 1) on the Send button, which picks up the input message
++ a page with 2 handlers
+  + 1) on the Send button, which picks up the input message.
   + 2) one that listens for new messages on the websockets client, AKA listens for messages sent by the SO, to update the `current_user`'s' message board.
 
 **Step by step** here’s what happens when `current_user` sends a message.:
 
-+ 1) app notices the 'Send' button click through a JS event handler, obtains value from the `e.currentTarget.value`.
++ 1) app notices the 'Send' button click through a JS event handler.
 + 2) emits a websocket message through the websocket client connected to the server.
 + 3) the partner receives the new message as a push message through a websocket component running in the SO's application.
 + 4) message is obtained, and chat is updated.
@@ -186,7 +185,7 @@ If we were using Rails, we would need to convert to and from JSON. With Node.js,
 + Phase 2c User Profiles (Greg and Evelyn) (2 days):
   + Objective: Set up User Profiles
   + By the end of the day, we will have:
-    + Users can access and edit their profile page
+    + Users can access and edit their profile page.
 
 
 ### Phase 3: MVP Features  (4 days)
