@@ -3,70 +3,102 @@ Happily stay in touch with your SO or best friend!
 
 [Link]()
 
-Woven is an iOS application that allows a couple or two close friends to connect and share digital space through growing a virtual plant together, instant messaging, to-do lists, and playdates.
+Woven is an iOS application connecting loved ones over time and space through engaging, interactive experiences and a shared digital space.
 
 Woven will be implemented using a MERN Stack and React Native.
 
-## Minimum Viable Product
+## Functionality & Minimum Viable Product
 
 This app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation:
 
-- [ ] Hosting
-- [ ] New User Sign Up and Sign In, Demo Login
-- [ ] Profile
-- [ ] Home Page
-- [ ] Virtual Plant
-- [ ] Instant Messaging
-- [ ] To-do List
-- [ ] Playdates via Google Maps + Google Calendar API
+
+- [ ] App hosted on iOS App Store
+- [ ] New User Sign Up and Sign In (Demo User?)
+- [ ] Demo website showcasing relevant app features
+- [ ] User profile with picture and description
+- [ ] Tab Navigation from one feature to another
+- [ ] Virtual Plant with interactive features
+- [ ] Instant Messaging with emoticon and image support
 - [ ] Production README
+- [ ] To-do List with CRUD functionality (Bonus!)
+- [ ] Playdates with Google Maps + Google Calendar API (Bonus!)
 - [ ] Uber Together (Bonus!)
 - [ ] Open Authentication (Bonus!)
+- [ ] Live Video
 
 ## Design Documents (TBA)
 
 * [View Wireframes][views]
 * [API Endpoints][api_endpoints]
 * [React Components][component_hierarchy]
-* [Sample State][sample-state]
+* [Sample Schema][sample_schema]
+* [Sample State][sample_state]
 
-[views]: ./views.md
-[api_endpoints]: ./api-endpoints.md
-[component_hierarchy]: ./component-hierarchy.md
-[sample-state]: ./sample-state.md
+[views]: ./docs/views.md
+[api_endpoints]: ./docs/api-endpoints.md
+[component_hierarchy]: ./docs/component-hierarchy.md
+[sample_schema]: ./docs/sample_schema.md
+[sample_state]: ./docs/sample_state.md
+
+## Group Members & Work Breakdown
+
+Our group consists of five members: Greg Park, Evelyn Lee, Janet Lee, Jared Tan, Keith Wong.
+
+Jared's primary responsibilities will be:
+* Owning the overall structure and layout/navigation/functionality of the app
+* Timeline manager
+* Setting up user authentication via React Native
+* Researching new technologies and libraries to incorporate into the project as appropriate
+* Finalizing the repo's README, complete with screenshots and code snippets
+
+Greg's primary responsibilities will be:
+* Co-lead for live-chat functionality (front-end focus)
+* Owning the functionality to incorporate images and sound into live-chat
+* Creating the Settings / instructions page
+
+Evelyn's primary responsibilities will be:
+* Co-lead for live-chat functionality (back-end focus)
+* Co-creating the App Store page and marketing the app
+* Working with Jared to finalize the repo's README
+
+Janet's primary responsibilities will be:
+* Co-lead for live plant functionality (front-end focus)
+* Owning the front-end design of the Virtual Plant
+* Co-creating the App Store page and marketing the app
+
+Keith's primary responsibilities will be:  
+* Co-lead for live plant functionality (back-end focus)
+* Owning the interactive features of the Virtual Plant and its integration into the backend
 
 
 
-## Background of Technologies
+## Technologies and Technical Challenges
 
-### MERN Stack
+This mobile iOS application will be built using a MERN stack (MongoDB, Express.js, React Native, Node.js), which has many positives for this application.
++ Allows for JavaScript to be used for both client-side and server-side code.
++ React Native allows for quick prototyping and high initial velocity for a mobile application.
++ Object representation is JSON (JavaScript Object Notation) in both the back-end and the front-end.
++ Node.js's non-blocking I/O is great for quick simultaneous actions, like chat.
 
-+ Why MERN?
-  +  JavaScript is used for client-side code as well as server-side code. Even MongoDB scripts are written in JavaScript. So, the only language we need to know and be comfortable with is JavaScript.
+The technical challenges for this application will be:
 
-  + React Native enables quick prototyping and a very high initial velocity. Implementing basic features is easy, and if needed, they can be extended with native code and native views.
-
-  + When using the MERN stack, object representation is JSON (JavaScript Object Notation) everywhere – in the database, in the application server and on the client, and even on the wire. Saves a lot of hassle.
-
-  + MERN uses Node.js, which has access to the NPM packages, similar to Ruby Gems.
-
-  + MERN allows for SEO-friendly applications through the virtual DOM provided by React.
-
-### Cons
-
-  + Node.js is inefficient at CPU-intensive operations, but good for quick simultaneous actions (like chat).
++ Connecting our front-end with a NoSQL back-end database.
++ Understanding web-sockets and providing smooth user-to-user messaging.
++ Creating a virtual plant feature with a pleasing UI and seamless UX for user satisfaction.
++ Add graphics library for the plant.
++ Adding features that require two users to work together.
 
 
-## Technologies included in the MERN stack
+
+## Technology details included in the MERN stack
 
 ### MongoDB
 [mongoDB](https://npmjs.org/package/mongodb)
 
 + MongoDB is the database used in the MERN stack. Uses a NoSQL document-oriented database, with a flexible schema and a JSON based query language.
     + For example, for our app, we would have users and photos. Typically, a relational database would create two tables - one for users, one for photos with `user_id`. With a NOSQL database, we would store all the data as a single document, and fetch it all at once with any level of nesting.
-    + MongoDB has the ability to index on deeply nested fields unlike RDBMS's
+    + MongoDB has the ability to index on deeply nested fields unlike RDBMS's.
     + Storing an object in a MongoDB database does not have to follow a schema like Rails.
-    + MongoDB's query language is based on JSON: you create, search for, make changes, delete documents by specifying the operation in a JSON object. The query language is not English-like (you don't SELECT or say WHERE), and therefore much easier to construct programmatically.
     + Data is also retrieved in JSON format.
     + Comes with a shell built on JS runtime like Node.js. (Like Rails C but for MongoDB)
 
@@ -89,13 +121,11 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 [node.js](https://github.com/nodejs/node)
 + Google's V8 run-time environment used for running server-sided JavaScript. Used alongside express with MongoDB.
 
-## Examples of why Node.js should be used
-
-### CHAT
+### Chat Overview
 
 Chat is the most typical real-time, multi-user application.
 
-Chat is the sweet-spot example for Node.js since it’s a lightweight, high traffic, data-intensive (but low processing/computation) application that runs across distributed devices. It’s also a great use-case for learning too considering this is the first time working with this technology. It’s simple, yet it covers most of the paradigms ever used in a typical Node.js application.
+Chat is the sweet-spot example for Node.js since it’s a lightweight, high traffic, data-intensive (but low processing/computation) application that runs across distributed devices. It’s also a great use-case for learning too considering this is our first time working with this technology. It’s simple, yet it covers most of the paradigms ever used in a typical Node.js application.
 
 **How it works in Woven**
 
@@ -109,7 +139,7 @@ On the **server side**, we have a simple Express.js application which does 2 thi
 
 
 + **Websockets**: an upgrade to typical HTTP requests - allows for bi-directional data transfer between the client and server.
-[socket.io](https://socket.io/) seems to be the best.
+[socket.io](https://socket.io/) seems to work the best.
 (as opposed to HTTP unidirectional flow where the server must take on all the client requests before moving on)
 
 On the **client side**, we have:
@@ -122,7 +152,7 @@ On the **client side**, we have:
 
 + 1) web browser notices the 'Send' button click through a JS event handler, obtains value from the `e.currentTarget.value`.
 + 2) emits a websocket message through the websocket client connected to the server.
-+ 3) the SO receives the new message as a push message through a websocket component running in the SO's web-page.
++ 3) the partner receives the new message as a push message through a websocket component running in the SO's web-page.
 + 4) message is obtained, and webpage is updated.
 
 
