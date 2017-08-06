@@ -1,11 +1,9 @@
 # Woven
-Happily stay in touch with your SO or best friend!
+Woven is an iOS application connecting distant loved ones through engaging, interactive experiences and a shared digital space.
+Technology has allowed people to connect with the world in a new and powerful way. Platforms like facebook, instagram, and snapchat feature friend or follower lists that encourage making as many connections as possible. The 21st century has effectively made the world a smaller place, and people are moving farther away from home with newfound courage to start new careers and lives.
+While there are many applications on the market that combine chat and video features to make it easier to stay in touch with significant others, there aren't many that focus on fostering relationships between friends and family. Woven is an application where people focus on the connections they want to nurture and which provides entertaining ways to do so. It will provide standard chat features in addition to other shared user experiences, such as taking care of a virtual plant together, with the aim of creating a space that brings people closer together.
 
 [Link]()
-
-Woven is an iOS application connecting loved ones over time and space through engaging, interactive experiences and a shared digital space.
-
-Woven will be implemented using a MERN Stack and React Native.
 
 ## Functionality & Minimum Viable Product
 
