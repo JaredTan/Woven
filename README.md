@@ -7,21 +7,22 @@ Woven is an iOS application that allows a couple or two close friends to connect
 
 Woven will be implemented using a MERN Stack and React Native.
 
-## Minimum Viable Product
+## Functionality & Minimum Viable Product
 
 This app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation:
 
-- [ ] Hosting
-- [ ] New User Sign Up and Sign In, Demo Login
-- [ ] Profile
-- [ ] Home Page
-- [ ] Virtual Plant
-- [ ] Instant Messaging
-- [ ] To-do List
-- [ ] Playdates via Google Maps + Google Calendar API
+- [ ] App hosted on iOS App Store
+- [ ] New User Sign Up and Sign In (Demo User?)
+- [ ] Demo website showcasing relevant app features
+- [ ] User profile with picture and description
+- [ ] Tab Navigation from one feature to another
+- [ ] Virtual Plant with interactive features
+- [ ] Instant Messaging with emoticon and image support
 - [ ] Production README
+- [ ] To-do List with CRUD functionality (Bonus!)
+- [ ] Playdates with Google Maps + Google Calendar API (Bonus!)
 - [ ] Uber Together (Bonus!)
-- [ ] Open Authentication (Bonus!)
+- [ ] Open Authentication with Facebook/Google (Bonus!)
 
 ## Design Documents (TBA)
 
