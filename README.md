@@ -7,20 +7,21 @@ Woven is an iOS application connecting loved ones over time and space through en
 
 Woven will be implemented using a MERN Stack and React Native.
 
-## Minimum Viable Product
+## Functionality & Minimum Viable Product
 
 This app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation:
 
-- [ ] Hosting
-- [ ] Demo Page
-- [ ] New User Sign Up and Sign In, Demo Login
-- [ ] Profile
-- [ ] Home Page
-- [ ] Virtual Plant
-- [ ] Instant Messaging
-- [ ] Plan Activities via Google Maps + Google Calendar API
-- [ ] To-do List
+
+- [ ] App hosted on iOS App Store
+- [ ] New User Sign Up and Sign In (Demo User?)
+- [ ] Demo website showcasing relevant app features
+- [ ] User profile with picture and description
+- [ ] Tab Navigation from one feature to another
+- [ ] Virtual Plant with interactive features
+- [ ] Instant Messaging with emoticon and image support
 - [ ] Production README
+- [ ] To-do List with CRUD functionality (Bonus!)
+- [ ] Playdates with Google Maps + Google Calendar API (Bonus!)
 - [ ] Uber Together (Bonus!)
 - [ ] Open Authentication (Bonus!)
 - [ ] Live Video
@@ -38,6 +39,36 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 [component_hierarchy]: ./docs/component-hierarchy.md
 [sample_schema]: ./docs/sample_schema.md
 [sample_state]: ./docs/sample_state.md
+
+## Group Members & Work Breakdown
+
+Our group consists of five members: Greg Park, Evelyn Lee, Janet Lee, Jared Tan, Keith Wong.
+
+Jared's primary responsibilities will be:
+* Owning the overall structure and layout/navigation/functionality of the app
+* Timeline manager
+* Setting up user authentication via React Native
+* Researching new technologies and libraries to incorporate into the project as appropriate
+* Finalizing the repo's README, complete with screenshots and code snippets
+
+Greg's primary responsibilities will be:
+* Co-lead for live-chat functionality (front-end focus)
+* Owning the functionality to incorporate images and sound into live-chat
+* Creating the Settings / instructions page
+
+Evelyn's primary responsibilities will be:
+* Co-lead for live-chat functionality (back-end focus)
+* Co-creating the App Store page and marketing the app
+* Working with Jared to finalize the repo's README
+
+Janet's primary responsibilities will be:
+* Co-lead for live plant functionality (front-end focus)
+* Owning the front-end design of the Virtual Plant
+* Co-creating the App Store page and marketing the app
+
+Keith's primary responsibilities will be:  
+* Co-lead for live plant functionality (back-end focus)
+* Owning the interactive features of the Virtual Plant and its integration into the backend
 
 ## Implementation Timeline
 
