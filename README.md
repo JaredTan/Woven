@@ -35,47 +35,6 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 [component_hierarchy]: ./component-hierarchy.md
 [sample-state]: ./sample-state.md
 
-## Implementation Timeline
-
-### Phase 1: Learn Technologies (2 days)
-
-+ Objective: All group members should be familiar with the workflow and each component of the MERN stack.
-
-### Phase 2: Backbone (3 days)
-
-+ Phase 2a: User Authentication (1 day):
-  + Objective: Set up user authentication via React Native.
-
-
-+ Phase 2b: Splash + Home/Index Page (1 day):
-  + Objective: Set up functional index page for the application, that allows for easy access to other features.
-
-
-+ Phase 2c User Profiles (1 days):
-  + Objective: Set up User Profiles
-
-
-### Phase 3: MVP Features  (4 days)
-
-+ Phase 3a: Virtual Plant (1 day)
-  + New plant
-  + Name
-  + Water
-  + Icon
-
-+ Phase 3b: Instant Messaging w/ [socket.io](https://socket.io/) (1 day)
-  + Stickers / Emoticons
-  + Photos
-  + Mood tracker / status
-
-+ Phase 3c: Playdates (1 day)
-  + Google Calendar API
-  + Google Maps API
-
-+ Phase 3d: To-do List (1 day)
-  + Reminders + Push Notifications
-  + Snail Mail
-  + Highlight Updates
 
 
 ## Background of Technologies
@@ -172,18 +131,56 @@ On the **client side**, we have:
 If we were using Rails, we would need to convert to and from JSON. With Node.js, we can simply deliver JSON objects through RESTful APIs for the client. With MongoDB, we don't have to worry about the conversion between JSON and Ruby. Also, we avoid the need for multiple data-type conversions by using a uniform data serialization format across the client, server, and database.
 
 
-## Sources
-
-+ node.js
-  + http://rationalappdev.com/api-backend-with-nodejs-express-and-mongodb-for-react-native-apps/
-  + https://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js
-https://www.apress.com/gp/blog/all-blog-posts/why-mern/12056000
 
 
-+ react native
-  + https://medium.com/@MentorMate/best-practices-for-building-an-app-with-react-native-components-7dee3b2b010f
+
+## Implementation Timeline
 
 
-+ node.js used w/ websockets
-  + https://code.tutsplus.com/tutorials/using-nodejs-and-websockets-to-build-a-chat-service--net-34482
-  + http://codular.com/node-web-sockets
+### Phase 1: Learn Technologies (2 days)
+
++ Objective: All group members will dedicate the weekend to learning each component of the MERN (MongoDB, Express, React Native, Node.js) stack and become familiar with the workflow.
++ By the end of the day, we will have:
+- complete READ.me
+- set up github pages
+
+### Phase 2: Backbone (3 days)
+
++ Phase 2a: User Authentication (1 day):
++ Objective: Set up user authentication via React Native and Auth0 API (ALL)
++ By the end of the day, we will have:
+- User can sign up and login that persist through sessions unless logged out
+
+
++ Phase 2b: Splash + Home/Index Page (2 day): (Splash page: Janet / Index Page: Keith and Jared)
++ Objective: Set up functional index page for the application, that allows for easy access to other features.
++ By the end of the day, we will have:
+- An index page that allows the user to navigate to the app's features
+
+
++ Phase 2c User Profiles (2 days): (Greg and Evelyn)
++ Objective: Set up User Profiles
++ By the end of the day, we will have:
+- users can access and edit their profile page
+
+
+### Phase 3: MVP Features  (4 days)
+
++ Phase 3a: Virtual Plant (4 days) - Team 1 (Janet and Keith)
++ Features include:
++ Plant DB - name of plant, type of plant, age, description, health, happiness
++ Functionality: water, plant food,
++ Display: feature icon, background with time of day, water button, feeding button, image of plant at different stages, name display, happiness level display, health of plant display
+
++ Phase 3b: Instant Messaging w/ [socket.io](https://socket.io/) (4 day) - Team 2 (Jared and Greg)
++ Stickers / Emoticons
++ Photos
++ Mood tracker / status
++ create database for messaging storage
+
+
+## Plan for getting users and reviews
+
++ All members will each share with at least 20 friends and family and ask for good reviews
++ Janet will find an appropriate subreddit and make a post there to show off the app
++ Evelyn will submit the app for review on itune store
