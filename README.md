@@ -39,6 +39,36 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 [sample_schema]: ./docs/sample_schema.md
 [sample_state]: ./docs/sample_state.md
 
+## Group Members & Work Breakdown
+
+Our group consists of five members: Greg Park, Evelyn Lee, Janet Lee, Jared Tan, Keith Wong.
+
+Jared's primary responsibilities will be:
+* Owning the overall structure and layout/navigation/functionality of the app
+* Timeline manager
+* Setting up user authentication via React Native
+* Researching new technologies and libraries to incorporate into the project as appropriate
+* Finalizing the repo's README, complete with screenshots and code snippets
+
+Greg's primary responsibilities will be:
+* Co-lead for live-chat functionality (front-end focus)
+* Owning the functionality to incorporate images and sound into live-chat
+* Creating the Settings / instructions page
+
+Evelyn's primary responsibilities will be:
+* Co-lead for live-chat functionality (back-end focus)
+* Co-creating the App Store page and marketing the app
+* Working with Jared to finalize the repo's README
+
+Janet's primary responsibilities will be:
+* Co-lead for live plant functionality (front-end focus)
+* Owning the front-end design of the Virtual Plant
+* Co-creating the App Store page and marketing the app
+
+Keith's primary responsibilities will be:  
+* Co-lead for live plant functionality (back-end focus)
+* Owning the interactive features of the Virtual Plant and its integration into the backend
+
 ## Implementation Timeline
 
 ### Phase 1: Learn Technologies (2 days)
