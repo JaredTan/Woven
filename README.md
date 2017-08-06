@@ -1,7 +1,10 @@
 # Woven
-Woven is an iOS application connecting distant loved ones through engaging, interactive experiences and a shared digital space.
-Technology has allowed people to connect with the world in a new and powerful way. Platforms like facebook, instagram, and snapchat feature friend or follower lists that encourage making as many connections as possible. The 21st century has effectively made the world a smaller place, and people are moving farther away from home with newfound courage to start new careers and lives.
-While there are many applications on the market that combine chat and video features to make it easier to stay in touch with significant others, there aren't many that focus on fostering relationships between friends and family. Woven is an application where people focus on the connections they want to nurture and which provides entertaining ways to do so. It will provide standard chat features in addition to other shared user experiences, such as taking care of a virtual plant together, with the aim of creating a space that brings people closer together.
+
+## Background and Overview
+
+Woven is an iOS mobile application connecting two best friends or a romantic couple through engaging, interactive experiences and a shared digital space.
+
+Technology has allowed people to connect with the world in a new and powerful way. While platforms like Facebook, Instagram, and Snapchat encourage making as many connections as possible, there aren't many applications that focus on fostering intimate relationships between close friends or significant others. Woven allows people to focus on their most important relationship through standard chat features and other enjoyable shared user experiences, such as taking care of a virtual plant together.
 
 [Link]()
 
@@ -10,18 +13,20 @@ While there are many applications on the market that combine chat and video feat
 This app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation:
 
 
-- [ ] App hosted on iOS App Store
-- [ ] New User Sign Up and Sign In (Demo User?)
+
+- [ ] New user sign up and sign in + authentication
 - [ ] Demo website showcasing relevant app features
-- [ ] User profile with picture and description
-- [ ] Tab Navigation from one feature to another
-- [ ] Virtual Plant with interactive features
-- [ ] Instant Messaging with emoticon and image support
+- [ ] User profile
+- [ ] Tab navigation
+- [ ] Virtual plant with interactive features
+- [ ] Instant messaging with emoticon and image support
 - [ ] Production README
-- [ ] To-do List with CRUD functionality (Bonus!)
-- [ ] Playdates with Google Maps + Google Calendar API (Bonus!)
-- [ ] Uber Together (Bonus!)
-- [ ] Open Authentication (Bonus!)
+
+### Bonus
+
+- [ ] To-do List with CRUD functionality
+- [ ] Activity Planner with Google Maps API
+- [ ] App hosted on iOS App Store
 - [ ] Live Video
 
 ## Design Documents (TBA)
@@ -43,31 +48,30 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 Our group consists of five members: Greg Park, Evelyn Lee, Janet Lee, Jared Tan, Keith Wong.
 
 Jared's primary responsibilities will be:
-* Owning the overall structure and layout/navigation/functionality of the app
-* Timeline manager
-* Setting up user authentication via React Native
-* Researching new technologies and libraries to incorporate into the project as appropriate
-* Finalizing the repo's README, complete with screenshots and code snippets
+* Owning the overall structure and layout/navigation/functionality of the app.
+* Timeline manager.
+* Setting up user authentication via Auth0.
+* Researching new technologies and libraries to incorporate into the project as appropriate.
+* Finalizing the repo's README, complete with screenshots and code snippets.
 
 Greg's primary responsibilities will be:
-* Co-lead for live-chat functionality (front-end focus)
-* Owning the functionality to incorporate images and sound into live-chat
-* Creating the Settings / instructions page
+* Co-lead for live-chat functionality (front-end focus).
+* Owning the functionality to incorporate images and sound into live-chat.
+* Creating the Settings / Instructions page.
 
 Evelyn's primary responsibilities will be:
-* Co-lead for live-chat functionality (back-end focus)
-* Co-creating the App Store page and marketing the app
-* Working with Jared to finalize the repo's README
+* Co-lead for live-chat functionality (back-end focus).
+* Co-creating the App Store page and marketing the app.
+* Working with Jared to finalize the repo's README.
 
 Janet's primary responsibilities will be:
-* Co-lead for live plant functionality (front-end focus)
-* Owning the front-end design of the Virtual Plant
-* Co-creating the App Store page and marketing the app
+* Co-lead for live plant functionality (front-end focus).
+* Owning the front-end design of the Virtual Plant.
+* Co-creating the App Store page and marketing the app.
 
 Keith's primary responsibilities will be:  
-* Co-lead for live plant functionality (back-end focus)
-* Owning the interactive features of the Virtual Plant and its integration into the backend
-
+* Co-lead for live plant functionality (back-end focus).
+* Owning the interactive features of the Virtual Plant and its integration into the backend.
 
 
 ## Technologies and Technical Challenges
@@ -83,12 +87,10 @@ The technical challenges for this application will be:
 + Connecting our front-end with a NoSQL back-end database.
 + Understanding web-sockets and providing smooth user-to-user messaging.
 + Creating a virtual plant feature with a pleasing UI and seamless UX for user satisfaction.
-+ Add graphics library for the plant.
-+ Adding features that require two users to work together.
++ Add graphics library / drawn images for the virtual plant.
 
 
-
-## Technology details included in the MERN stack
+## Technology details of MERN
 
 ### MongoDB
 [mongoDB](https://npmjs.org/package/mongodb)
@@ -103,12 +105,11 @@ The technical challenges for this application will be:
 ### Express.js
 [express](http://expressjs.com/)
 
-
 + The Express.js framework provides specific routes for data retrieved from HTTP requests.
 
 + Acts as the rails for Node.js.
 
-+ Express parses request URL, headers and parameters via Regex. On the response side, it has, as expected, all functionality required by web applications. This includes setting response codes, setting cookies, sending custom headers etc. Further, you can write Express middleware, custom pieces of code that can be inserted in any request / response processing path to achieve common functionality such as logging, authentication etc.
++ Express parses request URL, headers and parameters via Regex. On the response side, it has, as expected, all functionality required by web applications. This includes setting response codes and setting cookies.
 
 ### React Native
 [react native](https://github.com/facebook/react-native)
@@ -148,67 +149,66 @@ On the **client side**, we have:
 
 **Step by step** here’s what happens when `current_user` sends a message.:
 
-+ 1) web browser notices the 'Send' button click through a JS event handler, obtains value from the `e.currentTarget.value`.
++ 1) app notices the 'Send' button click through a JS event handler, obtains value from the `e.currentTarget.value`.
 + 2) emits a websocket message through the websocket client connected to the server.
-+ 3) the partner receives the new message as a push message through a websocket component running in the SO's web-page.
-+ 4) message is obtained, and webpage is updated.
-
++ 3) the partner receives the new message as a push message through a websocket component running in the SO's application.
++ 4) message is obtained, and chat is updated.
 
 ### API Endpoints with MongoDB
 
 If we were using Rails, we would need to convert to and from JSON. With Node.js, we can simply deliver JSON objects through RESTful APIs for the client. With MongoDB, we don't have to worry about the conversion between JSON and Ruby. Also, we avoid the need for multiple data-type conversions by using a uniform data serialization format across the client, server, and database.
 
 
-
-
-
 ## Implementation Timeline
-
 
 ### Phase 1: Learn Technologies (2 days)
 
-+ Objective: All group members will dedicate the weekend to learning each component of the MERN (MongoDB, Express, React Native, Node.js) stack and become familiar with the workflow.
-+ By the end of the day, we will have:
-- complete READ.me
-- set up github pages
++ Objective: All group members will dedicate the weekend to learning each component of the MERN (MongoDB, Express, React Native, Node.js) stack and become familiar with the overall workflow.
+
++ By the end of Day 2, we will have:
+  + Completed Proposal README
+  + Understanding of MERN
 
 ### Phase 2: Backbone (3 days)
 
-+ Phase 2a: User Authentication (1 day):
-+ Objective: Set up user authentication via React Native and Auth0 API (ALL)
-+ By the end of the day, we will have:
-- User can sign up and login that persist through sessions unless logged out
++ Phase 2a: User Authentication (All) (1 day):
+  + Objective: Set up user authentication via React Native and Auth0 API.
+  + By the end of the Day 3, we will have:
+    + User can sign up and login that persist through sessions unless logged out.
 
 
-+ Phase 2b: Splash + Home/Index Page (2 day): (Splash page: Janet / Index Page: Keith and Jared)
-+ Objective: Set up functional index page for the application, that allows for easy access to other features.
-+ By the end of the day, we will have:
-- An index page that allows the user to navigate to the app's features
++ Phase 2b: Splash (Janet) + Home/Index Page (Keith/Jared) (2 days):
+  + Objective: Set up functional index page for the application, that allows for easy access to other features.
+  + By the end of the day, we will have:
+    + An index page that allows the user to navigate to the app's features.
 
 
-+ Phase 2c User Profiles (2 days): (Greg and Evelyn)
-+ Objective: Set up User Profiles
-+ By the end of the day, we will have:
-- users can access and edit their profile page
++ Phase 2c User Profiles (Greg and Evelyn) (2 days):
+  + Objective: Set up User Profiles
+  + By the end of the day, we will have:
+    + Users can access and edit their profile page
 
 
 ### Phase 3: MVP Features  (4 days)
 
-+ Phase 3a: Virtual Plant (4 days) - Team 1 (Janet and Keith)
-+ Features include:
-+ Plant DB - name of plant, type of plant, age, description, health, happiness
-+ Functionality: water, plant food,
-+ Display: feature icon, background with time of day, water button, feeding button, image of plant at different stages, name display, happiness level display, health of plant display
++ Phase 3a: Virtual Plant (4 days) (Janet and Keith)
+  + Features include:
+    + Plant attributes: name of plant, type of plant, age, description, health, happiness.
+    + Functionality: water, sunlight.
+    + Display: feature icon, background with time of day, water button, feeding button, image of plant at different stages, name, happiness level, health of plant.
 
-+ Phase 3b: Instant Messaging w/ [socket.io](https://socket.io/) (4 day) - Team 2 (Jared and Greg)
-+ Stickers / Emoticons
-+ Photos
-+ Mood tracker / status
-+ create database for messaging storage
+
++ Phase 3b: Instant Messaging w/ [socket.io](https://socket.io/) (4 days) (Evelyn, Greg, Jared)
+  + Features include:
+    + Stickers / Emoticons
+    + Photos
+    + Mood tracker / status
+    + Database for message storage
 
 
 ## Plan for getting users and reviews
 
-+ All members will each share with at least 20 friends and family and ask for good reviews
-+ Janet will find an appropriate subreddit and make a post there to show off the app
-+ Evelyn will submit the app for review on itune store
++ All members will each share with at least 20 friends and family members.
++ Soft launch with close friends.
++ Janet will post in an appropriate sub-reddit and Product Hunt for exposure.
++ Evelyn will submit the app for review on the App store.
