@@ -40,6 +40,9 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 
 ![signin](./docs/wireframes/Sign In.png)
 
++ Connect
+
+![connect](./docs/wireframes/Connect.png)
 
 + Approve
 
