@@ -29,15 +29,26 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 - [ ] App hosted on iOS App Store
 - [ ] Live Video
 
-## Design Documents (TBA)
+## Design Documents
 
-* [View Wireframes][views]
+### Wireframes
++ Auth
+
+![auth](./docs/wireframes/Auth.png)
+
++ Chat
+
+![chat](./docs/wireframes/Chat.png)
+
++ Plant
+
+![plant](./docs/wireframes/Plant.png)
+
 * [API Endpoints][api_endpoints]
 * [React Components][component_hierarchy]
 * [Sample Schema][sample_schema]
 * [Sample State][sample_state]
 
-[views]: ./docs/views.md
 [api_endpoints]: ./docs/api-endpoints.md
 [component_hierarchy]: ./docs/component-hierarchy.md
 [sample_schema]: ./docs/sample_schema.md
