@@ -32,9 +32,18 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 ## Design Documents
 
 ### Wireframes
-+ Auth
++ Sign Up
 
-![auth](./docs/wireframes/Auth.png)
+![signup](./docs/wireframes/Sign Up.png)
+
++ Sign In
+
+![signin](./docs/wireframes/Sign In.png)
+
+
++ Approve
+
+![approve](./docs/wireframes/Approve.png)
 
 + Chat
 
@@ -43,6 +52,7 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 + Plant
 
 ![plant](./docs/wireframes/Plant.png)
+
 
 * [API Endpoints][api_endpoints]
 * [React Components][component_hierarchy]
