@@ -34,11 +34,11 @@ This app will, at a minimum, satisfy the following criteria with smooth, bug-fre
 ### Wireframes
 + Sign Up
 
-![signup](./docs/wireframes/Sign Up.png)
+![signup](./docs/wireframes/SignUp.png)
 
 + Sign In
 
-![signin](./docs/wireframes/Sign In.png)
+![signin](./docs/wireframes/SignIn.png)
 
 + Connect
 
