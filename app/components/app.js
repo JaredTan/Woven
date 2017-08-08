@@ -7,8 +7,6 @@ import {
   StatusBar
 } from 'react-native';
 
-// import {} from '../actions';
-
 import Login from './login';
 import Main from './main';
 import AlertContainer from './alerts/alert_container';
@@ -31,14 +29,13 @@ var App = React.createClass({
     }
     return (
       <View style={{flex: 1}}>
-
         {renderMainView()}
         <AlertContainer/>
       </View>
     )
   }
 });
-      // <StatusBar barStyle="light-content"/>
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

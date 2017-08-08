@@ -7,16 +7,6 @@ import {
   NavigatorIOS
 } from 'react-native';
 
-// import {unauthUser} from '../actions';
-// onLogout: function() {
-//   this.props.dispatch(unauthUser);
-// },
-// <TouchableOpacity onPress={this.onLogout}>
-//   <Text>
-//     Logout
-//   </Text>
-// </TouchableOpacity>
-
 import TodoList from './todo_list';
 
 var Main = React.createClass({
