@@ -7,7 +7,7 @@ import {
   StatusBar
 } from 'react-native';
 
-import Login from './login';
+import AuthMain from './auth/auth_main';
 import Main from './main';
 import Sprite from './sprite';
 import AlertContainer from './alerts/alert_container';
@@ -25,7 +25,7 @@ var App = React.createClass({
         );
       } else {
         return (
-          <Login />
+          <AuthMain />
         );
       }
     }

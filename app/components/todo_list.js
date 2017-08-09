@@ -67,7 +67,6 @@ var TodoList = React.createClass({
     })
   },
   render() {
-    console.log("todos", this.props.todos);
     var renderTodos = () => {
       return this.props.todos.map((todo) => {
         return (
