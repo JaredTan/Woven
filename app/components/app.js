@@ -22,8 +22,8 @@ var App = React.createClass({
     var renderMainView = () => {
       if (this.props.user_id) {
         return (
-          // <Main />
-          <Sprite />
+          <Main />
+          // <Sprite />
         );
       } else {
         return (
