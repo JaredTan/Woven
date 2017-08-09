@@ -12,7 +12,7 @@ var userSchema = new Schema({
     unique: true,
     lowercase: true,
     required: 'Email address is required',
-    validate: [validateEmail, 'Please enter a valid email']
+    validate: [validateEmail, 'Please enter a valid email.']
   },
   password: {
     type: String

@@ -11,7 +11,6 @@ import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 
 import { loginUser, signupUser, addAlert } from '../actions';
 import {authUser} from '../actions';
 
-
 const renderInput = ({
   input: { onChange, ...restInput },
   label,
@@ -40,14 +39,10 @@ const renderInput = ({
 }
 
 const onSignIn = (props, dispatch) => {
-  console.log(props.email,'email');
-  console.log(props.password,'password');
   dispatch(loginUser(props.email, props.password));
 }
 
 const onSignUp = (props, dispatch) => {
-  console.log(props.email,'email');
-  console.log(props.password,'password');
   dispatch(signupUser(props.email, props.password));
 }
 
@@ -111,7 +106,7 @@ const validate = formProps => {
 const warn = formProps => {
   const warnings = {}
   if (formProps.password === "123456") {
-    warnings.password = 'Too easy.'
+    warnings.password = 'Too easy password.'
   }
   return warnings
 }
