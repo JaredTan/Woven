@@ -23,7 +23,8 @@ var userSchema = new Schema({
     }
   ],
   partnerEmail: {
-    type: String
+    type: String,
+    lowercase: true
   },
   connectedId: {
     type: Number

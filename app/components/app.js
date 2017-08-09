@@ -7,8 +7,7 @@ import {
   StatusBar
 } from 'react-native';
 
-import Login from './login';
-import AuthMain from './auth_main';
+import AuthMain from './auth/auth_main';
 import Main from './main';
 import AlertContainer from './alerts/alert_container';
 

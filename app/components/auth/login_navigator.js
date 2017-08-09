@@ -10,9 +10,8 @@ import {
 } from 'react-native';
 
 import LogIn from './login';
-import SignUp from './signup';
 
-var SignUpNavigator = React.createClass({
+var LogInNavigator = React.createClass({
 
   handleBack() {
     this.props.navigator.pop();
@@ -23,21 +22,16 @@ var SignUpNavigator = React.createClass({
       <View style={{flex: 1}}>
       <View style={styles.topBar}>
         <TouchableOpacity onPress={this.handleBack}>
-          <Icon name="chevron-left" size={30} color="white"/>
+          <Icon name="chevron-left" size={22} color="white"/>
         </TouchableOpacity>
       </View>
-      <SignUp/>
+      <LogIn/>
       </View>
     );
   }
 });
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-  },
   topBar: {
     padding: 16,
     paddingTop: 28,
@@ -46,23 +40,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#2ecc71'
-  },
-  title: {
-    color: 'white',
-    fontSize: 20,
-    alignSelf: 'center'
-  },
-  todoContainer: {
-    padding: 16,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    marginTop: -1,
-    borderColor: '#ccc',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
   }
 });
 
 
-module.exports = SignUpNavigator;
+module.exports = LogInNavigator;

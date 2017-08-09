@@ -15,7 +15,7 @@ exports.loginUser = (email, password) => {
           dispatch(addAlert("Could not log in."));
         });
     }).catch((error) => {
-      dispatch(addAlert("Could not log in."));
+      dispatch(addAlert("Could not log in. Invalid username / password, or your partner has not connected yet."));
     });
   }
 }
@@ -26,12 +26,10 @@ exports.signupUser = (email, password, partnerEmail) => {
       var {user_id, token} = response.data;
       Keychain.setGenericPassword(user_id, token)
         .then(function() {
-          dispatch(authUser(user_id));
-        }).catch((error) => {
-          dispatch(addAlert("Could not log in."));
-        });
+          dispatch(addAlert("Thanks for signing up! You may login once both partners have connected."));
+        })
     }).catch((error) => {
-      dispatch(addAlert("Could not sign up."));
+      dispatch(addAlert("Could not sign up: E-mail already taken."));
     });
   }
 }

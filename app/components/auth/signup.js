@@ -8,8 +8,8 @@ import {
 } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
-import { loginUser, signupUser, addAlert } from '../actions';
-import {authUser} from '../actions';
+import { loginUser, signupUser, addAlert } from '../../actions';
+import {authUser} from '../../actions';
 import Login from './login';
 
 const renderInput = ({
@@ -39,16 +39,7 @@ const renderInput = ({
   )
 }
 
-const onSignIn = (props, dispatch) => {
-  this.props.navigator.push({
-    component: LogIn,
-    title: 'Log In',
-    navigationBarHidden: true
-  })
-}
-
 const onSignUp = (props, dispatch) => {
-  console.log(props,'props');
   dispatch(signupUser(props.email, props.password, props.partnerEmail));
 }
 

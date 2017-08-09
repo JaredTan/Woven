@@ -8,8 +8,8 @@ import {
 } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
-import { loginUser, signupUser, addAlert } from '../actions';
-import {authUser} from '../actions';
+import { loginUser, signupUser, addAlert } from '../../actions';
+import {authUser} from '../../actions';
 import SignUp from './signup';
 
 const renderInput = ({
@@ -43,20 +43,12 @@ const onSignIn = (props, dispatch) => {
   dispatch(loginUser(props.email, props.password));
 }
 
-const onSignUp = () => {
-  console.log(props,'props?');
-  this.props.navigator.push({
-    component: SignUp,
-    title: 'Sign Up',
-    navigationBarHidden: true
-  })
-}
-
 const LSForm = props => {
     const { handleSubmit } = props;
     return (
       <Container style={ styles.container }>
         <Content style={ styles.content }>
+          <Text style={styles.title}>Log In</Text>
           <Form style={ styles.form }>
           <Field name="email" label="email" component={renderInput} />
           <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
@@ -71,19 +63,6 @@ const LSForm = props => {
                     onPress={handleSubmit(onSignIn)} >
                     <Text uppercase={false} style={styles.signinText}>
                       login
-                    </Text>
-                  </Button>
-                </Col>
-                <Col style={styles.buttonContainer}>
-                  <Button
-                    androidRippleColor='rgba(255,255,255,0.4)'
-                    full
-                    bordered
-                    style={styles.signupButton}
-                    transparent
-                    onPress={(onSignUp)} >
-                    <Text uppercase={false} style={styles.signupText}>
-                      sign up
                     </Text>
                   </Button>
                 </Col>
@@ -133,6 +112,10 @@ const styles = {
     justifyContent: 'center'
   },
   content: {
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 24
   },
   form: {
   },

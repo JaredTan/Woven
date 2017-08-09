@@ -15,11 +15,17 @@ var localStrategy = new LocalStrategy(localOptions, function(email, password, do
   User.findOne({email: email.toLowerCase()}, function(err, user) {
     if (err) { return done(err) }
     if (!user) { return done(null, false) }
+    User.findOne({email: user.partnerEmail.toLowerCase()}, function(err, partner) {
+      if (err) {return done(err)}
+      console.log(partner,'partner?');
+      if (!partner) {return done(null, false)}
     user.comparePassword(password, function(err, isMatch) {
       if (err) { return done(err) }
+      console.log('partner2?');
       if (!isMatch) { return done(null, false) }
       return done(null, user);
     })
+  })
   });
 });
 
