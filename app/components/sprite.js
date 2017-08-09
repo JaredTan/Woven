@@ -17,16 +17,17 @@ class Sprite extends React.Component {
     super(props);
     this.state = {
       frame: 0,
-      tick: 0
+      tick: 0,
+      clearId: null
     };
 
     this.getImage = this.getImage.bind(this);
   }
-  
-  getImage(num) { 
+
+  getImage(num) {
     return IMAGES['image' + num];
   }
-  
+
 
   render() {
     setTimeout(() => {
@@ -36,11 +37,10 @@ class Sprite extends React.Component {
     }, 100);
     return (
       <View style={styles.container}>
-        <Image 
-          source={this.getImage(this.state.frame)}  
+        <Image
+          source={this.getImage(this.state.frame)}
           style={styles.sprite}
           />
-        <NavBar navigator={this.props.navigator}/>
       </View>
     );
   }

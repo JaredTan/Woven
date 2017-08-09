@@ -12,7 +12,6 @@ import {
 
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 import NewTodo from './new_todo';
-import NavBar from './navbar';
 
 var TodoItem = connect()(React.createClass({
   getInitialState() {
@@ -97,7 +96,6 @@ var TodoList = React.createClass({
           contentContainerStyle={styles.scrollViewContainer}>
           {renderTodos()}
         </ScrollView>
-        <NavBar navigator={this.props.navigator}/>
       </View>
     );
   }
