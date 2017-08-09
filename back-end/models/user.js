@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 var validateEmail = (email) => {
   return (/\S+@\S+\.\S+/).test(email);
-}
+};
 
 var userSchema = new Schema({
   email: {
@@ -26,7 +26,7 @@ var userSchema = new Schema({
     type: String,
     lowercase: true
   },
-  connectedId: {
+  connectionId: {
     type: Number
   }
 
