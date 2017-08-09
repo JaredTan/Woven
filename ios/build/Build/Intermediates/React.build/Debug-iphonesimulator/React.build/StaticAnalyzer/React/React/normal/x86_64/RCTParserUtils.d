@@ -1,7 +1,7 @@
 dependencies: \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/React/Base/RCTParserUtils.m \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/React/Base/RCTParserUtils.h \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/React/Base/RCTUtils.h
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/React/Base/RCTParserUtils.m \
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/React/Base/RCTParserUtils.h \
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/React/Base/RCTUtils.h

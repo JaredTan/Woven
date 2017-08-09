@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>825658FA35.org.reactjs.native.example.Woven</string>
+	<string>EBTJVRMRBZ.org.reactjs.native.example.Woven</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>825658FA35.org.reactjs.native.example.Woven</string>
+		<string>EBTJVRMRBZ.org.reactjs.native.example.Woven</string>
 	</array>
 </dict>
 </plist>

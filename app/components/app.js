@@ -11,6 +11,7 @@ import {
 
 import Login from './login';
 import Main from './main';
+import Sprite from './sprite';
 import AlertContainer from './alerts/alert_container';
 
 var App = React.createClass({
@@ -21,7 +22,8 @@ var App = React.createClass({
     var renderMainView = () => {
       if (this.props.user_id) {
         return (
-          <Main />
+          // <Main />
+          <Sprite />
         );
       } else {
         return (

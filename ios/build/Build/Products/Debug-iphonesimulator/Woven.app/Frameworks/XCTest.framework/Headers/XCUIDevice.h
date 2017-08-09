@@ -3,7 +3,6 @@
 //
 
 #import <XCTest/XCTestDefines.h>
-#import <XCTest/XCUISiriService.h>
 
 #if XCT_UI_TESTING_AVAILABLE
 
@@ -43,11 +42,6 @@ NS_CLASS_AVAILABLE(NA, 9_0)
 #if TARGET_OS_IOS
 /*! The orientation of the device. */
 @property (nonatomic) UIDeviceOrientation orientation;
-
-/*!
- * Provides access to an object representing the Siri interface on the device.
- */
-@property (readonly) XCUISiriService *siriService NS_AVAILABLE_IOS(10_3);
 #endif
 
 /*! Simulates the user pressing a physical button. */

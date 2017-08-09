@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/ReactCommon/jschelpers/Unicode.cpp \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/ReactCommon/jschelpers/Unicode.h
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/ReactCommon/jschelpers/Unicode.cpp \
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/ReactCommon/jschelpers/Unicode.h

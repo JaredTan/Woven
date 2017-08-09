@@ -1,11 +1,11 @@
 dependencies: \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/Libraries/Text/RCTUITextView.m \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/Libraries/Text/RCTUITextView.h \
-  /Users/jaredtan/JardsProjects/Woven/node_modules/react-native/Libraries/Text/RCTBackedTextInputViewProtocol.h \
-  /Users/jaredtan/JardsProjects/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
-  /Users/jaredtan/JardsProjects/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
-  /Users/jaredtan/JardsProjects/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/jaredtan/JardsProjects/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
-  /Users/jaredtan/JardsProjects/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
-  /Users/jaredtan/JardsProjects/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
-  /Users/jaredtan/JardsProjects/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/Libraries/Text/RCTUITextView.m \
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/Libraries/Text/RCTUITextView.h \
+  /Users/keithryanwong/Desktop/Woven/node_modules/react-native/Libraries/Text/RCTBackedTextInputViewProtocol.h \
+  /Users/keithryanwong/Desktop/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/keithryanwong/Desktop/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/keithryanwong/Desktop/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/keithryanwong/Desktop/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/UIView+React.h \
+  /Users/keithryanwong/Desktop/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTComponent.h \
+  /Users/keithryanwong/Desktop/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/keithryanwong/Desktop/Woven/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h

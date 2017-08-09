@@ -1,2 +1,2 @@
-dependencies: /Users/jaredtan/JardsProjects/Woven/ios/Woven/main.m \
-  /Users/jaredtan/JardsProjects/Woven/ios/Woven/AppDelegate.h
+dependencies: /Users/keithryanwong/Desktop/Woven/ios/Woven/main.m \
+  /Users/keithryanwong/Desktop/Woven/ios/Woven/AppDelegate.h

@@ -3,7 +3,6 @@
 //
 
 #import <XCTest/XCTestCase.h>
-#import <XCTest/XCTWaiter.h>
 
 @class XCTestExpectation;
 
@@ -19,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  * API is called that will block execution of subsequent test code until all expected
  * conditions have been fulfilled or a timeout occurs.
  */
-@interface XCTestCase (AsynchronousTesting) <XCTWaiterDelegate>
+@interface XCTestCase (AsynchronousTesting)
 
 /*!
  * @method -expectationWithDescription:
@@ -30,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @discussion
  * Creates and returns an expectation associated with the test case.
  */
-- (XCTestExpectation *)expectationWithDescription:(NSString *)description XCT_WARN_UNUSED;
+- (XCTestExpectation *)expectationWithDescription:(NSString *)description;
 
 /*!
  * @typedef XCWaitCompletionHandler
@@ -63,20 +62,6 @@ typedef void (^XCWaitCompletionHandler)(NSError * __nullable error);
  * loop while using this API.
  */
 - (void)waitForExpectationsWithTimeout:(NSTimeInterval)timeout handler:(nullable XCWaitCompletionHandler)handler;
-
-/*!
- * @method -waitForExpectations:timeout:
- * Wait on a group of expectations for up to the specified timeout. May return early based on fulfillment
- * of the waited on expectations.
- */
-- (void)waitForExpectations:(NSArray<XCTestExpectation *> *)expectations timeout:(NSTimeInterval)seconds;
-
-/*!
- * @method -waitForExpectations:timeout:enforceOrder:
- * Wait on expectations and specify whether they must be fulfilled in the given order. Expectations
- * can only appear in the list once.
- */
-- (void)waitForExpectations:(NSArray<XCTestExpectation *> *)expectations timeout:(NSTimeInterval)seconds enforceOrder:(BOOL)enforceOrderOfFulfillment;
 
 #pragma mark Convenience APIs
 
@@ -182,9 +167,8 @@ typedef BOOL (^XCNotificationExpectationHandler)(NSNotification *notification);
 /*!
  * @typedef
  * Handler called when evaluating the predicate against the object returns true. If the handler is not
- * provided the first successful evaluation will fulfill the expectation. If provided, the handler will
- * be queried each time the notification is received to determine whether the expectation should be fulfilled
- * or not.
+ * provided the first successful evaluation will fulfill the expectation. If provided, the handler can
+ * override that behavior which leaves the caller responsible for fulfilling the expectation.
  */
 typedef BOOL (^XCPredicateExpectationHandler)();
 

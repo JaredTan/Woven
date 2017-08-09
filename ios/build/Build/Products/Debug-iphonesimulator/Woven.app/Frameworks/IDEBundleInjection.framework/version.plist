@@ -5,14 +5,14 @@
 	<key>BuildAliasOf</key>
 	<string>IDEBundleInjection</string>
 	<key>BuildVersion</key>
-	<string>51</string>
+	<string>111</string>
 	<key>CFBundleShortVersionString</key>
 	<string>5.0</string>
 	<key>CFBundleVersion</key>
-	<string>12002</string>
+	<string>11004</string>
 	<key>ProjectName</key>
 	<string>IDEBundleInjection_Sim</string>
 	<key>SourceVersion</key>
-	<string>12002000000000000</string>
+	<string>11004000000000000</string>
 </dict>
 </plist>

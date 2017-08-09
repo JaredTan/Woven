@@ -1,5 +1,5 @@
 //
-//  Copyright (c) 2014-2016 Apple Inc. All rights reserved.
+//  Copyright (c) 2014-2015 Apple Inc. All rights reserved.
 //
 
 #import <XCTest/XCTestDefines.h>
@@ -20,16 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ENUM_AVAILABLE(10_11, 9_0)
 typedef NS_OPTIONS(NSUInteger, XCUIKeyModifierFlags) {
     XCUIKeyModifierNone       = 0,
-    // These values align with NSEventModifierFlags.
-    XCUIKeyModifierCapsLock   = (1UL << 0),
+    XCUIKeyModifierAlphaShift = (1UL << 0),
     XCUIKeyModifierShift      = (1UL << 1),
     XCUIKeyModifierControl    = (1UL << 2),
-    XCUIKeyModifierOption     = (1UL << 3),
+    XCUIKeyModifierAlternate  = (1UL << 3),
+    XCUIKeyModifierOption     = XCUIKeyModifierAlternate,
     XCUIKeyModifierCommand    = (1UL << 4),
-    
-    // These values align with UIKeyModifierFlags and CGEventFlags.
-    XCUIKeyModifierAlphaShift = XCUIKeyModifierCapsLock,
-    XCUIKeyModifierAlternate  = XCUIKeyModifierOption,
 };
 
 @class XCUIElementQuery;
