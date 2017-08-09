@@ -6,19 +6,19 @@ import {
   TouchableOpacity,
   NavigatorIOS
 } from 'react-native';
+import AuthMainNavigator from './auth_main_navigator';
 
-import LogIn from './login';
-import SignUp from './signup';
 
 var AuthMain = React.createClass({
   render() {
     return (
-      <View style={{flex: 1}}>
-
-    
-        <SignUp />
-
-      </View>
+      <NavigatorIOS
+        initialRoute={{
+          component: AuthMainNavigator,
+          title: 'Sign Up',
+          navigationBarHidden: true
+        }}
+        style={{flex: 1}}/>
     );
   }
 });

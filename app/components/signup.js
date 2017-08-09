@@ -56,26 +56,13 @@ const LSForm = props => {
     const { handleSubmit } = props;
     return (
       <Container style={ styles.container }>
-      <Text>Log in to Woven</Text>
         <Content style={ styles.content }>
+        <Text style={styles.title}>Sign Up</Text>
           <Form style={ styles.form }>
-          <Field name="email" label="email" component={renderInput} />
-          <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
-          <Field name="partnerEmail" label="partnerEmail" component={renderInput} />
+          <Field name="email" label="Email" component={renderInput} />
+          <Field name="password" secureTextEntry={true} label="Password" component={renderInput} />
+          <Field name="partnerEmail" label="Partner Email" component={renderInput} />
               <Grid style={styles.buttonGrid}>
-                <Col style={styles.buttonContainer}>
-                  <Button
-                    androidRippleColor='rgba(245,219,0,0.4)'
-                    full
-                    bordered
-                    style={styles.signinButton}
-                    transparent
-                    onPress={handleSubmit(onSignIn)} >
-                    <Text uppercase={false} style={styles.signinText}>
-                      login
-                    </Text>
-                  </Button>
-                </Col>
                 <Col style={styles.buttonContainer}>
                   <Button
                     androidRippleColor='rgba(255,255,255,0.4)'
@@ -133,13 +120,18 @@ export default reduxForm({
 
 const styles = {
   container: {
-    padding: 42,
+    paddingLeft: 42,
+    paddingRight: 42,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center'
   },
   content: {
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 24
   },
   form: {
   },
@@ -181,5 +173,9 @@ const styles = {
   },
   warning: {
     color: 'orange'
+  },
+  login: {
+    alignSelf: 'center',
+    marginTop: 10
   }
 }
