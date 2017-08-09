@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import Login from './login';
+import AuthMain from './auth_main';
 import Main from './main';
 import AlertContainer from './alerts/alert_container';
 
@@ -23,7 +24,7 @@ var App = React.createClass({
         );
       } else {
         return (
-          <Login />
+          <AuthMain />
         );
       }
     }

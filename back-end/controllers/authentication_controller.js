@@ -18,6 +18,7 @@ exports.signin = function(req, res, next) {
 exports.signup = function(req, res, next) {
   var email = req.body.email;
   var password = req.body.password;
+  var partnerEmail = req.body.partnerEmail;
   if (!email || !password) {
     return res.status(422).json({error: "You must provide an email and password"});
   }
@@ -28,7 +29,8 @@ exports.signup = function(req, res, next) {
     if (existingUser) {return res.status(422).json({error: "Email taken"})}
     var user = new User({
       email: email,
-      password: password
+      password: password,
+      partnerEmail: partnerEmail
     });
     user.save(function(err) {
       if (err) { return next(err) }

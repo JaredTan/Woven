@@ -21,7 +21,14 @@ var userSchema = new Schema({
     {
       text: {type: String}
     }
-  ]
+  ],
+  partnerEmail: {
+    type: String
+  },
+  connectedId: {
+    type: Number
+  }
+
 });
 
 userSchema.pre('save', function(next) {

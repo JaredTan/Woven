@@ -10,7 +10,7 @@ import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
 import { loginUser, signupUser, addAlert } from '../actions';
 import {authUser} from '../actions';
-import SignUp from './signup';
+import Login from './login';
 
 const renderInput = ({
   input: { onChange, ...restInput },
@@ -40,26 +40,28 @@ const renderInput = ({
 }
 
 const onSignIn = (props, dispatch) => {
-  dispatch(loginUser(props.email, props.password));
-}
-
-const onSignUp = () => {
-  console.log(props,'props?');
   this.props.navigator.push({
-    component: SignUp,
-    title: 'Sign Up',
+    component: LogIn,
+    title: 'Log In',
     navigationBarHidden: true
   })
+}
+
+const onSignUp = (props, dispatch) => {
+  console.log(props,'props');
+  dispatch(signupUser(props.email, props.password, props.partnerEmail));
 }
 
 const LSForm = props => {
     const { handleSubmit } = props;
     return (
       <Container style={ styles.container }>
+      <Text>Log in to Woven</Text>
         <Content style={ styles.content }>
           <Form style={ styles.form }>
           <Field name="email" label="email" component={renderInput} />
           <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
+          <Field name="partnerEmail" label="partnerEmail" component={renderInput} />
               <Grid style={styles.buttonGrid}>
                 <Col style={styles.buttonContainer}>
                   <Button
@@ -81,9 +83,9 @@ const LSForm = props => {
                     bordered
                     style={styles.signupButton}
                     transparent
-                    onPress={(onSignUp)} >
+                    onPress={handleSubmit(onSignUp)} >
                     <Text uppercase={false} style={styles.signupText}>
-                      sign up
+                      register
                     </Text>
                   </Button>
                 </Col>
@@ -106,6 +108,11 @@ const validate = formProps => {
   } else if (formProps.password.length < 6) {
     errors.password = 'Must be 6 characters or more'
   }
+  if (!formProps.partnerEmail) {
+    errors.partnerEmail = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formProps.email)) {
+    errors.partnerEmail = 'Invalid email address'
+  }
   return errors
 }
 
@@ -121,7 +128,7 @@ export default reduxForm({
   form: 'login',
   validate: validate,
   warn: warn,
-  fields: ['email', 'password'],
+  fields: ['email', 'password', 'partnerEmail'],
 }, null, null)(LSForm);
 
 const styles = {
