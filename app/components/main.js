@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TodoList from './todo_list';
+import UserProfileContainer from './user_profile/profile_container';
 import Sprite from './sprite';
 import Chat from './chat';
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
@@ -31,7 +32,8 @@ class Main extends React.Component {
     this.resetTabs = this.resetTabs.bind(this);
     this.togglePlantTab = this.togglePlantTab.bind(this);
     this.toggleChatTab = this.toggleChatTab.bind(this);
-    this.toggleTodoTab = this.toggleTodoTab.bind(this);
+    this.redirectToTodos = this.redirectToTodos.bind(this);
+    this.redirectToProfile = this.redirectToProfile.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
   }
 
@@ -53,7 +55,7 @@ class Main extends React.Component {
     this.setState({chat: true});
   }
 
-  toggleTodoTab() {
+  redirectToTodos() {
     this.props.navigator.push({
       component: TodoList,
       title: 'TodoList',
@@ -61,13 +63,21 @@ class Main extends React.Component {
     })
   }
 
+  redirectToProfile() {
+    console.log(this.props.currentUserId, '?');
+    this.props.requestSingleUser(this.props.currentUserId);
+    this.props.navigator.push({
+      component: UserProfileContainer,
+      title: 'User Profile',
+      navigationBarHidden: true
+    })
+  }
+
   handleLogOut() {
-    console.log(this.props,'props?');
     this.props.unauthUser();
   }
 
   render() {
-    console.log(this.state,'state');
     return (
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
@@ -77,20 +87,19 @@ class Main extends React.Component {
         </ScrollView>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
-            <Icon name='flower' size={45} color="white"/>
+            <Icon name='flower' size={45} color={this.state.plant ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleChatTab}>
-            <Icon name='wechat' size={45} color="white"/>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.toggleTodoTab}>
-            <Icon name='format-list-bulleted' size={45} color="white"/>
+            <Icon name='message-processing' size={45} color={this.state.chat ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <Menu>
            <MenuTrigger>
-             <Icon name='window-close' size={45} color="white"/>
+             <Icon name='chevron-up' size={45} color="#0c9258"/>
            </MenuTrigger>
              <MenuOptions>
                <MenuOption onSelect={this.handleLogOut} text='Log Out' />
+               <MenuOption onSelect={this.redirectToTodos} text='To-dos' />
+               <MenuOption onSelect={this.redirectToProfile} text='Profile' />
              </MenuOptions>
          </Menu>
         </View>
