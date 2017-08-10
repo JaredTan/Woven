@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import AuthMain from './auth/auth_main';
-import Main from './main';
+import MainNavigator from './main_navigator';
 import Sprite from './sprite';
 import AlertContainer from './alerts/alert_container';
 
@@ -20,7 +20,7 @@ var App = React.createClass({
     var renderMainView = () => {
       if (this.props.user_id) {
         return (
-          <Main />
+          <MainNavigator />
           // <Sprite />
         );
       } else {

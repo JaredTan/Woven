@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Icon from 'react-native-vector-icons/Octicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   StyleSheet,
   Text,

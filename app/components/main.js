@@ -10,6 +10,9 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TodoList from './todo_list';
 import Sprite from './sprite';
+import {connect} from 'react-redux';
+import Chat from './chat';
+import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 
 class Main extends React.Component {
   constructor(props) {
@@ -46,8 +49,15 @@ class Main extends React.Component {
   }
 
   toggleTodoTab() {
-    this.resetTabs();
-    this.setState({todo: true});
+    this.props.navigator.push({
+      component: TodoList,
+      title: 'TodoList',
+      navigationBarHidden: true
+    })
+  }
+
+  handleLogOut() {
+    this.props.dispatch(unauthUser);
   }
 
   render() {
@@ -56,15 +66,21 @@ class Main extends React.Component {
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
           { this.state.plant ? <Sprite/> : null }
-          { this.state.chat ? null : null }
+          { this.state.chat ? <Chat/> : null }
           { this.state.todo ? <TodoList/> : null }
         </ScrollView>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
             <Icon name='flower' size={45} color="white"/>
           </TouchableOpacity>
+          <TouchableOpacity onPress={this.toggleChatTab}>
+            <Icon name='wechat' size={45} color="white"/>
+          </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleTodoTab}>
             <Icon name='format-list-bulleted' size={45} color="white"/>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.handleLogOut}>
+            <Icon name='window-close' size={45} color="white"/>
           </TouchableOpacity>
         </View>
       </View>
@@ -83,10 +99,12 @@ const styles = StyleSheet.create({
   scrollView: {
   },
   navBar: {
-    height: 100,
+    height: 55,
     backgroundColor: '#2ecc71',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
   }
 });
 
-module.exports = Main;
+export default connect(null)(Main);

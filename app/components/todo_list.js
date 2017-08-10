@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Icon from 'react-native-vector-icons/Octicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   StyleSheet,
   Text,
@@ -28,7 +28,7 @@ var TodoItem = connect()(React.createClass({
       if (!this.state.deleting) {
         return (
           <TouchableOpacity onPress={this.onDelete}>
-            <Icon name="x" size={15} color='#2ecc71'/>
+            <Icon name="close" size={15} color='#2ecc71'/>
           </TouchableOpacity>
         )
       }
@@ -48,9 +48,9 @@ var TodoList = React.createClass({
       refreshing: false
     }
   },
-  onLogout() {
+  onBack() {
     this.props.dispatch(setTodos([]));
-    this.props.dispatch(unauthUser);
+    this.props.navigator.pop();
   },
   addNewTodo() {
     this.props.navigator.push({
@@ -76,8 +76,8 @@ var TodoList = React.createClass({
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
-          <TouchableOpacity onPress={this.onLogout}>
-            <Icon name="x" size={20} color="white"/>
+          <TouchableOpacity onPress={this.onBack}>
+            <Icon name="chevron-left" size={20} color="white"/>
           </TouchableOpacity>
           <Text style={styles.title}>
             To-Do List
