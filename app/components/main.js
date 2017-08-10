@@ -10,7 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TodoList from './todo_list';
 import UserProfileContainer from './user_profile/profile_container';
-import Sprite from './sprite';
+import Plant from './plant';
 import Chat from './chat';
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 import {
@@ -81,7 +81,7 @@ class Main extends React.Component {
     return (
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
-          { this.state.plant ? <Sprite/> : null }
+          { this.state.plant ? <Plant/> : null }
           { this.state.chat ? <Chat/> : null }
           { this.state.todo ? <TodoList/> : null }
         </ScrollView>

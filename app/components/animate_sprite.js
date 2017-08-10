@@ -63,7 +63,7 @@ class AnimatedSprite extends React.Component {
 }
 
 
-function animateSprite(spriteSheet, frameCount, fps) {
+function animateSprite(spriteSheet, frameCount, fps=60) {
   return (
     <AnimatedSprite 
       spriteSheet={spriteSheet}
