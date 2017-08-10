@@ -15,7 +15,7 @@ import IMAGES from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
 
 
-class Sprite extends React.Component {
+class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Sprite;
+export default Plant;
