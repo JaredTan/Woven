@@ -8,6 +8,7 @@ exports.createTodo = (text) => {
   return function(dispatch) {
     return Keychain.getGenericPassword().then((credentials) => {
       var {username, password} = credentials;
+      console.log(credentials,'credential');
       return axios.post(TODOS_URL(username), {text}, {
         headers: {authorization: password}
       }).then((response) => {
@@ -37,6 +38,7 @@ exports.deleteTodo = (todo_id) => {
 exports.getTodos = function(dispatch) {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
+
     return axios.get(TODOS_URL(username), {
       headers: {authorization: password}
     }).then((response) => {

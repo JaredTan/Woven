@@ -62,12 +62,10 @@ class Main extends React.Component {
   }
 
   handleLogOut() {
-    console.log(this.props,'props?');
     this.props.unauthUser();
   }
 
   render() {
-    console.log(this.state,'state');
     return (
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>

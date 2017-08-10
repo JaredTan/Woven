@@ -1,6 +1,7 @@
 const passport = require('passport');
 
 const AuthenticationController = require('../controllers/authentication_controller');
+const UsersController = require('../controllers/users_controller');
 const TodosController = require('../controllers/todos_controller');
 const passportService = require('./passport');
 
@@ -15,6 +16,13 @@ router.route('/signup')
   .post(AuthenticationController.signup);
 router.route('/signin')
   .post([requireLogin, AuthenticationController.signin]);
+
+// User Routes
+// -----------------------------------------------------------------------------
+
+router.route('/users/:user_id')
+  .get(UsersController.show)
+  .put(UsersController.update);
 
 
 // Todo Routes
