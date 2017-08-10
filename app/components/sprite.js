@@ -19,6 +19,7 @@ class Animation extends React.Component {
       sprite: new Animated.Value(0),  // Initial value for opacity: 0
       frame: 0
     };
+    this.frame = 0;
     this.increaseSize = this.increaseSize.bind(this);
     this.resetSize = this.resetSize.bind(this);
     this.incrementFrame = this.incrementFrame.bind(this);
@@ -31,9 +32,10 @@ class Animation extends React.Component {
   }
 
   incrementFrame() {
-    this.setState({
-      frame: (this.state.frame + 1) % 24
-    });
+    this.frame = (this.frame + 1) % 24;
+    // this.setState({
+    //   frame: (this.state.frame + 1) % 24
+    // });
     requestAnimationFrame(this.incrementFrame);
   }
 
@@ -49,7 +51,7 @@ class Animation extends React.Component {
       this.state.sprite,            // The animated value to drive
       {
         toValue: 24,                   // Animate to opacity: 1 (opaque)
-        duration: 10000000,              // Make it take a while
+        duration: 60,              // Make it take a while
       }
     ).start(this.resetSize);  
   }
@@ -60,10 +62,10 @@ class Animation extends React.Component {
 
   render() {
     let { sprite } = this.state;
-    console.log(this.state.frame);
+    console.log(this.frame);
     return (
       <Animated.Image                 // Special animatable View
-        source={this.getImage(this.state.frame)}
+        source={this.getImage(this.frame)}
       >
       </Animated.Image>
     );
