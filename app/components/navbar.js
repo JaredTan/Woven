@@ -11,7 +11,7 @@ import {
   RefreshControl
 } from 'react-native';
 
-import Sprite from './sprite';
+import Plant from './plant';
 import TodoList from './todo_list';
 
 class NavBar extends React.Component {
@@ -24,7 +24,7 @@ class NavBar extends React.Component {
 
   navToPlant() {
     this.props.navigator.push({
-      component: Sprite,
+      component: Plant,
       title: "Plant",
       navigationBarHidden: true
     });

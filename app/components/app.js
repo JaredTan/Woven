@@ -9,32 +9,30 @@ import {
 
 import AuthMain from './auth/auth_main';
 import MainNavigator from './main_navigator';
-import Sprite from './sprite';
 import AlertContainer from './alerts/alert_container';
 
 var App = React.createClass({
   getInitialState() {
-    return {}
+    return {};
   },
   render() {
     var renderMainView = () => {
       if (this.props.user_id) {
         return (
           <MainNavigator />
-          // <Sprite />
         );
       } else {
         return (
           <AuthMain />
         );
       }
-    }
+    };
     return (
       <View style={{flex: 1}}>
         {renderMainView()}
         <AlertContainer/>
       </View>
-    )
+    );
   }
 });
 
