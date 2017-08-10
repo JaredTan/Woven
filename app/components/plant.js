@@ -6,7 +6,8 @@ import {
   Image,
   TouchableOpacity,
   NavigatorIOS,
-  Animated
+  Animated,
+  Dimensions
 } from 'react-native';
 
 import animateSprite from './animate_sprite';
@@ -32,18 +33,23 @@ class Plant extends React.Component {
   }
 
   render() {
+    
     return (
       <View style={styles.container}>
-        <View style={styles.backgroundlayer}>
-          {animateSprite(BACKGROUND, 2, 3600, styles.background)}
-        </View>
-        <View style={styles.overlay}>
-          {animateSprite(IMAGES, 24, 60, styles.plant)}
-        </View>
+          {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
+          <Text>
+            hi
+          </Text>
+          <View style={styles.plant}>
+            {animateSprite(IMAGES, 24, 60)}
+          </View>
       </View>
     );
   }
 }
+
+const {width, height} = Dimensions.get('window');
+console.log('Width: ', width, 'Height: ', height);
 
 const styles = StyleSheet.create({
   container: {
@@ -52,28 +58,27 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     alignItems: 'stretch',
   },
-  backgroundlayer: {
+  background: {
     position: 'absolute',
-     alignSelf: 'center',
-     justifyContent: 'center',
-    //  resizeMode: 'cover',
-    },
-    background: {
+    left: 50,
     //  alignSelf: 'center',
     //  justifyContent: 'center',
     //  resizeMode: 'cover',
    },
    plant: {
+     position: 'absolute',
+     left: '20%',
+     top: 200,
     //  bottom: '15',
     //  alignSelf: 'center',
     //  justifyContent: 'center',
      backgroundColor: 'transparent',
    },
-   overlay: {
-     alignSelf: 'center',
-     justifyContent: 'center',
-     backgroundColor: 'transparent',
-    }
+  //  overlay: {
+  //    alignSelf: 'center',
+  //    justifyContent: 'center',
+  //    backgroundColor: 'transparent',
+  //   }
 });
 
 export default Plant;
