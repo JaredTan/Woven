@@ -19,8 +19,8 @@ class AnimatedSprite extends React.Component {
     this.repeatAnimation = this.repeatAnimation.bind(this);
     this.incrementFrame = this.incrementFrame.bind(this);
     this.getImage = this.getImage.bind(this);
-    this.animation = Animated.timing(                
-      this.state.count,          
+    this.animation = Animated.timing(
+      this.state.count,
       {
         toValue: this.frameCount,
         duration: this.fps,
@@ -52,7 +52,7 @@ class AnimatedSprite extends React.Component {
   }
 
   activateAnimation() {
-    this.animation.start(this.repeatAnimation);  
+    this.animation.start(this.repeatAnimation);
   }
 
   getImage(frame) {
@@ -72,12 +72,12 @@ class AnimatedSprite extends React.Component {
 
 function animateSprite(spriteSheet, frameCount, fps=60) {
   return (
-    <AnimatedSprite 
+    <AnimatedSprite
       spriteSheet={spriteSheet}
       frameCount={frameCount}
-      fps={fps} 
+      fps={fps}
     />
   );
-} 
+}
 
 export default animateSprite;

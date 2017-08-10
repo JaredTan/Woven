@@ -33,7 +33,7 @@ class Plant extends React.Component {
   }
 
   render() {
-    
+
     return (
       <View style={styles.container}>
           {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
