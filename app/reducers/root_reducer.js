@@ -3,10 +3,14 @@ import {reducer as formReducer} from 'redux-form';
 import authReducer from './auth_reducer';
 import alertReducer from './alert_reducer';
 import todosReducer from './todos_reducer';
+import usersReducer from './users_reducer';
 
-module.exports = combineReducers({
+const rootReducer = combineReducers({
   form: formReducer,
   auth: authReducer,
   alerts: alertReducer,
-  todos: todosReducer
-})
+  todos: todosReducer,
+  user: usersReducer
+});
+
+export default rootReducer;

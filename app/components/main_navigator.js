@@ -6,19 +6,23 @@ import {
   TouchableOpacity,
   NavigatorIOS
 } from 'react-native';
-import Main from './main';
+import MainContainer from './main_container';
+import { MenuContext } from 'react-native-popup-menu';
+
 
 
 var MainNavigator = React.createClass({
   render() {
     return (
-      <NavigatorIOS
-        initialRoute={{
-          component: Main,
-          title: 'Main',
-          navigationBarHidden: true
-        }}
-        style={{flex: 1}}/>
+      <MenuContext>
+        <NavigatorIOS
+          initialRoute={{
+            component: MainContainer,
+            title: 'Main',
+            navigationBarHidden: true
+          }}
+          style={{flex: 1}}/>
+      </MenuContext>
     );
   }
 });
