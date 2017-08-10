@@ -19,6 +19,13 @@ class AnimatedSprite extends React.Component {
     this.repeatAnimation = this.repeatAnimation.bind(this);
     this.incrementFrame = this.incrementFrame.bind(this);
     this.getImage = this.getImage.bind(this);
+    this.animation = Animated.timing(                
+      this.state.count,          
+      {
+        toValue: this.frameCount,
+        duration: this.fps,
+      }
+    );
   }
 
   componentDidMount() {
@@ -26,26 +33,26 @@ class AnimatedSprite extends React.Component {
     this.incrementFrame();
   }
 
+  componentWillUnmount() {
+    this.animation.stop();
+  }
+
   incrementFrame() {
     this.frame = (this.frame + 1) % this.props.frameCount;
     requestAnimationFrame(this.incrementFrame);
   }
 
-  repeatAnimation() {
-    this.setState({
-      count: new Animated.Value(0)
-    });
-    this.activateAnimation();
+  repeatAnimation(animation) {
+    if(animation.finished){
+      this.setState({
+        count: new Animated.Value(0)
+      });
+      this.activateAnimation();
+    }
   }
 
   activateAnimation() {
-    Animated.timing(                  // Animate over time
-      this.state.count,            // The animated value to drive
-      {
-        toValue: this.frameCount,
-        duration: this.fps,              // Make it take a while
-      }
-    ).start(this.repeatAnimation);  
+    this.animation.start(this.repeatAnimation);  
   }
 
   getImage(frame) {
