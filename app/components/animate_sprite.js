@@ -60,9 +60,14 @@ class AnimatedSprite extends React.Component {
   }
 
   render() {
+    const { width, height } = this.props;
     return (
       <Animated.Image                 // Special animatable View
         source={this.getImage(this.frame)}
+        style={{
+          width,
+          height
+        }}
       >
       </Animated.Image>
     );
@@ -70,12 +75,14 @@ class AnimatedSprite extends React.Component {
 }
 
 
-function animateSprite(spriteSheet, frameCount, fps=60) {
+function animateSprite(spriteSheet, frameCount, fps=60, width=100, height=100) {
   return (
     <AnimatedSprite 
       spriteSheet={spriteSheet}
       frameCount={frameCount}
-      fps={fps} 
+      fps={fps}
+      width={width}
+      height={height}
     />
   );
 } 
