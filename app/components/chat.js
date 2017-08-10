@@ -1,26 +1,73 @@
-/* @flow */
-
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import {
   View,
   Text,
-  StyleSheet,
+  AsyncStorage
 } from 'react-native';
+import SocketIOClient from 'socket.io-client';
+import { GiftedChat } from 'react-native-gifted-chat';
+
+const USER_ID = '@userId';
 
 class Chat extends Component {
+  constructor(props) {
+    super(props);
+
+    this.determineUser = this.determineUser.bind(this);
+    this.onReceivedMessage = this.onReceivedMessage.bind(this);
+    this.onSend = this.onSend.bind(this);
+    this._storeMessages = this._storeMessages.bind(this);
+
+    this.socket = SocketIOClient('http://localhost:3000');
+    this.socket.on('message', this.onReceivedMessage);
+    this.determineUser();
+  }
+
+  determineUser() {
+    AsyncStorage.getItem(USER_ID)
+      .then((userId) => {
+        this.socket.emit('userJoined', userId);
+        this.setState({ userId });
+      })
+      .catch((e) => alert(e));
+  }
+
+  onReceivedMessage(messages) {
+    this._storeMessages(messages);
+  }
+
+  onSend(messages=[]) {
+    this.socket.emit('message', messages[0]);
+    this._storeMessages(messages);
+  }
+
   render() {
+    var user = { _id: this.props.userId || -1 };
+    console.log(user);
     return (
-      <View style={styles.container}>
-        <Text>Chat component goes here</Text>
-      </View>
+      <GiftedChat
+        messages={this.props.messages}
+        onSend={this.onSend}
+        user={user}
+        />
     );
+  }
+
+  _storeMessages(messages) {
+    this.setState((previousState) => {
+      return {
+        messages: GiftedChat.append(previousState.messages, messages),
+      };
+    });
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop:400
-  },
-});
+var mapStateToProps = (state) => {
+  return {
+    messages: [],
+    userId: state.user_id
+  };
+};
 
-export default Chat;
+export default connect(mapStateToProps)(Chat);

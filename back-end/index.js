@@ -42,7 +42,6 @@ websocket.on('connection', (socket) => {
 function onUserJoined(userId, socket) {
   var user = User.find({ _id: userId });
   sessionConnection = user.connectionId;
-  socket.emit('userJoined', user._id);
   users[socket.id] = userId;
   _sendExistingMessages(socket);
 }
@@ -60,7 +59,7 @@ function _sendExistingMessages(socket) {
   var messages =
   Message.find({ connectionId: sessionConnection })
          .sort({ createdAt: -1 })
-         .toArray((err, messages) => {
+         .exec(function(err, messages) {
            // If there aren't any messages, then return.
            if (!messages.length) return;
            socket.emit('message', messages);

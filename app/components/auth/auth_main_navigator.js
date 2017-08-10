@@ -83,6 +83,6 @@ const styles = {
     padding: 50,
     fontSize: 24,
   }
-}
+};
 
 module.exports = AuthMainNavigator;
