@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {unauthUser, requestSingleUser} from '../actions';
+import {unauthUser, requestPair} from '../actions';
 import Main from './main';
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   unauthUser: () => dispatch(unauthUser),
-  requestSingleUser: (userId) => dispatch(requestSingleUser(userId))
+  requestPair: (userId) => dispatch(requestPair(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

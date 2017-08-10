@@ -29,17 +29,17 @@ class Sprite extends React.Component {
   }
 
   render() {
-    setTimeout(() => {
-      this.setState({
-        plantframe: (this.state.plantframe + 1) % 24
-      });
-    }, 200);
-
-    setTimeout(() => {
-       this.setState({
-         bgframe: (this.state.bgframe + 1) % 1
-       });
-     }, 3600); //one hour
+    // setTimeout(() => {
+    //   this.setState({
+    //     plantframe: (this.state.plantframe + 1) % 24
+    //   });
+    // }, 200);
+    //
+    // setTimeout(() => {
+    //    this.setState({
+    //      bgframe: (this.state.bgframe + 1) % 1
+    //    });
+    //  }, 3600); //one hour
 
     return (
       <View style={styles.container}>

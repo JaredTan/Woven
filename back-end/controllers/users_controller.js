@@ -2,8 +2,10 @@ const User = require('../models/user');
 
 exports.show = function(req, res, next) {
   User.findOne({_id: req.params.user_id}, function(err, user) {
-    res.send(user);
-})
+    User.findOne({email: user.partnerEmail}, function(err, partner) {
+      res.send({users: {currentUser: user, partner: partner}});
+    })
+  })
 }
 
 exports.index = function(req, res, next) {

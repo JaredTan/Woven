@@ -64,8 +64,7 @@ class Main extends React.Component {
   }
 
   redirectToProfile() {
-    console.log(this.props.currentUserId, '?');
-    this.props.requestSingleUser(this.props.currentUserId);
+    this.props.requestPair(this.props.currentUserId);
     this.props.navigator.push({
       component: UserProfileContainer,
       title: 'User Profile',
@@ -81,7 +80,7 @@ class Main extends React.Component {
     return (
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
-          { this.state.plant ? <Sprite/> : null }
+          { this.state.plant ? null : null }
           { this.state.chat ? <Chat/> : null }
           { this.state.todo ? <TodoList/> : null }
         </ScrollView>

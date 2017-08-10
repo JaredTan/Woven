@@ -17,19 +17,19 @@ var userSchema = new Schema({
   password: {
     type: String
   },
-  todos: [
-    {
-      text: {type: String}
-    }
-  ],
   partnerEmail: {
     type: String,
     lowercase: true
   },
   connectionId: {
     type: Number
+  },
+  profilePicture: {
+    type: String
+  },
+  birthday: {
+    type: Date
   }
-
 });
 
 userSchema.pre('save', function(next) {

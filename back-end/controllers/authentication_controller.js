@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Connection = require('../models/connection');
 const jwt = require('jwt-simple');
 const config = require('../config');
 
@@ -34,6 +35,15 @@ exports.signup = function(req, res, next) {
     user.save(function(err) {
       if (err) { return next(err) }
       res.json({user_id: user._id, token: tokenForUser(user)});
+    });
+    User.findOne( {email: user.partnerEmail}, (err, partner) => {
+      if (partner && partner.partnerEmail === user.email) {
+        let newConnection = new Connection();
+        user.connectionId = newConnection._id;
+        partner.connectionId = newConnection._id;
+      } else if (partner && partner.partnerEmail !== user.email) {
+        return res.status(422).json({error: "That user is already paired."})
+      }
     });
   });
 }

@@ -20,17 +20,16 @@ class UserProfile extends React.Component {
     this.onBack = this.onBack.bind(this);
   }
 
-  componentDidMount() {
-    let {requestSingleUser, currentUserId} = this.props;
-    requestSingleUser(currentUserId);
-  }
-
   onBack() {
     this.props.navigator.pop();
   }
 
   render() {
     console.log(this.props,'profile');
+    let { currentUser } = this.props.users;
+    if (!currentUser) {
+      return null;
+    }
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
@@ -44,7 +43,7 @@ class UserProfile extends React.Component {
             <Text>?</Text>
           </TouchableOpacity>
         </View>
-        <Text>Logged in as {this.props.user.email}</Text>
+        <Text>Logged in as {currentUser.email}</Text>
       </View>
     );
   }

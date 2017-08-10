@@ -5,22 +5,23 @@ import {USERS_URL} from '../api';
 import {addAlert} from './alert_actions';
 
 
-export const requestSingleUser = (user_id) => dispatch => {
+export const requestPair = (user_id) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
     return axios.get(USERS_URL(username),{user_id}, {
       headers: {authorization: password}
     }).then((response) => {
-      dispatch(receiveSingleUser(response.data));
+      dispatch(receivePair(response.data.users))
     }).catch((err) => {
-      dispatch(addAlert("Couldn't obtain user."));
+      dispatch(addAlert("Couldn't obtain pair."));
     })
   })
-}
+};
 
-export const receiveSingleUser = (user) => {
+
+export const receivePair = (users) => {
   return {
-    type: "RECEIVE_SINGLE_USER",
-    user
+    type: "RECEIVE_PAIR",
+    users
   }
 };
