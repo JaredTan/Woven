@@ -22,9 +22,10 @@ router.route('/signin')
 
 router.route('/users/:user_id')
   .get(UsersController.show)
-  .put(UsersController.update);
+  .put(requireAuth, UsersController.update);
 
-
+router.route('/users')
+  .get(UsersController.index)
 // Todo Routes
 // -----------------------------------------------------------------------------
 router.route('/users/:user_id/todos')

@@ -1,15 +1,18 @@
 import { connect } from 'react-redux';
-import {} from '../actions';
-import UserProfile from './user_profile';
+import { requestSingleUser } from '../../actions';
+import UserProfile from './profile';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(state,'state');
   return {
-    userId: state.auth.user_id
+    currentUserId: state.auth.user_id,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  unauthUser: () => dispatch(unauthUser)
+  unauthUser: () => dispatch(unauthUser),
+  requestSingleUser: (userId) => dispatch(requestSingleUser)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

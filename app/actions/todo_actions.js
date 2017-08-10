@@ -38,7 +38,6 @@ exports.deleteTodo = (todo_id) => {
 exports.getTodos = function(dispatch) {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
-
     return axios.get(TODOS_URL(username), {
       headers: {authorization: password}
     }).then((response) => {

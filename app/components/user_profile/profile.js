@@ -7,41 +7,49 @@ import {
   TouchableOpacity,
   NavigatorIOS
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import NavBar from './navbar';
+
+import NavBar from '../navbar';
 
 
 class UserProfile extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      frame: 0,
-      tick: 0,
-    };
+    super(props)
 
-    this.getImage = this.getImage.bind(this);
+    this.onBack = this.onBack.bind(this);
   }
 
-  getImage(num) {
-    return IMAGES['image' + num];
+  componentDidMount() {
+    let {requestSingleUser, currentUserId} = this.props;
+    requestSingleUser(currentUserId);
+  }
+
+  onBack() {
+    this.props.navigator.pop();
   }
 
   render() {
-    // setTimeout(() => {
-    //   this.setState({
-    //     frame: (this.state.frame + 1) % 24
-    //   });
-    // }, 200);
+    console.log(this.props,'profile');
     return (
       <View style={styles.container}>
-        <Image
-          source={this.getImage(this.state.frame)}
-          style={styles.sprite}
-          />
+        <View style={styles.topBar}>
+          <TouchableOpacity onPress={this.onBack}>
+            <Icon name="chevron-left" size={20} color="white"/>
+          </TouchableOpacity>
+          <Text style={styles.title}>
+            Profile
+          </Text>
+          <TouchableOpacity>
+            <Text>?</Text>
+          </TouchableOpacity>
+        </View>
+        <Text>Logged in as {this.props.user.email}</Text>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -49,12 +57,20 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
-  sprite: {
-    flex: 1,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    resizeMode: 'center'
+  topBar: {
+    padding: 16,
+    paddingTop: 28,
+    paddingBottom: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#2ecc71'
+  },
+  title: {
+    color: 'white',
+    fontSize: 20
   }
 });
 
-export default Sprite;
+
+export default UserProfile;
