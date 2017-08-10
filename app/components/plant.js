@@ -9,6 +9,7 @@ import {
   Animated
 } from 'react-native';
 
+import animateSprite from './animate_sprite';
 
 import IMAGES from '../assets/spritesheets/sprites';
 
@@ -31,31 +32,13 @@ class Plant extends React.Component {
   }
 
   render() {
-    setTimeout(() => {
-      this.setState({
-        plantframe: (this.state.plantframe + 1) % 24
-      });
-    }, 200);
-
-    setTimeout(() => {
-       this.setState({
-         bgframe: (this.state.bgframe + 1) % 1
-       });
-     }, 3600); //one hour
-
     return (
       <View style={styles.container}>
         <View style={styles.backgroundlayer}>
-          <Image
-            source={this.getImage(BACKGROUND, this.state.bgframe)}
-            style={styles.background}
-            />
+          {animateSprite(BACKGROUND, 2, 3600, styles.background)}
         </View>
         <View style={styles.overlay}>
-          <Image
-            source={this.getImage(IMAGES, this.state.plantframe)}
-            style={styles.plant}
-            />
+          {animateSprite(IMAGES, 24, 60, styles.plant)}
         </View>
       </View>
     );
@@ -73,12 +56,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
      alignSelf: 'center',
      justifyContent: 'center',
-     resizeMode: 'cover',
+    //  resizeMode: 'cover',
     },
     background: {
-     alignSelf: 'center',
-     justifyContent: 'center',
-     resizeMode: 'cover',
+    //  alignSelf: 'center',
+    //  justifyContent: 'center',
+    //  resizeMode: 'cover',
    },
    plant: {
     //  bottom: '15',
