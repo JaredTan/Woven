@@ -19,7 +19,7 @@ class Chat extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:200
+    marginTop:400
   },
 });
 
