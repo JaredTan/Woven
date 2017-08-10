@@ -65,6 +65,7 @@ class Main extends React.Component {
 
   redirectToProfile() {
     this.props.requestPair(this.props.currentUserId);
+    this.props.requestConnection(this.props.connectionId);
     this.props.navigator.push({
       component: UserProfileContainer,
       title: 'User Profile',

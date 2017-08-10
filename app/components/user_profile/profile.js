@@ -26,10 +26,7 @@ class UserProfile extends React.Component {
 
   render() {
     console.log(this.props,'profile');
-    let { currentUser } = this.props.users;
-    if (!currentUser) {
-      return null;
-    }
+    let {connectionId } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
@@ -43,7 +40,7 @@ class UserProfile extends React.Component {
             <Text>?</Text>
           </TouchableOpacity>
         </View>
-        <Text>Logged in as {currentUser.email}</Text>
+        <Text>{connectionId}</Text>
       </View>
     );
   }

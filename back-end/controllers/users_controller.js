@@ -13,11 +13,11 @@ exports.index = function(req, res, next) {
     res.send(users);
 })
 };
-
-exports.update = function(req, res, next) {
-  var user = req.user;
-  user.save(function(err) {
-    if (err) { return next(err) }
-    res.json({});
-  });
-}
+//
+// exports.update = function(req, res, next) {
+//   var user = req.user;
+//   user.save(function(err) {
+//     if (err) { return next(err) }
+//     res.json({});
+//   });
+// }

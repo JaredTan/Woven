@@ -24,6 +24,10 @@ class Sprite extends React.Component {
     this.getImage = this.getImage.bind(this);
   }
 
+  componentWillUnmount() {
+    console.log('hi greg');
+  }
+
   getImage(arr, num) {
     return arr['image' + num];
   }

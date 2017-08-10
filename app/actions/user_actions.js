@@ -11,7 +11,7 @@ export const requestPair = (user_id) => dispatch => {
     return axios.get(USERS_URL(username),{user_id}, {
       headers: {authorization: password}
     }).then((response) => {
-      dispatch(receivePair(response.data.users))
+      dispatch(receivePair(response.data));
     }).catch((err) => {
       dispatch(addAlert("Couldn't obtain pair."));
     })

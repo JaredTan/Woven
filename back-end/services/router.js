@@ -3,6 +3,7 @@ const passport = require('passport');
 const AuthenticationController = require('../controllers/authentication_controller');
 const UsersController = require('../controllers/users_controller');
 const TodosController = require('../controllers/todos_controller');
+const ConnectionController = require('../controllers/connection_controller');
 const passportService = require('./passport');
 
 var requireAuth = passport.authenticate('jwt', {session: false});
@@ -22,7 +23,13 @@ router.route('/signin')
 
 router.route('/users/:user_id')
   .get(UsersController.show)
-  .put(requireAuth, UsersController.update);
+
+// Connection Routes
+// -----------------------------------------------------------------------------
+
+router.route('/connection/:connectionId')
+  .get(ConnectionController.show)
+
 
 // Todo Routes
 // -----------------------------------------------------------------------------

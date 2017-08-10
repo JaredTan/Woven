@@ -7,10 +7,11 @@ import {addAlert} from './alert_actions';
 exports.loginUser = (email, password) => {
   return function(dispatch) {
     return axios.post(SIGNIN_URL, {email, password}).then((response) => {
-      var {user_id, token} = response.data;
+      console.log(response.data,'respdata');
+      var {user_id, token, connectionId} = response.data;
       Keychain.setGenericPassword(user_id, token)
         .then(function() {
-          dispatch(authUser(user_id));
+          dispatch(authUser(user_id, connectionId));
         }).catch((error) => {
           dispatch(addAlert("Could not log in."));
         });
@@ -34,10 +35,11 @@ exports.signupUser = (email, password, partnerEmail) => {
   }
 }
 
-authUser = (user_id) => {
+authUser = (user_id, connectionId) => {
   return {
     type: 'AUTH_USER',
-    user_id
+    user_id,
+    connectionId
   }
 }
 

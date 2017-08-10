@@ -22,7 +22,7 @@ var userSchema = new Schema({
     lowercase: true
   },
   connectionId: {
-    type: Number
+    type: String
   },
   profilePicture: {
     type: String

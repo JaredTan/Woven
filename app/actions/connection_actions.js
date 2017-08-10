@@ -5,7 +5,7 @@ import {CONNECTION_URL} from '../api';
 import {addAlert} from './alert_actions';
 //
 
-// export const requestSingleConnection = (connection_id) => dispatch => {
+// export const requestConnection = (connection_id) => dispatch => {
 //   return Keychain.getGenericPassword().then((credentials) => {
 //     var {username, password} = credentials;
 //     return axios.get(CONNECTION_URL(username), {connection_id}, {
@@ -18,21 +18,20 @@ import {addAlert} from './alert_actions';
 //   })
 // }
 
-export const requestSingleConnection = (connection_id) => dispatch => {
-    return axios.get(CONNECTION_URL(), {connection_id})
+export const requestConnection = (connectionId) => dispatch => {
+    return axios.get(CONNECTION_URL(connectionId))
     .then((response) => {
-      dispatch(receiveSingleConnection(response.data));
+      dispatch(receiveConnection(response.data));
     })
     .catch((err) => {
       dispatch(addAlert("Couldn't obtain connection."));
       })
-    })
-  }
+    }
 
 
-export const receiveSingleConnection = (connection) => {
+export const receiveConnection = (connection) => {
   return {
-    type: "RECEIVE_SINGLE_CONNECTION",
+    type: "RECEIVE_CONNECTION",
     connection
   }
 };
