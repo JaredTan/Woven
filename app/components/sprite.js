@@ -45,48 +45,70 @@ class Sprite extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Image
-          source={this.getImage(BACKGROUND, this.state.bgframe)}
-          style={zIndex: 1, styles.background}
-          />
-        <View style={styles.imagelayer}>
+        <View style={styles.backgroundlayer}>
+          <Image
+            source={this.getImage(BACKGROUND, this.state.bgframe)}
+            resizeMode='cover'
+            style={styles.backgroundImage}>
+          </Image>
+        </View>
+        <View style={styles.overlay}>
           <Image
             source={this.getImage(IMAGES, this.state.plantframe)}
             style={styles.plant}
             />
         </View>
-        <NavBar navigator={this.props.navigator}/>
+        <NavBar style={styles.navbar} navigator={this.props.navigator}/>
       </View>
     );
   }
 }
 
+// <View style={styles.overlay}>
+//   <Image
+//     source={this.getImage(IMAGES, this.state.plantframe)}
+//     style={styles.plant}
+//     />
+// </View>
+
 const styles = StyleSheet.create({
+  navbar: {
+    position: 'absolute',
+    bottom: 0
+  },
   container: {
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    // zIndex: 3
+    // zIndex: 1
+  },
+  backgroundlayer: {
+    position: 'absolute',
+    // left: 0,
+    // right:0,
+    // top: 0,
+    // bottom: 0
   },
   background: {
-    alignSelf: 'center',
-    justifyContent: 'center',
+    // alignSelf: 'center',
+    // justifyContent: 'center',
     resizeMode: 'cover',
     // zIndex: 2
+  },
+  overlay: {
+    // opacity: .90,
+    backgroundColor: 'transparent'
+    // alignSelf: 'center',
+    // justifyContent: 'center',
+    // resizeMode: 'cover',
+    // zIndex: 1
   },
   plant: {
     alignSelf: 'center',
     justifyContent: 'center',
-    resizeMode: 'center',
-    backgroundColor: 'red',
-    // zIndex: 1
+    // resizeMode: 'center',
+    backgroundColor: 'transparent',
+    // zIndex: 3
   },
-  imagelayer: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    resizeMode: 'cover',
-    // zIndex: 1
-  }
 });
-
 export default Sprite;
