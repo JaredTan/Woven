@@ -59,11 +59,11 @@ function onMessageReceived(message, senderSocket) {
 function _sendExistingMessages(socket) {
   var messages =
   Message.find({ connectionId: sessionConnection })
-         .sort({ createdAt: 1})
+         .sort({ createdAt: -1 })
          .toArray((err, messages) => {
            // If there aren't any messages, then return.
            if (!messages.length) return;
-           socket.emit('message', messages.reverse());
+           socket.emit('message', messages);
          });
 }
 
@@ -71,8 +71,22 @@ function _sendExistingMessages(socket) {
 function _sendAndSaveMessage(message, socket, fromServer) {
   var messageData = {
     text: message.text,
-    user: message.user,
+    userId: message.userId,
     createdAt: new Date(message.createdAt),
     connectionId: sessionConnection
   };
+
+  Message.create(messageData);
+  var emitter = fromServer ? websocket : socket.broadcast;
+  emitter.emit('message', [message]);
 }
+
+// Allow the server to participate in the chatroom through stdin.
+var stdin = process.openStdin();
+stdin.addListener('data', function(d) {
+  _sendAndSaveMessage({
+    text: d.toString().trim(),
+    createdAt: new Date(),
+    user: { _id: 'robot' }
+  }, null /* no socket */, true /* send from server */);
+});
