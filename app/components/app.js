@@ -14,7 +14,7 @@ import AlertContainer from './alerts/alert_container';
 
 var App = React.createClass({
   getInitialState() {
-    return {}
+    return {};
   },
   render() {
     var renderMainView = () => {
@@ -28,13 +28,13 @@ var App = React.createClass({
           <AuthMain />
         );
       }
-    }
+    };
     return (
       <View style={{flex: 1}}>
         {renderMainView()}
         <AlertContainer/>
       </View>
-    )
+    );
   }
 });
 

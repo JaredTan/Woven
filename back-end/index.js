@@ -42,7 +42,6 @@ websocket.on('connection', (socket) => {
 function onUserJoined(userId, socket) {
   var user = User.find({ _id: userId });
   sessionConnection = user.connectionId;
-  socket.emit('userJoined', user._id);
   users[socket.id] = userId;
   _sendExistingMessages(socket);
 }
