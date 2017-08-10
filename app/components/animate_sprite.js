@@ -1,17 +1,11 @@
 import React from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  NavigatorIOS,
   Animated
 } from 'react-native';
 
-import IMAGES from '../assets/spritesheets/sprites';
 
-class Sprite extends React.Component {
+
+class AnimatedSprite extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -69,4 +63,14 @@ class Sprite extends React.Component {
 }
 
 
-export default Sprite;
+function animateSprite(spriteSheet, frameCount, fps) {
+  return (
+    <AnimatedSprite 
+      spriteSheet={spriteSheet}
+      frameCount={frameCount}
+      fps={fps} 
+    />
+  );
+} 
+
+export default animateSprite;

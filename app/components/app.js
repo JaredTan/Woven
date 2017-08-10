@@ -9,7 +9,6 @@ import {
 
 import AuthMain from './auth/auth_main';
 import MainNavigator from './main_navigator';
-import Sprite from './sprite';
 import AlertContainer from './alerts/alert_container';
 
 var App = React.createClass({
@@ -21,7 +20,6 @@ var App = React.createClass({
       if (this.props.user_id) {
         return (
           <MainNavigator />
-          // <Sprite />
         );
       } else {
         return (
