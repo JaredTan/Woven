@@ -59,7 +59,7 @@ function _sendExistingMessages(socket) {
   var messages =
   Message.find({ connectionId: sessionConnection })
          .sort({ createdAt: -1 })
-         .toArray((err, messages) => {
+         .exec(function(err, messages) {
            // If there aren't any messages, then return.
            if (!messages.length) return;
            socket.emit('message', messages);
