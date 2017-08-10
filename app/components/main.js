@@ -77,17 +77,17 @@ class Main extends React.Component {
         </ScrollView>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
-            <Icon name='flower' size={45} color="white"/>
+            <Icon name='flower' size={45} color={this.state.plant ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleChatTab}>
-            <Icon name='wechat' size={45} color="white"/>
+            <Icon name='message-processing' size={45} color={this.state.chat ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleTodoTab}>
-            <Icon name='format-list-bulleted' size={45} color="white"/>
+            <Icon name='format-list-bulleted' size={45} color={this.state.todo ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <Menu>
            <MenuTrigger>
-             <Icon name='window-close' size={45} color="white"/>
+             <Icon name='chevron-up' size={45} color="#0c9258"/>
            </MenuTrigger>
              <MenuOptions>
                <MenuOption onSelect={this.handleLogOut} text='Log Out' />

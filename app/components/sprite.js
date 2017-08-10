@@ -26,13 +26,13 @@ class Sprite extends React.Component {
   getImage(num) {
     return IMAGES['image' + num];
   }
-  
+
   render() {
-    setTimeout(() => {
-      this.setState({
-        frame: (this.state.frame + 1) % 24
-      });
-    }, 200);
+    // setTimeout(() => {
+    //   this.setState({
+    //     frame: (this.state.frame + 1) % 24
+    //   });
+    // }, 200);
     return (
       <View style={styles.container}>
         <Image
