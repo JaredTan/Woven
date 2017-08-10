@@ -10,14 +10,18 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TodoList from './todo_list';
 import Sprite from './sprite';
-import {connect} from 'react-redux';
 import Chat from './chat';
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       plant: true,
       chat: false,
@@ -28,6 +32,7 @@ class Main extends React.Component {
     this.togglePlantTab = this.togglePlantTab.bind(this);
     this.toggleChatTab = this.toggleChatTab.bind(this);
     this.toggleTodoTab = this.toggleTodoTab.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   resetTabs(){
@@ -57,7 +62,8 @@ class Main extends React.Component {
   }
 
   handleLogOut() {
-    this.props.dispatch(unauthUser);
+    console.log(this.props,'props?');
+    this.props.unauthUser();
   }
 
   render() {
@@ -79,9 +85,14 @@ class Main extends React.Component {
           <TouchableOpacity onPress={this.toggleTodoTab}>
             <Icon name='format-list-bulleted' size={45} color="white"/>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.handleLogOut}>
-            <Icon name='window-close' size={45} color="white"/>
-          </TouchableOpacity>
+          <Menu>
+           <MenuTrigger>
+             <Icon name='window-close' size={45} color="white"/>
+           </MenuTrigger>
+             <MenuOptions>
+               <MenuOption onSelect={this.handleLogOut} text='Log Out' />
+             </MenuOptions>
+         </Menu>
         </View>
       </View>
     );
@@ -107,4 +118,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null)(Main);
+var mapStateToProps = (state) => {
+  return {
+    state
+  }
+}
+
+export default Main;
