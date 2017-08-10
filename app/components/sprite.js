@@ -5,11 +5,13 @@ import {
   View,
   Image,
   TouchableOpacity,
-  NavigatorIOS
+  NavigatorIOS,
+  Animated
 } from 'react-native';
 
 
 import IMAGES from '../assets/spritesheets/sprites';
+
 import BACKGROUND from '../assets/spritesheets/background/background';
 
 
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
+    backgroundColor: 'blue',
     alignItems: 'stretch',
   },
   backgroundlayer: {
