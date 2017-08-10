@@ -33,10 +33,10 @@ class Plant extends React.Component {
   }
 
   render() {
-    
+
     return (
       <View style={styles.container}>
-          {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
+          {animateSprite(BACKGROUND, 2, 3600, styles.background)}
           <Text>
             hi
           </Text>
@@ -57,21 +57,24 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'blue',
     alignItems: 'stretch',
+    // width: width,
+    // height: height,
+    // resizeMode: 'cover'
   },
   background: {
     position: 'absolute',
-    left: 50,
+    alignItems: 'stretch'
+    // width: width,
+    // height: height,
+    // left: 50,
     //  alignSelf: 'center',
     //  justifyContent: 'center',
     //  resizeMode: 'cover',
    },
    plant: {
      position: 'absolute',
-     left: '20%',
-     top: 200,
-    //  bottom: '15',
-    //  alignSelf: 'center',
-    //  justifyContent: 'center',
+     top: height * 0.70,
+     alignSelf: 'center',
      backgroundColor: 'transparent',
    },
   //  overlay: {
