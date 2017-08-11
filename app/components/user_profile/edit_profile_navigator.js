@@ -9,14 +9,13 @@ import {
   NavigatorIOS
 } from 'react-native';
 
-import EditProfile from './edit_profile';
+import EditProfileContainer from './edit_profile_container';
 
 class EditProfileNavigator extends React.Component {
   constructor(props) {
     super(props);
 
-
-
+    this.handleBack = this.handleBack.bind(this);
   }
 
   handleBack() {
@@ -30,8 +29,10 @@ class EditProfileNavigator extends React.Component {
         <TouchableOpacity onPress={this.handleBack}>
           <Icon name="chevron-left" size={22} color="white"/>
         </TouchableOpacity>
+        <Text style={styles.title}>Edit Profile</Text>
+        <Icon style={styles.filler} name="chevron-left" size={22} color="white"/>
       </View>
-      <EditProfile/>
+      <EditProfileContainer/>
       </View>
     );
   }
@@ -40,6 +41,14 @@ class EditProfileNavigator extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  title: {
+    color: 'white',
+    fontSize: 20,
+    alignSelf: 'center'
+  },
+  filler: {
+    color: '#2ecc71'
+  },
   topBar: {
     padding: 16,
     paddingTop: 28,

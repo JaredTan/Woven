@@ -80,11 +80,11 @@ class Main extends React.Component {
   render() {
     return (
       <View style = {styles.container}>
-        <View style = {styles.scrollView}>
+        <ScrollView style = {styles.scrollView}>
           { this.state.plant ? <Plant/> : null }
           { this.state.chat ? <Chat/> : null }
           { this.state.todo ? <TodoList/> : null }
-        </View>
+        </ScrollView>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
             <Icon name='flower' size={45} color={this.state.plant ? "white" : "#0c9258" }/>

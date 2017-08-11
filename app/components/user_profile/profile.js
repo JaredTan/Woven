@@ -11,40 +11,45 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import PhotoUpload from 'react-native-photo-upload';
 import {connect} from 'react-redux';
 import NavBar from '../navbar';
+import EditProfileNavigator from './edit_profile_navigator';
 // var cloudinary = require('cloudinary');
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props)
 
-    this.onBack = this.onBack.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+    this.redirectToEdit = this.redirectToEdit.bind(this);
   }
 
-  redirectToLogin() {
+  redirectToEdit() {
     this.props.navigator.push({
-      component: EditProfile,
+      component: EditProfileNavigator,
       title: 'Edit Profile',
       navigationBarHidden: true
     })
   }
 
-  onBack() {
+  handleBack() {
     this.props.navigator.pop();
   }
 
   render() {
     let {currentUser, partner} = this.props.users;
     let {connectionId } = this.props;
+    if (!currentUser) {
+      return null;
+    }
     return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-        <TouchableOpacity onPress={this.onBack}>
+        <TouchableOpacity onPress={this.handleBack}>
           <Icon name="chevron-left" size={20} color="white"/>
         </TouchableOpacity>
         <Text style={styles.title}>
           Profile
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.redirectToEdit}>
           <Icon name="pencil" size={20} color="white"/>
         </TouchableOpacity>
       </View>
