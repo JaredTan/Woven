@@ -95,6 +95,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#2ecc71'
   },
+  title: {
+    color: 'white',
+    fontSize: 20
+  },
   first: {
     flexDirection: 'row'
   },
