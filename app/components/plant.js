@@ -9,6 +9,9 @@ import {
   Animated,
   Dimensions
 } from 'react-native';
+
+import Healthbar from './healthbar';
+
 import animateSprite from './animate_sprite';
 
 import IMAGES from '../assets/spritesheets/sprites';
@@ -23,6 +26,7 @@ class Plant extends React.Component {
       waterStatus: false,
       plantframe: 0,
       bgframe: 0,
+      health: 50
     };
 
     this.getImage = this.getImage.bind(this);
@@ -41,6 +45,11 @@ class Plant extends React.Component {
     return (
       <View style={styles.container}>
           {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
+
+          <View style={styles.healthbar}>
+            <Healthbar health={this.state.health} />
+          </View>
+
           <TouchableOpacity
 
             onPress={this.navToPlant}>
@@ -49,6 +58,7 @@ class Plant extends React.Component {
               source={require('../assets/icons/waterIcon.png')}
             />
           </TouchableOpacity>
+
 
           <View style={styles.plant}>
             {animateSprite(IMAGES, 24, 60, 150, 150)}
@@ -64,6 +74,7 @@ console.log('Width: ', width, 'Height: ', height);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: height,
     justifyContent: 'flex-start',
     backgroundColor: 'blue',
     alignItems: 'stretch',
