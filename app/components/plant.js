@@ -20,6 +20,7 @@ class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      waterStatus: false,
       plantframe: 0,
       bgframe: 0,
     };
@@ -31,16 +32,26 @@ class Plant extends React.Component {
     return arr['image' + num];
   }
 
+  waterPlant() {
+
+  }
+
   render() {
 
     return (
       <View style={styles.container}>
           {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
-          <Text>
-            hi
-          </Text>
+          <TouchableOpacity
+
+            onPress={this.navToPlant}>
+            <Image
+              style={styles.waterIcon}
+              source={require('../assets/icons/waterIcon.png')}
+            />
+          </TouchableOpacity>
+
           <View style={styles.plant}>
-            {animateSprite(IMAGES, 24, 60, 200, 200)}
+            {animateSprite(IMAGES, 24, 60, 150, 150)}
           </View>
       </View>
     );
@@ -68,17 +79,18 @@ const styles = StyleSheet.create({
    plant: {
      position: 'absolute',
     //  left: '20%',
-     top: 200,
-    //  bottom: '15',
-    //  alignSelf: 'center',
+    //  top: 200,
+     bottom: '10%',
+     alignSelf: 'center',
     //  justifyContent: 'center',
      backgroundColor: 'blue',
    },
-  //  overlay: {
-  //    alignSelf: 'center',
-  //    justifyContent: 'center',
-  //    backgroundColor: 'transparent',
-  //   }
+   waterIcon: {
+    width: 70,
+    height: 70,
+    alignSelf: 'flex-end',
+    top: 30
+   }
 });
 
 export default Plant;
