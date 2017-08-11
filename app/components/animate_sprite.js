@@ -66,7 +66,8 @@ class AnimatedSprite extends React.Component {
         source={this.getImage(this.frame)}
         style={{
           width,
-          height
+          height,
+          resizeMode: 'contain'
         }}
       >
       </Animated.Image>

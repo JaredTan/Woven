@@ -14,7 +14,7 @@ import Healthbar from './healthbar';
 
 import animateSprite from './animate_sprite';
 
-import IMAGES from '../assets/spritesheets/sprites';
+import {IMAGES, WATER} from '../assets/spritesheets/sprites';
 
 import BACKGROUND from '../assets/spritesheets/background/background';
 
@@ -23,24 +23,35 @@ class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
+      drops: "drops0",
+      water: false
       waterStatus: false,
       plantframe: 0,
       bgframe: 0,
       health: 50
     };
 
-    this.getImage = this.getImage.bind(this);
-  }
-
-  getImage(arr, num) {
-    return arr['image' + num];
+    // this.getImage = this.getImage.bind(this);
+    this.waterPlant = this.waterPlant.bind(this);
   }
 
   waterPlant() {
+    this.setState({
+      water: true
+    });
 
+    setTimeout(()=>{
+      this.setState({
+        water: false
+      });
+    }, 5000);
   }
 
+
   render() {
+
+    let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
 
     return (
       <View style={styles.container}>
@@ -51,8 +62,7 @@ class Plant extends React.Component {
           </View>
 
           <TouchableOpacity
-
-            onPress={this.navToPlant}>
+            onPress={this.waterPlant}>
             <Image
               style={styles.waterIcon}
               source={require('../assets/icons/waterIcon.png')}
@@ -63,11 +73,18 @@ class Plant extends React.Component {
           <View style={styles.plant}>
             {animateSprite(IMAGES, 24, 60, 150, 150)}
           </View>
+          <View style={styles.water}>
+            {water}
+          </View>
       </View>
     );
   }
 }
 
+// <Image
+//   style={styles[this.state.drops]}
+//   source={WATER[this.state.drops]}
+// />
 const {width, height} = Dimensions.get('window');
 console.log('Width: ', width, 'Height: ', height);
 
@@ -76,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: height,
     justifyContent: 'flex-start',
-    backgroundColor: 'blue',
+    backgroundColor: 'transparent',
     alignItems: 'stretch',
     height: Dimensions.get('window').height-55
   },
@@ -94,14 +111,41 @@ const styles = StyleSheet.create({
      bottom: '10%',
      alignSelf: 'center',
     //  justifyContent: 'center',
-     backgroundColor: 'blue',
+     backgroundColor: 'transparent',
+   },
+   water: {
+     position: 'absolute',
+     bottom: '30%',
+     alignSelf: 'center'
    },
    waterIcon: {
     width: 70,
     height: 70,
     alignSelf: 'flex-end',
     top: 30
-   }
+  },
+  // drops0: {
+  //   display: 'none',
+  //   alignSelf: 'center',
+  // },
+  // drops1: {
+  //   top: 20,
+  //   alignSelf: 'center',
+  //   height: 200,
+  //   resizeMode: 'contain'
+  // },
+  // drops2: {
+  //   top: 50,
+  //   alignSelf: 'center',
+  //   height: 200,
+  //   resizeMode: 'contain'
+  // },
+  // drops3: {
+  //   top: 90,
+  //   alignSelf: 'center',
+  //   height: 200,
+  //   resizeMode: 'contain'
+  // },
 });
 
 export default Plant;
