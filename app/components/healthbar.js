@@ -14,7 +14,7 @@ import {
 class Healthbar extends React.Component {
   constructor(props) {
     super(props);
-    this.width = this.props.health * 2;
+    this.width = (this.props.health % 100) * 2;
   }
 
   render() {
