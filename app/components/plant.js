@@ -41,7 +41,7 @@ class Plant extends React.Component {
             hi
           </Text>
           <View style={styles.plant}>
-            {animateSprite(IMAGES, 24, 60)}
+            {animateSprite(IMAGES, 24, 60, 200, 200)}
           </View>
       </View>
     );
@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
    },
    plant: {
      position: 'absolute',
-     left: '20%',
+    //  left: '20%',
      top: 200,
     //  bottom: '15',
     //  alignSelf: 'center',
     //  justifyContent: 'center',
-     backgroundColor: 'transparent',
+     backgroundColor: 'blue',
    },
   //  overlay: {
   //    alignSelf: 'center',
