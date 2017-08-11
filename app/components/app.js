@@ -10,6 +10,7 @@ import {
 import AuthMain from './auth/auth_main';
 import MainNavigator from './main_navigator';
 import AlertContainer from './alerts/alert_container';
+import Chat from './chat'
 
 var App = React.createClass({
   getInitialState() {

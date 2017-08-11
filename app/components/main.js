@@ -24,8 +24,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      plant: true,
-      chat: false,
+      plant: false,
+      chat: true,
       todo: false
     }
 
@@ -80,11 +80,11 @@ class Main extends React.Component {
   render() {
     return (
       <View style = {styles.container}>
-        <ScrollView style = {styles.scrollView}>
+        <View style = {styles.scrollView}>
           { this.state.plant ? <Plant/> : null }
           { this.state.chat ? <Chat/> : null }
           { this.state.todo ? <TodoList/> : null }
-        </ScrollView>
+        </View>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
             <Icon name='flower' size={45} color={this.state.plant ? "white" : "#0c9258" }/>
@@ -98,7 +98,7 @@ class Main extends React.Component {
            </MenuTrigger>
              <MenuOptions>
                <MenuOption onSelect={this.handleLogOut} text='Log Out' />
-               <MenuOption onSelect={this.redirectToTodos} text='To-dos' />
+               <MenuOption onSelect={this.redirectToTodos} text='To-Dos' />
                <MenuOption onSelect={this.redirectToProfile} text='Profile' />
              </MenuOptions>
          </Menu>
