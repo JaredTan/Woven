@@ -27,6 +27,9 @@ exports.update = function(req, res, next) {
      break;
   }
 
-
-  res.send();
+  Connection.findOne({_id: req.params.connection_id}, function(err, connection) {
+    res.send({
+      plant: connection.plant
+    });
+  });
 };
