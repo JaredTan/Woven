@@ -7,7 +7,6 @@ import {addAlert} from './alert_actions';
 exports.loginUser = (email, password) => {
   return function(dispatch) {
     return axios.post(SIGNIN_URL, {email, password}).then((response) => {
-      console.log(response.data,'respdata');
       var {user_id, token, connectionId} = response.data;
       Keychain.setGenericPassword(user_id, token)
         .then(function() {
@@ -21,9 +20,9 @@ exports.loginUser = (email, password) => {
   }
 }
 
-exports.signupUser = (email, password, partnerEmail) => {
+exports.signupUser = (email, password, firstName, lastName, partnerEmail) => {
   return function(dispatch) {
-    return axios.post(SIGNUP_URL, {email, password, partnerEmail}).then((response) => {
+    return axios.post(SIGNUP_URL, {email, password, firstName, lastName, partnerEmail}).then((response) => {
       var {user_id, token} = response.data;
       Keychain.setGenericPassword(user_id, token)
         .then(function() {

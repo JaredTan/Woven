@@ -8,9 +8,10 @@ import {
 } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
-import { loginUser, signupUser, addAlert } from '../../actions';
-import {authUser} from '../../actions';
-import Login from './login';
+import {addAlert, updateUser } from '../../actions';
+import PhotoUpload from 'react-native-photo-upload';
+
+
 
 const renderInput = ({
   input: { onChange, ...restInput },
@@ -39,83 +40,66 @@ const renderInput = ({
   )
 }
 
-const onSignUp = (props, dispatch) => {
-  dispatch(signupUser(props.email, props.password, props.firstName, props.lastName, props.partnerEmail));
+const handleEdit = (props, dispatch) => {
+  dispatch(updateUser(props.firstName, props.lastName, props.birthday, props.bio));
 }
 
-const LSForm = props => {
+const EditForm = props => {
     const { handleSubmit } = props;
     return (
       <Container style={ styles.container }>
         <Content style={ styles.content }>
         <Text style={styles.title}>Sign Up</Text>
           <Form style={ styles.form }>
-          <Field name="email" label="Email" component={renderInput} />
-          <Field name="password" secureTextEntry={true} label="Password" component={renderInput} />
+            <PhotoUpload
+               onPhotoSelect={avatar => {
+                 if (avatar) {
+                   console.log('Image base64 string: ', avatar)
+                 }
+               }}
+              >
+             <Image
+               style={{
+                 paddingVertical: 30,
+                 width: 150,
+                 height: 150,
+                 borderRadius: 75
+               }}
+               resizeMode='cover'
+               source={{
+                 uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
+               }}
+             />
+          </PhotoUpload>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
-          <Field name="partnerEmail" label="Partner Email" component={renderInput} />
-              <Grid style={styles.buttonGrid}>
-                <Col style={styles.buttonContainer}>
-                  <Button
-                    androidRippleColor='rgba(255,255,255,0.4)'
-                    full
-                    bordered
-                    style={styles.signupButton}
-                    transparent
-                    onPress={handleSubmit(onSignUp)} >
-                    <Text uppercase={false} style={styles.signupText}>
-                      register
-                    </Text>
-                  </Button>
-                </Col>
-              </Grid>
-      </Form>
-      </Content>
+          <Field name="birthday" label="Birthday" component={renderInput} />
+          <Field name="bio" label="Bio" component={renderInput} />
+            <Grid style={styles.buttonGrid}>
+              <Col style={styles.buttonContainer}>
+                <Button
+                  androidRippleColor='rgba(255,255,255,0.4)'
+                  full
+                  bordered
+                  style={styles.signupButton}
+                  transparent
+                  onPress={handleSubmit(handleEdit)} >
+                  <Text uppercase={false} style={styles.signupText}>
+                    edit profile
+                  </Text>
+                </Button>
+              </Col>
+            </Grid>
+          </Form>
+        </Content>
       </Container>
     )
 }
 
-const validate = formProps => {
-  const errors = {};
-  if (!formProps.email) {
-    errors.email = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formProps.email)) {
-    errors.email = 'Invalid email address'
-  }
-  if (!formProps.password) {
-    errors.password = 'Required'
-  } else if (formProps.password.length < 6) {
-    errors.password = 'Must be 6 characters or more'
-  }
-  if (!formProps.firstName) {
-    errors.firstName = 'Required'
-  }
-  if (!formProps.lastName) {
-    errors.lastName = 'Required'
-  }
-  if (!formProps.partnerEmail) {
-    errors.partnerEmail = 'Required'
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formProps.email)) {
-    errors.partnerEmail = 'Invalid email address'
-  }
-  return errors
-}
-
-const warn = formProps => {
-  const warnings = {}
-  if (formProps.password === "123456") {
-    warnings.password = 'Too easy password.'
-  }
-  return warnings
-}
-
 export default reduxForm({
   form: 'login',
-  validate: validate,
-  warn: warn,
-  fields: ['email', 'password', 'firstName', 'lastName', 'partnerEmail'],
-}, null, null)(LSForm);
+  fields: ['firstName', 'lastName', 'birthday', 'bio'],
+}, null, null)(EditForm);
 
 const styles = {
   container: {
