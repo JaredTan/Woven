@@ -19,8 +19,8 @@ exports.loginUser = (email, password) => {
     }).catch((error) => {
       dispatch(addAlert("Could not log in. Invalid username / password, or your partner has not connected yet."));
     });
-  }
-}
+  };
+};
 
 exports.signupUser = (email, password, firstName, lastName, partnerEmail) => {
   return function(dispatch) {
@@ -29,14 +29,14 @@ exports.signupUser = (email, password, firstName, lastName, partnerEmail) => {
       Keychain.setGenericPassword(user_id, token)
         .then(function() {
           dispatch(addAlert("Thanks for signing up! You may login once both partners have connected."));
-        })
+        });
     }).catch((error) => {
       dispatch(addAlert("Could not sign up: E-mail already taken."));
     });
-  }
-}
+  };
+};
 
-authUser = (user_id, connectionId) => {
+var authUser = (user_id, connectionId) => {
   return {
     type: 'AUTH_USER',
     user_id,

@@ -24,8 +24,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      plant: false,
-      chat: true,
+      plant: true,
+      chat: false,
       todo: false
     }
 

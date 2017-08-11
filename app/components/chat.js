@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {requestPair} from '../../user_actions';
 import {
   View,
   Text,
   AsyncStorage
 } from 'react-native';
-import SocketIOClient from 'socket.io-client';
+import io from 'socket.io-client';
 import { GiftedChat } from 'react-native-gifted-chat';
 import Dimensions from 'Dimensions';
 
@@ -19,17 +18,16 @@ class Chat extends Component {
     this.onSend = this.onSend.bind(this);
     this._storeMessages = this._storeMessages.bind(this);
 
-    this.socket = SocketIOClient('http://localhost:3000/v1');
+    this.socket = io('http://localhost:3000');
     this.socket.on('message', this.onReceivedMessage);
     this.determineUser();
   }
 
   determineUser() {
-    .then((userId) =>{
-      console.log(userId, "user joined!");
-      this.socket.emit('userJoined', userId);
-      this.setState({ userId });
-    });
+    let userId = this.props.userId;
+    console.log(userId, "user joined!");
+    this.socket.emit('userJoined', userId);
+    this.setState({ userId });
   }
 
   onReceivedMessage(messages) {
@@ -59,12 +57,9 @@ class Chat extends Component {
   }
 
   _storeMessages(messages) {
-    this.setState((previousState) => {
-      return {
-        messages: GiftedChat.append(previousState.messages, messages),
-      };
-    });
-    console.log(this.props.userId);
+    let oldMessages = this.props.messages;
+    this.setState({messages: messages});
+    console.log(this);
   }
 }
 

@@ -32,6 +32,7 @@ var users = {};
 var sessionConnection = null;
 
 websocket.on('connection', (socket) => {
+  console.log('a client just joined');
   clients[socket.id] = socket;
   socket.on('userJoined', (userId) => onUserJoined(userId, socket));
   socket.on('message', (message) => onMessageReceived(message, socket));
