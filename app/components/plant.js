@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import Healthbar from './healthbar';
+
 import animateSprite from './animate_sprite';
 
 import IMAGES from '../assets/spritesheets/sprites';
@@ -22,6 +23,7 @@ class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      waterStatus: false,
       plantframe: 0,
       bgframe: 0,
       health: 50
@@ -34,16 +36,32 @@ class Plant extends React.Component {
     return arr['image' + num];
   }
 
+  waterPlant() {
+
+  }
+
   render() {
 
     return (
       <View style={styles.container}>
           {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
+
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
+
+          <TouchableOpacity
+
+            onPress={this.navToPlant}>
+            <Image
+              style={styles.waterIcon}
+              source={require('../assets/icons/waterIcon.png')}
+            />
+          </TouchableOpacity>
+
+
           <View style={styles.plant}>
-            {animateSprite(IMAGES, 24, 60, 200, 200)}
+            {animateSprite(IMAGES, 24, 60, 150, 150)}
           </View>
       </View>
     );
@@ -60,20 +78,30 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'blue',
     alignItems: 'stretch',
+    height: Dimensions.get('window').height-55
   },
   background: {
     position: 'absolute',
     left: 50,
-  },
-  plant: {
-    position: 'absolute',
-    top: 200,
-    backgroundColor: 'blue',
-  },
-  healthbar: {
-    position: 'absolute',
-    top: 20,
-  },
+    //  alignSelf: 'center',
+    //  justifyContent: 'center',
+    //  resizeMode: 'cover',
+   },
+   plant: {
+     position: 'absolute',
+    //  left: '20%',
+    //  top: 200,
+     bottom: '10%',
+     alignSelf: 'center',
+    //  justifyContent: 'center',
+     backgroundColor: 'blue',
+   },
+   waterIcon: {
+    width: 70,
+    height: 70,
+    alignSelf: 'flex-end',
+    top: 30
+   }
 });
 
 export default Plant;
