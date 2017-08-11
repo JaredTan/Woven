@@ -24,6 +24,7 @@ router.route('/signin')
 
 router.route('/users/:user_id')
   .get(UsersController.show)
+  .patch(UsersController.update)
 
 // Connection Routes
 // -----------------------------------------------------------------------------
