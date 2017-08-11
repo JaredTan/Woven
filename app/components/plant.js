@@ -10,6 +10,7 @@ import {
   Dimensions
 } from 'react-native';
 
+import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
 
 import IMAGES from '../assets/spritesheets/sprites';
@@ -23,6 +24,7 @@ class Plant extends React.Component {
     this.state = {
       plantframe: 0,
       bgframe: 0,
+      health: 50
     };
 
     this.getImage = this.getImage.bind(this);
@@ -37,9 +39,9 @@ class Plant extends React.Component {
     return (
       <View style={styles.container}>
           {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
-          <Text>
-            hi
-          </Text>
+          <View style={styles.healthbar}>
+            <Healthbar health={this.state.health} />
+          </View>
           <View style={styles.plant}>
             {animateSprite(IMAGES, 24, 60, 200, 200)}
           </View>
@@ -54,6 +56,7 @@ console.log('Width: ', width, 'Height: ', height);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: height,
     justifyContent: 'flex-start',
     backgroundColor: 'blue',
     alignItems: 'stretch',
@@ -61,24 +64,16 @@ const styles = StyleSheet.create({
   background: {
     position: 'absolute',
     left: 50,
-    //  alignSelf: 'center',
-    //  justifyContent: 'center',
-    //  resizeMode: 'cover',
-   },
-   plant: {
-     position: 'absolute',
-    //  left: '20%',
-     top: 200,
-    //  bottom: '15',
-    //  alignSelf: 'center',
-    //  justifyContent: 'center',
-     backgroundColor: 'blue',
-   },
-  //  overlay: {
-  //    alignSelf: 'center',
-  //    justifyContent: 'center',
-  //    backgroundColor: 'transparent',
-  //   }
+  },
+  plant: {
+    position: 'absolute',
+    top: 200,
+    backgroundColor: 'blue',
+  },
+  healthbar: {
+    position: 'absolute',
+    top: 20,
+  },
 });
 
 export default Plant;
