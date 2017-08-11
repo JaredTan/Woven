@@ -47,7 +47,7 @@ class Chat extends Component {
   render() {
     var user = { _id: this.props.userId || -1 };
     return (
-      <View style={{height: Dimensions.get('window').height-55}}>
+      <View style={{height: Dimensions.get('window').height-75}}>
 
         <Text>Hi</Text>
         <GiftedChat

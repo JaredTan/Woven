@@ -3,7 +3,6 @@ import { requestPair, requestConnection } from '../../actions';
 import UserProfile from './profile';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state,'state!!!');
   return {
     currentUserId: state.auth.user_id,
     users: state.users,

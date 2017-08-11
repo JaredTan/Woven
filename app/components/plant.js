@@ -9,7 +9,6 @@ import {
   Animated,
   Dimensions
 } from 'react-native';
-
 import animateSprite from './animate_sprite';
 
 import IMAGES from '../assets/spritesheets/sprites';
@@ -57,6 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'blue',
     alignItems: 'stretch',
+    height: Dimensions.get('window').height-55
   },
   background: {
     position: 'absolute',

@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Image
 } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
@@ -45,11 +46,10 @@ const handleEdit = (props, dispatch) => {
 }
 
 const EditForm = props => {
-    const { handleSubmit } = props;
+    const { handleSubmit, currentUser } = props;
     return (
       <Container style={ styles.container }>
         <Content style={ styles.content }>
-        <Text style={styles.title}>Sign Up</Text>
           <Form style={ styles.form }>
             <PhotoUpload
                onPhotoSelect={avatar => {
