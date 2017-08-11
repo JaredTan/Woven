@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import animateSprite from './animate_sprite';
 
-import IMAGES from '../assets/spritesheets/sprites';
+import {IMAGES, WATER} from '../assets/spritesheets/sprites';
 
 import BACKGROUND from '../assets/spritesheets/background/background';
 
@@ -20,48 +20,50 @@ class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      waterframe: "waterframe0"
+      drops: "drops0",
+      water: false
     };
 
-    this.getImage = this.getImage.bind(this);
+    // this.getImage = this.getImage.bind(this);
     this.waterPlant = this.waterPlant.bind(this);
   }
 
-  getImage(arr, num) {
-    return arr['image' + num];
-  }
-
-
   waterPlant() {
-    let startWater = setInterval(() => {
-        this.setState({
-         waterframe: ("waterframe" + (parseInt(this.state.waterframe[10]) + 1))
-        });
-      }, 300);
+    this.setState({
+      water: true
+    });
 
-      setTimeout(() => {
-        clearInterval(startWater);
-        this.setState({
-          waterframe: "waterframe0"
-        });
-      }, 1000);
-
+    setTimeout(()=>{
+      this.setState({
+        water: false
+      });
+    }, 5000);
   }
 
+  // getImage(arr, num) {
+  //   return arr['image' + num];
+  // }
+  //
+  //
   // waterPlant() {
-  //   let i = 1;
-  //   while (i < 4) {
-  //     this.setState({
-  //       waterframe: "waterframe" + i
-  //     });
-  //     i++;
-  //   }
-  //   this.setState({
-  //     waterframe: "waterframe0"
-  //   });
+  //   let startWater = setInterval(() => {
+  //       this.setState({
+  //        drops: ("drops" + ((parseInt(this.state.drops[5]) + 1) % 4))
+  //       });
+  //     }, 70);
+  //
+  //     setTimeout(() => {
+  //       clearInterval(startWater);
+  //       this.setState({
+  //         drops: "drops0"
+  //       });
+  //     }, 1500);
+  //
   // }
 
   render() {
+
+    let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
 
     return (
       <View style={styles.container}>
@@ -74,20 +76,21 @@ class Plant extends React.Component {
             />
           </TouchableOpacity>
 
-          <View>
-            <Image
-              style={styles[this.state.waterframe]}
-              source={require('../assets/icons/drops_0.png')}
-            />
-          </View>
           <View style={styles.plant}>
             {animateSprite(IMAGES, 24, 60, 150, 150)}
+          </View>
+          <View style={styles.water}>
+            {water}
           </View>
       </View>
     );
   }
 }
 
+// <Image
+//   style={styles[this.state.drops]}
+//   source={WATER[this.state.drops]}
+// />
 const {width, height} = Dimensions.get('window');
 console.log('Width: ', width, 'Height: ', height);
 
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    backgroundColor: 'blue',
+    backgroundColor: 'transparent',
     alignItems: 'stretch',
     height: Dimensions.get('window').height-55
   },
@@ -115,34 +118,39 @@ const styles = StyleSheet.create({
     //  justifyContent: 'center',
      backgroundColor: 'transparent',
    },
+   water: {
+     position: 'absolute',
+     bottom: '30%',
+     alignSelf: 'center'
+   },
    waterIcon: {
     width: 70,
     height: 70,
     alignSelf: 'flex-end',
     top: 30
   },
-  waterframe0: {
-    display: 'none',
-    alignSelf: 'center',
-  },
-  waterframe1: {
-    top: 20,
-    alignSelf: 'center',
-    width: 200,
-    height: 200
-  },
-  waterframe2: {
-    top: 50,
-    alignSelf: 'center',
-    width: 200,
-    height: 200
-  },
-  waterframe3: {
-    top: 90,
-    alignSelf: 'center',
-    width: 200,
-    height: 200
-  },
+  // drops0: {
+  //   display: 'none',
+  //   alignSelf: 'center',
+  // },
+  // drops1: {
+  //   top: 20,
+  //   alignSelf: 'center',
+  //   height: 200,
+  //   resizeMode: 'contain'
+  // },
+  // drops2: {
+  //   top: 50,
+  //   alignSelf: 'center',
+  //   height: 200,
+  //   resizeMode: 'contain'
+  // },
+  // drops3: {
+  //   top: 90,
+  //   alignSelf: 'center',
+  //   height: 200,
+  //   resizeMode: 'contain'
+  // },
 });
 
 export default Plant;
