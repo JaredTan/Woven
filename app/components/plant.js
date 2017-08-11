@@ -20,21 +20,46 @@ class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      waterStatus: false,
-      plantframe: 0,
-      bgframe: 0,
+      waterframe: "waterframe0"
     };
 
     this.getImage = this.getImage.bind(this);
+    this.waterPlant = this.waterPlant.bind(this);
   }
 
   getImage(arr, num) {
     return arr['image' + num];
   }
 
+
   waterPlant() {
+    let startWater = setInterval(() => {
+        this.setState({
+         waterframe: ("waterframe" + (parseInt(this.state.waterframe[10]) + 1))
+        });
+      }, 300);
+
+      setTimeout(() => {
+        clearInterval(startWater);
+        this.setState({
+          waterframe: "waterframe0"
+        });
+      }, 1000);
 
   }
+
+  // waterPlant() {
+  //   let i = 1;
+  //   while (i < 4) {
+  //     this.setState({
+  //       waterframe: "waterframe" + i
+  //     });
+  //     i++;
+  //   }
+  //   this.setState({
+  //     waterframe: "waterframe0"
+  //   });
+  // }
 
   render() {
 
@@ -42,14 +67,19 @@ class Plant extends React.Component {
       <View style={styles.container}>
           {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
           <TouchableOpacity
-
-            onPress={this.navToPlant}>
+            onPress={this.waterPlant}>
             <Image
               style={styles.waterIcon}
               source={require('../assets/icons/waterIcon.png')}
             />
           </TouchableOpacity>
 
+          <View>
+            <Image
+              style={styles[this.state.waterframe]}
+              source={require('../assets/icons/drops_0.png')}
+            />
+          </View>
           <View style={styles.plant}>
             {animateSprite(IMAGES, 24, 60, 150, 150)}
           </View>
@@ -83,14 +113,36 @@ const styles = StyleSheet.create({
      bottom: '10%',
      alignSelf: 'center',
     //  justifyContent: 'center',
-     backgroundColor: 'blue',
+     backgroundColor: 'transparent',
    },
    waterIcon: {
     width: 70,
     height: 70,
     alignSelf: 'flex-end',
     top: 30
-   }
+  },
+  waterframe0: {
+    display: 'none',
+    alignSelf: 'center',
+  },
+  waterframe1: {
+    top: 20,
+    alignSelf: 'center',
+    width: 200,
+    height: 200
+  },
+  waterframe2: {
+    top: 50,
+    alignSelf: 'center',
+    width: 200,
+    height: 200
+  },
+  waterframe3: {
+    top: 90,
+    alignSelf: 'center',
+    width: 200,
+    height: 200
+  },
 });
 
 export default Plant;
