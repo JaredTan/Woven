@@ -17,6 +17,12 @@ var userSchema = new Schema({
   password: {
     type: String
   },
+  firstName: {
+    type: String
+  },
+  lastName: {
+    type: String
+  },
   partnerEmail: {
     type: String,
     lowercase: true
@@ -24,11 +30,14 @@ var userSchema = new Schema({
   connectionId: {
     type: String
   },
-  profilePicture: {
+  imageUrl: {
     type: String
   },
   birthday: {
     type: Date
+  },
+  bio: {
+    type: String
   }
 });
 

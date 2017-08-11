@@ -19,6 +19,8 @@ exports.signin = function(req, res, next) {
 exports.signup = function(req, res, next) {
   var email = req.body.email;
   var password = req.body.password;
+  var firstName = req.body.firstName;
+  var lastName = req.body.lastName;
   var partnerEmail = req.body.partnerEmail;
   if (!email || !password) {
     return res.status(422).json({error: "You must provide an email and password"});
@@ -31,7 +33,11 @@ exports.signup = function(req, res, next) {
       email: email,
       password: password,
       partnerEmail: partnerEmail,
-      connectionId: null
+      connectionId: null,
+      firstName: firstName,
+      lastName: lastName,
+      imageUrl: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg',
+      birthday: null
     });
     user.save(function(err) {
       if (err) { return next(err) }
