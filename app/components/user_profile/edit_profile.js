@@ -44,6 +44,7 @@ const renderInput = ({
 
 const handleEdit = (props, dispatch, payload) => {
   dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.bio));
+  payload.navigator.pop();
 }
 
 const EditForm = props => {

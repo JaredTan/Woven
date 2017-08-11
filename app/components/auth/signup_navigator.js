@@ -26,7 +26,7 @@ var SignUpNavigator = React.createClass({
           <Icon name="chevron-left" size={22} color="white"/>
         </TouchableOpacity>
       </View>
-      <SignUp/>
+      <SignUp navigator={this.props.navigator}/>
       </View>
     );
   }

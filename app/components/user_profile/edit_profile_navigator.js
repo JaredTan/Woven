@@ -32,7 +32,7 @@ class EditProfileNavigator extends React.Component {
         <Text style={styles.title}>Edit Profile</Text>
         <Icon style={styles.filler} name="chevron-left" size={22} color="white"/>
       </View>
-      <EditProfile/>
+      <EditProfile navigator={this.props.navigator}/>
       </View>
     );
   }
