@@ -32,7 +32,6 @@ var users = {};
 var sessionConnection = null;
 
 websocket.on('connection', (socket) => {
-  console.log('a client just joined');
   clients[socket.id] = socket;
   socket.on('userJoined', (userId) => onUserJoined(userId, socket));
   socket.on('message', (message) => onMessageReceived(message, socket));
@@ -41,16 +40,18 @@ websocket.on('connection', (socket) => {
 // Event listeners.
 // When a user joins the chatroom.
 function onUserJoined(userId, socket) {
-  var user = User.find({ _id: userId });
-  console.log(user, "user joined chat!");
-  sessionConnection = user.connectionId;
-  users[socket.id] = userId;
-  _sendExistingMessages(socket);
+  var objId = mongoose.Types.ObjectId(userId);
+  User.findOne({_id: objId}, (err, user) => {
+    console.log(user, "user joined chat!");
+    sessionConnection = user.connectionId;
+    users[socket.id] = userId;
+    _sendExistingMessages(socket);
+  });
 }
 
 function onMessageReceived(message, senderSocket) {
   var userId = users[senderSocket.id];
-  if (!userId) return;
+  console.log(message, 'message received!');
 
   _sendAndSaveMessage(message, senderSocket);
 }
@@ -58,14 +59,11 @@ function onMessageReceived(message, senderSocket) {
 // Helper functions.
 // Send the pre-existing messages to the user that just joined.
 function _sendExistingMessages(socket) {
-  var messages =
   Message.find({ connectionId: sessionConnection })
-         .sort({ createdAt: -1 })
+         .sort({ createdAt: 1 })
          .exec(function(err, messages) {
-           // If there aren't any messages, then return.
-           console.log(messages, "sending existing messages");
-           if (!messages.length) return;
-           socket.emit('message', messages);
+            console.log(messages, "sending existing messages");
+            socket.emit('message', messages);
          });
 }
 
@@ -73,16 +71,18 @@ function _sendExistingMessages(socket) {
 function _sendAndSaveMessage(message, socket, fromServer) {
   var messageData = {
     text: message.text,
-    userId: message.userId,
+    userId: message.user._id.toString(),
     createdAt: new Date(message.createdAt),
-    connectionId: sessionConnection
+    connectionId: message.user.connectionId
   };
 
   console.log("creating message");
-  Message.create(messageData);
-  var emitter = fromServer ? websocket : socket.broadcast;
-  console.log("sending created message");
-  emitter.emit('message', [message]);
+  console.log(messageData.connectionId);
+  Message.create(messageData, (newMessage) => {
+    var emitter = fromServer ? websocket : socket.broadcast;
+    console.log("sending created message");
+    emitter.emit('message', [newMessage]);
+  });
 }
 
 // Allow the server to participate in the chatroom through stdin.

@@ -9,10 +9,10 @@ var messageSchema = new Schema({
     type: Date
   },
   userId: {
-    type: Number
+    type: String
   },
   connectionId: {
-    type: Number
+    type: String
   }
 
 });

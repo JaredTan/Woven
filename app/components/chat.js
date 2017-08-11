@@ -12,6 +12,9 @@ import Dimensions from 'Dimensions';
 class Chat extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      messages: []
+    };
 
     this.determineUser = this.determineUser.bind(this);
     this.onReceivedMessage = this.onReceivedMessage.bind(this);
@@ -31,17 +34,19 @@ class Chat extends Component {
   }
 
   onReceivedMessage(messages) {
+    console.log("onReceivedMessage");
     this._storeMessages(messages);
   }
 
   onSend(messages=[]) {
-    console.log(messages[0], "emitting message!");
+
+    console.log(messages[0], "emitting message! onSend");
     this.socket.emit('message', messages[0]);
     this._storeMessages(messages);
   }
 
   render() {
-    var user = { _id: this.props.userId || -1 };
+    var user = { _id: this.props.userId, connectionId: this.props.connectionId };
     return (
       <View style={{height: Dimensions.get('window').height-55}}>
 
@@ -57,8 +62,7 @@ class Chat extends Component {
   }
 
   _storeMessages(messages) {
-    let oldMessages = this.props.messages;
-    this.setState({messages: messages});
+    this.setState(Object.assign({}, {messages: this.state.messages.concat(messages)}));
     console.log(this);
   }
 }
@@ -66,8 +70,8 @@ class Chat extends Component {
 var mapStateToProps = (state) => {
   console.log(state);
   return {
-    messages: [],
-    userId: state.users.currentUser._id
+    userId: state.users.currentUser._id,
+    connectionId: state.users.currentUser.connectionId
   };
 };
 

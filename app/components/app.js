@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 var mapStateToProps = (state) => {
   return {
     user_id: state.auth.user_id
-  }
-}
+  };
+};
 
 module.exports = connect(mapStateToProps)(App);
