@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {requestPair} from '../../user_actions';
 import {
   View,
   Text,
@@ -8,9 +9,6 @@ import {
 import SocketIOClient from 'socket.io-client';
 import { GiftedChat } from 'react-native-gifted-chat';
 import Dimensions from 'Dimensions';
-
-
-const USER_ID = '@userId';
 
 class Chat extends Component {
   constructor(props) {
@@ -27,12 +25,11 @@ class Chat extends Component {
   }
 
   determineUser() {
-    AsyncStorage.getItem(USER_ID)
-      .then((userId) => {
-        this.socket.emit('userJoined', userId);
-        this.setState({ userId });
-      })
-      .catch((e) => alert(e));
+    .then((userId) =>{
+      console.log(userId, "user joined!");
+      this.socket.emit('userJoined', userId);
+      this.setState({ userId });
+    });
   }
 
   onReceivedMessage(messages) {
@@ -40,6 +37,7 @@ class Chat extends Component {
   }
 
   onSend(messages=[]) {
+    console.log(messages[0], "emitting message!");
     this.socket.emit('message', messages[0]);
     this._storeMessages(messages);
   }
@@ -49,7 +47,6 @@ class Chat extends Component {
     return (
       <View style={{height: Dimensions.get('window').height-55}}>
 
-        <Text>Hi</Text>
         <GiftedChat
           messages={this.props.messages}
           onSend={this.onSend}
@@ -67,13 +64,15 @@ class Chat extends Component {
         messages: GiftedChat.append(previousState.messages, messages),
       };
     });
+    console.log(this.props.userId);
   }
 }
 
 var mapStateToProps = (state) => {
+  console.log(state);
   return {
     messages: [],
-    userId: state.user_id
+    userId: state.users.currentUser._id
   };
 };
 

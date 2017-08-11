@@ -3,6 +3,7 @@ import * as Keychain from 'react-native-keychain';
 //
 import {SIGNIN_URL, SIGNUP_URL} from '../api';
 import {addAlert} from './alert_actions';
+import {requestPair} from './user_actions';
 
 exports.loginUser = (email, password) => {
   return function(dispatch) {
@@ -11,6 +12,7 @@ exports.loginUser = (email, password) => {
       Keychain.setGenericPassword(user_id, token)
         .then(function() {
           dispatch(authUser(user_id, connectionId));
+          dispatch(requestPair(user_id));
         }).catch((error) => {
           dispatch(addAlert("Could not log in."));
         });

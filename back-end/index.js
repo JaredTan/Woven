@@ -41,6 +41,7 @@ websocket.on('connection', (socket) => {
 // When a user joins the chatroom.
 function onUserJoined(userId, socket) {
   var user = User.find({ _id: userId });
+  console.log(user, "user joined chat!");
   sessionConnection = user.connectionId;
   users[socket.id] = userId;
   _sendExistingMessages(socket);
@@ -61,6 +62,7 @@ function _sendExistingMessages(socket) {
          .sort({ createdAt: -1 })
          .exec(function(err, messages) {
            // If there aren't any messages, then return.
+           console.log(messages, "sending existing messages");
            if (!messages.length) return;
            socket.emit('message', messages);
          });
@@ -75,8 +77,10 @@ function _sendAndSaveMessage(message, socket, fromServer) {
     connectionId: sessionConnection
   };
 
+  console.log("creating message");
   Message.create(messageData);
   var emitter = fromServer ? websocket : socket.broadcast;
+  console.log("sending created message");
   emitter.emit('message', [message]);
 }
 
@@ -86,6 +90,7 @@ stdin.addListener('data', function(d) {
   _sendAndSaveMessage({
     text: d.toString().trim(),
     createdAt: new Date(),
-    user: { _id: 'robot' }
+    user: { _id: 'robot' },
+    connectionId: sessionConnection
   }, null /* no socket */, true /* send from server */);
 });
