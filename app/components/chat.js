@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import { GiftedChat } from 'react-native-gifted-chat';
+import Dimensions from 'Dimensions';
+
 
 const USER_ID = '@userId';
 
@@ -19,7 +21,7 @@ class Chat extends Component {
     this.onSend = this.onSend.bind(this);
     this._storeMessages = this._storeMessages.bind(this);
 
-    this.socket = SocketIOClient('http://localhost:3000');
+    this.socket = SocketIOClient('http://localhost:3000/v1');
     this.socket.on('message', this.onReceivedMessage);
     this.determineUser();
   }
@@ -44,13 +46,18 @@ class Chat extends Component {
 
   render() {
     var user = { _id: this.props.userId || -1 };
-    console.log(user);
     return (
-      <GiftedChat
-        messages={this.props.messages}
-        onSend={this.onSend}
-        user={user}
-        />
+      <View style={{height: Dimensions.get('window').height-55}}>
+
+        <Text>Hi</Text>
+        <GiftedChat
+          messages={this.props.messages}
+          onSend={this.onSend}
+          user={user}
+          />
+
+
+        </View>
     );
   }
 
