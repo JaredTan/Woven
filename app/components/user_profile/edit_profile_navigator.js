@@ -9,7 +9,7 @@ import {
   NavigatorIOS
 } from 'react-native';
 
-import EditProfileContainer from './edit_profile_container';
+import EditProfile from './edit_profile';
 
 class EditProfileNavigator extends React.Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class EditProfileNavigator extends React.Component {
         <Text style={styles.title}>Edit Profile</Text>
         <Icon style={styles.filler} name="chevron-left" size={22} color="white"/>
       </View>
-      <EditProfileContainer/>
+      <EditProfile/>
       </View>
     );
   }

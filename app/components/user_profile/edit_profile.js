@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   Text,
@@ -41,8 +42,8 @@ const renderInput = ({
   )
 }
 
-const handleEdit = (props, dispatch) => {
-  dispatch(updateUser(props.firstName, props.lastName, props.birthday, props.bio));
+const handleEdit = (props, dispatch, payload) => {
+  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.bio));
 }
 
 const EditForm = props => {
@@ -73,7 +74,6 @@ const EditForm = props => {
           </PhotoUpload>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
-          <Field name="birthday" label="Birthday" component={renderInput} />
           <Field name="bio" label="Bio" component={renderInput} />
             <Grid style={styles.buttonGrid}>
               <Col style={styles.buttonContainer}>
@@ -96,10 +96,36 @@ const EditForm = props => {
     )
 }
 
-export default reduxForm({
-  form: 'login',
-  fields: ['firstName', 'lastName', 'birthday', 'bio'],
-}, null, null)(EditForm);
+const mapStateToProps = (state) => {
+  return (
+    state
+  )
+};
+
+
+EditForm = reduxForm({
+  form: 'edit-form',
+  fields: ['firstName', 'lastName', 'bio', 'currentUserId'],
+})(EditForm)
+
+EditForm = connect(
+  state => ({
+    initialValues: {
+      firstName: state.users.currentUser.firstName,
+      lastName: state.users.currentUser.lastName,
+      bio: state.users.currentUser.bio,
+      currentUserId: state.users.currentUser._id
+    }
+  })
+)(EditForm)
+
+
+export default EditForm;
+//
+// export default reduxForm({
+//   form: 'edit-form',
+//   fields: ['firstName', 'lastName', 'bio'],
+// }, mapStateToProps, null)(EditForm);
 
 const styles = {
   container: {

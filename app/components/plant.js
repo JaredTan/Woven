@@ -9,6 +9,9 @@ import {
   Animated,
   Dimensions
 } from 'react-native';
+
+import Healthbar from './healthbar';
+
 import animateSprite from './animate_sprite';
 
 import {IMAGES, WATER} from '../assets/spritesheets/sprites';
@@ -20,8 +23,13 @@ class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       drops: "drops0",
       water: false
+      waterStatus: false,
+      plantframe: 0,
+      bgframe: 0,
+      health: 50
     };
 
     // this.getImage = this.getImage.bind(this);
@@ -40,26 +48,6 @@ class Plant extends React.Component {
     }, 5000);
   }
 
-  // getImage(arr, num) {
-  //   return arr['image' + num];
-  // }
-  //
-  //
-  // waterPlant() {
-  //   let startWater = setInterval(() => {
-  //       this.setState({
-  //        drops: ("drops" + ((parseInt(this.state.drops[5]) + 1) % 4))
-  //       });
-  //     }, 70);
-  //
-  //     setTimeout(() => {
-  //       clearInterval(startWater);
-  //       this.setState({
-  //         drops: "drops0"
-  //       });
-  //     }, 1500);
-  //
-  // }
 
   render() {
 
@@ -68,6 +56,11 @@ class Plant extends React.Component {
     return (
       <View style={styles.container}>
           {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
+
+          <View style={styles.healthbar}>
+            <Healthbar health={this.state.health} />
+          </View>
+
           <TouchableOpacity
             onPress={this.waterPlant}>
             <Image
@@ -75,6 +68,7 @@ class Plant extends React.Component {
               source={require('../assets/icons/waterIcon.png')}
             />
           </TouchableOpacity>
+
 
           <View style={styles.plant}>
             {animateSprite(IMAGES, 24, 60, 150, 150)}
@@ -97,6 +91,7 @@ console.log('Width: ', width, 'Height: ', height);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: height,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent',
     alignItems: 'stretch',
