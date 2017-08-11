@@ -34,23 +34,26 @@ class Healthbar extends React.Component {
 function health(options) {
   return {
     width: options.width,
-    backgroundColor: 'green',
+    backgroundColor: '#00EE10',
     height: 13,
-    borderRadius: 13,
+    borderRadius: 20,
   };
 }
 
 const styles = StyleSheet.create({
   healthbar: {
-    backgroundColor: 'transparent',
-    width: 200,
-    height: 13,
+    backgroundColor: 'rgba(250, 250, 250, 0.7)',
+    width: 204,
+    height: 17,
+    borderWidth: 2,
+    borderColor: 'white',
     borderRadius: 13,
   },
   text: {
     position: 'absolute',
     bottom: 15,
     fontWeight: 'bold', 
+    color: 'white',
   }
 });
 
