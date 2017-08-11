@@ -14,10 +14,10 @@ exports.createTodo = (text) => {
         dispatch(addTodo(response.data.todo));
       }).catch((err) => {
         dispatch(addAlert("Couldn't create todo."));
-      })
-    })
-  }
-}
+      });
+    });
+  };
+};
 
 exports.deleteTodo = (todo_id) => {
   return function(dispatch) {
@@ -29,10 +29,10 @@ exports.deleteTodo = (todo_id) => {
         dispatch(removeTodo(todo_id));
       }).catch((err) => {
         dispatch(addAlert("Couldn't delete todo."));
-      })
-    })
-  }
-}
+      });
+    });
+  };
+};
 
 exports.getTodos = function(dispatch) {
   return Keychain.getGenericPassword().then((credentials) => {
@@ -43,16 +43,16 @@ exports.getTodos = function(dispatch) {
       dispatch(setTodos(response.data.todos));
     }).catch((err) => {
       dispatch(addAlert("Couldn't get todos."));
-    })
-  })
-}
+    });
+  });
+};
 
 var addTodo = (newTodo) => {
   return {
     type: 'ADD_TODO',
     newTodo
-  }
-}
+  };
+};
 
 var removeTodo = (todo_id) => {
   return {
