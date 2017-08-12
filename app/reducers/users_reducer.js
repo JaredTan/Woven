@@ -12,7 +12,6 @@ const userReducer = (state=defaultState, action) => {
     case 'RECEIVE_PAIR':
       return action.users;
     case 'RECEIVE_USER':
-    console.log(merge({}, state, {currentUser: action.user}),'user?');
       return merge({}, state, {currentUser: action.user});
     case 'RESET_PAIR':
       return defaultState;

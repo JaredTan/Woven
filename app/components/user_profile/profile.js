@@ -12,7 +12,7 @@ import PhotoUpload from 'react-native-photo-upload';
 import {connect} from 'react-redux';
 import NavBar from '../navbar';
 import EditProfileNavigator from './edit_profile_navigator';
-// var cloudinary = require('cloudinary');
+import moment from 'moment';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -81,12 +81,13 @@ class UserProfile extends React.Component {
            <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
          </Text>
          <Text>
-           <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {currentUser.birthday}
+           <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(currentUser.birthday).format('LL')}
          </Text>
+         <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
          <Text>
-           <Text style={{fontWeight: 'bold'}}>Your Anniversary:</Text>
+           <Text style={{fontWeight: 'bold'}}>Your Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
          </Text>
-         <View style={{width: '90%', marginTop: 20, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
+         <View style={{width: '90%', marginTop: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
          </View>
          <View style={styles.partner}>
            <View style={styles.header}>
@@ -110,7 +111,7 @@ class UserProfile extends React.Component {
              <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
            </Text>
            <Text>
-             <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {partner.birthday}
+             <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(partner.birthday).format('LL')}
            </Text>
          </View>
       </View>
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   info: {
-    marginTop: 20,
+    marginTop: 30,
     paddingBottom: 42,
     justifyContent: 'space-around'
   },
