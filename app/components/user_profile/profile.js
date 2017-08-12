@@ -11,44 +11,55 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import PhotoUpload from 'react-native-photo-upload';
 import {connect} from 'react-redux';
 import NavBar from '../navbar';
+import EditProfileNavigator from './edit_profile_navigator';
 // var cloudinary = require('cloudinary');
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props)
 
-    this.onBack = this.onBack.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+    this.redirectToEdit = this.redirectToEdit.bind(this);
   }
 
-  redirectToLogin() {
+  componentWillReceiveProps() {
+    this.props.requestPair(this.props.currentUserId);
+  }
+
+  redirectToEdit() {
     this.props.navigator.push({
-      component: EditProfile,
+      component: EditProfileNavigator,
       title: 'Edit Profile',
       navigationBarHidden: true
     })
   }
 
-  onBack() {
+  handleBack() {
     this.props.navigator.pop();
   }
 
   render() {
+    console.log(this.props);
     let {currentUser, partner} = this.props.users;
     let {connectionId } = this.props;
+    if (!currentUser) {
+      return null;
+    }
     return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-        <TouchableOpacity onPress={this.onBack}>
+        <TouchableOpacity onPress={this.handleBack}>
           <Icon name="chevron-left" size={20} color="white"/>
         </TouchableOpacity>
         <Text style={styles.title}>
           Profile
         </Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={this.redirectToEdit}>
           <Icon name="pencil" size={20} color="white"/>
         </TouchableOpacity>
       </View>
       <View style={styles.info}>
+        <View style={styles.header}>
          <Image
            style={{
              paddingVertical: 30,
@@ -61,19 +72,47 @@ class UserProfile extends React.Component {
              uri: currentUser.imageUrl
            }}
          />
-       <View style={styles.first}>
-         <Text>You: </Text>
-         <Text style={styles.name}>{currentUser.firstName}</Text>
-         <Text style={styles.name}>{currentUser.lastName}</Text>
+         <Text style={styles.name}>{currentUser.firstName} {currentUser.lastName}</Text>
        </View>
-       <View style={styles.last}>
-         <Text>Partner:</Text>
-         <Text style={styles.name}>{partner.firstName}</Text>
-         <Text style={styles.name}>{partner.lastName}</Text>
-       </View>
+       <View style={styles.body}>
+         <Text>
+           <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
+         </Text>
+         <Text>
+           <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {currentUser.birthday}
+         </Text>
+         <Text>
+           <Text style={{fontWeight: 'bold'}}>Your Anniversary:</Text>
+         </Text>
+         <View style={{width: '90%', marginTop: 20, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
+         </View>
+         <View style={styles.partner}>
+           <View style={styles.header}>
+            <Image
+              style={{
+                paddingVertical: 30,
+                width: 150,
+                height: 150,
+                borderRadius: 75
+              }}
+              resizeMode='cover'
+              source={{
+                uri: partner.imageUrl
+              }}
+            />
+          <Text style={styles.name}>Your partner: {partner.firstName} {partner.lastName}</Text>
+          </View>
+          <View style={styles.body}>
 
+           <Text>
+             <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
+           </Text>
+           <Text>
+             <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {partner.birthday}
+           </Text>
+         </View>
       </View>
-
+    </View>
     </View>
     );
   }
@@ -99,21 +138,28 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20
   },
-  first: {
-    flexDirection: 'row'
-  },
-  last: {
-    flexDirection: 'row'
+  body: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    marginLeft: 50,
   },
   name: {
-    marginLeft: 2
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10,
   },
   info: {
-    flex: .7,
-    justifyContent: 'space-around',
+    marginTop: 20,
+    paddingBottom: 42,
+    justifyContent: 'space-around'
+  },
+  header: {
     alignItems: 'center',
-    paddingBottom: 42
-  }
+    justifyContent: 'space-between'
+  },
+  partner: {
+    marginTop: 20,
+  },
 });
 
 

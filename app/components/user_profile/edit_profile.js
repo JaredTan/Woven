@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Image
 } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
@@ -40,16 +42,15 @@ const renderInput = ({
   )
 }
 
-const handleEdit = (props, dispatch) => {
-  dispatch(updateUser(props.firstName, props.lastName, props.birthday, props.bio));
+const handleEdit = (props, dispatch, payload) => {
+  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, payload.navigator));
 }
 
 const EditForm = props => {
-    const { handleSubmit } = props;
+    const { handleSubmit, currentUser } = props;
     return (
       <Container style={ styles.container }>
         <Content style={ styles.content }>
-        <Text style={styles.title}>Sign Up</Text>
           <Form style={ styles.form }>
             <PhotoUpload
                onPhotoSelect={avatar => {
@@ -73,7 +74,6 @@ const EditForm = props => {
           </PhotoUpload>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
-          <Field name="birthday" label="Birthday" component={renderInput} />
           <Field name="bio" label="Bio" component={renderInput} />
             <Grid style={styles.buttonGrid}>
               <Col style={styles.buttonContainer}>
@@ -96,10 +96,36 @@ const EditForm = props => {
     )
 }
 
-export default reduxForm({
-  form: 'login',
-  fields: ['firstName', 'lastName', 'birthday', 'bio'],
-}, null, null)(EditForm);
+const mapStateToProps = (state) => {
+  return (
+    state
+  )
+};
+
+
+EditForm = reduxForm({
+  form: 'edit-form',
+  fields: ['firstName', 'lastName', 'bio', 'currentUserId'],
+})(EditForm)
+
+EditForm = connect(
+  state => ({
+    initialValues: {
+      firstName: state.users.currentUser.firstName,
+      lastName: state.users.currentUser.lastName,
+      bio: state.users.currentUser.bio,
+      currentUserId: state.users.currentUser._id
+    }
+  })
+)(EditForm)
+
+
+export default EditForm;
+//
+// export default reduxForm({
+//   form: 'edit-form',
+//   fields: ['firstName', 'lastName', 'bio'],
+// }, mapStateToProps, null)(EditForm);
 
 const styles = {
   container: {

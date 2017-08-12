@@ -1,4 +1,4 @@
-const IMAGES = {
+export const IMAGES = {
   image0: require('./braid/braid_frame00.png'),
   image1: require('./braid/braid_frame01.png'),
   image2: require('./braid/braid_frame02.png'),
@@ -25,4 +25,8 @@ const IMAGES = {
   image23: require('./braid/braid_frame23.png'),
 };
 
-export default IMAGES;
+export const WATER = {
+  image0: require('./water/drops0.png'),
+  image1: require('./water/drops1.png'),
+  image2: require('./water/drops2.png'),
+};

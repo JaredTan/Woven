@@ -48,7 +48,13 @@ class Chat extends Component {
   render() {
     var user = { _id: this.props.userId, connectionId: this.props.connectionId };
     return (
+<<<<<<< HEAD
       <View style={{height: Dimensions.get('window').height-55}}>
+=======
+      <View style={{height: Dimensions.get('window').height-75}}>
+
+        <Text>Hi</Text>
+>>>>>>> 9e756838025897f317d749b1505bff197e341f33
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}

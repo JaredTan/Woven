@@ -4,6 +4,7 @@ const AuthenticationController = require('../controllers/authentication_controll
 const UsersController = require('../controllers/users_controller');
 const TodosController = require('../controllers/todos_controller');
 const ConnectionController = require('../controllers/connection_controller');
+const PlantController = require('../controllers/plant_controller');
 const passportService = require('./passport');
 
 var requireAuth = passport.authenticate('jwt', {session: false});
@@ -23,6 +24,7 @@ router.route('/signin')
 
 router.route('/users/:user_id')
   .get(UsersController.show)
+  .patch(UsersController.update)
 
 // Connection Routes
 // -----------------------------------------------------------------------------
@@ -40,4 +42,16 @@ router.route('/users/:user_id/todos')
 router.route('/users/:user_id/todos/:todo_id')
   .delete(requireAuth, TodosController.destroy);
 
+  // Plant Routes
+  // -----------------------------------------------------------------------------
+
+  //Add requireAuth back in
+router.route('/connection/:connection_id/plant')
+.patch(PlantController.update);
+
+router.route('/connection/:connection_id/plant')
+.get(PlantController.show);
+
+//-----------------------------------
 module.exports = router;
+

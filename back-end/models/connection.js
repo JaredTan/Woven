@@ -8,10 +8,12 @@ var connectionSchema = new Schema({
     }
   ],
   plant: {
-    name: {type: String},
-    health: {type: Number},
-    happiness: {type: Number},
-    age: {type: Number},
+    name: {type: String, default: 'Greggles'},
+    health: {type: Number, default: 75},
+    happiness: {type: Number, default: 75},
+    age: {type: Number, default: 0},
+    seeded: { type: Date, default: Date.now() },
+    lastWater: { type: Date, default: Date.now() }
   },
   messages: [
     {

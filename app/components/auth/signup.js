@@ -39,8 +39,9 @@ const renderInput = ({
   )
 }
 
-const onSignUp = (props, dispatch) => {
+const onSignUp = (props, dispatch, payload) => {
   dispatch(signupUser(props.email, props.password, props.firstName, props.lastName, props.partnerEmail));
+  payload.navigator.pop();
 }
 
 const LSForm = props => {

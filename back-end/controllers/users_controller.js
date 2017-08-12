@@ -16,9 +16,15 @@ exports.index = function(req, res, next) {
 
 exports.update = function(req, res, next) {
     const userQuery = {_id: req.params.user_id};
-    req.newData.email = req.user.email;
-    req.newData.password = req.user.password;
-    req.newData.connectionId = req.user.connectionId;
-    User.update(userQuery, newData, function(err, affected, resp) {
-    })
+    User.update(userQuery, {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      bio: req.body.bio
+    }, function(err, affected, resp) {
+      User.findOne({_id: req.params.user_id}, function(err, user) {
+        console.log(user,'user in backend');
+        res.send(user);
+      })
+    });
+
 }
