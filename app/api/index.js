@@ -6,3 +6,4 @@ export const USERS_URL = (user_id) => `${API_URL}/users/${user_id}`;
 export const TODOS_URL = (user_id) => `${API_URL}/users/${user_id}/todos`;
 export const TODO_URL = (user_id, todo_id) => `${API_URL}/users/${user_id}/todos/${todo_id}`;
 export const CONNECTION_URL = (connectionId) => `${API_URL}/connection/${connectionId}`;
+export const PLANT_URL = (connectionId) => `${API_URL}/connection/${connectionId}/plant`;

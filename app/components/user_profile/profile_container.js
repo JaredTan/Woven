@@ -7,8 +7,8 @@ const mapStateToProps = (state, ownProps) => {
     currentUserId: state.auth.user_id,
     users: state.users,
     connectionId: state.auth.connectionId
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   unauthUser: () => dispatch(unauthUser),

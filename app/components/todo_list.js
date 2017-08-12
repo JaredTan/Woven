@@ -17,7 +17,7 @@ var TodoItem = connect()(React.createClass({
   getInitialState() {
     return {
       deleting: false
-    }
+    };
   },
   onDelete() {
     this.setState({deleting: true});
@@ -30,15 +30,15 @@ var TodoItem = connect()(React.createClass({
           <TouchableOpacity onPress={this.onDelete}>
             <Icon name="close" size={15} color='#2ecc71'/>
           </TouchableOpacity>
-        )
+        );
       }
-    }
+    };
     return (
       <View style={styles.todoContainer}>
         <Text>{this.props.text}</Text>
         {renderDeleteButton()}
       </View>
-    )
+    );
   }
 }));
 
@@ -46,7 +46,7 @@ var TodoList = React.createClass({
   getInitialState() {
     return {
       refreshing: false
-    }
+    };
   },
   onBack() {
     this.props.dispatch(setTodos([]));
@@ -57,22 +57,22 @@ var TodoList = React.createClass({
       component: NewTodo,
       title: 'New Todo',
       navigationBarHidden: true
-    })
+    });
   },
   onRefresh() {
     this.setState({refreshing: true});
     this.props.dispatch(getTodos).then(() => {
       this.setState({refreshing: false});
-    })
+    });
   },
   render() {
     var renderTodos = () => {
       return this.props.todos.map((todo) => {
         return (
           <TodoItem key={todo._id} text={todo.text} id={todo._id}/>
-        )
-      })
-    }
+        );
+      });
+    };
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
 var mapStateToProps = (state) => {
   return {
     todos: state.todos
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(TodoList);
