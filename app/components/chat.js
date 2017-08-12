@@ -53,6 +53,7 @@ class Chat extends Component {
   }
 
   giftedUser() {
+    if (!this.props.users.currentUser) { return (<View></View>); }
     return {
       _id: this.props.users.currentUser._id.toString(),
       name: this.props.users.currentUser.firstName,

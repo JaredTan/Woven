@@ -14,20 +14,7 @@ var connectionSchema = new Schema({
     age: {type: Number, default: 0},
     seeded: { type: Date, default: Date.now() },
     lastWater: { type: Date, default: Date.now() }
-  },
-  messages: [
-    {
-      text: {
-        type: String
-      },
-      createdAt: {
-        type: Date
-      },
-      userId: {
-        type: Number
-      }
-    }
-  ]
+  }
 });
 
 module.exports = mongoose.model('connection', connectionSchema);
