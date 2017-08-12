@@ -72,7 +72,7 @@ class Main extends React.Component {
       component: UserProfileContainer,
       title: 'User Profile',
       navigationBarHidden: true
-    })
+    });
   }
 
   handleLogOut() {
