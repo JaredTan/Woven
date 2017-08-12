@@ -11,7 +11,31 @@ import { MenuContext } from 'react-native-popup-menu';
 
 
 
-var MainNavigator = React.createClass({
+class MainNavigator extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.redirectToMain = this.redirectToMain.bind(this);
+  }
+
+  redirectToMain() {
+    this.props.fetchPlant(this.props.connectionId).then(
+      () => {
+        return (
+          <MenuContext>
+            <NavigatorIOS
+              initialRoute={{
+                component: MainContainer,
+                title: 'Main',
+                navigationBarHidden: true
+              }}
+              style={{flex: 1}}/>
+          </MenuContext>
+        );
+      }
+    );
+  }
+
   render() {
     return (
       <MenuContext>
@@ -25,6 +49,7 @@ var MainNavigator = React.createClass({
       </MenuContext>
     );
   }
-});
 
-module.exports = MainNavigator;
+}
+
+export default MainNavigator;
