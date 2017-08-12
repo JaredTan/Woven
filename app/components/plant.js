@@ -67,7 +67,7 @@ class Plant extends React.Component {
       <View style={styles.container}>
           
           <View style={styles.background}>
-            {animateSprite(BACKGROUND, 1, 3600, width, height)}
+            {animateSprite(BACKGROUND, 4, 10000, width, height)}
             
           </View>
           <View style={styles.header}>

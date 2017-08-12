@@ -35,4 +35,7 @@ export const PLANT ={
   image0: require('./plant/stage5.png'),
   image1: require('./plant/stage51.png'),
   image2: require('./plant/stage52.png'),
+  image3: require('./plant/stage20.png'),
+  image4: require('./plant/stage21.png'),
+  image5: require('./plant/stage22.png'),
 };
