@@ -24,13 +24,13 @@ router.route('/signin')
 
 router.route('/users/:user_id')
   .get(UsersController.show)
-  .patch(UsersController.update)
+  .patch(UsersController.update);
 
 // Connection Routes
 // -----------------------------------------------------------------------------
 
 router.route('/connection/:connectionId')
-  .get(ConnectionController.show)
+  .get(ConnectionController.show);
 
 
 // Todo Routes
@@ -47,11 +47,10 @@ router.route('/users/:user_id/todos/:todo_id')
 
   //Add requireAuth back in
 router.route('/connection/:connection_id/plant')
-.patch(PlantController.update);
+.patch(requireAuth, PlantController.update);
 
 router.route('/connection/:connection_id/plant')
-.get(PlantController.show);
+.get(requireAuth, PlantController.show);
 
 //-----------------------------------
 module.exports = router;
-

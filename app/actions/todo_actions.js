@@ -58,12 +58,12 @@ var removeTodo = (todo_id) => {
   return {
     type: 'REMOVE_TODO',
     todo_id
-  }
-}
+  };
+};
 
 export var setTodos = (todos) => {
   return {
     type: 'SET_TODOS',
     todos
-  }
-}
+  };
+};
