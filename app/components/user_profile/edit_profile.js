@@ -8,13 +8,16 @@ import {
   View,
   Image,
   DeviceEventEmitter
-} from 'react-native'
-import { Field, reduxForm, change } from 'redux-form'
+} from 'react-native';
+import { Field, reduxForm, change } from 'redux-form';
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
 import {addAlert, updateUser } from '../../actions';
 import PhotoUpload from 'react-native-photo-upload';
+import DatePicker from 'react-native-datepicker';
 
-
+let dateFormat = require('dateformat');
+let now = new Date();
+dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 
 
 const renderInput = ({
@@ -46,7 +49,7 @@ const renderInput = ({
 
 
 const handleEdit = (props, dispatch, payload) => {
-  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.imageUrl, payload.navigator));
+  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.imageUrl, props.birthday, payload.navigator));
   payload.navigator.pop();
 }
 
@@ -56,6 +59,28 @@ const EditForm = (props) => {
       <Container style={ styles.container }>
         <Content style={ styles.content }>
           <Form style={ styles.form }>
+            <DatePicker> style={{width: 200}}
+        date="2016-05-01"
+        mode="date"
+        placeholder="select date"
+        format="YYYY-MM-DD"
+        minDate="2016-05-01"
+        maxDate="2016-06-01"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        customStyles={{
+          dateIcon: {
+            position: 'absolute',
+            left: 0,
+            top: 4,
+            marginLeft: 0
+          },
+          dateInput: {
+            marginLeft: 36
+          }
+          // ... You can check the source to find the other keys.
+        }}
+        onDateChange={(date) => console.log(date)};</DatePicker>
             <PhotoUpload
                onPhotoSelect={b64image => {
                  if (b64image) {
@@ -101,7 +126,7 @@ const EditForm = (props) => {
 
 EditForm = reduxForm({
   form: 'edit-form',
-  fields: ['firstName', 'lastName', 'currentUserId', 'imageUrl'],
+  fields: ['firstName', 'lastName', 'currentUserId', 'imageUrl', 'birthday'],
 })(EditForm)
 
 EditForm = connect(
@@ -110,7 +135,8 @@ EditForm = connect(
       firstName: state.users.currentUser.firstName,
       lastName: state.users.currentUser.lastName,
       currentUserId: state.users.currentUser._id,
-      imageUrl: state.users.currentUser.imageUrl
+      imageUrl: state.users.currentUser.imageUrl,
+      birthday: state.users.currentUser.birthday
     }
   })
 )(EditForm)

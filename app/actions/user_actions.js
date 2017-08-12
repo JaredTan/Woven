@@ -21,7 +21,7 @@ export const requestPair = (user_id) => dispatch => {
 export const updateUser = (user_id, firstName, lastName, imageUrl) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
-    return axios.patch(USERS_URL(username), {user_id, firstName, lastName, imageUrl}, {
+    return axios.patch(USERS_URL(username), {user_id, firstName, lastName, imageUrl, birthday}, {
       headers: {authorization: password}
     }).then((response) => {
       dispatch(receiveUser(response.data));
