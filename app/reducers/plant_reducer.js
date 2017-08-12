@@ -1,7 +1,7 @@
-module.exports = (state=[], action) => {
+module.exports = (state={}, action) => {
   switch(action.type) {
     case 'SET_PLANT':
-      return action.todos;
+      return action.plant;
 
     default:
       return state;
