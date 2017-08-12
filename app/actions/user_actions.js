@@ -18,10 +18,10 @@ export const requestPair = (user_id) => dispatch => {
   })
 };
 
-export const updateUser = (user_id, firstName, lastName, bio) => dispatch => {
+export const updateUser = (user_id, firstName, lastName, imageUrl) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
-    return axios.patch(USERS_URL(username), {user_id, firstName, lastName, bio}, {
+    return axios.patch(USERS_URL(username), {user_id, firstName, lastName, imageUrl}, {
       headers: {authorization: password}
     }).then((response) => {
       dispatch(receiveUser(response.data));
@@ -38,6 +38,12 @@ export const receiveUser = user => {
     user
   }
 };
+
+export const resetPair = () => {
+  return {
+    type: "RESET_PAIR"
+  }
+}
 
 export const receivePair = (users) => {
   return {
