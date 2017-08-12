@@ -14,6 +14,10 @@ exports.update = function(req, res, next) {
   const { name, lastWater, happiness, health } = req.body.plant;
   const update = req.body.update;
 
+  if (health > 100) {
+    health = 100;
+  }
+
   console.log(update);
 
   switch(update) {
