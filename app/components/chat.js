@@ -21,6 +21,7 @@ class Chat extends Component {
     this.onReceivedMessage = this.onReceivedMessage.bind(this);
     this.onSend = this.onSend.bind(this);
     this._storeMessages = this._storeMessages.bind(this);
+    this.giftedUser = this.giftedUser.bind(this);
 
     this.socket = io('http://localhost:3000');
     this.socket.on('message', this.onReceivedMessage);
@@ -50,6 +51,15 @@ class Chat extends Component {
     this._storeMessages(messages);
   }
 
+  giftedUser() {
+    return {
+      _id: this.props.users.currentUser._id.toString(),
+      name: this.props.users.currentUser.firstName,
+      avatar: this.props.users.currentUser.imageUrl,
+      connectionId: this.props.users.currentUser.connectionId
+    };
+  }
+
   render() {
     if (!this.props.users) { return null; }
     return (
@@ -57,7 +67,7 @@ class Chat extends Component {
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}
-          user={this.props.currentUser}
+          user={this.giftedUser()}
           />
       </View>
     );

@@ -59,8 +59,8 @@ function onMessageReceived(message, senderSocket) {
 // Helper functions.
 // Send the pre-existing messages to the user that just joined.
 function _sendExistingMessages(socket) {
-  Message.find({ connectionId: sessionConnection })
-         .sort({ createdAt: 1 })
+  Message.find({ "user.connectionId": sessionConnection })
+         .sort({ createdAt: 1})
          .exec(function(err, messages) {
             console.log(messages, "sending existing messages");
             socket.emit('message', messages);
@@ -73,7 +73,6 @@ function _sendAndSaveMessage(message, socket, fromServer) {
     text: message.text,
     user: message.user,
     createdAt: new Date(message.createdAt),
-    connectionId: message.user.connectionId
   };
 
   console.log("creating message");
@@ -88,10 +87,10 @@ function _sendAndSaveMessage(message, socket, fromServer) {
 // Allow the server to participate in the chatroom through stdin.
 var stdin = process.openStdin();
 stdin.addListener('data', function(d) {
+  console.log(sessionConnection);
   _sendAndSaveMessage({
     text: d.toString().trim(),
     createdAt: new Date(),
-    user: { _id: 'robot' },
-    connectionId: sessionConnection
+    user: { _id: 'robot', name: "robot", avatar: "", connectionId: sessionConnection }
   }, null /* no socket */, true /* send from server */);
 });
