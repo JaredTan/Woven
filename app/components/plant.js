@@ -14,10 +14,14 @@ import Healthbar from './healthbar';
 
 import animateSprite from './animate_sprite';
 
-import {IMAGES, WATER} from '../assets/spritesheets/sprites';
+import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 
 import BACKGROUND from '../assets/spritesheets/background/background';
 
+
+
+const {width, height} = Dimensions.get('window');
+console.log('Width: ', width, 'Height: ', height);
 
 class Plant extends React.Component {
   constructor(props) {
@@ -55,8 +59,16 @@ class Plant extends React.Component {
 
     return (
       <View style={styles.container}>
-          {/* {animateSprite(BACKGROUND, 2, 3600, styles.background)} */}
-
+          
+          <View style={styles.background}>
+            {/* {animateSprite(BACKGROUND, 2, 3600, width, height)} */}
+            
+          </View>
+          <View style={styles.header}>
+            <Text style={styles.name}>
+              Greggles
+            </Text>
+          </View>
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
@@ -71,7 +83,7 @@ class Plant extends React.Component {
 
 
           <View style={styles.plant}>
-            {animateSprite(IMAGES, 24, 60, 150, 150)}
+            {animateSprite(PLANT, 3, 500, 500, height * 0.60)}
           </View>
           <View style={styles.water}>
             {water}
@@ -85,32 +97,37 @@ class Plant extends React.Component {
 //   style={styles[this.state.drops]}
 //   source={WATER[this.state.drops]}
 // />
-const {width, height} = Dimensions.get('window');
-console.log('Width: ', width, 'Height: ', height);
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: height,
+    height: height - 55,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent',
     alignItems: 'stretch',
-    height: Dimensions.get('window').height-55
   },
   background: {
+    top: 0,
     position: 'absolute',
-    left: 50,
-    //  alignSelf: 'center',
-    //  justifyContent: 'center',
-    //  resizeMode: 'cover',
+    alignSelf: 'center',
+   },
+   header: {
+     alignItems: 'center'
+   },
+   healthbar: {
+    position: 'absolute',
+    top: 60,
+   },
+   name: {
+     fontSize: 25,
+     fontWeight: 'bold',
+     color: 'black',
    },
    plant: {
      position: 'absolute',
-    //  left: '20%',
-    //  top: 200,
-     bottom: '10%',
+     bottom: 0,
      alignSelf: 'center',
-    //  justifyContent: 'center',
      backgroundColor: 'transparent',
    },
    water: {
