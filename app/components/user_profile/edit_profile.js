@@ -6,12 +6,14 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image
+  Image,
+  DeviceEventEmitter
 } from 'react-native'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, change } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
 import {addAlert, updateUser } from '../../actions';
 import PhotoUpload from 'react-native-photo-upload';
+
 
 
 
@@ -20,7 +22,7 @@ const renderInput = ({
   label,
   type,
   secureTextEntry,
-  meta: { touched, error, warning }
+  meta: { touched, notification, warning }
 }) => {
   return (
     <View>
@@ -36,26 +38,28 @@ const renderInput = ({
             {...restInput} />
       </Item>
       <View>{touched &&
-      ((error && <Text style={styles.error}>{error}</Text>) ||
+      ((notification && <Text style={styles.notification}>{notification}</Text>) ||
         (warning && <Text style={styles.warning}>{warning}</Text>))}</View>
     </View>
   )
 }
 
+
 const handleEdit = (props, dispatch, payload) => {
-  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.bio));
+  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.imageUrl, payload.navigator));
+  payload.navigator.pop();
 }
 
-const EditForm = props => {
-    const { handleSubmit, currentUser } = props;
+const EditForm = (props) => {
+    const { handleSubmit, initialValues } = props;
     return (
       <Container style={ styles.container }>
         <Content style={ styles.content }>
           <Form style={ styles.form }>
             <PhotoUpload
-               onPhotoSelect={avatar => {
-                 if (avatar) {
-                   console.log('Image base64 string: ', avatar)
+               onPhotoSelect={b64image => {
+                 if (b64image) {
+                   props.change('imageUrl', `data:image/png;base64,${b64image}`)
                  }
                }}
               >
@@ -68,13 +72,12 @@ const EditForm = props => {
                }}
                resizeMode='cover'
                source={{
-                 uri: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg'
+                 uri: initialValues.imageUrl
                }}
              />
           </PhotoUpload>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
-          <Field name="bio" label="Bio" component={renderInput} />
             <Grid style={styles.buttonGrid}>
               <Col style={styles.buttonContainer}>
                 <Button
@@ -85,7 +88,7 @@ const EditForm = props => {
                   transparent
                   onPress={handleSubmit(handleEdit)} >
                   <Text uppercase={false} style={styles.signupText}>
-                    edit profile
+                    update profile
                   </Text>
                 </Button>
               </Col>
@@ -96,16 +99,9 @@ const EditForm = props => {
     )
 }
 
-const mapStateToProps = (state) => {
-  return (
-    state
-  )
-};
-
-
 EditForm = reduxForm({
   form: 'edit-form',
-  fields: ['firstName', 'lastName', 'bio', 'currentUserId'],
+  fields: ['firstName', 'lastName', 'currentUserId', 'imageUrl'],
 })(EditForm)
 
 EditForm = connect(
@@ -113,19 +109,13 @@ EditForm = connect(
     initialValues: {
       firstName: state.users.currentUser.firstName,
       lastName: state.users.currentUser.lastName,
-      bio: state.users.currentUser.bio,
-      currentUserId: state.users.currentUser._id
+      currentUserId: state.users.currentUser._id,
+      imageUrl: state.users.currentUser.imageUrl
     }
   })
 )(EditForm)
 
-
 export default EditForm;
-//
-// export default reduxForm({
-//   form: 'edit-form',
-//   fields: ['firstName', 'lastName', 'bio'],
-// }, mapStateToProps, null)(EditForm);
 
 const styles = {
   container: {
@@ -177,8 +167,8 @@ const styles = {
     color: 'black',
     fontSize: 12,
   },
-  error: {
-    color: 'red',
+  notification: {
+    color: 'green',
   },
   warning: {
     color: 'orange'

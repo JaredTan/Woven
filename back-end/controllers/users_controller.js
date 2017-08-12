@@ -19,11 +19,12 @@ exports.update = function(req, res, next) {
     User.update(userQuery, {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      bio: req.body.bio
+      imageUrl: req.body.imageUrl
     }, function(err, affected, resp) {
+      User.findOne({_id: req.params.user_id}, function(err, user) {
+        console.log(user,'user in backend');
+        res.send(user);
+      })
     });
-    User.findOne({_id: req.params.user_id}, function(err, user) {
-      console.log(user,'user in backend');
-      res.send(user);
-    })
+
 }

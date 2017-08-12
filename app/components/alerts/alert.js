@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    padding: 16,
-    backgroundColor: '#f2dede',
-    borderColor: '#ebccd1',
+    padding: 20,
+    backgroundColor: '#cdf9d8',
+    borderColor: '#bbf7ca',
     borderTopWidth: 2
   },
   text: {
-    color: "#a94442"
+    color: "gray"
   }
 });
 
