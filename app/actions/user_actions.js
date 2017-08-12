@@ -18,16 +18,14 @@ export const requestPair = (user_id) => dispatch => {
   })
 };
 
-export const updateUser = (user_id, firstName, lastName, navigator) => dispatch => {
+export const updateUser = (user_id, firstName, lastName, imageUrl) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
-    return axios.patch(USERS_URL(username), {user_id, firstName, lastName}, {
+    return axios.patch(USERS_URL(username), {user_id, firstName, lastName, imageUrl}, {
       headers: {authorization: password}
     }).then((response) => {
-      dispatch(addAlert("Profile updated!"));
       dispatch(receiveUser(response.data));
-    }).then(() => {
-      navigator.pop();
+      dispatch(addAlert("Profile updated!"));
     }).catch((err) => {
       dispatch(addAlert("Couldn't update user."));
     })
@@ -40,6 +38,12 @@ export const receiveUser = user => {
     user
   }
 };
+
+export const resetPair = () => {
+  return {
+    type: "RESET_PAIR"
+  }
+}
 
 export const receivePair = (users) => {
   return {

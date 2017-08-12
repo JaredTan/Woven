@@ -23,6 +23,7 @@
     "react-native-keychain": "^2.0.0-rc",
     "react-native-photo-upload": "^1.0.3",
     "react-native-popup-menu": "^0.8.0",
+    "react-native-uploader": "0.0.10",
     "react-native-vector-icons": "^4.3.0",
     "react-redux": "^5.0.5",
     "redux": "^3.7.2",
