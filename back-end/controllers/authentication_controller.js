@@ -37,7 +37,8 @@ exports.signup = function(req, res, next) {
       firstName: firstName,
       lastName: lastName,
       imageUrl: 'https://d1ld1je540hac5.cloudfront.net/assets/img/default_avatar.png',
-      birthday:  new Date(1992, 5, 30)
+      birthday:  new Date(1992, 5, 30),
+      anniversary: new Date(2000, 0, 1)
     });
     user.save(function(err) {
       if (err) { return next(err) }

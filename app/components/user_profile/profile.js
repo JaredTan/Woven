@@ -85,7 +85,7 @@ class UserProfile extends React.Component {
          </Text>
          <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
          <Text>
-           <Text style={{fontWeight: 'bold'}}>Your Anniversary:</Text>
+           <Text style={{fontWeight: 'bold'}}>Your Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
          </Text>
          <View style={{width: '90%', marginTop: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
          </View>

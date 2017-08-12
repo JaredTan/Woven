@@ -38,6 +38,9 @@ var userSchema = new Schema({
   },
   bio: {
     type: String
+  },
+  anniversary: {
+    type: Date
   }
 });
 

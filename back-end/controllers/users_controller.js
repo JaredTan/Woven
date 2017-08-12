@@ -20,7 +20,8 @@ exports.update = function(req, res, next) {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       imageUrl: req.body.imageUrl,
-      birthday: req.body.birthday
+      birthday: req.body.birthday,
+      anniversary: req.body.anniversary
     }, function(err, affected, resp) {
       User.findOne({_id: req.params.user_id}, function(err, user) {
         res.send(user);
