@@ -4,10 +4,11 @@ import {requestPair} from '../actions';
 import {
   View,
   Text,
+  StyleSheet,
   AsyncStorage
 } from 'react-native';
 import io from 'socket.io-client';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import Dimensions from 'Dimensions';
 
 class Chat extends Component {
@@ -63,21 +64,41 @@ class Chat extends Component {
   render() {
     if (!this.props.users) { return null; }
     return (
-      <View style={{height: Dimensions.get('window').height-75}}>
+      <View style={styles.chatbox}>
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}
           user={this.giftedUser()}
+          renderBubble={this.renderBubble.bind(this)}
           />
       </View>
     );
   }
 
+  renderBubble(props) {
+    return ( <Bubble {...props}
+      wrapperStyle={{
+          left: {
+            backgroundColor: '#F5F5F5',
+          },
+          right: {
+            backgroundColor: '#2ecc71'
+          }
+        }} />
+    );
+  }
+
   _storeMessages(messages) {
-    this.setState(Object.assign({}, {messages: this.state.messages.concat(messages)}));
+    this.setState(Object.assign({}, {messages: messages.concat(this.state.messages)}));
     console.log(this);
   }
 }
+
+const styles = StyleSheet.create({
+  chatbox: {
+    height: Dimensions.get('window').height-75
+  }
+});
 
 const mapStateToProps = (state) => {
   return {users: state.users};

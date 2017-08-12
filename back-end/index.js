@@ -60,7 +60,7 @@ function onMessageReceived(message, senderSocket) {
 // Send the pre-existing messages to the user that just joined.
 function _sendExistingMessages(socket) {
   Message.find({ "user.connectionId": sessionConnection })
-         .sort({ createdAt: 1})
+         .sort({ createdAt: -1})
          .exec(function(err, messages) {
             console.log(messages, "sending existing messages");
             socket.emit('message', messages);
