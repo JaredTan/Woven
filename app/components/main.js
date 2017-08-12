@@ -83,7 +83,7 @@ class Main extends React.Component {
     return (
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
-          { this.state.plant ? <Plant/> : null }
+          { this.state.plant ? <PlantContainer/> : null }
           { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
           { this.state.todo ? <TodoList/> : null }
         </ScrollView>

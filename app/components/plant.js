@@ -53,17 +53,32 @@ class Plant extends React.Component {
     }, 5000);
   }
 
+  getBackground(){
+    let time = new Date().getHours();
+    if ( time >= 20 ) {
+      return BACKGROUND['night'];
+    } else if ( time >= 16 ) {
+      return BACKGROUND['evening'];
+    } else if ( time >= 12 ) {
+      return BACKGROUND['afternoon'];
+    } else {
+      return BACKGROUND['morning'];
+    }
+
+  }
 
   render() {
 
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
 
+    let background = this.getBackground();
+
     return (
       <View style={styles.container}>
           
           <View style={styles.background}>
-            {animateSprite(BACKGROUND, 4, 10000, width, height)}
-            
+            <Image source={background} style={{width, height}}>
+            </Image>
           </View>
           <View style={styles.header}>
             <Text style={styles.name}>
@@ -151,28 +166,6 @@ const styles = StyleSheet.create({
     height: 65,
     resizeMode: 'contain'
   },
-  // drops0: {
-  //   display: 'none',
-  //   alignSelf: 'center',
-  // },
-  // drops1: {
-  //   top: 20,
-  //   alignSelf: 'center',
-  //   height: 200,
-  //   resizeMode: 'contain'
-  // },
-  // drops2: {
-  //   top: 50,
-  //   alignSelf: 'center',
-  //   height: 200,
-  //   resizeMode: 'contain'
-  // },
-  // drops3: {
-  //   top: 90,
-  //   alignSelf: 'center',
-  //   height: 200,
-  //   resizeMode: 'contain'
-  // },
 });
 
 
