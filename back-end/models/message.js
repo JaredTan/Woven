@@ -9,7 +9,7 @@ var messageSchema = new Schema({
     type: Date
   },
   user: {
-    id: {
+    _id: {
       type: String
     },
     name: {
@@ -17,11 +17,11 @@ var messageSchema = new Schema({
     },
     avatar: {
       type: String
+    },
+    connectionId: {
+      type: String
     }
   },
-  connectionId: {
-    type: String
-  }
 
 });
 

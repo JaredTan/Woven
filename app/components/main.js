@@ -69,8 +69,6 @@ class Main extends React.Component {
       title: 'User Profile',
       navigationBarHidden: true
     })
-    this.props.requestPair(this.props.currentUserId);
-    this.props.requestConnection(this.props.connectionId);
   }
 
   handleLogOut() {
@@ -82,7 +80,7 @@ class Main extends React.Component {
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
           { this.state.plant ? <Plant/> : null }
-          { this.state.chat ? <Chat/> : null }
+          { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
           { this.state.todo ? <TodoList/> : null }
         </ScrollView>
         <View style={styles.navBar}>

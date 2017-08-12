@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {requestPair} from '../actions';
 import {
   View,
   Text,
@@ -26,8 +27,12 @@ class Chat extends Component {
     this.determineUser();
   }
 
+  componentWillMount() {
+    this.props.requestPair(this.props.users.currentUser._id);
+  }
+
   determineUser() {
-    let userId = this.props.userId;
+    let userId = this.props.users.currentUser._id;
     console.log(userId, "user joined!");
     this.socket.emit('userJoined', userId);
     this.setState({ userId });
@@ -46,19 +51,13 @@ class Chat extends Component {
   }
 
   render() {
-    var user = { _id: this.props.userId, connectionId: this.props.connectionId };
+    if (!this.props.users) { return null; }
     return (
-<<<<<<< HEAD
-      <View style={{height: Dimensions.get('window').height-55}}>
-=======
       <View style={{height: Dimensions.get('window').height-75}}>
-
-        <Text>Hi</Text>
->>>>>>> 9e756838025897f317d749b1505bff197e341f33
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}
-          user={user}
+          user={this.props.currentUser}
           />
       </View>
     );
@@ -70,12 +69,12 @@ class Chat extends Component {
   }
 }
 
-var mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    userId: state.users.currentUser._id,
-    connectionId: state.users.currentUser.connectionId
-  };
+const mapStateToProps = (state) => {
+  return {users: state.users};
 };
 
-export default connect(mapStateToProps)(Chat);
+const mapDispatchToProps = dispatch => ({
+  requestPair: (userId) => dispatch(requestPair(userId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);

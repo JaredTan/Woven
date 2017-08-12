@@ -71,13 +71,13 @@ function _sendExistingMessages(socket) {
 function _sendAndSaveMessage(message, socket, fromServer) {
   var messageData = {
     text: message.text,
-    userId: message.user._id.toString(),
+    user: message.user,
     createdAt: new Date(message.createdAt),
     connectionId: message.user.connectionId
   };
 
   console.log("creating message");
-  console.log(messageData.connectionId);
+  console.log();
   Message.create(messageData, (newMessage) => {
     var emitter = fromServer ? websocket : socket.broadcast;
     console.log("sending created message");
