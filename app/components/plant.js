@@ -28,13 +28,8 @@ class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      drops: "drops0",
       water: false,
-      waterStatus: false,
-      plantframe: 0,
-      bgframe: 0,
-      health: 50
+      health: 30
     };
 
     // this.getImage = this.getImage.bind(this);
@@ -80,15 +75,17 @@ class Plant extends React.Component {
           </View>
 
           <TouchableOpacity
-            onPress={this.waterPlant}>
+            onPress={this.waterPlant}
+            style={styles.waterIcon}
+          >
             <Image
-              style={styles.waterIcon}
+              style={styles.roundedIcon}
               source={require('../assets/icons/waterIcon.png')}
             />
           </TouchableOpacity>
 
           <View style={styles.plant}>
-            {animateSprite(PLANT, 3, 500, 500, height * 0.60)}
+            {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
           </View>
           <View style={styles.water}>
             {water}
@@ -142,10 +139,17 @@ const styles = StyleSheet.create({
      alignSelf: 'center'
    },
    waterIcon: {
-    width: 70,
-    height: 70,
+    backgroundColor: 'transparent',
+    width: 65,
+    height: 65,
     alignSelf: 'flex-end',
-    top: 30
+    top: 30,
+    borderRadius: 180,
+   },
+   roundedIcon: {
+    width: 65,
+    height: 65,
+    resizeMode: 'contain'
   },
   // drops0: {
   //   display: 'none',

@@ -14,17 +14,26 @@ import {
 class Healthbar extends React.Component {
   constructor(props) {
     super(props);
-    this.width = (this.props.health % 100) * 2;
+    this.color;
+    if (this.props.health > 75) {
+      this.color = '#00EE10';
+    } else if (this.props.health > 35) {
+      this.color = '#FFFF33';
+    } else {
+      this.color = '#EE1122';
+    }
+    this.width = (this.props.health % 101) * 2;
   }
 
   render() {
     let width = this.width;
+    let color = this.color;
     return(
       <View style={styles.healthbar}>
       <Text style={styles.text}>
         Health
       </Text>
-        <View style={health({ width })}>
+        <View style={health({ width, color })}>
         </View>
       </View>
     );
@@ -34,7 +43,7 @@ class Healthbar extends React.Component {
 function health(options) {
   return {
     width: options.width,
-    backgroundColor: '#00EE10',
+    backgroundColor: options.color,
     height: 13,
     borderRadius: 20,
   };
