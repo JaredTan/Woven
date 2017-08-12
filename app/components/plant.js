@@ -10,13 +10,13 @@ import {
   Dimensions
 } from 'react-native';
 
-import Healthbar from './healthbar';
 
+import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
 
 import {IMAGES, WATER} from '../assets/spritesheets/sprites';
-
 import BACKGROUND from '../assets/spritesheets/background/background';
+
 
 
 class Plant extends React.Component {
@@ -34,6 +34,11 @@ class Plant extends React.Component {
 
     // this.getImage = this.getImage.bind(this);
     this.waterPlant = this.waterPlant.bind(this);
+  }
+
+  componentWillMount() {
+    console.log(this.props);
+    this.props.fetchPlant(this.props.connectionId);
   }
 
   waterPlant() {
@@ -69,7 +74,6 @@ class Plant extends React.Component {
             />
           </TouchableOpacity>
 
-
           <View style={styles.plant}>
             {animateSprite(IMAGES, 24, 60, 150, 150)}
           </View>
@@ -91,7 +95,6 @@ console.log('Width: ', width, 'Height: ', height);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: height,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent',
     alignItems: 'stretch',
@@ -147,5 +150,6 @@ const styles = StyleSheet.create({
   //   resizeMode: 'contain'
   // },
 });
+
 
 export default Plant;
