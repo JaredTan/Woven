@@ -49,15 +49,12 @@ class Chat extends Component {
     var user = { _id: this.props.userId, connectionId: this.props.connectionId };
     return (
       <View style={{height: Dimensions.get('window').height-55}}>
-
         <GiftedChat
-          messages={this.props.messages}
+          messages={this.state.messages}
           onSend={this.onSend}
           user={user}
           />
-
-
-        </View>
+      </View>
     );
   }
 

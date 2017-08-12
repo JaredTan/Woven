@@ -8,8 +8,16 @@ var messageSchema = new Schema({
   createdAt: {
     type: Date
   },
-  userId: {
-    type: String
+  user: {
+    id: {
+      type: String
+    },
+    name: {
+      type: String
+    },
+    avatar: {
+      type: String
+    }
   },
   connectionId: {
     type: String
