@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   text: {
     position: 'absolute',
-    bottom: 15,
+    bottom: 17,
     fontWeight: 'bold', 
     color: 'black',
   }

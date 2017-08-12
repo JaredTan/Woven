@@ -27,7 +27,7 @@ class Main extends React.Component {
       plant: true,
       chat: false,
       todo: false
-    }
+    };
 
     this.resetTabs = this.resetTabs.bind(this);
     this.togglePlantTab = this.togglePlantTab.bind(this);
@@ -43,6 +43,10 @@ class Main extends React.Component {
       chat: false,
       todo: false
     });
+  }
+
+  handlePlant() {
+    
   }
 
   togglePlantTab() {
