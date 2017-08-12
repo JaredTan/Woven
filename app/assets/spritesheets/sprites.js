@@ -30,3 +30,9 @@ export const WATER = {
   image1: require('./water/drops1.png'),
   image2: require('./water/drops2.png'),
 };
+
+export const PLANT ={
+  image0: require('./plant/stage5.png'),
+  image1: require('./plant/stage51.png'),
+  image2: require('./plant/stage52.png'),
+};
