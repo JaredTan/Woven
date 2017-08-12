@@ -61,8 +61,10 @@ class Plant extends React.Component {
       return BACKGROUND['evening'];
     } else if ( time >= 12 ) {
       return BACKGROUND['afternoon'];
-    } else {
+    } else if ( time >= 7) {
       return BACKGROUND['morning'];
+    } else {
+      return BACKGROUND['night'];
     }
 
   }
