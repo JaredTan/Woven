@@ -5,7 +5,6 @@ import alertReducer from './alert_reducer';
 import todosReducer from './todos_reducer';
 import plantReducer from './plant_reducer';
 import usersReducer from './users_reducer';
-import connectionReducer from './connection_reducer';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -13,8 +12,7 @@ const rootReducer = combineReducers({
   alerts: alertReducer,
   todos: todosReducer,
   plant: plantReducer,
-  users: usersReducer,
-  connection: connectionReducer
+  users: usersReducer
 });
 
 export default rootReducer;

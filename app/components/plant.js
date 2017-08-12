@@ -10,13 +10,14 @@ import {
   Dimensions
 } from 'react-native';
 
-import Healthbar from './healthbar';
 
+import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
 
-import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 
+import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
+
 
 
 
@@ -40,6 +41,11 @@ class Plant extends React.Component {
     this.waterPlant = this.waterPlant.bind(this);
   }
 
+  componentWillMount() {
+    console.log(this.props);
+    this.props.fetchPlant(this.props.connectionId);
+  }
+
   waterPlant() {
     this.setState({
       water: true
@@ -61,7 +67,7 @@ class Plant extends React.Component {
       <View style={styles.container}>
           
           <View style={styles.background}>
-            {/* {animateSprite(BACKGROUND, 2, 3600, width, height)} */}
+            {animateSprite(BACKGROUND, 4, 10000, width, height)}
             
           </View>
           <View style={styles.header}>
@@ -80,7 +86,6 @@ class Plant extends React.Component {
               source={require('../assets/icons/waterIcon.png')}
             />
           </TouchableOpacity>
-
 
           <View style={styles.plant}>
             {animateSprite(PLANT, 3, 500, 500, height * 0.60)}
@@ -108,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   background: {
-    top: 0,
+    bottom: 10,
     position: 'absolute',
     alignSelf: 'center',
    },
@@ -116,6 +121,7 @@ const styles = StyleSheet.create({
      alignItems: 'center'
    },
    healthbar: {
+    left: 10,
     position: 'absolute',
     top: 60,
    },
@@ -126,13 +132,13 @@ const styles = StyleSheet.create({
    },
    plant: {
      position: 'absolute',
-     bottom: 0,
+     bottom: 40,
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },
    water: {
      position: 'absolute',
-     bottom: '30%',
+     bottom: '40%',
      alignSelf: 'center'
    },
    waterIcon: {
@@ -164,5 +170,6 @@ const styles = StyleSheet.create({
   //   resizeMode: 'contain'
   // },
 });
+
 
 export default Plant;

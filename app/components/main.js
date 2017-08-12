@@ -10,7 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TodoList from './todo_list';
 import UserProfileContainer from './user_profile/profile_container';
-import Plant from './plant';
+import PlantContainer from './plant_container';
 import Chat from './chat';
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 import {
@@ -27,7 +27,7 @@ class Main extends React.Component {
       plant: true,
       chat: false,
       todo: false
-    }
+    };
 
     this.resetTabs = this.resetTabs.bind(this);
     this.togglePlantTab = this.togglePlantTab.bind(this);
@@ -42,7 +42,11 @@ class Main extends React.Component {
       plant: false,
       chat: false,
       todo: false
-    })
+    });
+  }
+
+  handlePlant() {
+    
   }
 
   togglePlantTab() {
@@ -60,7 +64,7 @@ class Main extends React.Component {
       component: TodoList,
       title: 'TodoList',
       navigationBarHidden: true
-    })
+    });
   }
 
   redirectToProfile() {

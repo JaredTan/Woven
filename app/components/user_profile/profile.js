@@ -22,15 +22,18 @@ class UserProfile extends React.Component {
     this.redirectToEdit = this.redirectToEdit.bind(this);
   }
 
-  componentWillReceiveProps() {
-    this.props.requestPair(this.props.currentUserId);
+  componentDidMount() {
+    this.props.resetPair(this.props.currentUserId);
+    this.props.requestPair();
   }
 
   redirectToEdit() {
-    this.props.navigator.push({
-      component: EditProfileNavigator,
-      title: 'Edit Profile',
-      navigationBarHidden: true
+    this.props.requestPair().then(() => {
+      this.props.navigator.push({
+        component: EditProfileNavigator,
+        title: 'Edit Profile',
+        navigationBarHidden: true
+      })
     })
   }
 
@@ -39,7 +42,6 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     let {currentUser, partner} = this.props.users;
     let {connectionId } = this.props;
     if (!currentUser) {
