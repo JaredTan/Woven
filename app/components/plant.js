@@ -61,7 +61,7 @@ class Plant extends React.Component {
       <View style={styles.container}>
           
           <View style={styles.background}>
-            {/* {animateSprite(BACKGROUND, 2, 3600, width, height)} */}
+            {animateSprite(BACKGROUND, 1, 3600, width, height)}
             
           </View>
           <View style={styles.header}>
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   background: {
-    top: 0,
+    bottom: 10,
     position: 'absolute',
     alignSelf: 'center',
    },
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
      alignItems: 'center'
    },
    healthbar: {
+    left: 10,
     position: 'absolute',
     top: 60,
    },
@@ -126,13 +127,13 @@ const styles = StyleSheet.create({
    },
    plant: {
      position: 'absolute',
-     bottom: 0,
+     bottom: 40,
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },
    water: {
      position: 'absolute',
-     bottom: '30%',
+     bottom: '40%',
      alignSelf: 'center'
    },
    waterIcon: {
