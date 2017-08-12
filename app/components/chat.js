@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {requestPair} from '../actions';
 import {
   View,
   Text,
+  StyleSheet,
   AsyncStorage
 } from 'react-native';
 import io from 'socket.io-client';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import Dimensions from 'Dimensions';
 
 class Chat extends Component {
@@ -20,14 +22,19 @@ class Chat extends Component {
     this.onReceivedMessage = this.onReceivedMessage.bind(this);
     this.onSend = this.onSend.bind(this);
     this._storeMessages = this._storeMessages.bind(this);
+    this.giftedUser = this.giftedUser.bind(this);
 
     this.socket = io('http://localhost:3000');
     this.socket.on('message', this.onReceivedMessage);
     this.determineUser();
   }
 
+  componentWillMount() {
+    this.props.requestPair(this.props.users.currentUser._id);
+  }
+
   determineUser() {
-    let userId = this.props.userId;
+    let userId = this.props.users.currentUser._id;
     console.log(userId, "user joined!");
     this.socket.emit('userJoined', userId);
     this.setState({ userId });
@@ -45,35 +52,60 @@ class Chat extends Component {
     this._storeMessages(messages);
   }
 
+  giftedUser() {
+    return {
+      _id: this.props.users.currentUser._id.toString(),
+      name: this.props.users.currentUser.firstName,
+      avatar: this.props.users.currentUser.imageUrl,
+      connectionId: this.props.users.currentUser.connectionId
+    };
+  }
+
   render() {
-    var user = { _id: this.props.userId, connectionId: this.props.connectionId };
+    if (!this.props.users) { return null; }
     return (
-
-      <View style={{height: Dimensions.get('window').height-75}}>
-
-        <Text>Hi</Text>
-
+      <View style={styles.chatbox}>
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}
-          user={user}
+          user={this.giftedUser()}
+          renderBubble={this.renderBubble.bind(this)}
           />
       </View>
     );
   }
 
+  renderBubble(props) {
+    return ( <Bubble {...props}
+      wrapperStyle={{
+          left: {
+            backgroundColor: '#F5F5F5',
+          },
+          right: {
+            backgroundColor: '#2ecc71'
+          }
+        }} />
+    );
+  }
+
   _storeMessages(messages) {
-    this.setState(Object.assign({}, {messages: this.state.messages.concat(messages)}));
+    this.setState(Object.assign({}, {messages: messages.concat(this.state.messages)}));
     console.log(this);
   }
 }
 
-var mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    userId: state.users.currentUser._id,
-    connectionId: state.users.currentUser.connectionId
-  };
+const styles = StyleSheet.create({
+  chatbox: {
+    height: Dimensions.get('window').height-75
+  }
+});
+
+const mapStateToProps = (state) => {
+  return {users: state.users};
 };
 
-export default connect(mapStateToProps)(Chat);
+const mapDispatchToProps = dispatch => ({
+  requestPair: (userId) => dispatch(requestPair(userId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);
