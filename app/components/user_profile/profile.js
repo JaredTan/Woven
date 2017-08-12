@@ -22,6 +22,10 @@ class UserProfile extends React.Component {
     this.redirectToEdit = this.redirectToEdit.bind(this);
   }
 
+  componentWillReceiveProps() {
+    this.props.requestPair(this.props.currentUserId);
+  }
+
   redirectToEdit() {
     this.props.navigator.push({
       component: EditProfileNavigator,

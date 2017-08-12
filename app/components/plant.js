@@ -25,7 +25,7 @@ class Plant extends React.Component {
     this.state = {
 
       drops: "drops0",
-      water: false
+      water: false,
       waterStatus: false,
       plantframe: 0,
       bgframe: 0,
