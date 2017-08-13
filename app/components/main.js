@@ -65,11 +65,13 @@ class Main extends React.Component {
   }
 
   redirectToProfile() {
-    this.props.navigator.push({
-      component: UserProfileContainer,
-      title: 'User Profile',
-      navigationBarHidden: true
-    });
+    this.props.requestPair(this.props.currentUserId).then( () => {
+      this.props.navigator.push({
+        component: UserProfileContainer,
+        title: 'User Profile',
+        navigationBarHidden: true
+      });
+    })
   }
 
   handleLogOut() {
@@ -80,9 +82,7 @@ class Main extends React.Component {
     return (
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
-
           { this.state.plant ? <PlantContainer/> : null }
-
           { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
           { this.state.todo ? <TodoList/> : null }
         </ScrollView>

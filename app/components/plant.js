@@ -34,11 +34,6 @@ class Plant extends React.Component {
       lastWater: props.plant.lastWater
     };
 
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    console.log(this.state.health);
-    console.log(typeof(this.state.health));
-
-    // this.getImage = this.getImage.bind(this);
     this.waterPlant = this.waterPlant.bind(this);
     this.dateDiff = this.dateDiff.bind(this);
     this.handleUpdatePlant = this.handleUpdatePlant.bind(this);
@@ -58,8 +53,6 @@ class Plant extends React.Component {
     let diff =  parseInt((recentWater - lastWater) / (1000 * 60 * 60 * 24));
 
     return diff;
-    // let timeDiff = Math.abs(recentWater.getTime() - lastWater.getTime());
-    // let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
   }
 
   calculateHealth() {
@@ -67,14 +60,9 @@ class Plant extends React.Component {
 
     let tempHealth = this.props.plant.health - decreasedHealth;
     if (tempHealth < 0) {tempHealth = 0;}
-    console.log("*****************BEFORE CALCULATEHEALTH");
-    console.log(tempHealth);
-
     this.setState({
       health: tempHealth
     });
-    console.log("==========CALCULATEHEALTH=======");
-    console.log(this.state.health);
   }
 
   updateHealth() {
@@ -90,31 +78,13 @@ class Plant extends React.Component {
     this.props.updatePlant(this.props.connectionId, this.props.plant);
   }
 
-  // redirectToEdit() {
-  //   this.props.requestPair().then(() => {
-  //     this.props.navigator.push({
-  //       component: EditProfileNavigator,
-  //       title: 'Edit Profile',
-  //       navigationBarHidden: true
-  //     });
-  //   });
-  // }
 
   waterPlant() {
-    console.log("%%%%%%%%%%%%%%%%")
-    console.log(this.state.lastWater);
-    console.log(this.state.health);
-    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%")
-
     this.setState({
       water: true,
       health: this.updateHealth(),
       lastWater: Date.now()
     });
-    // .then(function() {
-    //   console.log("&&&&&&&&&& ABOUT TO UPDATE &&&&&&&&&&&&");
-    //   this.handleUpdatePlant();
-    // }.bind(this));
 
     setTimeout(()=>{
       this.setState({
@@ -182,10 +152,6 @@ class Plant extends React.Component {
   }
 }
 
-// <Image
-//   style={styles[this.state.drops]}
-//   source={WATER[this.state.drops]}
-// />
 
 
 const styles = StyleSheet.create({
