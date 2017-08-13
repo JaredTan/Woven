@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import {unauthUser, requestPair, fetchPlant} from '../actions';
 import Main from './main';
+import MainNavigator from './main_navigator';
 
 
 const mapStateToProps = (state, ownProps) => {

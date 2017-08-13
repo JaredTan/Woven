@@ -45,10 +45,6 @@ class Main extends React.Component {
     });
   }
 
-  handlePlant() {
-
-  }
-
   togglePlantTab() {
     this.resetTabs();
     this.setState({plant: true});
