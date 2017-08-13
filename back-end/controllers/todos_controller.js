@@ -1,31 +1,39 @@
+const Connection = require('../models/connection');
+
 exports.create = function(req, res, next) {
-  var user = req.user;
-  var text = req.body.text;
-  var count = user.todos.push({
-    text: text
-  });
-  var _id = user.todos[count-1]._id;
-  user.save(function(err) {
-    if (err) { return next(err); }
-    res.json({todo: {text: text, _id: _id}});
+  Connection.findOne({_id: req.params.connectionId}, (err, connection) => {
+    let text = req.body.text;
+    let count = connection.todos.push({
+      text: text
+    });
+    let _id = connection.todos[count-1]._id;
+    connection.save(function(err) {
+      if (err) { return next(err); }
+      res.json({todo: {text: text, _id: _id}});
+    })
+
   })
 }
 
 exports.index = function(req, res, next) {
-  res.json({todos: req.user.todos});
+  Connection.findOne({_id: req.params.connectionId}, (err, connection) => {
+    res.json({todos: connection.todos});
+  })
 }
 
 exports.destroy = function(req, res, next) {
-  var user = req.user;
-  var todo_id = req.params.todo_id;
-  user.todos = user.todos.filter((todo) => {
-    if (todo._id == todo_id) {
-      return false;
-    }
-    return true;
-  });
-  user.save(function(err) {
-    if (err) { return next(err) }
-    res.json({});
-  });
+  Connection.findOne({_id: req.params.connectionId}, (err, connection) => {
+    let todoId = req.params.todoId;
+    connection.todos = connection.todos.filter((todo) => {
+      if (todo._id == todoId) {
+        return false;
+      }
+      return true;
+    });
+    connection.save(function(err) {
+      if (err) { return next(err) }
+      res.json({});
+    });
+
+  })
 }

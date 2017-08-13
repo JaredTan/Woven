@@ -101,6 +101,7 @@ class Plant extends React.Component {
     this.props.updatePlant(this.props.connectionId, this.props.plant);
   }
 
+
   setWaterStatus() {
     if (this.state.nextWater > this.state.lastWater) {
       this.setState({
@@ -112,6 +113,7 @@ class Plant extends React.Component {
       });
     }
   }
+
 
   waterPlant() {
     this.setState({
@@ -205,6 +207,7 @@ class Plant extends React.Component {
     );
   }
 }
+
 
 
 const styles = StyleSheet.create({

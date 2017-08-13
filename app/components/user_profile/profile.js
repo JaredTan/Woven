@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import NavBar from '../navbar';
 import EditProfileNavigator from './edit_profile_navigator';
 import moment from 'moment';
+import BodyText from '../styling/body_text';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -51,13 +52,13 @@ class UserProfile extends React.Component {
     <View style={styles.container}>
       <View style={styles.topBar}>
         <TouchableOpacity onPress={this.handleBack}>
-          <Icon name="chevron-left" size={20} color="white"/>
+          <Icon name="chevron-left" size={30} color="white"/>
         </TouchableOpacity>
         <Text style={styles.title}>
           Profile
         </Text>
         <TouchableOpacity onPress={this.redirectToEdit}>
-          <Icon name="pencil" size={20} color="white"/>
+          <Icon name="pencil" size={24} color="white"/>
         </TouchableOpacity>
       </View>
       <View style={styles.info}>
@@ -74,20 +75,22 @@ class UserProfile extends React.Component {
              uri: currentUser.imageUrl
            }}
          />
-         <Text style={styles.name}>{currentUser.firstName} {currentUser.lastName}</Text>
+
+         <Text style={styles.name}><BodyText>{currentUser.firstName} {currentUser.lastName}</BodyText></Text>
+
        </View>
        <View style={styles.body}>
-         <Text>
+        <BodyText>
            <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
-         </Text>
-         <Text>
+        </BodyText>
+        <BodyText>
            <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(currentUser.birthday).format('LL')}
-         </Text>
+        </BodyText>
+         <View style={{width: '90%', marginTop: 25, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
+           <View style={styles.anniversary}>
+             <Text style={{fontWeight: 'bold'}}><BodyText>Your Anniversary:{"\n"}{moment(currentUser.anniversary).format('LL')}</BodyText></Text>
+           </View>
          <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
-         <Text>
-           <Text style={{fontWeight: 'bold'}}>Your Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
-         </Text>
-         <View style={{width: '90%', marginTop: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
          </View>
          <View style={styles.partner}>
            <View style={styles.header}>
@@ -103,16 +106,15 @@ class UserProfile extends React.Component {
                 uri: partner.imageUrl
               }}
             />
-          <Text style={styles.name}>Your partner: {partner.firstName} {partner.lastName}</Text>
+          <Text style={styles.name}><BodyText>Your partner: {partner.firstName} {partner.lastName}</BodyText></Text>
           </View>
           <View style={styles.body}>
-
-           <Text>
-             <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
-           </Text>
-           <Text>
+            <BodyText>
+               <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
+           </BodyText>
+           <BodyText>
              <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(partner.birthday).format('LL')}
-           </Text>
+           </BodyText>
          </View>
       </View>
     </View>
@@ -144,7 +146,7 @@ const styles = StyleSheet.create({
   body: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    marginLeft: 50,
+    marginLeft: 40,
   },
   name: {
     fontWeight: 'bold',
@@ -159,6 +161,9 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     justifyContent: 'space-between'
+  },
+  anniversary: {
+    alignItems: 'center',
   },
   partner: {
     marginTop: 20,

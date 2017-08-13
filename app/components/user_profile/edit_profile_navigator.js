@@ -27,7 +27,7 @@ class EditProfileNavigator extends React.Component {
       <View style={{flex: 1}}>
       <View style={styles.topBar}>
         <TouchableOpacity onPress={this.handleBack}>
-          <Icon name="chevron-left" size={22} color="white"/>
+          <Icon name="chevron-left" size={30} color="white"/>
         </TouchableOpacity>
         <Text style={styles.title}>Edit Profile</Text>
         <Icon style={styles.filler} name="chevron-left" size={22} color="white"/>
