@@ -46,11 +46,10 @@ router.route('/connections/:connectionId/todos/:todoId')
   // -----------------------------------------------------------------------------
 
   //Add requireAuth back in
-router.route('/connection/:connection_id/plant')
-.patch(requireAuth, PlantController.update);
+router.route('/connection/:connectionId/plant')
+  .patch(requireAuth, PlantController.update)
+  .get(requireAuth, PlantController.show);
 
-router.route('/connection/:connection_id/plant')
-.get(requireAuth, PlantController.show);
 
 //-----------------------------------
 module.exports = router;

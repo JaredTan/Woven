@@ -14,8 +14,8 @@ export const requestPair = (user_id) => dispatch => {
       dispatch(receivePair(response.data));
     }).catch((err) => {
       dispatch(addAlert("Couldn't obtain pair."));
-    })
-  })
+    });
+  });
 };
 
 export const updateUser = (user_id, firstName, lastName, imageUrl, birthday, anniversary) => dispatch => {
@@ -28,26 +28,26 @@ export const updateUser = (user_id, firstName, lastName, imageUrl, birthday, ann
       dispatch(addAlert("Profile updated!"));
     }).catch((err) => {
       dispatch(addAlert("Couldn't update user."));
-    })
-  })
+    });
+  });
 };
 
 export const receiveUser = user => {
   return {
     type: "RECEIVE_USER",
     user
-  }
+  };
 };
 
 export const resetPair = () => {
   return {
     type: "RESET_PAIR"
-  }
-}
+  };
+};
 
 export const receivePair = (users) => {
   return {
     type: "RECEIVE_PAIR",
     users
-  }
+  };
 };

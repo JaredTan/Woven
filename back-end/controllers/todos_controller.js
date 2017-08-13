@@ -10,16 +10,16 @@ exports.create = function(req, res, next) {
     connection.save(function(err) {
       if (err) { return next(err); }
       res.json({todo: {text: text, _id: _id}});
-    })
+    });
 
-  })
-}
+  });
+};
 
 exports.index = function(req, res, next) {
   Connection.findOne({_id: req.params.connectionId}, (err, connection) => {
     res.json({todos: connection.todos});
-  })
-}
+  });
+};
 
 exports.destroy = function(req, res, next) {
   Connection.findOne({_id: req.params.connectionId}, (err, connection) => {
@@ -35,5 +35,5 @@ exports.destroy = function(req, res, next) {
       res.json({});
     });
 
-  })
-}
+  });
+};

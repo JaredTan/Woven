@@ -4,7 +4,7 @@ import * as Keychain from 'react-native-keychain';
 import {PLANT_URL} from '../api';
 import {addAlert} from './alert_actions';
 
-var setPlant = plant => {
+export const setPlant = plant => {
   return {
     type: 'SET_PLANT',
     plant
@@ -24,15 +24,15 @@ exports.fetchPlant = connectionId => function(dispatch) {
   });
 };
 
-exports.updatePlant = (connectionId, condition) => function(dispatch) {
+export const updatePlant = (connectionId, plantObj) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
-    return axios.get(PLANT_URL(connectionId), {
+    return axios.patch(PLANT_URL(connectionId), {connectionId, plantObj}, {
       headers: {authorization: password}
     }).then((response) => {
       dispatch(setPlant(response.data.plant));
     }).catch((err) => {
-      dispatch(addAlert("Can't change name for now"));
+      dispatch(addAlert("Couldn't update plant"));
     });
   });
 };
