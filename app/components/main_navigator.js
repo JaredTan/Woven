@@ -15,38 +15,37 @@ class MainNavigator extends React.Component {
   constructor(props) {
     super(props);
 
-    this.redirectToMain = this.redirectToMain.bind(this);
+    // this.redirectToMain = this.redirectToMain.bind(this);
   }
 
-  redirectToMain() {
-    this.props.fetchPlant(this.props.connectionId).then(
-      () => {
-        return (
-          <MenuContext>
-            <NavigatorIOS
-              initialRoute={{
-                component: MainContainer,
-                title: 'Main',
-                navigationBarHidden: true
-              }}
-              style={{flex: 1}}/>
-          </MenuContext>
-        );
-      }
-    );
-  }
+  // redirectToMain() {
+  //   return (this.props.fetchPlant(this.props.connectionId).then(
+  //     () => {
+  //       return (
+  //           <NavigatorIOS
+  //             initialRoute={{
+  //               component: MainContainer,
+  //               title: 'Main',
+  //               navigationBarHidden: true
+  //             }}
+  //             style={{flex: 1}}/>
+  //       );
+  //     }
+  //   ));
+  // }
 
   render() {
     return (
-      <MenuContext>
-        <NavigatorIOS
-          initialRoute={{
-            component: MainContainer,
-            title: 'Main',
-            navigationBarHidden: true
-          }}
-          style={{flex: 1}}/>
-      </MenuContext>
+        <MenuContext>
+          <NavigatorIOS
+            initialRoute={{
+              component: MainContainer,
+              title: 'Main',
+              navigationBarHidden: true
+            }}
+            style={{flex: 1}}/>
+        </MenuContext>
+
     );
   }
 

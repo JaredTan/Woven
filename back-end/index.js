@@ -75,9 +75,11 @@ function _sendAndSaveMessage(message, socket, fromServer) {
     createdAt: new Date(message.createdAt),
   };
 
+
+
+
   Message.create(messageData, (newMessage) => {
     var emitter = fromServer ? websocket : socket.broadcast;
-    ("sending created message");
     emitter.emit('message', [newMessage]);
   });
 }

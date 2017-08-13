@@ -29,22 +29,92 @@ class Plant extends React.Component {
     super(props);
     this.state = {
       water: false,
-      health: 30
+
+      health: props.plant.health,
+      lastWater: props.plant.lastWater
     };
+
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    console.log(this.state.health);
+    console.log(typeof(this.state.health));
 
     // this.getImage = this.getImage.bind(this);
     this.waterPlant = this.waterPlant.bind(this);
+    this.dateDiff = this.dateDiff.bind(this);
+    this.handleUpdatePlant = this.handleUpdatePlant.bind(this);
+    this.calculateHealth = this.calculateHealth.bind(this);
+    this.updateHealth = this.updateHealth.bind(this);
   }
 
   componentWillMount() {
-    (this.props);
     this.props.fetchPlant(this.props.connectionId);
+    this.calculateHealth();
   }
 
-  waterPlant() {
+  dateDiff(){
+    let recentWater = Date.now();
+    let lastWater = new Date(this.state.lastWater).getTime();
+
+    let diff =  parseInt((recentWater - lastWater) / (1000 * 60 * 60 * 24));
+
+    return diff;
+    // let timeDiff = Math.abs(recentWater.getTime() - lastWater.getTime());
+    // let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  }
+
+  calculateHealth() {
+    let decreasedHealth = this.dateDiff() * 20;
+
+    let tempHealth = this.props.plant.health - decreasedHealth;
+    if (tempHealth < 0) {tempHealth = 0;}
+    console.log("*****************BEFORE CALCULATEHEALTH");
+    console.log(tempHealth);
+
     this.setState({
-      water: true
+      health: tempHealth
     });
+    console.log("==========CALCULATEHEALTH=======");
+    console.log(this.state.health);
+  }
+
+  updateHealth() {
+    let health = this.state.health + 10;
+    if (health > 100) {health = 100;}
+    return health;
+  }
+
+  handleUpdatePlant() {
+    this.props.plant.lastWater = this.state.lastWater;
+    this.props.plant.health = this.state.health;
+
+    this.props.updatePlant(this.props.connectionId, this.props.plant);
+  }
+
+  // redirectToEdit() {
+  //   this.props.requestPair().then(() => {
+  //     this.props.navigator.push({
+  //       component: EditProfileNavigator,
+  //       title: 'Edit Profile',
+  //       navigationBarHidden: true
+  //     });
+  //   });
+  // }
+
+  waterPlant() {
+    console.log("%%%%%%%%%%%%%%%%")
+    console.log(this.state.lastWater);
+    console.log(this.state.health);
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%")
+
+    this.setState({
+      water: true,
+      health: this.updateHealth(),
+      lastWater: Date.now()
+    });
+    // .then(function() {
+    //   console.log("&&&&&&&&&& ABOUT TO UPDATE &&&&&&&&&&&&");
+    //   this.handleUpdatePlant();
+    // }.bind(this));
 
     setTimeout(()=>{
       this.setState({

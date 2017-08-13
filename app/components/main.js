@@ -44,10 +44,6 @@ class Main extends React.Component {
     });
   }
 
-  handlePlant() {
-
-  }
-
   togglePlantTab() {
     this.resetTabs();
     this.setState({plant: true});
@@ -84,7 +80,9 @@ class Main extends React.Component {
     return (
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
+
           { this.state.plant ? <PlantContainer/> : null }
+
           { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
           { this.state.todo ? <TodoList/> : null }
         </ScrollView>

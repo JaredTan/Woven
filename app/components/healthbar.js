@@ -14,6 +14,7 @@ import {
 class Healthbar extends React.Component {
   constructor(props) {
     super(props);
+
     this.color;
     if (this.props.health > 75) {
       this.color = '#00EE10';
@@ -22,12 +23,33 @@ class Healthbar extends React.Component {
     } else {
       this.color = '#EE1122';
     }
-    this.width = (this.props.health % 101) * 2;
+
+    this.state = {
+      width: (this.props.health % 101) * 2,
+      color: this.color
+    };
+
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.health > 75) {
+      this.color = '#00EE10';
+    } else if (this.props.health > 35) {
+      this.color = '#FFFF33';
+    } else {
+      this.color = '#EE1122';
+    }
+
+    this.setState({
+      width: (nextProps.health % 101) * 2,
+      color: this.color
+    });
+  }
+
+
   render() {
-    let width = this.width;
-    let color = this.color;
+    let width = this.state.width;
+    let color = this.state.color;
     return(
       <View style={styles.healthbar}>
       <Text style={styles.text}>
@@ -61,7 +83,7 @@ const styles = StyleSheet.create({
   text: {
     position: 'absolute',
     bottom: 17,
-    fontWeight: 'bold', 
+    fontWeight: 'bold',
     color: 'black',
   }
 });

@@ -33,8 +33,8 @@ class UserProfile extends React.Component {
         component: EditProfileNavigator,
         title: 'Edit Profile',
         navigationBarHidden: true
-      })
-    })
+      });
+    });
   }
 
   handleBack() {
