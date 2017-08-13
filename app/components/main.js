@@ -12,7 +12,6 @@ import TodoList from './todo_list';
 import UserProfileContainer from './user_profile/profile_container';
 import PlantContainer from './plant_container';
 import Chat from './chat';
-import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 import {
   Menu,
   MenuOptions,
@@ -45,10 +44,6 @@ class Main extends React.Component {
     });
   }
 
-  handlePlant() {
-
-  }
-
   togglePlantTab() {
     this.resetTabs();
     this.setState({plant: true});
@@ -60,11 +55,13 @@ class Main extends React.Component {
   }
 
   redirectToTodos() {
-    this.props.navigator.push({
-      component: TodoList,
-      title: 'TodoList',
-      navigationBarHidden: true
-    });
+    this.props.getTodos(this.props.connectionId).then(() => {
+      this.props.navigator.push({
+        component: TodoList,
+        title: 'TodoList',
+        navigationBarHidden: true
+      });
+    })
   }
 
   redirectToProfile() {
@@ -83,7 +80,9 @@ class Main extends React.Component {
     return (
       <View style = {styles.container}>
         <ScrollView style = {styles.scrollView}>
+
           { this.state.plant ? <PlantContainer/> : null }
+
           { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
           { this.state.todo ? <TodoList/> : null }
         </ScrollView>

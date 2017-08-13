@@ -22,29 +22,99 @@ import BACKGROUND from '../assets/spritesheets/background/background';
 
 
 const {width, height} = Dimensions.get('window');
-console.log('Width: ', width, 'Height: ', height);
+('Width: ', width, 'Height: ', height);
 
 class Plant extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       water: false,
-      health: 30
+
+      health: props.plant.health,
+      lastWater: props.plant.lastWater
     };
+
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    console.log(this.state.health);
+    console.log(typeof(this.state.health));
 
     // this.getImage = this.getImage.bind(this);
     this.waterPlant = this.waterPlant.bind(this);
+    this.dateDiff = this.dateDiff.bind(this);
+    this.handleUpdatePlant = this.handleUpdatePlant.bind(this);
+    this.calculateHealth = this.calculateHealth.bind(this);
+    this.updateHealth = this.updateHealth.bind(this);
   }
 
   componentWillMount() {
-    console.log(this.props);
     this.props.fetchPlant(this.props.connectionId);
+    this.calculateHealth();
   }
 
-  waterPlant() {
+  dateDiff(){
+    let recentWater = Date.now();
+    let lastWater = new Date(this.state.lastWater).getTime();
+
+    let diff =  parseInt((recentWater - lastWater) / (1000 * 60 * 60 * 24));
+
+    return diff;
+    // let timeDiff = Math.abs(recentWater.getTime() - lastWater.getTime());
+    // let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  }
+
+  calculateHealth() {
+    let decreasedHealth = this.dateDiff() * 20;
+
+    let tempHealth = this.props.plant.health - decreasedHealth;
+    if (tempHealth < 0) {tempHealth = 0;}
+    console.log("*****************BEFORE CALCULATEHEALTH");
+    console.log(tempHealth);
+
     this.setState({
-      water: true
+      health: tempHealth
     });
+    console.log("==========CALCULATEHEALTH=======");
+    console.log(this.state.health);
+  }
+
+  updateHealth() {
+    let health = this.state.health + 10;
+    if (health > 100) {health = 100;}
+    return health;
+  }
+
+  handleUpdatePlant() {
+    this.props.plant.lastWater = this.state.lastWater;
+    this.props.plant.health = this.state.health;
+
+    this.props.updatePlant(this.props.connectionId, this.props.plant);
+  }
+
+  // redirectToEdit() {
+  //   this.props.requestPair().then(() => {
+  //     this.props.navigator.push({
+  //       component: EditProfileNavigator,
+  //       title: 'Edit Profile',
+  //       navigationBarHidden: true
+  //     });
+  //   });
+  // }
+
+  waterPlant() {
+    console.log("%%%%%%%%%%%%%%%%")
+    console.log(this.state.lastWater);
+    console.log(this.state.health);
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%")
+
+    this.setState({
+      water: true,
+      health: this.updateHealth(),
+      lastWater: Date.now()
+    });
+    // .then(function() {
+    //   console.log("&&&&&&&&&& ABOUT TO UPDATE &&&&&&&&&&&&");
+    //   this.handleUpdatePlant();
+    // }.bind(this));
 
     setTimeout(()=>{
       this.setState({
@@ -53,17 +123,34 @@ class Plant extends React.Component {
     }, 5000);
   }
 
+  getBackground(){
+    let time = new Date().getHours();
+    if ( time >= 20 ) {
+      return BACKGROUND['night'];
+    } else if ( time >= 16 ) {
+      return BACKGROUND['evening'];
+    } else if ( time >= 12 ) {
+      return BACKGROUND['afternoon'];
+    } else if ( time >= 7) {
+      return BACKGROUND['morning'];
+    } else {
+      return BACKGROUND['night'];
+    }
+
+  }
 
   render() {
 
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
 
+    let background = this.getBackground();
+
     return (
       <View style={styles.container}>
-          
+
           <View style={styles.background}>
-            {animateSprite(BACKGROUND, 4, 10000, width, height)}
-            
+            <Image source={background} style={{width, height}}>
+            </Image>
           </View>
           <View style={styles.header}>
             <Text style={styles.name}>
@@ -151,28 +238,6 @@ const styles = StyleSheet.create({
     height: 65,
     resizeMode: 'contain'
   },
-  // drops0: {
-  //   display: 'none',
-  //   alignSelf: 'center',
-  // },
-  // drops1: {
-  //   top: 20,
-  //   alignSelf: 'center',
-  //   height: 200,
-  //   resizeMode: 'contain'
-  // },
-  // drops2: {
-  //   top: 50,
-  //   alignSelf: 'center',
-  //   height: 200,
-  //   resizeMode: 'contain'
-  // },
-  // drops3: {
-  //   top: 90,
-  //   alignSelf: 'center',
-  //   height: 200,
-  //   resizeMode: 'contain'
-  // },
 });
 
 

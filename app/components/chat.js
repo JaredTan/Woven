@@ -5,7 +5,8 @@ import {
   View,
   Text,
   StyleSheet,
-  AsyncStorage
+  AsyncStorage,
+  TouchableOpacity
 } from 'react-native';
 import io from 'socket.io-client';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
@@ -35,15 +36,18 @@ class Chat extends Component {
 
   determineUser() {
     let userId = this.props.users.currentUser._id;
+
     this.socket.emit('userJoined', userId);
     this.setState({ userId });
   }
 
   onReceivedMessage(messages) {
+
     this._storeMessages(messages);
   }
 
   onSend(messages=[]) {
+
     this.socket.emit('message', messages[0]);
     this._storeMessages(messages);
   }
@@ -62,6 +66,9 @@ class Chat extends Component {
     if (!this.props.users) { return null; }
     return (
       <View style={styles.chatbox}>
+        <View style={styles.topBar}>
+          <Text style={styles.title}>Chat</Text>
+        </View>
         <GiftedChat
           messages={this.state.messages}
           onSend={this.onSend}
@@ -84,7 +91,7 @@ class Chat extends Component {
             backgroundColor: '#F5F5F5',
           },
           right: {
-            backgroundColor: '#2ecc71'
+            backgroundColor: '#208e4e'
           }
         }} />
     );
@@ -98,6 +105,23 @@ class Chat extends Component {
 const styles = StyleSheet.create({
   chatbox: {
     height: Dimensions.get('window').height-75
+  },
+  title: {
+    color: 'white',
+    fontSize: 20,
+    alignSelf: 'center'
+  },
+  filler: {
+    color: '#2ecc71'
+  },
+  topBar: {
+    padding: 16,
+    paddingTop: 18,
+    paddingBottom: 8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2ecc71'
   }
 });
 

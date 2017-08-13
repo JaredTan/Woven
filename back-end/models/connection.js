@@ -9,7 +9,7 @@ var connectionSchema = new Schema({
   ],
   plant: {
     name: {type: String, default: 'Greggles'},
-    health: {type: Number, default: 75},
+    health: {type: Number, default: 10},
     happiness: {type: Number, default: 75},
     age: {type: Number, default: 0},
     seeded: { type: Date, default: Date.now() },
