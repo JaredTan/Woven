@@ -77,7 +77,7 @@ const EditForm = (props) => {
                }}
              />
           </PhotoUpload>
-          <Text fontSize={10}>Upload Picture</Text>
+          <Text color={'#2ecc71'} fontSize={10}>Upload Picture</Text>
           </View>
           <View style={styles.dates}>
             <View style={styles.date}>

@@ -44,18 +44,18 @@ class Alert extends React.Component {
 const styles = StyleSheet.create({
   container2: {
     flex: 1,
-    width:200,
+    width:'80%',
     flexDirection: 'row',
     padding: 10,
     backgroundColor: '#cdf9d8',
     borderColor: '#bbf7ca',
-    borderRadius: 50,
     justifyContent: 'space-between',
     alignSelf: 'flex-end',
     margin: 5
   },
   text: {
-    color: "gray"
+    color: "gray",
+    backgroundColor: 'transparent'
   }
 });
 
