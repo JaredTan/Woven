@@ -42,7 +42,7 @@ websocket.on('connection', (socket) => {
 function onUserJoined(userId, socket) {
   var objId = mongoose.Types.ObjectId(userId);
   User.findOne({_id: objId}, (err, user) => {
-    (user, "user joined chat!");
+
     sessionConnection = user.connectionId;
     users[socket.id] = userId;
     _sendExistingMessages(socket);
@@ -51,7 +51,7 @@ function onUserJoined(userId, socket) {
 
 function onMessageReceived(message, senderSocket) {
   var userId = users[senderSocket.id];
-  (message, 'message received!');
+
 
   _sendAndSaveMessage(message, senderSocket);
 }
@@ -62,7 +62,6 @@ function _sendExistingMessages(socket) {
   Message.find({ "user.connectionId": sessionConnection })
          .sort({ createdAt: -1})
          .exec(function(err, messages) {
-            (messages, "sending existing messages");
             socket.emit('message', messages);
          });
 }
@@ -76,8 +75,6 @@ function _sendAndSaveMessage(message, socket, fromServer) {
   };
 
 
-
-
   Message.create(messageData, (newMessage) => {
     var emitter = fromServer ? websocket : socket.broadcast;
     emitter.emit('message', [newMessage]);
@@ -87,7 +84,7 @@ function _sendAndSaveMessage(message, socket, fromServer) {
 // Allow the server to participate in the chatroom through stdin.
 var stdin = process.openStdin();
 stdin.addListener('data', function(d) {
-  (sessionConnection);
+
   _sendAndSaveMessage({
     text: d.toString().trim(),
     createdAt: new Date(),

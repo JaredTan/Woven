@@ -36,19 +36,18 @@ class Chat extends Component {
 
   determineUser() {
     let userId = this.props.users.currentUser._id;
-    (userId, "user joined!");
+
     this.socket.emit('userJoined', userId);
     this.setState({ userId });
   }
 
   onReceivedMessage(messages) {
-    ("onReceivedMessage");
+
     this._storeMessages(messages);
   }
 
   onSend(messages=[]) {
 
-    (messages[0], "emitting message! onSend");
     this.socket.emit('message', messages[0]);
     this._storeMessages(messages);
   }
@@ -58,7 +57,7 @@ class Chat extends Component {
     return {
       _id: this.props.users.currentUser._id.toString(),
       name: this.props.users.currentUser.firstName,
-      avatar: this.props.users.currentUser.imageUrl,
+      avatar: this.props.users.partner.imageUrl,
       connectionId: this.props.users.currentUser.connectionId
     };
   }
@@ -75,9 +74,14 @@ class Chat extends Component {
           onSend={this.onSend}
           user={this.giftedUser()}
           renderBubble={this.renderBubble.bind(this)}
+          renderAvatar={this.renderAvatar.bind(this)}
           />
       </View>
     );
+  }
+
+  renderAvatar() {
+
   }
 
   renderBubble(props) {

@@ -13,6 +13,7 @@ import {authUser} from '../../actions';
 import SignUp from './signup';
 import Header from '../styling/header';
 import ButtonTextStyle from '../styling/button_text_style';
+import BodyText from '../styling/body_text';
 
 const renderInput = ({
   input: { onChange, ...restInput },
@@ -52,8 +53,10 @@ const LSForm = props => {
         <Content style={ styles.content }>
           <Header><Text>Log In</Text></Header>
           <Form style={ styles.form }>
-          <Field name="email" label="email" component={renderInput} />
-          <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
+            
+              <Field name="email" label="email" component={renderInput} />
+              <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
+
               <Grid style={styles.buttonGrid}>
                 <Col style={styles.buttonContainer}>
                   <Button
