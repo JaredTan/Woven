@@ -10,14 +10,13 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import PhotoUpload from 'react-native-photo-upload';
 import {connect} from 'react-redux';
-import NavBar from '../navbar';
 import EditProfileNavigator from './edit_profile_navigator';
 import moment from 'moment';
 import BodyText from '../styling/body_text';
 
 class UserProfile extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.handleBack = this.handleBack.bind(this);
     this.redirectToEdit = this.redirectToEdit.bind(this);

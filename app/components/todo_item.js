@@ -9,6 +9,7 @@ import {
   ScrollView,
   RefreshControl
 } from 'react-native';
+import Dimensions from 'Dimensions';
 
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 
@@ -18,7 +19,7 @@ class TodoItem extends React.Component {
 
     this.state = {
       deleting: false
-    }
+    };
 
     this.onDelete = this.onDelete.bind(this);
   }
@@ -47,14 +48,7 @@ class TodoItem extends React.Component {
 }
 const styles = StyleSheet.create({
   todoContainer: {
-    padding: 16,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    marginTop: -1,
-    borderColor: '#ccc',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    height: Dimensions.get('window').height*.05
   }
 });
 

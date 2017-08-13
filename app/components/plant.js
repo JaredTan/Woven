@@ -156,33 +156,29 @@ class Plant extends React.Component {
             </Image>
           </View>
 
-          <View style={styles.stats}>
-            <View style={styles.header}>
-              <Text style={styles.name}>
-                {this.props.plant.name} says `Hi`!
-              </Text>
-            </View>
-            <View style={styles.interactions}>
-              <View style={styles.healthbar}>
-                <Healthbar health={this.state.health} />
-              </View>
-              <View style={styles.waterIcon}>
-                <TouchableOpacity
-                  onPress={this.waterPlant}
-                  >
-                  <Image
-                    style={styles.roundedIcon}
-                    source={require('../assets/icons/waterIcon.png')}
-                    />
-                </TouchableOpacity>
-              </View>
-            </View>
+          <View style={styles.header}>
+            <Text style={styles.greeting}>
+              {this.props.plant.name} says `Hi`!
+            </Text>
+          </View>
+
+          <View style={styles.healthbar}>
+            <Healthbar health={this.state.health} />
+          </View>
+          <View style={styles.waterIcon}>
+            <TouchableOpacity
+              onPress={this.waterPlant}
+              >
+              <Image
+                style={styles.roundedIcon}
+                source={require('../assets/icons/waterIcon.png')}
+                />
+            </TouchableOpacity>
           </View>
 
           <Text style={styles.displayError}>
             {this.state.displayError}
           </Text>
-
 
           <View style={styles.plant}>
             {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
@@ -195,8 +191,6 @@ class Plant extends React.Component {
   }
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -208,56 +202,51 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'absolute',
     zIndex: -1
-   },
-   stats: {
-     display: flex,
-     height: Dimensions.get('window').height*.3
-   }
-   header: {
-     alignItems: 'center'
-   },
-   healthbar: {
-    left: 10,
+  },
+  healthbar: {
+    top: Dimensions.get('window').height*.1,
+    left: Dimensions.get('window').width*.02
+  },
+  waterIcon: {
+    top: Dimensions.get('window').height*.05,
+    left: Dimensions.get('window').width*.8,
+  },
+  plant: {
+    top: Dimensions.get('window').height*.3,
     position: 'absolute',
-    top: 60,
-   },
-   name: {
-     fontSize: 25,
-     fontWeight: 'bold',
-     color: 'black',
-   },
-   plant: {
-     top: Dimensions.get('window').height*.3,
-     position: 'absolute',
-     alignSelf: 'center',
-     backgroundColor: 'transparent',
-   },
-   water: {
-     top: Dimensions.get('window').height*.3,
-     position: 'absolute',
-     alignSelf: 'center'
-   },
-   waterIcon: {
+    alignSelf: 'center',
     backgroundColor: 'transparent',
-    width: 65,
-    height: 65,
-    alignSelf: 'flex-end',
-    top: 30,
-    borderRadius: 180,
-   },
-   displayError: {
+  },
+  header: {
+    top: Dimensions.get('window').height*.16,
+    backgroundColor: "#f2f2f2",
+  },
+  greeting: {
+    fontSize: 20,
+    opacity: .6,
+    padding: 13,
+    borderRadius: 60,
+    alignSelf: 'center'
+  },
+  water: {
+    top: Dimensions.get('window').height*.3,
     position: 'absolute',
-    color: 'red',
-    top: 120,
+    alignSelf: 'center'
+  },
+  displayError: {
+    position: 'absolute',
+    color: '#f4967e',
+    top: Dimensions.get('window').height*.15,
     alignSelf: 'center',
     fontWeight: 'bold',
     fontSize: 20,
+    letterSpacing: 2,
     shadowColor: '#FFF',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.5,
     shadowRadius: 1,
-   },
-   roundedIcon: {
+  },
+  roundedIcon: {
     width: 65,
     height: 65,
     resizeMode: 'contain'

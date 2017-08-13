@@ -10,6 +10,7 @@ import {
   RefreshControl,
   TextInput
 } from 'react-native';
+import Dimensions from 'Dimensions';
 
 import {unauthUser, getTodos, deleteTodo, setTodos, createTodo} from '../actions';
 import TodoItem from './todo_item';
@@ -22,7 +23,7 @@ class TodoList extends React.Component {
       refreshing: false,
       newTodoText: undefined,
       loading: false
-    }
+    };
 
     this.addNewTodo = this.addNewTodo.bind(this);
     this.onRefresh = this.onRefresh.bind(this);
@@ -68,20 +69,22 @@ class TodoList extends React.Component {
       } else {
         return (
           <ScrollView
-            automaticallyAdjustContentInsets={false}
-            contentContainerStyle={styles.scrollViewContainer}>
+            automaticallyAdjustContentInsets={false}>
             <View style={styles.inputContainer}>
               <TextInput
                 onChangeText={(newTodoText) => {
-                  this.setState({newTodoText})
+                  this.setState({newTodoText});
                 }}
                 placeholder="New To-Do Text"
                 style={styles.input}/>
             </View>
+            <TouchableOpacity onPress={this.addNewTodo}>
+              <Icon name="plus" size={20} color="black"/>
+            </TouchableOpacity>
           </ScrollView>
         );
       }
-    }
+    };
 
     return (
       <View style={styles.container}>
@@ -89,21 +92,20 @@ class TodoList extends React.Component {
           <Text style={styles.title}>
             To-Do List
           </Text>
-          <TouchableOpacity onPress={this.addNewTodo}>
-            <Icon name="plus" size={24} color="white"/>
-          </TouchableOpacity>
         </View>
-        <ScrollView
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.refreshing}
-              onRefresh={this.onRefresh}/>
-          }
-          automaticallyAdjustContentInsets={false}
-          contentContainerStyle={styles.scrollViewContainer}>
-          {renderScrollViewOrLoading()}
-          {renderTodos()}
-        </ScrollView>
+
+        <View>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this.onRefresh}/>
+            }
+            automaticallyAdjustContentInsets={false}>
+            {renderScrollViewOrLoading()}
+            {renderTodos()}
+          </ScrollView>
+        </View>
       </View>
     );
   }
@@ -112,40 +114,33 @@ class TodoList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-  },
-  topBar: {
-    padding: 16,
-    paddingTop: 28,
-    paddingBottom: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#2ecc71'
+    flex: 1
   },
   title: {
+    top: Dimensions.get('window').height*.03,
     color: 'white',
-    fontSize: 20
+    fontSize: 20,
+    alignSelf: 'center'
+  },
+  topBar: {
+    position: 'absolute',
+    height: Dimensions.get('window').height*.08,
+    left: 0,
+    top: 0,
+    width: '100%',
+    backgroundColor: '#2ecc71'
   },
   todoContainer: {
-    padding: 16,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    marginTop: -1,
-    borderColor: '#ccc',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    top: Dimensions.get('window').height*.25,
+    height: Dimensions.get('window').height*.5,
   },
   inputContainer: {
-    padding: 5,
-    paddingLeft: 10,
-    margin: 10,
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: "#2ecc71"
+    top: 0,
+    left: 0,
+    height: Dimensions.get('window').height*.2,
+    zIndex: 10,
+    borderWidth: 5,
+    borderColor: 'black'
   },
   input: {
     height: 26

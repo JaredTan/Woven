@@ -38,7 +38,6 @@ class Chat extends Component {
     let userId = this.props.users.currentUser._id;
 
     this.socket.emit('userJoined', userId);
-    this.setState({ userId });
   }
 
   onReceivedMessage(messages) {
@@ -61,10 +60,9 @@ class Chat extends Component {
   }
 
   render() {
-    console.log(this.props.users);
     if (!this.props.users) { return null; }
     return (
-      <View style={styles.chatbox}>
+      <View style={styles.container}>
         <View style={styles.topBar}>
           <Text style={styles.title}>Chat</Text>
         </View>
@@ -99,7 +97,7 @@ class Chat extends Component {
 }
 
 const styles = StyleSheet.create({
-  chatbox: {
+  container: {
     flex: 1
   },
   title: {
