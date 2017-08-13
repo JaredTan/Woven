@@ -12,7 +12,6 @@ import TodoList from './todo_list';
 import UserProfileContainer from './user_profile/profile_container';
 import PlantContainer from './plant_container';
 import Chat from './chat';
-import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 import {
   Menu,
   MenuOptions,
@@ -60,11 +59,13 @@ class Main extends React.Component {
   }
 
   redirectToTodos() {
-    this.props.navigator.push({
-      component: TodoList,
-      title: 'TodoList',
-      navigationBarHidden: true
-    });
+    this.props.getTodos(this.props.connectionId).then(() => {
+      this.props.navigator.push({
+        component: TodoList,
+        title: 'TodoList',
+        navigationBarHidden: true
+      });
+    })
   }
 
   redirectToProfile() {

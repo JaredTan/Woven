@@ -51,13 +51,13 @@ class UserProfile extends React.Component {
     <View style={styles.container}>
       <View style={styles.topBar}>
         <TouchableOpacity onPress={this.handleBack}>
-          <Icon name="chevron-left" size={20} color="white"/>
+          <Icon name="chevron-left" size={30} color="white"/>
         </TouchableOpacity>
         <Text style={styles.title}>
           Profile
         </Text>
         <TouchableOpacity onPress={this.redirectToEdit}>
-          <Icon name="pencil" size={20} color="white"/>
+          <Icon name="pencil" size={24} color="white"/>
         </TouchableOpacity>
       </View>
       <View style={styles.info}>

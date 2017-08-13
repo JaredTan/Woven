@@ -60,13 +60,13 @@ class TodoList extends React.Component {
       <View style={styles.container}>
         <View style={styles.topBar}>
           <TouchableOpacity onPress={this.onBack}>
-            <Icon name="chevron-left" size={20} color="white"/>
+            <Icon name="chevron-left" size={30} color="white"/>
           </TouchableOpacity>
           <Text style={styles.title}>
             To-Do List
           </Text>
           <TouchableOpacity onPress={this.addNewTodo}>
-            <Icon name="plus" size={20} color="white"/>
+            <Icon name="plus" size={24} color="white"/>
           </TouchableOpacity>
         </View>
         <ScrollView

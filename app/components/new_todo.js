@@ -27,8 +27,8 @@ class TodoList extends React.Component {
   }
 
   addNewTodo() {
-    var {newTodoText} = this.state;
-    var {dispatch} = this.props;
+    let {newTodoText} = this.state;
+    let {dispatch} = this.props;
     if (newTodoText && newTodoText != "") {
       this.setState({loading: true});
       dispatch(createTodo(this.props.connectionId, newTodoText)).then(() => {
@@ -74,13 +74,13 @@ class TodoList extends React.Component {
       <View style={styles.container}>
         <View style={styles.topBar}>
           <TouchableOpacity onPress={this.onBack}>
-            <Icon name="chevron-left" size={20} color="white"/>
+            <Icon name="chevron-left" size={30} color="white"/>
           </TouchableOpacity>
           <Text style={styles.title}>
             New To-Do
           </Text>
           <TouchableOpacity onPress={this.addNewTodo}>
-            <Icon name="check" size={20} color="white"/>
+            <Icon name="check" size={30} color="white"/>
           </TouchableOpacity>
         </View>
         {renderScrollViewOrLoading()}
