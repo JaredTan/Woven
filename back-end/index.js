@@ -77,6 +77,7 @@ function _sendAndSaveMessage(message, socket, fromServer) {
 
 
 
+
   Message.create(messageData, (newMessage) => {
     var emitter = fromServer ? websocket : socket.broadcast;
     emitter.emit('message', [newMessage]);
