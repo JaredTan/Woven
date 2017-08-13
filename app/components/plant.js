@@ -151,33 +151,38 @@ class Plant extends React.Component {
 
     return (
       <View style={styles.container}>
-
           <View style={styles.background}>
-            <Image source={background} style={{width, height}}>
+            <Image source={background} style={{width, height: height * 0.90}}>
             </Image>
           </View>
-          <View style={styles.header}>
-            <Text style={styles.name}>
-              {this.props.plant.name} says `Hi`!
-            </Text>
-          </View>
-          <View style={styles.healthbar}>
-            <Healthbar health={this.state.health} />
+
+          <View style={styles.stats}>
+            <View style={styles.header}>
+              <Text style={styles.name}>
+                {this.props.plant.name} says `Hi`!
+              </Text>
+            </View>
+            <View style={styles.interactions}>
+              <View style={styles.healthbar}>
+                <Healthbar health={this.state.health} />
+              </View>
+              <View style={styles.waterIcon}>
+                <TouchableOpacity
+                  onPress={this.waterPlant}
+                  >
+                  <Image
+                    style={styles.roundedIcon}
+                    source={require('../assets/icons/waterIcon.png')}
+                    />
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
 
           <Text style={styles.displayError}>
             {this.state.displayError}
           </Text>
 
-          <TouchableOpacity
-            onPress={this.waterPlant}
-            style={styles.waterIcon}
-          >
-            <Image
-              style={styles.roundedIcon}
-              source={require('../assets/icons/waterIcon.png')}
-            />
-          </TouchableOpacity>
 
           <View style={styles.plant}>
             {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
@@ -194,6 +199,7 @@ class Plant extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent',
     alignItems: 'stretch',
@@ -203,6 +209,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: -1
    },
+   stats: {
+     display: flex,
+     height: Dimensions.get('window').height*.3
+   }
    header: {
      alignItems: 'center'
    },
@@ -217,13 +227,14 @@ const styles = StyleSheet.create({
      color: 'black',
    },
    plant: {
+     top: Dimensions.get('window').height*.3,
      position: 'absolute',
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },
    water: {
+     top: Dimensions.get('window').height*.3,
      position: 'absolute',
-     bottom: '40%',
      alignSelf: 'center'
    },
    waterIcon: {
