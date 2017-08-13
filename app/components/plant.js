@@ -194,16 +194,14 @@ class Plant extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    height: height - 55,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent',
     alignItems: 'stretch',
   },
   background: {
-    bottom: 10,
+    flex: 1,
     position: 'absolute',
-    alignSelf: 'center',
+    zIndex: -1
    },
    header: {
      alignItems: 'center'
@@ -220,7 +218,6 @@ const styles = StyleSheet.create({
    },
    plant: {
      position: 'absolute',
-     bottom: 40,
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },
