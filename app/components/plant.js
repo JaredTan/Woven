@@ -7,7 +7,9 @@ import {
   TouchableOpacity,
   NavigatorIOS,
   Animated,
-  Dimensions
+  Dimensions,
+  Vibration,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import Healthbar from './healthbar';
@@ -156,11 +158,18 @@ class Plant extends React.Component {
             <Image source={background} style={{width, height}}>
             </Image>
           </View>
-          <View style={styles.header}>
-            <Text style={styles.name}>
-              {this.props.plant.name} says `Hi`!
-            </Text>
-          </View>
+
+          <TouchableWithoutFeedback
+            style={styles.wrapper}
+            onPress={() => Vibration.vibrate([0, 500, 200, 500])}>
+            <View style={styles.header}>
+              <Text style={styles.name}>
+                {this.props.plant.name} says Hi!
+              </Text>
+            </View>
+          </TouchableWithoutFeedback>
+
+
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
