@@ -11,6 +11,7 @@ import AuthMain from './auth/auth_main';
 import MainNavigator from './main_navigator';
 import AlertContainer from './alerts/alert_container';
 import Chat from './chat';
+import {fetchPlant} from '../actions';
 
 var App = React.createClass({
   getInitialState() {
@@ -20,7 +21,9 @@ var App = React.createClass({
     var renderMainView = () => {
       if (this.props.user_id) {
         return (
-          <MainNavigator />
+          <MainNavigator
+            fetchPlant={this.props.fetchPlant}
+            connectionId={this.props.connectionId} />
         );
       } else {
         return (
@@ -49,8 +52,15 @@ const styles = StyleSheet.create({
 
 var mapStateToProps = (state) => {
   return {
-    user_id: state.auth.user_id
+    user_id: state.auth.user_id,
+    connectionId: state.auth.connectionId
   };
 };
+
+var mapDispatchToProps = dispatch => {
+  return {
+    fetchPlant: (connectionId) => dispatch(fetchPlant(connectionId))
+  }
+}
 
 module.exports = connect(mapStateToProps)(App);
