@@ -36,8 +36,9 @@ exports.signup = function(req, res, next) {
       connectionId: null,
       firstName: firstName,
       lastName: lastName,
-      imageUrl: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg',
-      birthday: null
+      imageUrl: 'https://d1ld1je540hac5.cloudfront.net/assets/img/default_avatar.png',
+      birthday:  new Date(1992, 5, 30),
+      anniversary: new Date(2000, 0, 1)
     });
     user.save(function(err) {
       if (err) { return next(err) }
