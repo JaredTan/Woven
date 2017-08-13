@@ -27,9 +27,8 @@ class Plant extends React.Component {
 
       health: props.plant.health,
       lastWater: props.plant.lastWater,
-      nextWater: this.updateNextWater,
-      disabledWater: false,
-      displayError: <Text></Text>
+      nextWater: 0,
+      displayError: ""
     };
 
     this.waterPlant = this.waterPlant.bind(this);
@@ -38,21 +37,26 @@ class Plant extends React.Component {
     this.calculateHealth = this.calculateHealth.bind(this);
     this.updateHealth = this.updateHealth.bind(this);
     this.updateNextWater = this.updateNextWater.bind(this);
-    this.setWaterStatus = this.setWaterStatus.bind(this);
     this.displayDisableMessage = this.displayDisableMessage.bind(this);
   }
 
   componentWillMount() {
+    console.log(this.props);
+    console.log("/////////////// WILL MOUNT ////////");
     this.props.fetchPlant(this.props.connectionId);
     this.calculateHealth();
-    this.setWaterStatus();
+    this.updateNextWater();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.props.plant = this.nextProps.plant;
-    this.calculateHealth();
-    this.state.lastWater = this.props.plant.lastWater;
-    this.setWaterStatus();
+  handleUpdatePlant() {
+    this.props.plant.lastWater = this.state.lastWater;
+    this.props.plant.health = this.state.health;
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+    console.log(this.props.plant);
+    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+
+    this.props.updatePlant(this.props.connectionId, this.props.plant);
+    this.updateNextWater();
   }
 
   dateDiff(){
@@ -82,53 +86,40 @@ class Plant extends React.Component {
   }
 
   updateNextWater() {
+    console.log(this.state.lastWater);
     let waterDate = new Date(this.state.lastWater);
 
     waterDate.setMinutes(waterDate.getMinutes()+5);
 
-    this.state.nextWater = waterDate
+    this.setState({
+      nextWater: waterDate
+    });
 
-    console.log(waterDate);
-    console.log(this.state.lastWater);
-    console.log(this.state.nextWater);
-    console.log("/////////////////////////////")
-  }
-
-  handleUpdatePlant() {
-    this.props.plant.lastWater = this.state.lastWater;
-    this.props.plant.health = this.state.health;
-
-    this.props.updatePlant(this.props.connectionId, this.props.plant);
-  }
-
-  setWaterStatus() {
-    if (this.state.nextWater > this.state.lastWater) {
-      this.setState({
-        disabledWater: false
-      });
-    } else {
-      this.setState({
-        disabledWater: true
-      });
-    }
   }
 
   waterPlant() {
-    this.setState({
-      water: true,
-      health: this.updateHealth(),
-      lastWater: new Date(Date.now()),
-      nextWater: this.updateNextWater(),
-      disabledWater: true
-    });
-
-    setTimeout(()=>{
+    console.log("##################################");
+    console.log(this.state.nextWater);
+    console.log(this.state.lastWater);
+    console.log("##################################");
+    if (this.state.nextWater > this.state.lastWater) {
+      this.displayDisableMessage();
+    } else {
       this.setState({
-        water: false
+        water: true,
+        health: this.updateHealth(),
+        lastWater: new Date(Date.now()),
+        nextWater: this.updateNextWater(),
       });
-    }, 5000);
 
-    this.handleUpdatePlant();
+      setTimeout(()=>{
+        this.setState({
+          water: false
+        });
+      }, 5000);
+
+      this.handleUpdatePlant();
+    }
   }
 
   getBackground(){
@@ -186,7 +177,7 @@ class Plant extends React.Component {
           </Text>
 
           <TouchableOpacity
-            onPress={this.state.disabledWater ? this.displayDisableMessage : this.waterPlant}
+            onPress={this.waterPlant}
             style={styles.waterIcon}
           >
             <Image
@@ -253,12 +244,16 @@ const styles = StyleSheet.create({
     borderRadius: 180,
    },
    displayError: {
-     position: 'absolute',
-     color: 'red',
-     top: 100,
-     alignSelf: 'center',
-     fontWeight: 'bold',
-     fontSize: 20
+    position: 'absolute',
+    color: 'red',
+    top: 120,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    shadowColor: '#FFF',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
    },
    roundedIcon: {
     width: 65,
