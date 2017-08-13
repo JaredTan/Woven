@@ -82,7 +82,7 @@ class Chat extends Component {
             backgroundColor: '#F5F5F5',
           },
           right: {
-            backgroundColor: '#2ecc71'
+            backgroundColor: '#208e4e'
           }
         }} />
     );
