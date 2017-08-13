@@ -10,19 +10,14 @@ import {
   Dimensions
 } from 'react-native';
 
-
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
-
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
 
 
-
-
 const {width, height} = Dimensions.get('window');
-console.log('Width: ', width, 'Height: ', height);
 
 class Plant extends React.Component {
   constructor(props) {
@@ -31,24 +26,32 @@ class Plant extends React.Component {
       water: false,
 
       health: props.plant.health,
-      lastWater: props.plant.lastWater
+      lastWater: props.plant.lastWater,
+      nextWater: this.updateNextWater,
+      disabledWater: false,
+      displayError: <Text></Text>
     };
 
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    console.log(this.state.health);
-    console.log(typeof(this.state.health));
-
-    // this.getImage = this.getImage.bind(this);
     this.waterPlant = this.waterPlant.bind(this);
     this.dateDiff = this.dateDiff.bind(this);
     this.handleUpdatePlant = this.handleUpdatePlant.bind(this);
     this.calculateHealth = this.calculateHealth.bind(this);
     this.updateHealth = this.updateHealth.bind(this);
+    this.updateNextWater = this.updateNextWater.bind(this);
+    this.setWaterStatus = this.setWaterStatus.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchPlant(this.props.connectionId);
     this.calculateHealth();
+    this.setWaterStatus();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.props.plant = this.nextProps.plant;
+    this.calculateHealth();
+    this.state.lastWater = this.props.plant.lastWater;
+    this.setWaterStatus();
   }
 
   dateDiff(){
@@ -58,8 +61,6 @@ class Plant extends React.Component {
     let diff =  parseInt((recentWater - lastWater) / (1000 * 60 * 60 * 24));
 
     return diff;
-    // let timeDiff = Math.abs(recentWater.getTime() - lastWater.getTime());
-    // let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
   }
 
   calculateHealth() {
@@ -67,20 +68,29 @@ class Plant extends React.Component {
 
     let tempHealth = this.props.plant.health - decreasedHealth;
     if (tempHealth < 0) {tempHealth = 0;}
-    console.log("*****************BEFORE CALCULATEHEALTH");
-    console.log(tempHealth);
 
     this.setState({
       health: tempHealth
     });
-    console.log("==========CALCULATEHEALTH=======");
-    console.log(this.state.health);
   }
 
   updateHealth() {
     let health = this.state.health + 10;
     if (health > 100) {health = 100;}
     return health;
+  }
+
+  updateNextWater() {
+    let waterDate = new Date(this.state.lastWater);
+
+    waterDate.setMinutes(waterDate.getMinutes()+5);
+
+    this.state.nextWater = waterDate
+
+    console.log(waterDate);
+    console.log(this.state.lastWater);
+    console.log(this.state.nextWater);
+    console.log("/////////////////////////////")
   }
 
   handleUpdatePlant() {
@@ -90,37 +100,34 @@ class Plant extends React.Component {
     this.props.updatePlant(this.props.connectionId, this.props.plant);
   }
 
-  // redirectToEdit() {
-  //   this.props.requestPair().then(() => {
-  //     this.props.navigator.push({
-  //       component: EditProfileNavigator,
-  //       title: 'Edit Profile',
-  //       navigationBarHidden: true
-  //     });
-  //   });
-  // }
+  setWaterStatus() {
+    if (this.state.nextWater > this.state.lastWater) {
+      this.setState({
+        disabledWater: false
+      });
+    } else {
+      this.setState({
+        disabledWater: true
+      });
+    }
+  }
 
   waterPlant() {
-    console.log("%%%%%%%%%%%%%%%%")
-    console.log(this.state.lastWater);
-    console.log(this.state.health);
-    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%")
-
     this.setState({
       water: true,
       health: this.updateHealth(),
-      lastWater: Date.now()
+      lastWater: new Date(Date.now()),
+      nextWater: this.updateNextWater(),
+      disabledWater: true
     });
-    // .then(function() {
-    //   console.log("&&&&&&&&&& ABOUT TO UPDATE &&&&&&&&&&&&");
-    //   this.handleUpdatePlant();
-    // }.bind(this));
 
     setTimeout(()=>{
       this.setState({
         water: false
       });
     }, 5000);
+
+    this.handleUpdatePlant();
   }
 
   getBackground(){
@@ -139,6 +146,18 @@ class Plant extends React.Component {
 
   }
 
+  displayDisableMessage() {
+    this.setState ({
+      displayError: <Text style={styles.displayError}>I'm full!</Text>
+    });
+    setTimeout(()=>{
+      this.setState({
+        displayError: <Text></Text>
+      });
+    }, 5000);
+  }
+
+
   render() {
 
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
@@ -154,15 +173,17 @@ class Plant extends React.Component {
           </View>
           <View style={styles.header}>
             <Text style={styles.name}>
-              Greggles
+              {this.props.plant.name} says `Hi`!
             </Text>
           </View>
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
 
+          {this.state.displayError}
+
           <TouchableOpacity
-            onPress={this.waterPlant}
+            onPress={this.state.disabledWater ? this.displayDisableMessage : this.waterPlant}
             style={styles.waterIcon}
           >
             <Image
@@ -181,11 +202,6 @@ class Plant extends React.Component {
     );
   }
 }
-
-// <Image
-//   style={styles[this.state.drops]}
-//   source={WATER[this.state.drops]}
-// />
 
 
 const styles = StyleSheet.create({
@@ -232,6 +248,12 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     top: 30,
     borderRadius: 180,
+   },
+   displayError: {
+     position: 'absolute',
+     color: 'red',
+     top: 70,
+     alignSelf: 'center'
    },
    roundedIcon: {
     width: 65,
