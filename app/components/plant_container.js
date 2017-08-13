@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchPlant: (connectionId) => dispatch(fetchPlant(connectionId)),
-  updatePlant: (connectionId, plant) => dispatch(fetchPlant(connectionId, plant))
+  updatePlant: (connectionId, plant) => dispatch(updatePlant(connectionId, plant))
 });
 
 export default connect(
