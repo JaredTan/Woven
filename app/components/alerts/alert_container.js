@@ -6,39 +6,14 @@ import {
   View
 } from 'react-native';
 
-import Alert from './alert';
+import Alerts from './alerts';
+import {removeAlert} from '../../actions';
 
-var AlertContainer = React.createClass({
-  render() {
-    var renderAlerts = () => {
-      return this.props.alerts.map((alert) => {
-        return (
-          <Alert alert={alert} key={alert.id}/>
-        )
-      });
-    }
-    return (
-      <View style={styles.container}>
-        {renderAlerts()}
-      </View>
-    );
-  }
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0
-  },
-});
-
-var mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     alerts: state.alerts
   }
-}
+};
 
-module.exports = connect(mapStateToProps)(AlertContainer);
+
+module.exports = connect(mapStateToProps, null)(Alerts);
