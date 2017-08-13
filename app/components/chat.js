@@ -69,6 +69,7 @@ class Chat extends Component {
           <Text style={styles.title}>Chat</Text>
         </View>
         <GiftedChat
+          style={styles.giftedchat}
           messages={this.state.messages}
           onSend={this.onSend}
           user={this.giftedUser()}
@@ -98,7 +99,7 @@ class Chat extends Component {
 
 const styles = StyleSheet.create({
   chatbox: {
-    height: Dimensions.get('window').height-75
+    height: Dimensions.get('window').height
   },
   title: {
     color: 'white',
@@ -111,6 +112,7 @@ const styles = StyleSheet.create({
   topBar: {
     flex: 1,
     position: 'absolute',
+    zIndex: 1,
     left: 0,
     top: 0,
     width: '100%',
@@ -121,6 +123,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#2ecc71'
+  },
+  giftedchat: {
+    flex: 1
   }
 });
 

@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   scrollView: {
+    height: '80%'
   },
   navBar: {
     height: '8%',
