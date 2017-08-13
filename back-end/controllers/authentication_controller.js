@@ -17,7 +17,6 @@ exports.signin = function(req, res, next) {
 }
 
 exports.signup = function(req, res, next) {
-  (req.body,'authcontroller');
   var email = req.body.email;
   var password = req.body.password;
   var firstName = req.body.firstName;

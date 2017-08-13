@@ -22,7 +22,6 @@ exports.update = function(req, res, next) {
       imageUrl: req.body.imageUrl
     }, function(err, affected, resp) {
       User.findOne({_id: req.params.user_id}, function(err, user) {
-        (user,'user in backend');
         res.send(user);
       })
     });
