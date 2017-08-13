@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import NavBar from '../navbar';
 import EditProfileNavigator from './edit_profile_navigator';
 import moment from 'moment';
+import BodyText from '../styling/body_text';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -74,11 +75,13 @@ class UserProfile extends React.Component {
              uri: currentUser.imageUrl
            }}
          />
-         <Text style={styles.name}>{currentUser.firstName} {currentUser.lastName}</Text>
+
+         <Text style={styles.name}><BodyText>{currentUser.firstName} {currentUser.lastName}</BodyText></Text>
+
        </View>
        <View style={styles.body}>
          <Text>
-           <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
+         <BodyText><Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}</BodyText>
          </Text>
          <Text>
            <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(currentUser.birthday).format('LL')}
