@@ -1,44 +1,62 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {
   StyleSheet,
   Text,
   View,
   TouchableWithoutFeedback
 } from 'react-native';
-
+import {connect} from 'react-redux';
 import {removeAlert} from '../../actions';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-var Alert = React.createClass({
-  onRemoveAlert() {
-    var {dispatch, alert} = this.props;
-    dispatch(removeAlert(alert.id));
-  },
-  render() {
-    return (
-      <TouchableWithoutFeedback onPress={this.onRemoveAlert}>
-        <View style={styles.container}>
-          <Text style={styles.text}>
-            {this.props.alert.text}
-          </Text>
-        </View>
-      </TouchableWithoutFeedback>
-    );
+
+class Alert extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleRemoveAlert = this.handleRemoveAlert.bind(this);
+
   }
-});
+
+  handleRemoveAlert() {
+    let {alert, dispatch} = this.props;
+    dispatch(removeAlert(alert.id));
+  }
+
+  render() {
+    let {alert} = this.props;
+        return (
+          <TouchableWithoutFeedback onPress={this.handleRemoveAlert}>
+            <View style={styles.container2}>
+              <Text style={styles.text}>
+                {alert.text}
+              </Text>
+                <Icon name="close" size={15} color='#2ecc71'/>
+            </View>
+          </TouchableWithoutFeedback>
+        )
+    }
+
+
+}
+
 
 const styles = StyleSheet.create({
-  container: {
+  container2: {
     flex: 1,
+    width:'80%',
     flexDirection: 'row',
-    padding: 20,
+    padding: 10,
     backgroundColor: '#cdf9d8',
     borderColor: '#bbf7ca',
-    borderTopWidth: 2
+    justifyContent: 'space-between',
+    alignSelf: 'flex-end',
+    margin: 5
   },
   text: {
-    color: "gray"
+    color: "gray",
+    backgroundColor: 'transparent'
   }
 });
 
-module.exports = connect()(Alert);
+export default connect()(Alert);

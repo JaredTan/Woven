@@ -38,7 +38,6 @@ class Chat extends Component {
     let userId = this.props.users.currentUser._id;
 
     this.socket.emit('userJoined', userId);
-    this.setState({ userId });
   }
 
   onReceivedMessage(messages) {
@@ -61,7 +60,6 @@ class Chat extends Component {
   }
 
   render() {
-    console.log(this.props.users);
     if (!this.props.users) { return null; }
     return (
       <View style={styles.chatbox}>

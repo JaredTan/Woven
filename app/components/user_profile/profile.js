@@ -13,7 +13,6 @@ import {connect} from 'react-redux';
 import NavBar from '../navbar';
 import EditProfileNavigator from './edit_profile_navigator';
 import moment from 'moment';
-import BodyText from '../styling/body_text';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -61,7 +60,6 @@ class UserProfile extends React.Component {
           <Icon name="pencil" size={24} color="white"/>
         </TouchableOpacity>
       </View>
-
       <View style={styles.info}>
         <View style={styles.header}>
          <Image
@@ -76,20 +74,19 @@ class UserProfile extends React.Component {
              uri: currentUser.imageUrl
            }}
          />
-         <Text style={styles.name}><BodyText>{currentUser.firstName} {currentUser.lastName}</BodyText></Text>
+         <Text style={styles.name}>{currentUser.firstName} {currentUser.lastName}</Text>
        </View>
-
        <View style={styles.body}>
-        <BodyText>
+         <Text>
            <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
-        </BodyText>
-        <BodyText>
+         </Text>
+         <Text>
            <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(currentUser.birthday).format('LL')}
-        </BodyText>
+         </Text>
          <View style={{width: '90%', marginTop: 25, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
-           <View style={styles.anniversary}>
-             <Text style={{fontWeight: 'bold'}}><BodyText>Your Anniversary:{"\n"}{moment(currentUser.anniversary).format('LL')}</BodyText></Text>
-           </View>
+         <Text>
+           <Text style={{fontWeight: 'bold'}}>Your Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
+         </Text>
          <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
          </View>
          <View style={styles.partner}>
@@ -106,15 +103,16 @@ class UserProfile extends React.Component {
                 uri: partner.imageUrl
               }}
             />
-          <Text style={styles.name}><BodyText>Your partner: {partner.firstName} {partner.lastName}</BodyText></Text>
+          <Text style={styles.name}>Your partner: {partner.firstName} {partner.lastName}</Text>
           </View>
           <View style={styles.body}>
-            <BodyText>
-               <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
-           </BodyText>
-           <BodyText>
+
+           <Text>
+             <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
+           </Text>
+           <Text>
              <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(partner.birthday).format('LL')}
-           </BodyText>
+           </Text>
          </View>
       </View>
     </View>
@@ -127,7 +125,8 @@ class UserProfile extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: '5%'
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
   topBar: {
     padding: 16,
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
   body: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    marginLeft: 40,
+    marginLeft: 50,
   },
   name: {
     fontWeight: 'bold',
@@ -160,10 +159,6 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     justifyContent: 'space-between'
-  },
-  anniversary: {
-    flex: 1,
-    alignItems: 'center',
   },
   partner: {
     marginTop: 20,
