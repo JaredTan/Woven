@@ -4,7 +4,7 @@ import Plant from './plant.js';
 import {unauthUser, fetchPlant, updatePlant} from '../actions';
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  (state);
   return {
     connectionId: state.auth.connectionId,
     plant: state.plant

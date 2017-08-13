@@ -22,7 +22,7 @@ import BACKGROUND from '../assets/spritesheets/background/background';
 
 
 const {width, height} = Dimensions.get('window');
-console.log('Width: ', width, 'Height: ', height);
+('Width: ', width, 'Height: ', height);
 
 class Plant extends React.Component {
   constructor(props) {
