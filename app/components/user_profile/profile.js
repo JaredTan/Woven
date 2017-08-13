@@ -80,16 +80,16 @@ class UserProfile extends React.Component {
 
        </View>
        <View style={styles.body}>
-         <Text>
-         <BodyText><Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}</BodyText>
-         </Text>
-         <Text>
+        <BodyText>
+           <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
+        </BodyText>
+        <BodyText>
            <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(currentUser.birthday).format('LL')}
-         </Text>
+        </BodyText>
          <View style={{width: '90%', marginTop: 25, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
-         <Text>
-           <Text style={{fontWeight: 'bold'}}>Your Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
-         </Text>
+           <View style={styles.anniversary}>
+             <Text style={{fontWeight: 'bold'}}><BodyText>Your Anniversary:{"\n"}{moment(currentUser.anniversary).format('LL')}</BodyText></Text>
+           </View>
          <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
          </View>
          <View style={styles.partner}>
@@ -106,16 +106,15 @@ class UserProfile extends React.Component {
                 uri: partner.imageUrl
               }}
             />
-          <Text style={styles.name}>Your partner: {partner.firstName} {partner.lastName}</Text>
+          <Text style={styles.name}><BodyText>Your partner: {partner.firstName} {partner.lastName}</BodyText></Text>
           </View>
           <View style={styles.body}>
-
-           <Text>
-             <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
-           </Text>
-           <Text>
+            <BodyText>
+               <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
+           </BodyText>
+           <BodyText>
              <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(partner.birthday).format('LL')}
-           </Text>
+           </BodyText>
          </View>
       </View>
     </View>
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
   body: {
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    marginLeft: 50,
+    marginLeft: 40,
   },
   name: {
     fontWeight: 'bold',
@@ -162,6 +161,9 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     justifyContent: 'space-between'
+  },
+  anniversary: {
+    alignItems: 'center',
   },
   partner: {
     marginTop: 20,
