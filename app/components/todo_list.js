@@ -7,83 +7,90 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  TextInput
 } from 'react-native';
 
-import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
-import NewTodo from './new_todo';
+import {unauthUser, getTodos, deleteTodo, setTodos, createTodo} from '../actions';
+import TodoItem from './todo_item';
 
-var TodoItem = connect()(React.createClass({
-  getInitialState() {
-    return {
-      deleting: false
-    };
-  },
-  onDelete() {
-    this.setState({deleting: true});
-    this.props.dispatch(deleteTodo(this.props.id));
-  },
-  render() {
-    var renderDeleteButton = () => {
-      if (!this.state.deleting) {
-        return (
-          <TouchableOpacity onPress={this.onDelete}>
-            <Icon name="close" size={15} color='#2ecc71'/>
-          </TouchableOpacity>
-        );
-      }
-    };
-    return (
-      <View style={styles.todoContainer}>
-        <Text>{this.props.text}</Text>
-        {renderDeleteButton()}
-      </View>
-    );
+class TodoList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      refreshing: false,
+      newTodoText: undefined,
+      loading: false
+    }
+
+    this.addNewTodo = this.addNewTodo.bind(this);
+    this.onRefresh = this.onRefresh.bind(this);
+
   }
-}));
 
-var TodoList = React.createClass({
-  getInitialState() {
-    return {
-      refreshing: false
-    };
-  },
-  onBack() {
-    this.props.dispatch(setTodos([]));
-    this.props.navigator.pop();
-  },
+
   addNewTodo() {
-    this.props.navigator.push({
-      component: NewTodo,
-      title: 'New Todo',
-      navigationBarHidden: true
-    });
-  },
+    let {newTodoText} = this.state;
+    let {dispatch} = this.props;
+    if (newTodoText && newTodoText != "") {
+      this.setState({loading: true});
+      dispatch(createTodo(this.props.connectionId, newTodoText)).then(() => {
+        this.setState({loading: false});
+      });
+    }
+  }
+
   onRefresh() {
     this.setState({refreshing: true});
-    this.props.dispatch(getTodos).then(() => {
+    this.props.dispatch(getTodos(this.props.connectionId)).then(() => {
       this.setState({refreshing: false});
     });
-  },
+  }
+
   render() {
-    var renderTodos = () => {
+    let renderTodos = () => {
       return this.props.todos.map((todo) => {
         return (
           <TodoItem key={todo._id} text={todo.text} id={todo._id}/>
         );
       });
     };
+    let renderScrollViewOrLoading = () => {
+      if (this.state.loading) {
+        return (
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>
+              Creating todo...
+            </Text>
+          </View>
+        );
+      } else {
+        return (
+          <ScrollView
+            automaticallyAdjustContentInsets={false}
+            contentContainerStyle={styles.scrollViewContainer}>
+            <View style={styles.inputContainer}>
+              <TextInput
+                onChangeText={(newTodoText) => {
+                  this.setState({newTodoText})
+                }}
+                placeholder="New To-Do Text"
+                style={styles.input}/>
+            </View>
+          </ScrollView>
+        );
+      }
+    }
+
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
-          <TouchableOpacity onPress={this.onBack}>
-            <Icon name="chevron-left" size={20} color="white"/>
-          </TouchableOpacity>
           <Text style={styles.title}>
             To-Do List
           </Text>
           <TouchableOpacity onPress={this.addNewTodo}>
-            <Icon name="plus" size={20} color="white"/>
+            <Icon name="plus" size={24} color="white"/>
           </TouchableOpacity>
         </View>
         <ScrollView
@@ -94,12 +101,14 @@ var TodoList = React.createClass({
           }
           automaticallyAdjustContentInsets={false}
           contentContainerStyle={styles.scrollViewContainer}>
+          {renderScrollViewOrLoading()}
           {renderTodos()}
         </ScrollView>
       </View>
     );
   }
-});
+
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -129,13 +138,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
+  },
+  inputContainer: {
+    padding: 5,
+    paddingLeft: 10,
+    margin: 10,
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: "#2ecc71"
+  },
+  input: {
+    height: 26
   }
 });
 
-var mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    connectionId: state.auth.connectionId
   };
 };
+
 
 export default connect(mapStateToProps)(TodoList);

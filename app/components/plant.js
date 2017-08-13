@@ -51,9 +51,6 @@ class Plant extends React.Component {
   handleUpdatePlant() {
     this.props.plant.lastWater = this.state.lastWater;
     this.props.plant.health = this.state.health;
-    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    console.log(this.props.plant);
-    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 
     this.props.updatePlant(this.props.connectionId, this.props.plant);
     this.updateNextWater();
@@ -98,10 +95,6 @@ class Plant extends React.Component {
   }
 
   waterPlant() {
-    console.log("##################################");
-    console.log(this.state.nextWater);
-    console.log(this.state.lastWater);
-    console.log("##################################");
     if (this.state.nextWater > this.state.lastWater) {
       this.displayDisableMessage();
     } else {
@@ -196,6 +189,7 @@ class Plant extends React.Component {
     );
   }
 }
+
 
 
 const styles = StyleSheet.create({

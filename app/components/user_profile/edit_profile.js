@@ -56,6 +56,7 @@ const EditForm = (props) => {
       <Container style={ styles.container }>
         <Content style={ styles.content }>
           <Form style={ styles.form }>
+            <View style={styles.photo}>
             <PhotoUpload
                onPhotoSelect={b64image => {
                  if (b64image) {
@@ -76,35 +77,39 @@ const EditForm = (props) => {
                }}
              />
           </PhotoUpload>
-          <View style={styles.birthday}>
-            <Text>Birthday</Text>
-            <Field name="birthday"
-              component={ props =>
-                <DatePicker
-                  date={props.input.value}
-                  mode='date'
-                  confirmBtnText='Confirm'
-                  cancelBtnText='Cancel'
-                  placeholder='MM/DD/YYYY'
-                  format='MM/DD/YYYY'
-                  onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
-                  />
-              }/>
+          <Text fontSize={10}>Upload Picture</Text>
           </View>
-          <View style={styles.birthday}>
-            <Text>Anniversary</Text>
-            <Field name="anniversary"
-              component={ props =>
-                <DatePicker
-                  date={props.input.value}
-                  mode='date'
-                  confirmBtnText='Confirm'
-                  cancelBtnText='Cancel'
-                  placeholder='MM/DD/YYYY'
-                  format='MM/DD/YYYY'
-                  onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
-                  />
-              }/>
+          <View style={styles.dates}>
+            <View style={styles.date}>
+              <Text>Birthday</Text>
+              <Field name="birthday"
+                component={ props =>
+                  <DatePicker
+                    date={props.input.value}
+                    mode='date'
+                    confirmBtnText='Confirm'
+                    cancelBtnText='Cancel'
+                    placeholder='MM/DD/YYYY'
+                    format='MM/DD/YYYY'
+                    onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
+                    />
+                }/>
+            </View>
+            <View style={styles.date}>
+              <Text>Anniversary</Text>
+              <Field name="anniversary"
+                component={ props =>
+                  <DatePicker
+                    date={props.input.value}
+                    mode='date'
+                    confirmBtnText='Confirm'
+                    cancelBtnText='Cancel'
+                    placeholder='MM/DD/YYYY'
+                    format='MM/DD/YYYY'
+                    onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
+                    />
+                }/>
+            </View>
           </View>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
@@ -153,6 +158,7 @@ const styles = {
   container: {
     paddingLeft: 42,
     paddingRight: 42,
+    marginTop: -20,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -166,9 +172,17 @@ const styles = {
   },
   form: {
   },
+  photo: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20
+  },
   formItem:{
     marginLeft: 6,
     marginRight: 6
+  },
+  dates: {
+    marginBottom: 10
   },
   label: {
     color: 'black',
@@ -180,7 +194,7 @@ const styles = {
   },
   buttonGrid: {
   },
-  birthday: {
+  date: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',

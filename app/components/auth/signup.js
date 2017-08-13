@@ -11,6 +11,8 @@ import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 
 import { loginUser, signupUser, addAlert } from '../../actions';
 import {authUser} from '../../actions';
 import Login from './login';
+import Header from '../styling/header';
+import ButtonTextStyle from '../styling/button_text_style';
 
 const renderInput = ({
   input: { onChange, ...restInput },
@@ -49,7 +51,7 @@ const LSForm = props => {
     return (
       <Container style={ styles.container }>
         <Content style={ styles.content }>
-        <Text style={styles.title}>Sign Up</Text>
+        <Header><Text style={styles.title}>Sign Up</Text></Header>
           <Form style={ styles.form }>
           <Field name="email" label="Email" component={renderInput} />
           <Field name="password" secureTextEntry={true} label="Password" component={renderInput} />
@@ -65,9 +67,11 @@ const LSForm = props => {
                     style={styles.signupButton}
                     transparent
                     onPress={handleSubmit(onSignUp)} >
-                    <Text uppercase={false} style={styles.signupText}>
-                      register
-                    </Text>
+                    <ButtonTextStyle>
+                      <Text uppercase={false}>
+                        register
+                      </Text>
+                    </ButtonTextStyle>
                   </Button>
                 </Col>
               </Grid>
@@ -155,18 +159,14 @@ const styles = {
     marginRight: 6
   },
   signinButton: {
-    borderColor: 'black',
+    borderColor: '#12512d',
   },
   signinText: {
     color: 'black',
     fontSize: 12,
   },
   signupButton: {
-    borderColor: 'black',
-  },
-  signupText: {
-    color: 'black',
-    fontSize: 12,
+    borderColor: '#12512d',
   },
   error: {
     color: 'red',

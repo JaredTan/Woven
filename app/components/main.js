@@ -12,7 +12,6 @@ import TodoList from './todo_list';
 import UserProfileContainer from './user_profile/profile_container';
 import PlantContainer from './plant_container';
 import Chat from './chat';
-import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 import {
   Menu,
   MenuOptions,
@@ -32,7 +31,7 @@ class Main extends React.Component {
     this.resetTabs = this.resetTabs.bind(this);
     this.togglePlantTab = this.togglePlantTab.bind(this);
     this.toggleChatTab = this.toggleChatTab.bind(this);
-    this.redirectToTodos = this.redirectToTodos.bind(this);
+    this.toggleTodoTab = this.toggleTodoTab.bind(this);
     this.redirectToProfile = this.redirectToProfile.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
   }
@@ -55,20 +54,19 @@ class Main extends React.Component {
     this.setState({chat: true});
   }
 
-  redirectToTodos() {
-    this.props.navigator.push({
-      component: TodoList,
-      title: 'TodoList',
-      navigationBarHidden: true
-    });
+  toggleTodoTab() {
+    this.resetTabs();
+    this.setState({todo: true});
   }
 
   redirectToProfile() {
-    this.props.navigator.push({
-      component: UserProfileContainer,
-      title: 'User Profile',
-      navigationBarHidden: true
-    });
+    this.props.requestPair(this.props.currentUserId).then( () => {
+      this.props.navigator.push({
+        component: UserProfileContainer,
+        title: 'User Profile',
+        navigationBarHidden: true
+      });
+    })
   }
 
   handleLogOut() {
@@ -85,18 +83,20 @@ class Main extends React.Component {
         </ScrollView>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
-            <Icon name='flower' size={45} color={this.state.plant ? "white" : "#0c9258" }/>
+            <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleChatTab}>
-            <Icon name='message-processing' size={45} color={this.state.chat ? "white" : "#0c9258" }/>
+            <Icon name='message-processing' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.toggleTodoTab}>
+            <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <Menu>
            <MenuTrigger>
-             <Icon name='chevron-up' size={45} color="#0c9258"/>
+             <Icon name='chevron-up' size={38} color="#0c9258"/>
            </MenuTrigger>
              <MenuOptions>
                <MenuOption onSelect={this.handleLogOut} text='Log Out' />
-               <MenuOption onSelect={this.redirectToTodos} text='To-Dos' />
                <MenuOption onSelect={this.redirectToProfile} text='Profile' />
              </MenuOptions>
          </Menu>
@@ -117,7 +117,10 @@ const styles = StyleSheet.create({
   scrollView: {
   },
   navBar: {
-    height: 55,
+    height: '8%',
+    padding: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
     backgroundColor: '#2ecc71',
     flexDirection: 'row',
     alignItems: 'center',

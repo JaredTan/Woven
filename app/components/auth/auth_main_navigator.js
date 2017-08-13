@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import SignUpNavigator from './signup_navigator';
 import LogInNavigator from './login_navigator';
+import LogIn from './login';
+import Header from '../styling/header';
 
 
 var AuthMainNavigator = React.createClass({
@@ -35,12 +37,8 @@ var AuthMainNavigator = React.createClass({
           <Text style={styles.title}>Woven</Text>
         </View>
         <View style={styles.container}>
-          <TouchableOpacity onPress={this.redirectToSignUp}>
-            <Text style={styles.signup}>Sign Up</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.redirectToLogin}>
-            <Text style={styles.login}>Log In</Text>
-          </TouchableOpacity>
+          <LogIn/>
+  
         </View>
       </View>
     );
@@ -70,14 +68,16 @@ const styles = {
     backgroundColor: '#2ecc71'
   },
   login: {
-    color: 'black',
+    fontWeight: 'bold',
+    color: '#208e4e',
     borderStyle: 'solid',
     borderColor: 'black',
     padding: 50,
     fontSize: 24,
   },
   signup: {
-    color: 'black',
+    fontWeight: 'bold',
+    color: '#208e4e',
     borderStyle: 'solid',
     borderColor: 'black',
     padding: 50,
