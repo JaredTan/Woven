@@ -42,12 +42,10 @@ class Chat extends Component {
   }
 
   onReceivedMessage(messages) {
-
     this._storeMessages(messages);
   }
 
   onSend(messages=[]) {
-
     this.socket.emit('message', messages[0]);
     this._storeMessages(messages);
   }
@@ -63,6 +61,7 @@ class Chat extends Component {
   }
 
   render() {
+    console.log(this.props.users);
     if (!this.props.users) { return null; }
     return (
       <View style={styles.chatbox}>
@@ -77,10 +76,6 @@ class Chat extends Component {
           />
       </View>
     );
-  }
-
-  renderAvatar() {
-
   }
 
   renderBubble(props) {
@@ -114,8 +109,13 @@ const styles = StyleSheet.create({
     color: '#2ecc71'
   },
   topBar: {
+    flex: 1,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100%',
     padding: 16,
-    paddingTop: 18,
+    paddingTop: 8,
     paddingBottom: 8,
     flexDirection: 'row',
     justifyContent: 'center',

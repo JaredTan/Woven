@@ -39,7 +39,7 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <TouchableOpacity onPress={this.navToPlant}>
           <Icon name='flower' size={45} color="white"/>
         </TouchableOpacity>
@@ -50,14 +50,5 @@ class NavBar extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    height: 55,
-    backgroundColor: '#2ecc71',
-    flexDirection: 'row'
-  },
-});
 
 export default NavBar;

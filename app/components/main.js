@@ -83,17 +83,17 @@ class Main extends React.Component {
         </ScrollView>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
-            <Icon name='flower' size={45} color={this.state.plant ? "white" : "#0c9258" }/>
+            <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleChatTab}>
-            <Icon name='message-processing' size={45} color={this.state.chat ? "white" : "#0c9258" }/>
+            <Icon name='message-processing' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleTodoTab}>
-            <Icon name='lightbulb' size={45} color={this.state.todo ? "white" : "#0c9258" }/>
+            <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <Menu>
            <MenuTrigger>
-             <Icon name='chevron-up' size={45} color="#0c9258"/>
+             <Icon name='chevron-up' size={38} color="#0c9258"/>
            </MenuTrigger>
              <MenuOptions>
                <MenuOption onSelect={this.handleLogOut} text='Log Out' />
@@ -117,7 +117,10 @@ const styles = StyleSheet.create({
   scrollView: {
   },
   navBar: {
-    height: 55,
+    height: '8%',
+    padding: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
     backgroundColor: '#2ecc71',
     flexDirection: 'row',
     alignItems: 'center',
