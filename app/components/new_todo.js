@@ -13,29 +13,38 @@ import {
 
 import {createTodo} from '../actions';
 
-var TodoList = React.createClass({
-  getInitialState() {
-    return {
+class TodoList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       newTodoText: undefined,
       loading: false
     }
-  },
+
+    this.addNewTodo = this.addNewTodo.bind(this);
+    this.onBack = this.onBack.bind(this);
+  }
+
   addNewTodo() {
-    var {newTodoText} = this.state;
-    var {dispatch} = this.props;
+    let {newTodoText} = this.state;
+    let {dispatch} = this.props;
     if (newTodoText && newTodoText != "") {
       this.setState({loading: true});
-      dispatch(createTodo(newTodoText)).then(() => {
+      dispatch(createTodo(this.props.connectionId, newTodoText)).then(() => {
         this.setState({loading: false});
         this.props.navigator.pop();
       });
     }
-  },
+  }
+
   onBack() {
     this.props.navigator.pop();
-  },
+  }
+
+
   render() {
-    var renderScrollViewOrLoading = () => {
+    let renderScrollViewOrLoading = () => {
       if (this.state.loading) {
         return (
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -65,20 +74,22 @@ var TodoList = React.createClass({
       <View style={styles.container}>
         <View style={styles.topBar}>
           <TouchableOpacity onPress={this.onBack}>
-            <Icon name="chevron-left" size={20} color="white"/>
+            <Icon name="chevron-left" size={30} color="white"/>
           </TouchableOpacity>
           <Text style={styles.title}>
             New To-Do
           </Text>
           <TouchableOpacity onPress={this.addNewTodo}>
-            <Icon name="check" size={20} color="white"/>
+            <Icon name="check" size={30} color="white"/>
           </TouchableOpacity>
         </View>
         {renderScrollViewOrLoading()}
       </View>
     );
   }
-});
+
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -112,10 +123,11 @@ const styles = StyleSheet.create({
   }
 });
 
-var mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    connectionId: state.auth.connectionId
   }
 }
 
-module.exports = connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps)(TodoList);
