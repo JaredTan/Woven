@@ -61,6 +61,7 @@ class UserProfile extends React.Component {
           <Icon name="pencil" size={24} color="white"/>
         </TouchableOpacity>
       </View>
+
       <View style={styles.info}>
         <View style={styles.header}>
          <Image
@@ -75,10 +76,9 @@ class UserProfile extends React.Component {
              uri: currentUser.imageUrl
            }}
          />
-
          <Text style={styles.name}><BodyText>{currentUser.firstName} {currentUser.lastName}</BodyText></Text>
-
        </View>
+
        <View style={styles.body}>
         <BodyText>
            <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
@@ -127,8 +127,7 @@ class UserProfile extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
+    paddingBottom: '5%'
   },
   topBar: {
     padding: 16,
@@ -163,6 +162,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   anniversary: {
+    flex: 1,
     alignItems: 'center',
   },
   partner: {

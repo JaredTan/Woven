@@ -42,12 +42,10 @@ class Chat extends Component {
   }
 
   onReceivedMessage(messages) {
-
     this._storeMessages(messages);
   }
 
   onSend(messages=[]) {
-
     this.socket.emit('message', messages[0]);
     this._storeMessages(messages);
   }
@@ -57,12 +55,13 @@ class Chat extends Component {
     return {
       _id: this.props.users.currentUser._id.toString(),
       name: this.props.users.currentUser.firstName,
-      avatar: this.props.users.partner.imageUrl,
+      avatar: this.props.users.currentUser.imageUrl,
       connectionId: this.props.users.currentUser.connectionId
     };
   }
 
   render() {
+    console.log(this.props.users);
     if (!this.props.users) { return null; }
     return (
       <View style={styles.chatbox}>
@@ -74,14 +73,9 @@ class Chat extends Component {
           onSend={this.onSend}
           user={this.giftedUser()}
           renderBubble={this.renderBubble.bind(this)}
-          renderAvatar={this.renderAvatar.bind(this)}
           />
       </View>
     );
-  }
-
-  renderAvatar() {
-
   }
 
   renderBubble(props) {
@@ -115,8 +109,13 @@ const styles = StyleSheet.create({
     color: '#2ecc71'
   },
   topBar: {
+    flex: 1,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: '100%',
     padding: 16,
-    paddingTop: 18,
+    paddingTop: 8,
     paddingBottom: 8,
     flexDirection: 'row',
     justifyContent: 'center',
