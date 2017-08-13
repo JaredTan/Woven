@@ -14,6 +14,7 @@ import {
 
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
+import plantMessage from './plant/plant_mesage';
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
@@ -30,7 +31,8 @@ class Plant extends React.Component {
       health: props.plant.health,
       lastWater: props.plant.lastWater,
       nextWater: 0,
-      displayError: ""
+      displayError: "",
+      message: ""
     };
 
     this.waterPlant = this.waterPlant.bind(this);
@@ -40,6 +42,7 @@ class Plant extends React.Component {
     this.updateHealth = this.updateHealth.bind(this);
     this.updateNextWater = this.updateNextWater.bind(this);
     this.displayDisableMessage = this.displayDisableMessage.bind(this);
+    this.displayMessage = this.displayMessage.bind(this);
   }
 
   componentWillMount() {
@@ -144,6 +147,17 @@ class Plant extends React.Component {
     }, 700);
   }
 
+  displayMessage(type) {
+
+    this.setState ({
+      message: type
+    });
+    let timeout = setTimeout(()=>{
+      this.setState({
+        message: ""
+      });
+    }, 700);
+  }
 
   render() {
 
@@ -158,17 +172,6 @@ class Plant extends React.Component {
             <Image source={background} style={{width, height}}>
             </Image>
           </View>
-
-          <TouchableWithoutFeedback
-            style={styles.wrapper}
-            onPress={() => Vibration.vibrate([0, 500, 200, 500])}>
-            <View style={styles.header}>
-              <Text style={styles.name}>
-                {this.props.plant.name} says Hi!
-              </Text>
-            </View>
-          </TouchableWithoutFeedback>
-
 
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
@@ -188,9 +191,22 @@ class Plant extends React.Component {
             />
           </TouchableOpacity>
 
-          <View style={styles.plant}>
-            {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
-          </View>
+          {<plantMessage message={this.state.message} name={this.props.plant.name}/>}
+
+          <TouchableWithoutFeedback
+            style={styles.wrapper}
+            onPress={
+              () => {Vibration.vibrate([0, 500, 200, 500]);
+                this.displayMessage("greeting");
+              }
+            }>
+
+            <View style={styles.plant}>
+              {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
+            </View>
+
+          </TouchableWithoutFeedback>
+
           <View style={styles.water}>
             {water}
           </View>
@@ -222,11 +238,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 60,
    },
-   name: {
-     fontSize: 25,
-     fontWeight: 'bold',
-     color: 'black',
-   },
    plant: {
      position: 'absolute',
      bottom: 40,
@@ -246,22 +257,22 @@ const styles = StyleSheet.create({
     top: 30,
     borderRadius: 180,
    },
-   displayError: {
-    position: 'absolute',
-    color: 'red',
-    top: 120,
-    alignSelf: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-    shadowColor: '#FFF',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
-   },
    roundedIcon: {
     width: 65,
     height: 65,
     resizeMode: 'contain'
+  },
+  displayError: {
+   position: 'absolute',
+   color: 'red',
+   top: 120,
+   alignSelf: 'center',
+   fontWeight: 'bold',
+   fontSize: 20,
+   shadowColor: '#FFF',
+   shadowOffset: { width: 0, height: 0 },
+   shadowOpacity: 0.5,
+   shadowRadius: 1,
   },
 });
 
