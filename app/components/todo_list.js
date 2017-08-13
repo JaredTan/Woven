@@ -7,11 +7,11 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  TextInput
 } from 'react-native';
 
-import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
-import NewTodo from './new_todo';
+import {unauthUser, getTodos, deleteTodo, setTodos, createTodo} from '../actions';
 import TodoItem from './todo_item';
 
 class TodoList extends React.Component {
@@ -19,26 +19,26 @@ class TodoList extends React.Component {
     super(props);
 
     this.state = {
-      refreshing: false
+      refreshing: false,
+      newTodoText: undefined,
+      loading: false
     }
 
-    this.onBack = this.onBack.bind(this);
     this.addNewTodo = this.addNewTodo.bind(this);
     this.onRefresh = this.onRefresh.bind(this);
 
   }
 
-  onBack() {
-    this.props.dispatch(setTodos([]));
-    this.props.navigator.pop();
-  }
 
   addNewTodo() {
-    this.props.navigator.push({
-      component: NewTodo,
-      title: 'New Todo',
-      navigationBarHidden: true
-    });
+    let {newTodoText} = this.state;
+    let {dispatch} = this.props;
+    if (newTodoText && newTodoText != "") {
+      this.setState({loading: true});
+      dispatch(createTodo(this.props.connectionId, newTodoText)).then(() => {
+        this.setState({loading: false});
+      });
+    }
   }
 
   onRefresh() {
@@ -56,12 +56,36 @@ class TodoList extends React.Component {
         );
       });
     };
+    let renderScrollViewOrLoading = () => {
+      if (this.state.loading) {
+        return (
+          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>
+              Creating todo...
+            </Text>
+          </View>
+        );
+      } else {
+        return (
+          <ScrollView
+            automaticallyAdjustContentInsets={false}
+            contentContainerStyle={styles.scrollViewContainer}>
+            <View style={styles.inputContainer}>
+              <TextInput
+                onChangeText={(newTodoText) => {
+                  this.setState({newTodoText})
+                }}
+                placeholder="New To-Do Text"
+                style={styles.input}/>
+            </View>
+          </ScrollView>
+        );
+      }
+    }
+
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
-          <TouchableOpacity onPress={this.onBack}>
-            <Icon name="chevron-left" size={30} color="white"/>
-          </TouchableOpacity>
           <Text style={styles.title}>
             To-Do List
           </Text>
@@ -77,6 +101,7 @@ class TodoList extends React.Component {
           }
           automaticallyAdjustContentInsets={false}
           contentContainerStyle={styles.scrollViewContainer}>
+          {renderScrollViewOrLoading()}
           {renderTodos()}
         </ScrollView>
       </View>
@@ -113,6 +138,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
+  },
+  inputContainer: {
+    padding: 5,
+    paddingLeft: 10,
+    margin: 10,
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: "#2ecc71"
+  },
+  input: {
+    height: 26
   }
 });
 

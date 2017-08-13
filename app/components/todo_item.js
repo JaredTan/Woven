@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
-import NewTodo from './new_todo';
 
 class TodoItem extends React.Component {
   constructor(props) {
