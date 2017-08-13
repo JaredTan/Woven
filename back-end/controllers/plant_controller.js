@@ -10,7 +10,7 @@ exports.show = function(req, res, next) {
 
 exports.update = function(req, res, next) {
   const plantQuery = {_id: req.params.connection_id};
-  console.log(req);
+  (req);
   const { name, lastWater, happiness, health } = req.body.plant;
   const update = req.body.update;
 
@@ -18,7 +18,7 @@ exports.update = function(req, res, next) {
     health = 100;
   }
 
-  console.log(update);
+  (update);
 
   switch(update) {
     case "NAME":
