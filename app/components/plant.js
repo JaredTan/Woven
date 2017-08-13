@@ -10,19 +10,14 @@ import {
   Dimensions
 } from 'react-native';
 
-
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
-
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
 
 
-
-
 const {width, height} = Dimensions.get('window');
-('Width: ', width, 'Height: ', height);
 
 class Plant extends React.Component {
   constructor(props) {
@@ -31,7 +26,10 @@ class Plant extends React.Component {
       water: false,
 
       health: props.plant.health,
-      lastWater: props.plant.lastWater
+      lastWater: props.plant.lastWater,
+      nextWater: this.updateNextWater,
+      disabledWater: false,
+      displayError: <Text></Text>
     };
 
     this.waterPlant = this.waterPlant.bind(this);
@@ -39,11 +37,22 @@ class Plant extends React.Component {
     this.handleUpdatePlant = this.handleUpdatePlant.bind(this);
     this.calculateHealth = this.calculateHealth.bind(this);
     this.updateHealth = this.updateHealth.bind(this);
+    this.updateNextWater = this.updateNextWater.bind(this);
+    this.setWaterStatus = this.setWaterStatus.bind(this);
+    this.displayDisableMessage = this.displayDisableMessage.bind(this);
   }
 
   componentWillMount() {
     this.props.fetchPlant(this.props.connectionId);
     this.calculateHealth();
+    this.setWaterStatus();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.props.plant = this.nextProps.plant;
+    this.calculateHealth();
+    this.state.lastWater = this.props.plant.lastWater;
+    this.setWaterStatus();
   }
 
   dateDiff(){
@@ -60,6 +69,7 @@ class Plant extends React.Component {
 
     let tempHealth = this.props.plant.health - decreasedHealth;
     if (tempHealth < 0) {tempHealth = 0;}
+
     this.setState({
       health: tempHealth
     });
@@ -71,6 +81,19 @@ class Plant extends React.Component {
     return health;
   }
 
+  updateNextWater() {
+    let waterDate = new Date(this.state.lastWater);
+
+    waterDate.setMinutes(waterDate.getMinutes()+5);
+
+    this.state.nextWater = waterDate
+
+    console.log(waterDate);
+    console.log(this.state.lastWater);
+    console.log(this.state.nextWater);
+    console.log("/////////////////////////////")
+  }
+
   handleUpdatePlant() {
     this.props.plant.lastWater = this.state.lastWater;
     this.props.plant.health = this.state.health;
@@ -79,11 +102,26 @@ class Plant extends React.Component {
   }
 
 
+  setWaterStatus() {
+    if (this.state.nextWater > this.state.lastWater) {
+      this.setState({
+        disabledWater: false
+      });
+    } else {
+      this.setState({
+        disabledWater: true
+      });
+    }
+  }
+
+
   waterPlant() {
     this.setState({
       water: true,
       health: this.updateHealth(),
-      lastWater: Date.now()
+      lastWater: new Date(Date.now()),
+      nextWater: this.updateNextWater(),
+      disabledWater: true
     });
 
     setTimeout(()=>{
@@ -91,6 +129,8 @@ class Plant extends React.Component {
         water: false
       });
     }, 5000);
+
+    this.handleUpdatePlant();
   }
 
   getBackground(){
@@ -109,6 +149,18 @@ class Plant extends React.Component {
 
   }
 
+  displayDisableMessage() {
+    this.setState ({
+      displayError: "I'm full!"
+    });
+    setTimeout(()=>{
+      this.setState({
+        displayError: ""
+      });
+    }, 700);
+  }
+
+
   render() {
 
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
@@ -124,15 +176,19 @@ class Plant extends React.Component {
           </View>
           <View style={styles.header}>
             <Text style={styles.name}>
-              Greggles
+              {this.props.plant.name} says `Hi`!
             </Text>
           </View>
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
 
+          <Text style={styles.displayError}>
+            {this.state.displayError}
+          </Text>
+
           <TouchableOpacity
-            onPress={this.waterPlant}
+            onPress={this.state.disabledWater ? this.displayDisableMessage : this.waterPlant}
             style={styles.waterIcon}
           >
             <Image
@@ -198,6 +254,14 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     top: 30,
     borderRadius: 180,
+   },
+   displayError: {
+     position: 'absolute',
+     color: 'red',
+     top: 100,
+     alignSelf: 'center',
+     fontWeight: 'bold',
+     fontSize: 20
    },
    roundedIcon: {
     width: 65,
