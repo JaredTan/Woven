@@ -8,13 +8,13 @@ import {
   View,
   Image,
   DeviceEventEmitter
-} from 'react-native'
-import { Field, reduxForm, change } from 'redux-form'
+} from 'react-native';
+import { Field, reduxForm, change } from 'redux-form';
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
 import {addAlert, updateUser } from '../../actions';
 import PhotoUpload from 'react-native-photo-upload';
-
-
+import DatePicker from 'react-native-datepicker';
+import moment from 'moment';
 
 
 const renderInput = ({
@@ -46,7 +46,7 @@ const renderInput = ({
 
 
 const handleEdit = (props, dispatch, payload) => {
-  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.imageUrl, payload.navigator));
+  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.imageUrl, props.birthday, props.anniversary));
   payload.navigator.pop();
 }
 
@@ -76,6 +76,36 @@ const EditForm = (props) => {
                }}
              />
           </PhotoUpload>
+          <View style={styles.birthday}>
+            <Text>Birthday</Text>
+            <Field name="birthday"
+              component={ props =>
+                <DatePicker
+                  date={props.input.value}
+                  mode='date'
+                  confirmBtnText='Confirm'
+                  cancelBtnText='Cancel'
+                  placeholder='MM/DD/YYYY'
+                  format='MM/DD/YYYY'
+                  onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
+                  />
+              }/>
+          </View>
+          <View style={styles.birthday}>
+            <Text>Anniversary</Text>
+            <Field name="anniversary"
+              component={ props =>
+                <DatePicker
+                  date={props.input.value}
+                  mode='date'
+                  confirmBtnText='Confirm'
+                  cancelBtnText='Cancel'
+                  placeholder='MM/DD/YYYY'
+                  format='MM/DD/YYYY'
+                  onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
+                  />
+              }/>
+          </View>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
             <Grid style={styles.buttonGrid}>
@@ -101,7 +131,7 @@ const EditForm = (props) => {
 
 EditForm = reduxForm({
   form: 'edit-form',
-  fields: ['firstName', 'lastName', 'currentUserId', 'imageUrl'],
+  fields: ['firstName', 'lastName', 'currentUserId', 'imageUrl', 'birthday', 'anniversary'],
 })(EditForm)
 
 EditForm = connect(
@@ -110,7 +140,9 @@ EditForm = connect(
       firstName: state.users.currentUser.firstName,
       lastName: state.users.currentUser.lastName,
       currentUserId: state.users.currentUser._id,
-      imageUrl: state.users.currentUser.imageUrl
+      imageUrl: state.users.currentUser.imageUrl,
+      birthday: moment(new Date(state.users.currentUser.birthday)).format("MM/DD/YYYY"),
+      anniversary: moment(new Date(state.users.currentUser.anniversary)).format("MM/DD/YYYY")
     }
   })
 )(EditForm)
@@ -147,6 +179,12 @@ const styles = {
     textAlign: 'center',
   },
   buttonGrid: {
+  },
+  birthday: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginTop: 10
   },
   buttonContainer: {
     marginTop: 24,
