@@ -57,7 +57,7 @@ class Chat extends Component {
     return {
       _id: this.props.users.currentUser._id.toString(),
       name: this.props.users.currentUser.firstName,
-      avatar: this.props.users.partner.imageUrl,
+      avatar: this.props.users.currentUser.imageUrl,
       connectionId: this.props.users.currentUser.connectionId
     };
   }
@@ -74,7 +74,6 @@ class Chat extends Component {
           onSend={this.onSend}
           user={this.giftedUser()}
           renderBubble={this.renderBubble.bind(this)}
-          renderAvatar={this.renderAvatar.bind(this)}
           />
       </View>
     );

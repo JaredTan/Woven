@@ -8,12 +8,6 @@ exports.show = function(req, res, next) {
   })
 }
 
-exports.index = function(req, res, next) {
-  User.find({}, function(err, users) {
-    res.send(users);
-  })
-};
-
 exports.update = function(req, res, next) {
     const userQuery = {_id: req.params.user_id};
     User.update(userQuery, {
