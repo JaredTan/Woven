@@ -4,11 +4,11 @@ import * as Keychain from 'react-native-keychain';
 import {TODOS_URL, TODO_URL} from '../api';
 import {addAlert} from './alert_actions';
 
-exports.createTodo = (text) => {
+exports.createTodo = (connectionId, text) => {
   return function(dispatch) {
     return Keychain.getGenericPassword().then((credentials) => {
       var {username, password} = credentials;
-      return axios.post(TODOS_URL(username), {text}, {
+      return axios.post(TODOS_URL(connectionId), {text}, {
         headers: {authorization: password}
       }).then((response) => {
         dispatch(addTodo(response.data.todo));
@@ -19,14 +19,14 @@ exports.createTodo = (text) => {
   };
 };
 
-exports.deleteTodo = (todo_id) => {
+exports.deleteTodo = (connectionId, todoId) => {
   return function(dispatch) {
     return Keychain.getGenericPassword().then((credentials) => {
       var {username, password} = credentials;
-      return axios.delete(TODO_URL(username, todo_id), {
+      return axios.delete(TODO_URL(connectionId, todoId), {
         headers: {authorization: password}
       }).then((response) => {
-        dispatch(removeTodo(todo_id));
+        dispatch(removeTodo(todoId));
       }).catch((err) => {
         dispatch(addAlert("Couldn't delete todo."));
       });
@@ -34,10 +34,10 @@ exports.deleteTodo = (todo_id) => {
   };
 };
 
-exports.getTodos = function(dispatch) {
+exports.getTodos = (connectionId) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
-    return axios.get(TODOS_URL(username), {
+    return axios.get(TODOS_URL(connectionId), {
       headers: {authorization: password}
     }).then((response) => {
       dispatch(setTodos(response.data.todos));
@@ -54,10 +54,10 @@ var addTodo = (newTodo) => {
   };
 };
 
-var removeTodo = (todo_id) => {
+var removeTodo = (todoId) => {
   return {
     type: 'REMOVE_TODO',
-    todo_id
+    todoId
   };
 };
 

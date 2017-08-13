@@ -35,19 +35,19 @@ class Chat extends Component {
 
   determineUser() {
     let userId = this.props.users.currentUser._id;
-    console.log(userId, "user joined!");
+    (userId, "user joined!");
     this.socket.emit('userJoined', userId);
     this.setState({ userId });
   }
 
   onReceivedMessage(messages) {
-    console.log("onReceivedMessage");
+    ("onReceivedMessage");
     this._storeMessages(messages);
   }
 
   onSend(messages=[]) {
 
-    console.log(messages[0], "emitting message! onSend");
+    (messages[0], "emitting message! onSend");
     this.socket.emit('message', messages[0]);
     this._storeMessages(messages);
   }
@@ -91,7 +91,7 @@ class Chat extends Component {
 
   _storeMessages(messages) {
     this.setState(Object.assign({}, {messages: messages.concat(this.state.messages)}));
-    console.log(this);
+    (this);
   }
 }
 

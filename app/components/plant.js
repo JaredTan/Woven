@@ -22,7 +22,7 @@ import BACKGROUND from '../assets/spritesheets/background/background';
 
 
 const {width, height} = Dimensions.get('window');
-console.log('Width: ', width, 'Height: ', height);
+('Width: ', width, 'Height: ', height);
 
 class Plant extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class Plant extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
+    (this.props);
     this.props.fetchPlant(this.props.connectionId);
   }
 
@@ -77,7 +77,7 @@ class Plant extends React.Component {
 
     return (
       <View style={styles.container}>
-          
+
           <View style={styles.background}>
             <Image source={background} style={{width, height}}>
             </Image>

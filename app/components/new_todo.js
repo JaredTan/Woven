@@ -25,7 +25,7 @@ var TodoList = React.createClass({
     var {dispatch} = this.props;
     if (newTodoText && newTodoText != "") {
       this.setState({loading: true});
-      dispatch(createTodo(newTodoText)).then(() => {
+      dispatch(createTodo(this.props.connectionId, newTodoText)).then(() => {
         this.setState({loading: false});
         this.props.navigator.pop();
       });
@@ -114,7 +114,8 @@ const styles = StyleSheet.create({
 
 var mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    todos: state.todos,
+    connectionId: state.auth.connectionId
   }
 }
 

@@ -35,12 +35,12 @@ router.route('/connection/:connectionId')
 
 // Todo Routes
 // -----------------------------------------------------------------------------
-router.route('/users/:user_id/todos')
-  .post(requireAuth, TodosController.create)
-  .get(requireAuth, TodosController.index);
+router.route('/connections/:connectionId/todos')
+  .post(TodosController.create)
+  .get(TodosController.index);
 
-router.route('/users/:user_id/todos/:todo_id')
-  .delete(requireAuth, TodosController.destroy);
+router.route('/connections/:connectionId/todos/:todoId')
+  .delete(TodosController.destroy);
 
   // Plant Routes
   // -----------------------------------------------------------------------------
