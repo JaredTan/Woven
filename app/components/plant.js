@@ -39,6 +39,7 @@ class Plant extends React.Component {
     this.updateHealth = this.updateHealth.bind(this);
     this.updateNextWater = this.updateNextWater.bind(this);
     this.setWaterStatus = this.setWaterStatus.bind(this);
+    this.displayDisableMessage = this.displayDisableMessage.bind(this);
   }
 
   componentWillMount() {
@@ -148,13 +149,13 @@ class Plant extends React.Component {
 
   displayDisableMessage() {
     this.setState ({
-      displayError: <Text style={styles.displayError}>I'm full!</Text>
+      displayError: "I'm full!"
     });
     setTimeout(()=>{
       this.setState({
-        displayError: <Text></Text>
+        displayError: ""
       });
-    }, 5000);
+    }, 700);
   }
 
 
@@ -180,7 +181,9 @@ class Plant extends React.Component {
             <Healthbar health={this.state.health} />
           </View>
 
-          {this.state.displayError}
+          <Text style={styles.displayError}>
+            {this.state.displayError}
+          </Text>
 
           <TouchableOpacity
             onPress={this.state.disabledWater ? this.displayDisableMessage : this.waterPlant}
@@ -252,8 +255,10 @@ const styles = StyleSheet.create({
    displayError: {
      position: 'absolute',
      color: 'red',
-     top: 70,
-     alignSelf: 'center'
+     top: 100,
+     alignSelf: 'center',
+     fontWeight: 'bold',
+     fontSize: 20
    },
    roundedIcon: {
     width: 65,
