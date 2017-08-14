@@ -7,14 +7,11 @@ import {
   TouchableOpacity,
   NavigatorIOS,
   Animated,
-  Dimensions,
-  Vibration,
-  TouchableWithoutFeedback
+  Dimensions
 } from 'react-native';
 
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
-import PlantMessage from './plant/plant_messages';
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
@@ -31,7 +28,7 @@ class Plant extends React.Component {
       health: props.plant.health,
       lastWater: props.plant.lastWater,
       nextWater: 0,
-      message: ""
+      displayError: ""
     };
 
     this.waterPlant = this.waterPlant.bind(this);
@@ -40,7 +37,7 @@ class Plant extends React.Component {
     this.calculateHealth = this.calculateHealth.bind(this);
     this.updateHealth = this.updateHealth.bind(this);
     this.updateNextWater = this.updateNextWater.bind(this);
-    this.displayMessage = this.displayMessage.bind(this);
+    this.displayDisableMessage = this.displayDisableMessage.bind(this);
   }
 
   componentWillMount() {
@@ -99,7 +96,7 @@ class Plant extends React.Component {
 
   waterPlant() {
     if (this.state.nextWater > this.state.lastWater) {
-      this.displayMessage("full", 700);
+      this.displayDisableMessage();
     } else {
       this.setState({
         water: true,
@@ -134,16 +131,17 @@ class Plant extends React.Component {
 
   }
 
-  displayMessage(type, time) {
+  displayDisableMessage() {
     this.setState ({
-      message: type
+      displayError: "I'm full!"
     });
-    let timeout = setTimeout(()=>{
+    setTimeout(()=>{
       this.setState({
-        message: ""
+        displayError: ""
       });
-    }, time);
+    }, 700);
   }
+
 
   render() {
 
@@ -158,39 +156,33 @@ class Plant extends React.Component {
             </Image>
           </View>
 
+          <View style={styles.header}>
+            <Text style={styles.greeting}>
+              {this.props.plant.name} says `Hi`!
+            </Text>
+          </View>
+
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
-
-          <TouchableOpacity
-            onPress={this.waterPlant}
-            style={styles.waterIcon}
-          >
-            <Image
-              style={styles.roundedIcon}
-              source={require('../assets/icons/waterIcon.png')}
-            />
-          </TouchableOpacity>
-
-          <View>
-            <PlantMessage
-            message={this.state.message}
-            name={this.props.plant.name} />
+          <View style={styles.waterIcon}>
+            <TouchableOpacity
+              onPress={this.waterPlant}
+              >
+              <Image
+                style={styles.roundedIcon}
+                source={require('../assets/icons/waterIcon.png')}
+                />
+            </TouchableOpacity>
           </View>
 
-          <TouchableWithoutFeedback
-            style={styles.wrapper}
-            onPress={
-              () => {Vibration.vibrate([0, 500, 200, 500]);
-                this.displayMessage("greeting", 900);
-              }
-            }>
+          <Text style={styles.displayError}>
+            {this.state.displayError}
+          </Text>
 
-            <View style={styles.plant}>
-              {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
-            </View>
-          </TouchableWithoutFeedback>
-
+          <View style={styles.plant}>
+            {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
+          </View>
           <View style={styles.water}>
             {water}
           </View>
@@ -215,30 +207,50 @@ const styles = StyleSheet.create({
     top: Dimensions.get('window').height*.1,
     left: Dimensions.get('window').width*.02
   },
-   plant: {
-     position: 'absolute',
-    top: Dimensions.get('window').height*.3,
-     alignSelf: 'center',
-     backgroundColor: 'transparent',
-   },
-   water: {
-     position: 'absolute',
-     bottom: '40%',
-     alignSelf: 'center'
-   },
-   waterIcon: {
-    backgroundColor: 'transparent',
-    width: 65,
-    height: 65,
-    top: Dimensions.get('window').height*.08,
+  waterIcon: {
+    top: Dimensions.get('window').height*.05,
     left: Dimensions.get('window').width*.8,
-    borderRadius: 180,
-   },
-   roundedIcon: {
+  },
+  plant: {
+    top: Dimensions.get('window').height*.3,
+    position: 'absolute',
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+  },
+  header: {
+    top: Dimensions.get('window').height*.16,
+    backgroundColor: "#f2f2f2",
+  },
+  greeting: {
+    fontSize: 20,
+    opacity: .6,
+    padding: 13,
+    borderRadius: 60,
+    alignSelf: 'center'
+  },
+  water: {
+    top: Dimensions.get('window').height*.3,
+    position: 'absolute',
+    alignSelf: 'center'
+  },
+  displayError: {
+    position: 'absolute',
+    color: '#f4967e',
+    top: Dimensions.get('window').height*.15,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    letterSpacing: 2,
+    shadowColor: '#FFF',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
+  },
+  roundedIcon: {
     width: 65,
     height: 65,
     resizeMode: 'contain'
-  }
+  },
 });
 
 
