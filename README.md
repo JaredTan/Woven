@@ -8,7 +8,7 @@ Technology has allowed people to connect with the world in a new and powerful wa
 
 
 <p align="center">
-  <img src="http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_413/v1502701090/ezgif.com-optimize_io5ipz.gif"/>
+  <img src="http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_500/v1502703092/ezgif.com-optimize_1_xsq4ix.gif"/>
 </p>
 
 ## Technologies
