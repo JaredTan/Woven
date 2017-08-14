@@ -9,6 +9,7 @@ import {
   Image,
   DeviceEventEmitter
 } from 'react-native';
+import Dimensions from 'Dimensions';
 import { Field, reduxForm, change } from 'redux-form';
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
 import {addAlert, updateUser } from '../../actions';
@@ -66,10 +67,9 @@ const EditForm = (props) => {
               >
              <Image
                style={{
-                 paddingVertical: 30,
-                 width: 150,
-                 height: 150,
-                 borderRadius: 75
+                 width: Dimensions.get('window').width*.3,
+                 height: Dimensions.get('window').width*.3,
+                 borderRadius: Dimensions.get('window').width*.15
                }}
                resizeMode='cover'
                source={{

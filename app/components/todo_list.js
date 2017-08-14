@@ -91,7 +91,7 @@ class TodoList extends React.Component {
           </Text>
         </View>
 
-        <View>
+        <View style={{flex: 1}}>
           <ScrollView
             style={styles.todos}
             refreshControl={
@@ -142,8 +142,8 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height*.9
   },
   newTodoBar: {
-    top: Dimensions.get('window').height*.1,
     alignSelf: 'center',
+    top: Dimensions.get('window').height*.1,
     width: Dimensions.get('window').width*.9,
     paddingTop: Dimensions.get('window').height*.01,
     paddingBottom: Dimensions.get('window').height*.01,
@@ -152,16 +152,16 @@ const styles = StyleSheet.create({
     borderColor: '#2ecc71'
   },
   inputContainer: {
+    paddingLeft: Dimensions.get('window').width*.03,
+    paddingRight: Dimensions.get('window').width*.03,
     flexDirection: 'row'
   },
   plus: {
-    flex: 1,
     width: 20,
     alignItems: 'center',
     backgroundColor: 'transparent'
   },
   input: {
-    paddingLeft: Dimensions.get('window').height*.02,
     flex: 9,
     fontSize: 15
   }
