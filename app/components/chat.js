@@ -62,16 +62,18 @@ class Chat extends Component {
   render() {
     if (!this.props.users) { return null; }
     return (
-      <View style={styles.chatbox}>
+      <View style={styles.container}>
         <View style={styles.topBar}>
           <Text style={styles.title}>Chat</Text>
         </View>
-        <GiftedChat
-          messages={this.state.messages}
-          onSend={this.onSend}
-          user={this.giftedUser()}
-          renderBubble={this.renderBubble.bind(this)}
-          />
+        <View style={styles.giftedChat}>
+          <GiftedChat
+            messages={this.state.messages}
+            onSend={this.onSend}
+            user={this.giftedUser()}
+            renderBubble={this.renderBubble.bind(this)}
+            />
+        </View>
       </View>
     );
   }
@@ -95,30 +97,26 @@ class Chat extends Component {
 }
 
 const styles = StyleSheet.create({
-  chatbox: {
-    height: Dimensions.get('window').height-75
+  container: {
+    flex: 1
   },
   title: {
+    top: Dimensions.get('window').height*.03,
     color: 'white',
     fontSize: 20,
     alignSelf: 'center'
   },
-  filler: {
-    color: '#2ecc71'
-  },
   topBar: {
-    flex: 1,
     position: 'absolute',
+    height: Dimensions.get('window').height*.08,
     left: 0,
     top: 0,
     width: '100%',
-    padding: 16,
-    paddingTop: 8,
-    paddingBottom: 8,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#2ecc71'
+  },
+  giftedChat: {
+    top: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.82
   }
 });
 
