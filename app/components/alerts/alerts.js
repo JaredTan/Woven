@@ -21,9 +21,9 @@ class Alerts extends React.Component {
       return this.props.alerts.map((alert) => {
         return (
           <Alert alert={alert} key={alert.id}></Alert>
-        )
+        );
       });
-    }
+    };
     return (
       <View style={styles.container}>
         {renderAlerts()}

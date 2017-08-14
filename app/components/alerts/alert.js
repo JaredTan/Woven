@@ -31,10 +31,10 @@ class Alert extends React.Component {
               <Text style={styles.text}>
                 {alert.text}
               </Text>
-                <Icon name="close" size={15} color='#2ecc71'/>
+              <Icon name="close" size={15} color='#2ecc71'/>
             </View>
           </TouchableWithoutFeedback>
-        )
+        );
     }
 
 
@@ -44,19 +44,20 @@ class Alert extends React.Component {
 const styles = StyleSheet.create({
   container2: {
     flex: 1,
-    width:'80%',
-    flexDirection: 'row',
     padding: 10,
+    margin: 5,
+    flexDirection: 'row',
     backgroundColor: '#cdf9d8',
     borderColor: '#bbf7ca',
     borderRadius: 5,
     justifyContent: 'space-between',
-    alignSelf: 'flex-end',
-    margin: 5
+    alignItems: 'center',
+    alignSelf: 'center',
   },
   text: {
     color: "gray",
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    padding: 5
   }
 });
 

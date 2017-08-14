@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   NavigatorIOS
 } from 'react-native';
+import Dimensions from 'Dimensions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import PhotoUpload from 'react-native-photo-upload';
 import {connect} from 'react-redux';
@@ -49,72 +50,66 @@ class UserProfile extends React.Component {
     return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-        <TouchableOpacity onPress={this.handleBack}>
-          <Icon name="chevron-left" size={30} color="white"/>
-        </TouchableOpacity>
-        <Text style={styles.title}>
-          Profile
-        </Text>
-        <TouchableOpacity onPress={this.redirectToEdit}>
-          <Icon name="pencil" size={24} color="white"/>
-        </TouchableOpacity>
+        <View style={styles.topNav}>
+          <TouchableOpacity onPress={this.handleBack}>
+            <Icon name="chevron-left" size={24} color="white"/>
+          </TouchableOpacity>
+          <Text style={styles.title}>
+            Profile
+          </Text>
+          <TouchableOpacity onPress={this.redirectToEdit}>
+            <Icon name="pencil" size={24} color="white"/>
+          </TouchableOpacity>
+        </View>
       </View>
+
       <View style={styles.info}>
         <View style={styles.header}>
-         <Image
-           style={{
-             paddingVertical: 30,
-             width: 150,
-             height: 150,
-             borderRadius: 75
-           }}
-           resizeMode='cover'
-           source={{
-             uri: currentUser.imageUrl
-           }}
-         />
-         <Text style={styles.name}>{currentUser.firstName} {currentUser.lastName}</Text>
-       </View>
-       <View style={styles.body}>
-         <Text>
-           <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
-         </Text>
-         <Text>
-           <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(currentUser.birthday).format('LL')}
-         </Text>
-         <View style={{width: '90%', marginTop: 25, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
-         <Text>
-           <Text style={{fontWeight: 'bold'}}>Your Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
-         </Text>
-         <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
-         </View>
-         <View style={styles.partner}>
-           <View style={styles.header}>
-            <Image
-              style={{
-                paddingVertical: 30,
-                width: 150,
-                height: 150,
-                borderRadius: 75
-              }}
-              resizeMode='cover'
-              source={{
-                uri: partner.imageUrl
-              }}
-            />
-          <Text style={styles.name}>Your partner: {partner.firstName} {partner.lastName}</Text>
-          </View>
-          <View style={styles.body}>
+          <Image
+            style={styles.profileImage}
+            resizeMode='cover'
+            source={{
+              uri: currentUser.imageUrl
+            }}
+          />
+          <Text style={styles.name}>{currentUser.firstName} {currentUser.lastName}</Text>
+        </View>
 
-           <Text>
-             <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
-           </Text>
-           <Text>
-             <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(partner.birthday).format('LL')}
-           </Text>
-         </View>
+        <View style={styles.body}>
+          <Text>
+           <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
+          </Text>
+          <Text>
+           <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(currentUser.birthday).format('LL')}
+          </Text>
+        </View>
+
+        <View style={styles.anniversary}>
+          <View style={{width: '90%', marginTop: 25, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
+          <Text style={{fontWeight: 'bold'}}>Your Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
+          <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
+        </View>
+
+        <View style={styles.header}>
+          <Image
+            style={styles.profileImage}
+            resizeMode='cover'
+            source={{
+              uri: partner.imageUrl
+            }}
+          />
+          <Text style={styles.name}>Your partner: {partner.firstName} {partner.lastName}</Text>
+        </View>
+
+        <View style={styles.body}>
+          <Text>
+            <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
+          </Text>
+          <Text>
+            <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(partner.birthday).format('LL')}
+          </Text>
+        </View>
       </View>
-    </View>
     </View>
     );
   }
@@ -124,17 +119,24 @@ class UserProfile extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
+    borderWidth: 2,
+    borderColor: 'black'
   },
   topBar: {
-    padding: 16,
-    paddingTop: 28,
-    paddingBottom: 8,
+    position: 'absolute',
+    zIndex: 1,
+    height: Dimensions.get('window').height*.08,
+    left: 0,
+    top: 0,
+    width: '100%',
+    backgroundColor: '#2ecc71'
+  },
+  topNav: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#2ecc71'
+    paddingLeft: Dimensions.get('window').width*.03,
+    paddingRight: Dimensions.get('window').width*.03,
+    top: Dimensions.get('window').height*.03,
   },
   title: {
     color: 'white',
@@ -151,17 +153,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   info: {
-    marginTop: 30,
-    paddingBottom: 42,
-    justifyContent: 'space-around'
+    top: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.92,
+    paddingTop: Dimensions.get('window').height*.05,
+    paddingBottom: Dimensions.get('window').height*.05
   },
   header: {
     alignItems: 'center',
-    justifyContent: 'space-between'
   },
-  partner: {
-    marginTop: 20,
+  profileImage: {
+    width: Dimensions.get('window').width*.3,
+    height: Dimensions.get('window').width*.3,
+    borderRadius: Dimensions.get('window').width*.15
   },
+  anniversary: {
+    alignItems: 'center'
+  }
 });
 
 

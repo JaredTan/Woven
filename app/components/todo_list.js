@@ -60,7 +60,7 @@ class TodoList extends React.Component {
     let renderScrollViewOrLoading = () => {
       if (this.state.loading) {
         return (
-          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <View>
             <Text>
               Creating todo...
             </Text>
@@ -68,20 +68,15 @@ class TodoList extends React.Component {
         );
       } else {
         return (
-          <View>
-            <ScrollView
-              automaticallyAdjustContentInsets={false}>
-              <View style={styles.inputContainer}>
-                <TextInput
-                  onChangeText={(newTodoText) => {
-                    this.setState({newTodoText});
-                  }}
-                  placeholder="New To-Do Text"
-                  style={styles.input}/>
-              </View>
-            </ScrollView>
+          <View style={styles.inputContainer}>
+            <TextInput
+              onChangeText={(newTodoText) => {
+                this.setState({newTodoText});
+              }}
+              placeholder="New To-Do Text"
+              style={styles.input}/>
             <TouchableOpacity onPress={this.addNewTodo} style={styles.plus}>
-              <Icon name="plus" size={20} color="black"/>
+              <Icon name="plus" size={20} color="#0c9258"/>
             </TouchableOpacity>
           </View>
         );
@@ -96,15 +91,18 @@ class TodoList extends React.Component {
           </Text>
         </View>
 
-        <View>
+        <View style={{flex: 1}}>
           <ScrollView
+            style={styles.todos}
             refreshControl={
               <RefreshControl
                 refreshing={this.state.refreshing}
                 onRefresh={this.onRefresh}/>
             }
             automaticallyAdjustContentInsets={false}>
-            {renderScrollViewOrLoading()}
+            <View style={styles.newTodoBar}>
+              {renderScrollViewOrLoading()}
+            </View>
             <View style={styles.todoContainer}>
               {renderTodos()}
             </View>
@@ -119,10 +117,7 @@ const styles = StyleSheet.create({
   container: {
     top: 0,
     left: 0,
-    height: Dimensions.get('window').height*.9,
-    zIndex: 1,
-    borderWidth: 1,
-    borderColor: 'blue'
+    height: Dimensions.get('window').height*.9
   },
   title: {
     top: Dimensions.get('window').height*.03,
@@ -132,6 +127,7 @@ const styles = StyleSheet.create({
   },
   topBar: {
     position: 'absolute',
+    zIndex: 1,
     height: Dimensions.get('window').height*.08,
     left: 0,
     top: 0,
@@ -139,28 +135,35 @@ const styles = StyleSheet.create({
     backgroundColor: '#2ecc71'
   },
   todoContainer: {
-    top: Dimensions.get('window').height*.08,
-    height: Dimensions.get('window').height*.82,
-    borderWidth: 5,
-    borderColor: 'red'
+    top: Dimensions.get('window').height*.12,
+    height: Dimensions.get('window').height*.7
+  },
+  todos: {
+    height: Dimensions.get('window').height*.9
+  },
+  newTodoBar: {
+    alignSelf: 'center',
+    top: Dimensions.get('window').height*.1,
+    width: Dimensions.get('window').width*.9,
+    paddingTop: Dimensions.get('window').height*.01,
+    paddingBottom: Dimensions.get('window').height*.01,
+    borderRadius: 15,
+    borderWidth: 3,
+    borderColor: '#2ecc71'
   },
   inputContainer: {
-    top: Dimensions.get('window').height*.08,
-    padding: 5,
-    paddingLeft: 10,
-    margin: 10,
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: "#2ecc71"
+    paddingLeft: Dimensions.get('window').width*.03,
+    paddingRight: Dimensions.get('window').width*.03,
+    flexDirection: 'row'
   },
   plus: {
-    left: Dimensions.get('window').width*.9,
     width: 20,
-    borderWidth: 1,
-    borderColor: 'orange'
+    alignItems: 'center',
+    backgroundColor: 'transparent'
   },
   input: {
-    height: 26
+    flex: 9,
+    fontSize: 15
   }
 });
 

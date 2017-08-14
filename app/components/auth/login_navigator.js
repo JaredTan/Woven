@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   NavigatorIOS
 } from 'react-native';
+import Dimensions from 'Dimensions';
 
 import LogIn from './login';
 
@@ -25,21 +26,23 @@ var LogInNavigator = React.createClass({
       component: SignUpNavigator,
       title: 'Sign Up Navigator',
       navigationBarHidden: true
-    })
+    });
   },
 
   render() {
     return (
       <View style={styles.content}>
         <View style={styles.topBar}>
-          <TouchableOpacity onPress={this.handleBack}>
-            <Icon name="chevron-left" size={22} color="white"/>
+          <Text style={styles.title}>Woven</Text>
+        </View>
+        <View style={styles.logIn}>
+          <LogIn/>
+        </View>
+        <View style={styles.signUp}>
+          <TouchableOpacity onPress={this.redirectToSignUp}>
+            <Link><Text>Sign Up</Text></Link>
           </TouchableOpacity>
         </View>
-        <LogIn style={styles.logIn} />
-        <TouchableOpacity onPress={this.redirectToSignUp} style={styles.signUp}>
-          <Link><Text>Sign Up</Text></Link>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -54,15 +57,18 @@ const styles = StyleSheet.create({
     paddingTop: 28,
     paddingBottom: 8,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#2ecc71'
+    justifyContent: 'center',
+    backgroundColor: '#2ecc71',
+  },
+  title: {
+    color: 'white',
+    fontSize: 20,
   },
   logIn: {
-    flex: 1,
+    flex: 8
   },
   signUp: {
-    flex: 1
+    flex: 2
   },
 });
 
