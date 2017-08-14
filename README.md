@@ -6,7 +6,10 @@ Woven is an iOS mobile application connecting two best friends or a romantic cou
 
 Technology has allowed people to connect with the world in a new and powerful way. While platforms like Facebook, Instagram, and Snapchat encourage making as many connections as possible, there aren't many applications that focus on fostering intimate relationships between close friends or significant others. Woven allows people to focus on their most important relationship through standard chat features and other enjoyable shared user experiences, such as taking care of a virtual plant together.
 
-![login](http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_413/v1502701090/ezgif.com-optimize_io5ipz.gif)
+
+<p align="center">
+  <img src="http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_413/v1502701090/ezgif.com-optimize_io5ipz.gif"/>
+</p>
 
 ## Technologies
 
@@ -24,24 +27,35 @@ Connections are the bridge between a couple and their `Plant`, `Messages`, and `
 
 In addition to having encrypted authentication, users must sign up with a partner and may edit their profile, name, birthday, and anniversary with their partner.
 
-<img src="./docs/READMEPhotos/Profile.png" height="500" />
+
+<p align="center">
+  <img src="./docs/READMEPhotos/Profile.png" height="500" />
+</p>
+
 
 _______
-
-<img src="./docs/READMEPhotos/editProfile.png" height="500" />
+<p align="center">
+  <img src="./docs/READMEPhotos/editProfile.png" height="500" />
+</p>
 
 
 ### Plant
 
 Plants are stored in MongoDB under the `Connection` collection, where two connected users own and take care of a single instance of `Plant`. The plant has attributes that the couple take care of, which include `name`, `health`, and the last time of `water`. The plant's health is tied to how often the couple waters the plant and decrements when the owners forget, resembling the real life relationship of the owners. The plant is implemented with touch vibrations and continuous attribute updating.
 
-![Plant](http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_500/v1502701493/ezgif.com-optimize_2_z6n7rx.gif)
+<p align="center">
+  <img src="http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_500/v1502701493/ezgif.com-optimize_2_z6n7rx.gif" />
+</p>
+
 
 ### Messages
 
 Messages have their own database Schema with `userId`, `text`, and `userImageUrl`, and are instantaneously sent and received through **web-sockets** using [socket.io](https://socket.io/). Web-sockets allow for bi-directional data flow between the server and client, which typical AJAX queries do not provide. Messages are sent and received only between the `currentUser` and their `partner`.
 
-![messages](http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_500/v1502702185/ezgif.com-video-to-gif_hei8ux.gif)
+<p align="center">
+  <img src="http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_500/v1502702185/ezgif.com-video-to-gif_hei8ux.gif"/>
+</p>
+
 
 ### To-Dos
 
