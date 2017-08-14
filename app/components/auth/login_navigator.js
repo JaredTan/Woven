@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   logIn: {
-    flex: 8
+    flex: 9
   },
   signUp: {
-    flex: 2
+    flex: 1
   },
 });
 

@@ -4,9 +4,11 @@ import * as Keychain from 'react-native-keychain';
 import {PLANT_URL} from '../api';
 import {addAlert} from './alert_actions';
 
+export const SET_PLANT = 'SET_PLANT';
+
 export const setPlant = plant => {
   return {
-    type: 'SET_PLANT',
+    type: SET_PLANT,
     plant
   };
 };

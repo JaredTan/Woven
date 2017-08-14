@@ -16,9 +16,9 @@ class Healthbar extends React.Component {
     super(props);
 
     this.color;
-    if (this.props.health > 75) {
+    if (props.health > 75) {
       this.color = '#00EE10';
-    } else if (this.props.health > 35) {
+    } else if (props.health > 35) {
       this.color = '#FFFF33';
     } else {
       this.color = '#EE1122';
@@ -32,9 +32,9 @@ class Healthbar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.health > 75) {
+    if (nextProps.health > 75) {
       this.color = '#00EE10';
-    } else if (this.props.health > 35) {
+    } else if (nextProps.health > 35) {
       this.color = '#FFFF33';
     } else {
       this.color = '#EE1122';

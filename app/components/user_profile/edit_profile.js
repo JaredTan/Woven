@@ -47,7 +47,11 @@ const renderInput = ({
 
 
 const handleEdit = (props, dispatch, payload) => {
-  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.imageUrl, props.birthday, props.anniversary));
+  let newBirthday = new Date(props.birthday);
+  newBirthday.setMinutes( newBirthday.getMinutes() + newBirthday.getTimezoneOffset() );
+  let newAnniversary = new Date(props.anniversary);
+  newAnniversary.setMinutes( newAnniversary.getMinutes() + newAnniversary.getTimezoneOffset() );
+  dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.imageUrl, newBirthday, newAnniversary));
   payload.navigator.pop();
 }
 
@@ -91,7 +95,10 @@ const EditForm = (props) => {
                     cancelBtnText='Cancel'
                     placeholder='MM/DD/YYYY'
                     format='MM/DD/YYYY'
-                    onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
+                    onDateChange={(date) => {
+                      props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))
+                      }
+                    }
                     />
                 }/>
             </View>

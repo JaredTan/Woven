@@ -160,6 +160,7 @@ const styles = {
   },
   signinButton: {
     borderColor: '#12512d',
+    borderRadius: 5
   },
   signinText: {
     color: 'black',

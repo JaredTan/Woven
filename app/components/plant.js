@@ -43,9 +43,7 @@ class Plant extends React.Component {
     this.displayMessage = this.displayMessage.bind(this);
   }
 
-  componentWillMount() {
-    console.log(this.props);
-    console.log("/////////////// WILL MOUNT ////////");
+  componentDidMount() {
     this.props.fetchPlant(this.props.connectionId);
     this.calculateHealth();
     this.updateNextWater();
@@ -54,7 +52,6 @@ class Plant extends React.Component {
   handleUpdatePlant() {
     this.props.plant.lastWater = this.state.lastWater;
     this.props.plant.health = this.state.health;
-
     this.props.updatePlant(this.props.connectionId, this.props.plant);
     this.updateNextWater();
   }
@@ -86,14 +83,12 @@ class Plant extends React.Component {
   }
 
   updateNextWater() {
-    console.log(this.state.lastWater);
+
     let waterDate = new Date(this.state.lastWater);
 
     waterDate.setMinutes(waterDate.getMinutes()+5);
 
-    this.setState({
-      nextWater: waterDate
-    });
+    return waterDate;
 
   }
 
