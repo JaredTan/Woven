@@ -24,9 +24,10 @@ Connections are the bridge between a couple and their `Plant`, `Messages`, and `
 
 In addition to having encrypted authentication, users must sign up with a partner and may edit their profile, name, birthday, and anniversary with their partner.
 
-![Profile](http://res.cloudinary.com/jaredtan/image/upload/v1502685497/Screen_Shot_2017-08-13_at_9.37.32_PM_awshhs.png)
+<img src="./docs/READMEPhotos/Profile.png" height="500" />
 
-![Profile Edit](http://res.cloudinary.com/jaredtan/image/upload/v1502685497/Screen_Shot_2017-08-13_at_9.37.32_PM_awshhs.png)
+<img src="./docs/READMEPhotos/editProfile.png" height="500" />
+
 
 ### Plant
 
