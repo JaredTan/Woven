@@ -24,7 +24,7 @@ app.use('/v1', router);
 
 var PORT = process.env.PORT || 3000;
 
-server.listen(3000, () => ('listening on *:3000'));
+server.listen(3000, () => console.log('listening on *:3000'));
 
 // Map sockets and users
 var clients = {};
