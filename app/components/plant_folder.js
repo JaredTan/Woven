@@ -14,7 +14,7 @@ import {
 
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
-import PlantMessage from './plant/plant_messages';
+import plantMessage from './plant_folder/plant_messages';
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
@@ -31,6 +31,7 @@ class Plant extends React.Component {
       health: props.plant.health,
       lastWater: props.plant.lastWater,
       nextWater: 0,
+      displayError: "",
       message: ""
     };
 
@@ -40,6 +41,7 @@ class Plant extends React.Component {
     this.calculateHealth = this.calculateHealth.bind(this);
     this.updateHealth = this.updateHealth.bind(this);
     this.updateNextWater = this.updateNextWater.bind(this);
+    this.displayDisableMessage = this.displayDisableMessage.bind(this);
     this.displayMessage = this.displayMessage.bind(this);
   }
 
@@ -99,7 +101,7 @@ class Plant extends React.Component {
 
   waterPlant() {
     if (this.state.nextWater > this.state.lastWater) {
-      this.displayMessage("full", 700);
+      this.displayDisableMessage();
     } else {
       this.setState({
         water: true,
@@ -134,8 +136,18 @@ class Plant extends React.Component {
 
   }
 
-  displayMessage(type, time) {
-    console.log("///////////////// DISPLAY MESSAGE TYPE //////////");
+  displayDisableMessage() {
+    this.setState ({
+      displayError: "I'm full!"
+    });
+    setTimeout(()=>{
+      this.setState({
+        displayError: ""
+      });
+    }, 700);
+  }
+
+  displayMessage(type) {
 
     this.setState ({
       message: type
@@ -144,7 +156,7 @@ class Plant extends React.Component {
       this.setState({
         message: ""
       });
-    }, time);
+    }, 700);
   }
 
   render() {
@@ -165,6 +177,10 @@ class Plant extends React.Component {
             <Healthbar health={this.state.health} />
           </View>
 
+          <Text style={styles.displayError}>
+            {this.state.displayError}
+          </Text>
+
           <TouchableOpacity
             onPress={this.waterPlant}
             style={styles.waterIcon}
@@ -175,17 +191,13 @@ class Plant extends React.Component {
             />
           </TouchableOpacity>
 
-          <View>
-            <PlantMessage
-            message={this.state.message}
-            name={this.props.plant.name} />
-          </View>
+          {<plantMessage message={this.state.message} name={this.props.plant.name}/>}
 
           <TouchableWithoutFeedback
             style={styles.wrapper}
             onPress={
               () => {Vibration.vibrate([0, 500, 200, 500]);
-                this.displayMessage("greeting", 900);
+                this.displayMessage("greeting");
               }
             }>
 
@@ -249,7 +261,19 @@ const styles = StyleSheet.create({
     width: 65,
     height: 65,
     resizeMode: 'contain'
-  }
+  },
+  displayError: {
+   position: 'absolute',
+   color: 'red',
+   top: 120,
+   alignSelf: 'center',
+   fontWeight: 'bold',
+   fontSize: 20,
+   shadowColor: '#FFF',
+   shadowOffset: { width: 0, height: 0 },
+   shadowOpacity: 0.5,
+   shadowRadius: 1,
+  },
 });
 
 

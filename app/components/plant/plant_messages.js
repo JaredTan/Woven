@@ -3,30 +3,19 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
-  TouchableOpacity,
-  NavigatorIOS,
-  Animated,
   Dimensions,
-  Vibration,
-  TouchableWithoutFeedback
 } from 'react-native';
 
 
-class plantMessage extends React.Component {
+class PlantMessage extends React.Component {
   constructor(props) {
-
-    // this.state = {
-    //   styleName: "default"
-    // }
+    super(props);
 
     this.displayMessage = this.displayMessage.bind(this);
     this.full = this.full.bind(this);
     this.greeting = this.greeting.bind(this);
+    this.default = this.default.bind(this);
   }
-
-  // this.props.full
-  //this.props.greeting
 
   displayMessage() {
     let messageType = this.props.message;
@@ -40,17 +29,6 @@ class plantMessage extends React.Component {
     }
 
   }
-
-  // displayDisableMessage(message) {
-  //   this.setState ({
-  //     message: message
-  //   });
-  //   setTimeout(()=>{
-  //     this.setState({
-  //       message: ""
-  //     });
-  //   }, 700);
-  // }
 
   default() {
     return (<Text></Text>);
@@ -75,7 +53,7 @@ class plantMessage extends React.Component {
   render() {
     return (
         <View>
-          {this.displayMessage}
+          {this.displayMessage()}
         </View>
     );
   }
@@ -83,6 +61,7 @@ class plantMessage extends React.Component {
 
 const styles = StyleSheet.create({
   greeting: {
+    position: 'absolute',
     fontSize: 25,
     fontWeight: 'bold',
     color: 'black',
@@ -102,4 +81,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default plantMessage;
+export default PlantMessage;
