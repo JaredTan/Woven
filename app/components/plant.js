@@ -7,11 +7,14 @@ import {
   TouchableOpacity,
   NavigatorIOS,
   Animated,
-  Dimensions
+  Dimensions,
+  Vibration,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
+import PlantMessage from './plant/plant_messages';
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
@@ -28,7 +31,7 @@ class Plant extends React.Component {
       health: props.plant.health,
       lastWater: props.plant.lastWater,
       nextWater: 0,
-      displayError: ""
+      message: ""
     };
 
     this.waterPlant = this.waterPlant.bind(this);
@@ -37,10 +40,12 @@ class Plant extends React.Component {
     this.calculateHealth = this.calculateHealth.bind(this);
     this.updateHealth = this.updateHealth.bind(this);
     this.updateNextWater = this.updateNextWater.bind(this);
-    this.displayDisableMessage = this.displayDisableMessage.bind(this);
+    this.displayMessage = this.displayMessage.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    console.log(this.props);
+    console.log("/////////////// WILL MOUNT ////////");
     this.props.fetchPlant(this.props.connectionId);
     this.calculateHealth();
     this.updateNextWater();
@@ -49,6 +54,7 @@ class Plant extends React.Component {
   handleUpdatePlant() {
     this.props.plant.lastWater = this.state.lastWater;
     this.props.plant.health = this.state.health;
+
     this.props.updatePlant(this.props.connectionId, this.props.plant);
     this.updateNextWater();
   }
@@ -80,18 +86,20 @@ class Plant extends React.Component {
   }
 
   updateNextWater() {
-
+    console.log(this.state.lastWater);
     let waterDate = new Date(this.state.lastWater);
 
     waterDate.setMinutes(waterDate.getMinutes()+5);
 
-    return waterDate;
+    this.setState({
+      nextWater: waterDate
+    });
 
   }
 
   waterPlant() {
     if (this.state.nextWater > this.state.lastWater) {
-      this.displayDisableMessage();
+      this.displayMessage("full", 700);
     } else {
       this.setState({
         water: true,
@@ -126,17 +134,16 @@ class Plant extends React.Component {
 
   }
 
-  displayDisableMessage() {
+  displayMessage(type, time) {
     this.setState ({
-      displayError: "I'm full!"
+      message: type
     });
-    setTimeout(()=>{
+    let timeout = setTimeout(()=>{
       this.setState({
-        displayError: ""
+        message: ""
       });
-    }, 700);
+    }, time);
   }
-
 
   render() {
 
@@ -151,33 +158,39 @@ class Plant extends React.Component {
             </Image>
           </View>
 
-          <View style={styles.header}>
-            <Text style={styles.greeting}>
-              {this.props.plant.name} says `Hi`!
-            </Text>
-          </View>
-
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
-          <View style={styles.waterIcon}>
-            <TouchableOpacity
-              onPress={this.waterPlant}
-              >
-              <Image
-                style={styles.roundedIcon}
-                source={require('../assets/icons/waterIcon.png')}
-                />
-            </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={this.waterPlant}
+            style={styles.waterIcon}
+          >
+            <Image
+              style={styles.roundedIcon}
+              source={require('../assets/icons/waterIcon.png')}
+            />
+          </TouchableOpacity>
+
+          <View>
+            <PlantMessage
+            message={this.state.message}
+            name={this.props.plant.name} />
           </View>
 
-          <Text style={styles.displayError}>
-            {this.state.displayError}
-          </Text>
+          <TouchableWithoutFeedback
+            style={styles.wrapper}
+            onPress={
+              () => {Vibration.vibrate([0, 500, 200, 500]);
+                this.displayMessage("greeting", 900);
+              }
+            }>
 
-          <View style={styles.plant}>
-            {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
-          </View>
+            <View style={styles.plant}>
+              {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
+            </View>
+          </TouchableWithoutFeedback>
+
           <View style={styles.water}>
             {water}
           </View>
@@ -202,50 +215,30 @@ const styles = StyleSheet.create({
     top: Dimensions.get('window').height*.1,
     left: Dimensions.get('window').width*.02
   },
-  waterIcon: {
-    top: Dimensions.get('window').height*.05,
-    left: Dimensions.get('window').width*.8,
-  },
-  plant: {
+   plant: {
+     position: 'absolute',
     top: Dimensions.get('window').height*.3,
-    position: 'absolute',
-    alignSelf: 'center',
+     alignSelf: 'center',
+     backgroundColor: 'transparent',
+   },
+   water: {
+     position: 'absolute',
+     bottom: '40%',
+     alignSelf: 'center'
+   },
+   waterIcon: {
     backgroundColor: 'transparent',
-  },
-  header: {
-    top: Dimensions.get('window').height*.16,
-    backgroundColor: "#f2f2f2",
-  },
-  greeting: {
-    fontSize: 20,
-    opacity: .6,
-    padding: 13,
-    borderRadius: 60,
-    alignSelf: 'center'
-  },
-  water: {
-    top: Dimensions.get('window').height*.3,
-    position: 'absolute',
-    alignSelf: 'center'
-  },
-  displayError: {
-    position: 'absolute',
-    color: '#f4967e',
-    top: Dimensions.get('window').height*.15,
-    alignSelf: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-    letterSpacing: 2,
-    shadowColor: '#FFF',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
-  },
-  roundedIcon: {
+    width: 65,
+    height: 65,
+    top: Dimensions.get('window').height*.08,
+    left: Dimensions.get('window').width*.8,
+    borderRadius: 180,
+   },
+   roundedIcon: {
     width: 65,
     height: 65,
     resizeMode: 'contain'
-  },
+  }
 });
 
 
