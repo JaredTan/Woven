@@ -52,7 +52,7 @@ class UserProfile extends React.Component {
       <View style={styles.topBar}>
         <View style={styles.topNav}>
           <TouchableOpacity onPress={this.handleBack}>
-            <Icon name="chevron-left" size={24} color="white"/>
+            <Icon name="chevron-left" size={30} color="white"/>
           </TouchableOpacity>
           <Text style={styles.title}>
             Profile
@@ -118,9 +118,7 @@ class UserProfile extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    borderWidth: 2,
-    borderColor: 'black'
+    flex: 1
   },
   topBar: {
     position: 'absolute',
