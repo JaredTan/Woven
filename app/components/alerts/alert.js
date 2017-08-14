@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#cdf9d8',
     borderColor: '#bbf7ca',
+    borderRadius: 5,
     justifyContent: 'space-between',
     alignSelf: 'flex-end',
     margin: 5
