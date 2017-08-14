@@ -33,29 +33,29 @@ class TodoItem extends React.Component {
         if (!this.state.deleting) {
           return (
             <TouchableOpacity onPress={this.onDelete}>
-              <Icon name="close" size={15} color='#2ecc71'/>
+              <Icon name="close" size={15} color='#f4967e'/>
             </TouchableOpacity>
           );
         }
       };
       return (
         <View style={styles.todoContainer}>
-          <Text>{this.props.text}</Text>
-          {renderDeleteButton()}
+          <Text style={styles.todoItem}>{this.props.text}</Text>
+          <View style={styles.removeTodo}>{renderDeleteButton()}</View>
         </View>
       );
     }
 }
 const styles = StyleSheet.create({
   todoContainer: {
-    padding: 16,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    marginTop: -1,
-    borderColor: '#ccc',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    padding: Dimensions.get('window').height*.02,
+    borderBottomWidth: 2,
+    borderColor: '#ACB8BF'
+  },
+  todoItem: {
+    width: Dimensions.get('window').width*.85
   }
 });
 
