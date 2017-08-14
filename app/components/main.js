@@ -66,7 +66,7 @@ class Main extends React.Component {
         title: 'User Profile',
         navigationBarHidden: true
       });
-    });
+    })
   }
 
   handleLogOut() {
@@ -75,14 +75,12 @@ class Main extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.component}>
-          <View>
-            { this.state.plant ? <PlantContainer/> : null }
-            { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
-            { this.state.todo ? <TodoList/> : null }
-          </View>
-        </View>
+      <View style = {styles.container}>
+        <ScrollView style = {styles.scrollView}>
+          { this.state.plant ? <PlantContainer/> : null }
+          { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
+          { this.state.todo ? <TodoList/> : null }
+        </ScrollView>
         <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
             <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
@@ -106,18 +104,23 @@ class Main extends React.Component {
       </View>
     );
   }
+
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column'
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
-  component: {
-    flex: 9
+  scrollView: {
   },
   navBar: {
-    flex: 1,
+    height: '8%',
+    padding: 16,
+    paddingTop: 8,
+    paddingBottom: 8,
     backgroundColor: '#2ecc71',
     flexDirection: 'row',
     alignItems: 'center',
