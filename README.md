@@ -2,7 +2,7 @@
 
 [Link to Demo](http://woven-app.com)
 
-Woven is an iOS mobile application connecting two best friends or a romantic couple through engaging, interactive experiences and a shared digital space.
+Woven is an iOS mobile application connecting two close friends or a romantic couple through engaging, interactive experiences and a shared digital space.
 
 Technology has allowed people to connect with the world in a new and powerful way. While platforms like Facebook, Instagram, and Snapchat encourage making as many connections as possible, there aren't many applications that focus on fostering intimate relationships between close friends or significant others. Woven allows people to focus on their most important relationship through standard chat features and other enjoyable shared user experiences, such as taking care of a virtual plant together.
 
@@ -13,15 +13,15 @@ Technology has allowed people to connect with the world in a new and powerful wa
 
 ## Technologies
 
-This project is built on MERN (MongoDB, Express.js, React Native, Node.js), which allows for quick development through both client-sided and server-sided JavaScript + JSON object notation. Express.js and Node.js in the back-end provides ease in data storage and fetching through custom APIs routes. Also, MongoDB used along with Mongoose provides simple schemas in a NoSQL document-style database. In the front-end, React Native is used for modular and uni-directional data flow, resulting in high initial velocity for mobile applications like Woven.
+This project is built on MERN (MongoDB, Express.js, React Native, Node.js), which allows for quick development through both client-sided and server-sided JavaScript and JSON object notation. Express.js and Node.js on the back-end provides easy data storage and fetching through custom APIs routes. Also, MongoDB used along with Mongoose provides simple schemas in a NoSQL document-style database. On the front-end, React Native is used for modular and uni-directional data flow, resulting in high initial velocity for mobile applications like Woven.
 
 ## Features and Implementation
 
-Woven's database is set-up much differently than a typical CRUD application, containing `Connections` that link two users together with their shared `Plants`, `Messages`, and `To-Dos`.
+Woven's database is set-up differently from that of a typical CRUD application, containing `Connections` that link two users together with their shared `Plants`, `Messages`, and `To-Dos`.
 
 ### Connection
 
-Connections are the bridge between a couple and their `Plant`, `Messages`, and `To-Dos`. Connections are saved to the database once two users sign up with matching `partnerEmails`.
+Connections are the bridge between a pair and their `Plant`, `Messages`, and `To-Dos`, which are shared features within the app. Connections are saved to the database once two users sign up with matching `partnerEmails`.
 
 ### Users
 
@@ -41,7 +41,7 @@ _______
 
 ### Plant
 
-Plants are stored in MongoDB under the `Connection` collection, where two connected users own and take care of a single instance of `Plant`. The plant has attributes that the couple take care of, which include `name`, `health`, and the last time of `water`. The plant's health is tied to how often the couple waters the plant and decrements when the owners forget, resembling the real life relationship of the owners. The plant is implemented with touch vibrations and continuous attribute updating.
+Plants are stored in MongoDB under the `Connection` collection, where two connected users own and take care of a single instance of `Plant`. The plant has attributes that the pair takes care of, which include `name`, `health`, and the last time of `water`. The plant's health is tied to how often the pair waters the plant and decrements when the owners forget, resembling the real life relationship of the paired owners. The plant is implemented with touch vibrations and continuous attribute updating.
 
 <p align="center">
   <img src="http://res.cloudinary.com/jaredtan/image/upload/c_scale,h_500/v1502701493/ezgif.com-optimize_2_z6n7rx.gif" />
@@ -59,13 +59,13 @@ Messages have their own database Schema with `userId`, `text`, and `userImageUrl
 
 ### To-Dos
 
-To-Dos are stored in `Connection`, where a user may create and delete any To-Dos the couple has.
+To-Dos are stored in `Connection`, where a user may create and delete any To-Dos the pair has.
 
-## Technical Info
+## Technical Details
 
 ### Connections
 
-The `Connection` instances are created in the back-end `AuthController` when two users sign up with matching `emails`. This connection is the backbone of Woven and provides the couple a shared private digital space.
+The `Connection` instances are created in the back-end `AuthController` when two users sign up with matching `emails`. This connection is the backbone of Woven and provides the paired users with a shared private digital space.
 
 This code snippet displays the logic for `Connection` instantiations and Mongoose methods to accomplish it.
 
@@ -134,7 +134,7 @@ websocket.on('connection', (socket) => {
 });
 ```
 
-In the front-end, the socket is attached to the `API_URL` of the application's hosted cloud server, and is constantly ready to update the chatbox with received messages obtained from the server.
+On the front-end, the socket is attached to the `API_URL` of the application's hosted cloud server, and is constantly ready to update the chatbox with received messages obtained from the server.
 
 Once messages are obtained and received, the messages are rendered through [GiftedChat](https://www.npmjs.com/package/react-native-gifted-chat), which provides a clean and pleasant messaging interface.
 
@@ -225,25 +225,21 @@ class Chat extends Component {
 
 * [View Wireframes][views]
 * [Database Schema][db_schema]
-* [API Endpoints][api_endpoints]
-* [Sample State][sample-state]
 
 [views]: ./docs/views.md
-[db_schema]: ./docs/schema.md
-[api_endpoints]: ./docs/api-endpoints.md
-[sample-state]: ./docs/sample-state.md
+[db_schema]: ./docs/sample_schema.md
 
 
 ## Future Plans
 
 ### Activity Planner
 
-The couple using the app would likely plan events or dates together, and having a feature that implements Google Maps API for locations and/or Google Maps Calendar would provide a useful logistical service.
+The pair using the app would likely plan activities or dates together, so having a feature that implements the Google Maps API for locations and/or Google Maps Calendar would provide a useful logistical service for Woven users.
 
 ### iOS App Store
 
-This app has the potential for scalability, and will be ready to deploy to the App store as a full-fledged mobile application. To market and publicize the product, Woven will be displayed on high traffic sites such as Reddit or Product Hunt.
+We plan to deploy Woven to the App store as a full-fledged iOS mobile application. To market and publicize the product, Woven will be displayed on high traffic sites such as Reddit and Product Hunt.
 
 ### Android / Web
 
-Once optimized for iOS, this app can be cloned into a React Native Android application and web application to become more widely accessible.
+Once optimized for iOS, this app can be cloned into a React Native Android application and web application to become accessible to more users.
