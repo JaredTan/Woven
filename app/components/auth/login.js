@@ -4,7 +4,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  Image
 } from 'react-native'
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
@@ -50,10 +51,12 @@ const LSForm = props => {
     const { handleSubmit } = props;
     return (
       <Container style={ styles.container }>
+
         <Content style={ styles.content }>
+          <Image style={styles.logo} source={require('../../assets/icons/woven-logo-copy.png')} />
           <Header><Text>Log In</Text></Header>
           <Form style={ styles.form }>
-            
+
               <Field name="email" label="email" component={renderInput} />
               <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
 
@@ -125,6 +128,12 @@ const styles = {
     fontSize: 24
   },
   form: {
+  },
+  logo: {
+    width: 140,
+    height: 140,
+    alignSelf: 'center',
+    marginBottom: 10
   },
   formItem:{
     marginLeft: 6,

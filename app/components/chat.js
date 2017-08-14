@@ -60,6 +60,7 @@ class Chat extends Component {
   }
 
   render() {
+    console.disableYellowBox = true;
     if (!this.props.users) { return null; }
     return (
       <View style={styles.container}>

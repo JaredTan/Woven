@@ -9,7 +9,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  NavigatorIOS
+  NavigatorIOS,
+  Image
 } from 'react-native';
 import Dimensions from 'Dimensions';
 
@@ -32,9 +33,7 @@ var LogInNavigator = React.createClass({
   render() {
     return (
       <View style={styles.content}>
-        <View style={styles.topBar}>
-          <Text style={styles.title}>Woven</Text>
-        </View>
+
         <View style={styles.logIn}>
           <LogIn/>
         </View>
@@ -51,14 +50,6 @@ var LogInNavigator = React.createClass({
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-  },
-  topBar: {
-    padding: 16,
-    paddingTop: 28,
-    paddingBottom: 8,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: '#2ecc71',
   },
   title: {
     color: 'white',
