@@ -161,16 +161,6 @@ class Plant extends React.Component {
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
-          <View style={styles.waterIcon}>
-            <TouchableOpacity
-              onPress={this.waterPlant}
-              >
-              <Image
-                style={styles.roundedIcon}
-                source={require('../assets/icons/waterIcon.png')}
-                />
-            </TouchableOpacity>
-          </View>
 
           <TouchableOpacity
             onPress={this.waterPlant}
@@ -199,7 +189,6 @@ class Plant extends React.Component {
             <View style={styles.plant}>
               {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
             </View>
-
           </TouchableWithoutFeedback>
 
           <View style={styles.water}>
@@ -226,18 +215,9 @@ const styles = StyleSheet.create({
     top: Dimensions.get('window').height*.1,
     left: Dimensions.get('window').width*.02
   },
-  waterIcon: {
-    top: Dimensions.get('window').height*.05,
-    left: Dimensions.get('window').width*.8,
-  },
-  plant: {
-    top: Dimensions.get('window').height*.3,
-    position: 'absolute',
-    top: 60,
-   },
    plant: {
      position: 'absolute',
-     bottom: 40,
+    top: Dimensions.get('window').height*.3,
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },
@@ -250,8 +230,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     width: 65,
     height: 65,
-    alignSelf: 'flex-end',
-    top: 30,
+    top: Dimensions.get('window').height*.08,
+    left: Dimensions.get('window').width*.8,
     borderRadius: 180,
    },
    roundedIcon: {
