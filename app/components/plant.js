@@ -153,14 +153,23 @@ class Plant extends React.Component {
 
     return (
       <View style={styles.container}>
-
           <View style={styles.background}>
-            <Image source={background} style={{width, height}}>
+            <Image source={background} style={{width, height: height * 0.90}}>
             </Image>
           </View>
 
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
+          </View>
+          <View style={styles.waterIcon}>
+            <TouchableOpacity
+              onPress={this.waterPlant}
+              >
+              <Image
+                style={styles.roundedIcon}
+                source={require('../assets/icons/waterIcon.png')}
+                />
+            </TouchableOpacity>
           </View>
 
           <TouchableOpacity
@@ -201,26 +210,28 @@ class Plant extends React.Component {
   }
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: height - 55,
     justifyContent: 'flex-start',
     backgroundColor: 'transparent',
     alignItems: 'stretch',
   },
   background: {
-    bottom: 10,
+    flex: 1,
     position: 'absolute',
-    alignSelf: 'center',
-   },
-   header: {
-     alignItems: 'center'
-   },
-   healthbar: {
-    left: 10,
+    zIndex: -1
+  },
+  healthbar: {
+    top: Dimensions.get('window').height*.1,
+    left: Dimensions.get('window').width*.02
+  },
+  waterIcon: {
+    top: Dimensions.get('window').height*.05,
+    left: Dimensions.get('window').width*.8,
+  },
+  plant: {
+    top: Dimensions.get('window').height*.3,
     position: 'absolute',
     top: 60,
    },
