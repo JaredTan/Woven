@@ -135,8 +135,6 @@ class Plant extends React.Component {
   }
 
   displayMessage(type, time) {
-    console.log("///////////////// DISPLAY MESSAGE TYPE //////////");
-
     this.setState ({
       message: type
     });

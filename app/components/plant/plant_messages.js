@@ -37,7 +37,7 @@ class PlantMessage extends React.Component {
   full() {
     return (
       <Text style={styles.full}>
-        "I'm full!"
+        "Greggles says I'm full!"
       </Text>
     );
   }
@@ -62,21 +62,28 @@ class PlantMessage extends React.Component {
 const styles = StyleSheet.create({
   greeting: {
     position: 'absolute',
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: 'black',
+    top: Dimensions.get('window').height*.15,
+    right: Dimensions.get('window').height*.27,
+    fontSize: 17,
+    opacity: .6,
+    padding: 13,
+    backgroundColor: "#f2f2f2",
+    transform: [{ rotate: '-20deg'}]
   },
   full: {
    position: 'absolute',
-   color: 'red',
-   top: 120,
+   color: '#f4967e',
+   top: Dimensions.get('window').height*.15,
+   right: Dimensions.get('window').height*.15,
    alignSelf: 'center',
    fontWeight: 'bold',
-   fontSize: 20,
+   fontSize: 14,
+   letterSpacing: 1,
    shadowColor: '#FFF',
    shadowOffset: { width: 0, height: 0 },
    shadowOpacity: 0.5,
    shadowRadius: 1,
+   transform: [{ rotate: '20deg'}]
   },
 });
 
