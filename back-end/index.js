@@ -26,13 +26,9 @@ var PORT = process.env.PORT || 3000;
 
 server.listen(3000, () => console.log('listening on *:3000'));
 
-// Map sockets and users
-var clients = {};
-var users = {};
 var sessionConnection = null;
 
 websocket.on('connection', (socket) => {
-  clients[socket.id] = socket;
   socket.on('userJoined', (userId) => onUserJoined(userId, socket));
   socket.on('message', (message) => onMessageReceived(message, socket));
 });
@@ -42,17 +38,13 @@ websocket.on('connection', (socket) => {
 function onUserJoined(userId, socket) {
   var objId = mongoose.Types.ObjectId(userId);
   User.findOne({_id: objId}, (err, user) => {
-
     sessionConnection = user.connectionId;
-    users[socket.id] = userId;
+    socket.join(user.connectionId);
     _sendExistingMessages(socket);
   });
 }
 
 function onMessageReceived(message, senderSocket) {
-  var userId = users[senderSocket.id];
-
-
   _sendAndSaveMessage(message, senderSocket);
 }
 
@@ -74,20 +66,9 @@ function _sendAndSaveMessage(message, socket, fromServer) {
     createdAt: new Date(message.createdAt),
   };
 
+  let connectionId = message.user.connectionId;
 
-  Message.create(messageData, (newMessage) => {
-    var emitter = fromServer ? websocket : socket.broadcast;
-    emitter.emit('message', [newMessage]);
+  Message.create(messageData, (err, newMessage) => {
+    socket.broadcast.to(connectionId).emit('message', [newMessage]);
   });
 }
-
-// Allow the server to participate in the chatroom through stdin.
-var stdin = process.openStdin();
-stdin.addListener('data', function(d) {
-
-  _sendAndSaveMessage({
-    text: d.toString().trim(),
-    createdAt: new Date(),
-    user: { _id: 'robot', name: "robot", avatar: "", connectionId: sessionConnection }
-  }, null /* no socket */, true /* send from server */);
-});
