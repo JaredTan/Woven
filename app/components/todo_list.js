@@ -68,20 +68,22 @@ class TodoList extends React.Component {
         );
       } else {
         return (
-          <ScrollView
-            automaticallyAdjustContentInsets={false}>
-            <View style={styles.inputContainer}>
-              <TextInput
-                onChangeText={(newTodoText) => {
-                  this.setState({newTodoText});
-                }}
-                placeholder="New To-Do Text"
-                style={styles.input}/>
-            </View>
-            <TouchableOpacity onPress={this.addNewTodo}>
+          <View>
+            <ScrollView
+              automaticallyAdjustContentInsets={false}>
+              <View style={styles.inputContainer}>
+                <TextInput
+                  onChangeText={(newTodoText) => {
+                    this.setState({newTodoText});
+                  }}
+                  placeholder="New To-Do Text"
+                  style={styles.input}/>
+              </View>
+            </ScrollView>
+            <TouchableOpacity onPress={this.addNewTodo} style={styles.plus}>
               <Icon name="plus" size={20} color="black"/>
             </TouchableOpacity>
-          </ScrollView>
+          </View>
         );
       }
     };
@@ -103,18 +105,24 @@ class TodoList extends React.Component {
             }
             automaticallyAdjustContentInsets={false}>
             {renderScrollViewOrLoading()}
-            {renderTodos()}
+            <View style={styles.todoContainer}>
+              {renderTodos()}
+            </View>
           </ScrollView>
         </View>
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    top: 0,
+    left: 0,
+    height: Dimensions.get('window').height*.9,
+    zIndex: 1,
+    borderWidth: 1,
+    borderColor: 'blue'
   },
   title: {
     top: Dimensions.get('window').height*.03,
@@ -131,16 +139,25 @@ const styles = StyleSheet.create({
     backgroundColor: '#2ecc71'
   },
   todoContainer: {
-    top: Dimensions.get('window').height*.25,
-    height: Dimensions.get('window').height*.5,
+    top: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.82,
+    borderWidth: 5,
+    borderColor: 'red'
   },
   inputContainer: {
-    top: 0,
-    left: 0,
-    height: Dimensions.get('window').height*.2,
-    zIndex: 10,
-    borderWidth: 5,
-    borderColor: 'black'
+    top: Dimensions.get('window').height*.08,
+    padding: 5,
+    paddingLeft: 10,
+    margin: 10,
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: "#2ecc71"
+  },
+  plus: {
+    left: Dimensions.get('window').width*.9,
+    width: 20,
+    borderWidth: 1,
+    borderColor: 'orange'
   },
   input: {
     height: 26

@@ -48,7 +48,14 @@ class TodoItem extends React.Component {
 }
 const styles = StyleSheet.create({
   todoContainer: {
-    height: Dimensions.get('window').height*.05
+    padding: 16,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    marginTop: -1,
+    borderColor: '#ccc',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 });
 
