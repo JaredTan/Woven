@@ -73,60 +73,58 @@ class Main extends React.Component {
     this.props.unauthUser();
   }
 
-  render() {
-    return (
-      <View style = {styles.container}>
-        <ScrollView style = {styles.scrollView}>
-          { this.state.plant ? <PlantContainer/> : null }
-          { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
-          { this.state.todo ? <TodoList/> : null }
-        </ScrollView>
-        <View style={styles.navBar}>
-          <TouchableOpacity onPress={this.togglePlantTab}>
-            <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.toggleChatTab}>
-            <Icon name='message-processing' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.toggleTodoTab}>
-            <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-          <Menu>
-           <MenuTrigger>
-             <Icon name='chevron-up' size={38} color="#0c9258"/>
-           </MenuTrigger>
-             <MenuOptions>
-               <MenuOption onSelect={this.handleLogOut} text='Log Out' />
-               <MenuOption onSelect={this.redirectToProfile} text='Profile' />
-             </MenuOptions>
-         </Menu>
+
+    render() {
+      return (
+        <View style={styles.container}>
+          <View style={styles.component}>
+            <View>
+              { this.state.plant ? <PlantContainer/> : null }
+              { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
+              { this.state.todo ? <TodoList/> : null }
+            </View>
+          </View>
+          <View style={styles.navBar}>
+            <TouchableOpacity onPress={this.togglePlantTab}>
+              <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.toggleChatTab}>
+              <Icon name='message-processing' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.toggleTodoTab}>
+              <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
+            </TouchableOpacity>
+            <Menu>
+             <MenuTrigger>
+               <Icon name='chevron-up' size={38} color="#0c9258"/>
+             </MenuTrigger>
+               <MenuOptions>
+                 <MenuOption onSelect={this.handleLogOut} text='Log Out' />
+                 <MenuOption onSelect={this.redirectToProfile} text='Profile' />
+               </MenuOptions>
+           </Menu>
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
   }
 
-}
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column'
+    },
+    component: {
+      flex: 9
+    },
+    navBar: {
+      flex: 1,
+      backgroundColor: '#2ecc71',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around'
+    }
+  });
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-  },
-  scrollView: {
-  },
-  navBar: {
-    height: '8%',
-    padding: 16,
-    paddingTop: 8,
-    paddingBottom: 8,
-    backgroundColor: '#2ecc71',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around'
-  }
-});
-
-
-export default Main;
+  export default Main;
