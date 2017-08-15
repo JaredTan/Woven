@@ -121,7 +121,6 @@ const warn = formProps => {
 
 export default reduxForm({
   form: 'login',
-  warn: warn,
   fields: ['email', 'password'],
 }, null, null)(LSForm);
 
