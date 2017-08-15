@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
    },
    water: {
      position: 'absolute',
-     bottom: '40%',
+     top: Dimensions.get('window').height*.3,
      alignSelf: 'center'
    },
    waterIcon: {
