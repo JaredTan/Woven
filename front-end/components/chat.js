@@ -138,11 +138,11 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height*.82
   },
   profileImage: {
-    top: Dimensions.get('window').height*.015,
+    top: Dimensions.get('window').height*.02,
     alignSelf: 'flex-start',
-    width: 30,
-    height: 30,
-    borderRadius: 15
+    width: 26,
+    height: 26,
+    borderRadius: 13
   }
 });
 
