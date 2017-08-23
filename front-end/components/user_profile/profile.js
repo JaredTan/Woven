@@ -44,7 +44,7 @@ class UserProfile extends React.Component {
   render() {
     let {currentUser, partner} = this.props.users;
     let {connectionId } = this.props;
-    if (!currentUser) {
+    if (!currentUser || !partner) {
       return null;
     }
     return (
