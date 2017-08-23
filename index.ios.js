@@ -1,7 +1,7 @@
-import App from './app/components/app';
+import App from './front-end/components/app';
 import React, { Component } from 'react';
 import {Provider, connect} from 'react-redux';
-import {configureStore} from './app/store';
+import {configureStore} from './front-end/store';
 import {
   AppRegistry,
   StyleSheet,
