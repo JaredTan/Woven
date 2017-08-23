@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   },
   topBar: {
     position: 'absolute',
-    height: Dimensions.get('window').height*.1,
+    height: Dimensions.get('window').height*.08,
     left: 0,
     top: 0,
     width: '100%',
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height*.82
   },
   profileImage: {
-    top: Dimensions.get('window').height*.03,
+    top: Dimensions.get('window').height*.015,
     alignSelf: 'flex-start',
     width: 30,
     height: 30,
