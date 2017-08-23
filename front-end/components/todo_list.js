@@ -87,7 +87,7 @@ class TodoList extends React.Component {
       <View style={styles.container}>
         <View style={styles.topBar}>
           <Text style={styles.title}>
-            To-Do List
+            Shared To-Dos
           </Text>
         </View>
 

@@ -6,7 +6,8 @@ import {
   Text,
   StyleSheet,
   AsyncStorage,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 import io from 'socket.io-client';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
@@ -60,12 +61,22 @@ class Chat extends Component {
   }
 
   render() {
+    let {currentUser, partner} = this.props.users;
     console.disableYellowBox = true;
-    if (!this.props.users) { return null; }
+    if (!currentUser || !partner ) { return null; }
     return (
       <View style={styles.container}>
         <View style={styles.topBar}>
-          <Text style={styles.title}>Chat</Text>
+          <View style={styles.partner}>
+          <Image
+            style={styles.profileImage}
+            resizeMode='cover'
+            source={{
+              uri: partner.imageUrl
+            }}
+            />
+          <Text style={styles.title}>{partner.firstName} {partner.lastName}</Text>
+        </View>
         </View>
         <View style={styles.giftedChat}>
           <GiftedChat
@@ -102,22 +113,36 @@ const styles = StyleSheet.create({
     flex: 1
   },
   title: {
-    top: Dimensions.get('window').height*.03,
     color: 'white',
     fontSize: 20,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginLeft: 5
   },
   topBar: {
     position: 'absolute',
-    height: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.1,
     left: 0,
     top: 0,
     width: '100%',
     backgroundColor: '#2ecc71'
   },
+  partner: {
+    top: Dimensions.get('window').height*.01,
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   giftedChat: {
     top: Dimensions.get('window').height*.08,
     height: Dimensions.get('window').height*.82
+  },
+  profileImage: {
+    top: Dimensions.get('window').height*.03,
+    alignSelf: 'flex-start',
+    width: 30,
+    height: 30,
+    borderRadius: 15
   }
 });
 
