@@ -51,56 +51,68 @@ const demoLogin = (props, dispatch) => {
   dispatch(loginUser('AwesomeUser@awesome.com', 'awesome'));
 }
 
+const partnerLogin = (props, dispatch) => {
+  dispatch(loginUser('AwesomePartner@awesome.com', 'awesome'));
+}
+
 const LSForm = props => {
     const { handleSubmit } = props;
     return (
       <Container style={ styles.container }>
-
         <Content style={ styles.content }>
           <Image style={styles.logo} source={require('../../assets/icons/woven-logo-copy.png')} />
           <Header><Text>Log In</Text></Header>
           <Form style={ styles.form }>
-
-              <Field name="email" label="email" component={renderInput} />
-              <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
-
-              <Grid style={styles.buttonGrid}>
-                <Col style={styles.buttonContainer}>
-                  <Button
-                    androidRippleColor='rgba(245,219,0,0.4)'
-                    full
-                    bordered
-                    style={styles.signinButton}
-                    transparent
-                    onPress={handleSubmit(onSignIn)} >
-                    <ButtonTextStyle>
-                      <Text uppercase={false} style={styles.signinText}>
-                      login
-                      </Text>
-                    </ButtonTextStyle>
-                  </Button>
-                  <Button
-                    androidRippleColor='rgba(245,219,0,0.4)'
-                    full
-                    bordered
-                    style={styles.signinButton}
-                    transparent
-                    onPress={handleSubmit(demoLogin)} >
-                    <ButtonTextStyle>
-                      <Text uppercase={false} style={styles.signinText}>
+            <Field name="email" label="email" component={renderInput} />
+            <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
+            <Grid style={styles.buttonGrid}>
+              <Col style={styles.buttonContainer}>
+                <Button
+                  androidRippleColor='rgba(245,219,0,0.4)'
+                  full
+                  bordered
+                  style={styles.signinButton}
+                  transparent
+                  onPress={handleSubmit(onSignIn)} >
+                  <ButtonTextStyle>
+                    <Text uppercase={false} style={styles.signinText}>
+                    login
+                    </Text>
+                  </ButtonTextStyle>
+                </Button>
+                <Button
+                  androidRippleColor='rgba(245,219,0,0.4)'
+                  full
+                  bordered
+                  style={styles.signinButton}
+                  transparent
+                  onPress={handleSubmit(demoLogin)} >
+                  <ButtonTextStyle>
+                    <Text uppercase={false} style={styles.signinText}>
                       demo login
-                      </Text>
-                    </ButtonTextStyle>
-                  </Button>
-                </Col>
-              </Grid>
-      </Form>
-      </Content>
+                    </Text>
+                  </ButtonTextStyle>
+                </Button>
+                <Button
+                  androidRippleColor='rgba(245,219,0,0.4)'
+                  full
+                  bordered
+                  style={styles.signinButton}
+                  transparent
+                  onPress={handleSubmit(partnerLogin)} >
+                  <ButtonTextStyle>
+                    <Text uppercase={false} style={styles.signinText}>
+                      partner login
+                    </Text>
+                  </ButtonTextStyle>
+                </Button>
+              </Col>
+            </Grid>
+          </Form>
+        </Content>
       </Container>
     )
 }
-
-
 
 const warn = formProps => {
   const warnings = {}
@@ -143,8 +155,7 @@ const styles = {
   logo: {
     width: 140,
     height: 140,
-    alignSelf: 'center',
-    marginBottom: 10
+    alignSelf: 'center'
   },
   formItem:{
     marginLeft: 6,

@@ -33,7 +33,6 @@ var LogInNavigator = React.createClass({
   render() {
     return (
       <View style={styles.content}>
-
         <View style={styles.logIn}>
           <LogIn/>
         </View>
