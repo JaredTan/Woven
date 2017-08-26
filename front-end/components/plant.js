@@ -28,8 +28,13 @@ class Plant extends React.Component {
     this.state = {
       water: false,
 
+
+      name: props.plant.name,
       health: props.plant.health,
       lastWater: props.plant.lastWater,
+      age: props.plant.age,
+      happiness: props.plant.happiness,
+
       nextWater: 0,
       message: ""
     };
@@ -44,8 +49,8 @@ class Plant extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
-    console.log("/////////////// WILL MOUNT ////////");
+    // console.log(this.props);
+    // console.log("/////////////// WILL MOUNT ////////");
     this.props.fetchPlant(this.props.connectionId);
     this.calculateHealth();
     this.updateNextWater();
@@ -85,27 +90,27 @@ class Plant extends React.Component {
     return health;
   }
 
-  updateNextWater() {
-    console.log(this.state.lastWater);
-    let waterDate = new Date(this.state.lastWater);
+  updateNextWater(lastWater) {
+    lastWater = lastWater || new Date(this.state.lastWater);
 
-    waterDate.setMinutes(waterDate.getMinutes()+5);
+    lastWater.setMinutes(lastWater.getMinutes()+5);
 
     this.setState({
-      nextWater: waterDate
+      nextWater: lastWater
     });
 
   }
 
   waterPlant() {
-    if (this.state.nextWater > this.state.lastWater) {
+    let now = new Date(Date.now());
+    if (this.state.nextWater > now ) {
       this.displayMessage("full", 700);
     } else {
       this.setState({
         water: true,
         health: this.updateHealth(),
         lastWater: new Date(Date.now()),
-        nextWater: this.updateNextWater(),
+        nextWater: this.updateNextWater(now),
       });
 
       setTimeout(()=>{
