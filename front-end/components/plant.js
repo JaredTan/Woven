@@ -49,12 +49,10 @@ class Plant extends React.Component {
   }
 
   componentWillMount() {
-    // console.log(this.props);
-    // console.log("/////////////// WILL MOUNT ////////");
     this.props.fetchPlant(this.props.connectionId).then(() =>{
       this.setState({
         health: this.calculateHealth(),
-        nextWater: this.updateNextWater()
+        nextWater: this.updateNextWater(this.props.plant.lastWater)
       });
     });
   }
@@ -103,8 +101,8 @@ class Plant extends React.Component {
         });
       }, 5000);
       
-      this.handleUpdatePlant();
     }
+    this.handleUpdatePlant();
   }
   
   getBackground(){
@@ -129,8 +127,12 @@ class Plant extends React.Component {
     return health;
   }
 
-  updateNextWater() {
+  updateNextWater(lastWater) {
     let nextWater = new Date(Date.now());
+
+    if (lastWater)
+      nextWater.setTime(new Date(lastWater).getTime());
+
     nextWater.setMinutes(nextWater.getMinutes()+5);
     
     return nextWater;
