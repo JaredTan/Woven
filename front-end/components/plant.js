@@ -60,11 +60,10 @@ class Plant extends React.Component {
   }
 
   handleUpdatePlant() {
-    this.props.plant.lastWater = this.state.lastWater;
-    this.props.plant.health = this.state.health;
+    const { name, health, lastWater, age, happiness } = this.state;
+    const plant = { name, health, lastWater, age, happiness };
 
-    this.props.updatePlant(this.props.connectionId, this.props.plant);
-    this.updateNextWater();
+    this.props.updatePlant(this.props.connectionId, plant);
   }
 
   dateDiff(){
