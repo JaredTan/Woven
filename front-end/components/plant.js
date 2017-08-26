@@ -51,9 +51,12 @@ class Plant extends React.Component {
   componentWillMount() {
     // console.log(this.props);
     // console.log("/////////////// WILL MOUNT ////////");
-    this.props.fetchPlant(this.props.connectionId);
-    this.calculateHealth();
-    this.updateNextWater();
+    this.props.fetchPlant(this.props.connectionId).then(() =>{
+      this.setState({
+        health: this.calculateHealth(),
+        nextWater: this.updateNextWater()
+      });
+    });
   }
 
   handleUpdatePlant() {
@@ -65,12 +68,12 @@ class Plant extends React.Component {
   }
 
   dateDiff(){
-    let recentWater = Date.now();
+    let today = Date.now();
     let lastWater = new Date(this.state.lastWater).getTime();
 
-    let diff =  parseInt((recentWater - lastWater) / (1000 * 60 * 60 * 24));
+    let lapsedTime =  parseInt((today - lastWater) / (1000 * 60 * 60 * 24));
 
-    return diff;
+    return lapsedTime;
   }
 
   calculateHealth() {
@@ -79,17 +82,7 @@ class Plant extends React.Component {
     let tempHealth = this.props.plant.health - decreasedHealth;
     if (tempHealth < 0) {tempHealth = 0;}
 
-    this.setState({
-      health: tempHealth
-    });
-  }
-
-  
-  updateNextWater() {
-    let nextWater = new Date(Date.now());
-    nextWater.setMinutes(nextWater.getMinutes()+5);
-    
-    return nextWater;
+    return tempHealth;
   }
   
   waterPlant() {
@@ -135,6 +128,13 @@ class Plant extends React.Component {
     let health = this.state.health + 10;
     if (health > 100) {health = 100;}
     return health;
+  }
+
+  updateNextWater() {
+    let nextWater = new Date(Date.now());
+    nextWater.setMinutes(nextWater.getMinutes()+5);
+    
+    return nextWater;
   }
   
   displayMessage(type, time) {
