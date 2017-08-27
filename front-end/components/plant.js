@@ -28,8 +28,13 @@ class Plant extends React.Component {
     this.state = {
       water: false,
 
+
+      name: props.plant.name,
       health: props.plant.health,
       lastWater: props.plant.lastWater,
+      age: props.plant.age,
+      happiness: props.plant.happiness,
+
       nextWater: 0,
       message: ""
     };
@@ -44,28 +49,28 @@ class Plant extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
-    console.log("/////////////// WILL MOUNT ////////");
-    this.props.fetchPlant(this.props.connectionId);
-    this.calculateHealth();
-    this.updateNextWater();
+    this.props.fetchPlant(this.props.connectionId).then(() =>{
+      this.setState({
+        health: this.calculateHealth(),
+        nextWater: this.updateNextWater(this.props.plant.lastWater)
+      });
+    });
   }
 
   handleUpdatePlant() {
-    this.props.plant.lastWater = this.state.lastWater;
-    this.props.plant.health = this.state.health;
+    const { name, health, lastWater, age, happiness } = this.state;
+    const plant = { name, health, lastWater, age, happiness };
 
-    this.props.updatePlant(this.props.connectionId, this.props.plant);
-    this.updateNextWater();
+    this.props.updatePlant(this.props.connectionId, plant);
   }
 
   dateDiff(){
-    let recentWater = Date.now();
+    let today = Date.now();
     let lastWater = new Date(this.state.lastWater).getTime();
 
-    let diff =  parseInt((recentWater - lastWater) / (1000 * 60 * 60 * 24));
+    let lapsedTime =  parseInt((today - lastWater) / (1000 * 60 * 60 * 24));
 
-    return diff;
+    return lapsedTime;
   }
 
   calculateHealth() {
@@ -74,50 +79,32 @@ class Plant extends React.Component {
     let tempHealth = this.props.plant.health - decreasedHealth;
     if (tempHealth < 0) {tempHealth = 0;}
 
-    this.setState({
-      health: tempHealth
-    });
+    return tempHealth;
   }
-
-  updateHealth() {
-    let health = this.state.health + 10;
-    if (health > 100) {health = 100;}
-    return health;
-  }
-
-  updateNextWater() {
-    console.log(this.state.lastWater);
-    let waterDate = new Date(this.state.lastWater);
-
-    waterDate.setMinutes(waterDate.getMinutes()+5);
-
-    this.setState({
-      nextWater: waterDate
-    });
-
-  }
-
+  
   waterPlant() {
-    if (this.state.nextWater > this.state.lastWater) {
+    let now = new Date(Date.now());
+
+    if (this.state.nextWater > now ) {
       this.displayMessage("full", 700);
     } else {
       this.setState({
         water: true,
         health: this.updateHealth(),
-        lastWater: new Date(Date.now()),
+        lastWater: now,
         nextWater: this.updateNextWater(),
       });
-
+      
       setTimeout(()=>{
         this.setState({
           water: false
         });
       }, 5000);
-
-      this.handleUpdatePlant();
+      
     }
+    this.handleUpdatePlant();
   }
-
+  
   getBackground(){
     let time = new Date().getHours();
     if ( time >= 20 ) {
@@ -131,9 +118,26 @@ class Plant extends React.Component {
     } else {
       return BACKGROUND['night'];
     }
-
+    
+  }
+  
+  updateHealth() {
+    let health = this.state.health + 10;
+    if (health > 100) {health = 100;}
+    return health;
   }
 
+  updateNextWater(lastWater) {
+    let nextWater = new Date(Date.now());
+
+    if (lastWater)
+      nextWater.setTime(new Date(lastWater).getTime());
+
+    nextWater.setMinutes(nextWater.getMinutes()+5);
+    
+    return nextWater;
+  }
+  
   displayMessage(type, time) {
     this.setState ({
       message: type
@@ -144,13 +148,13 @@ class Plant extends React.Component {
       });
     }, time);
   }
-
+  
   render() {
-
+    
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
-
+    
     let background = this.getBackground();
-
+    
     return (
       <View style={styles.container}>
           <View style={styles.background}>
