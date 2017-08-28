@@ -165,7 +165,7 @@ const styles = {
   container: {
     paddingLeft: 42,
     paddingRight: 42,
-    marginTop: -20,
+    marginTop: 10,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -174,8 +174,9 @@ const styles = {
   content: {
   },
   title: {
-    textAlign: 'center',
-    fontSize: 24
+    color: 'white',
+    fontSize: 20,
+    alignSelf: 'center'
   },
   form: {
   },
