@@ -19,6 +19,8 @@ if (process.env.NODE_ENV=='production') {
 }
 
 // var API_URL = 'https://safe-peak-55084.herokuapp.com/v1';
+// var API_URL = 'https://damp-forest-12839.herokuapp.com/v1';
+
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
@@ -30,7 +32,6 @@ console.log('listening on', PORT);
 server.listen(PORT);
 
 var sessionConnection = null;
-
 websocket.on('connection', (socket) => {
   socket.on('userJoined', (userId) => onUserJoined(userId, socket));
   socket.on('message', (message) => onMessageReceived(message, socket));
