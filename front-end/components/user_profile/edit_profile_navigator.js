@@ -25,13 +25,14 @@ class EditProfileNavigator extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.container}>
         <View style={styles.topBar}>
           <View style={styles.topNav}>
             <TouchableOpacity onPress={this.handleBack}>
-              <Icon name="chevron-left" size={24} color="white"/>
+              <Icon name="chevron-left" size={20} color="white"/>
             </TouchableOpacity>
             <Text style={styles.title}>Edit Profile</Text>
+            <Icon name="chevron-left" size={20} color="#2ecc71"/>
           </View>
         </View>
         <EditProfile navigator={this.props.navigator}/>
@@ -43,21 +44,10 @@ class EditProfileNavigator extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    color: 'white',
-    fontSize: 20,
-    backgroundColor: 'transparent',
-    paddingLeft: Dimensions.get('window').width*.3
-  },
-  topNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: Dimensions.get('window').width*.03,
-    paddingRight: Dimensions.get('window').width*.03,
-    top: Dimensions.get('window').height*.03,
+  container: {
+    flex: 1
   },
   topBar: {
-    flexDirection: 'row',
     position: 'absolute',
     zIndex: 1,
     height: Dimensions.get('window').height*.08,
@@ -65,6 +55,19 @@ const styles = StyleSheet.create({
     top: 0,
     width: '100%',
     backgroundColor: '#2ecc71'
+  },
+  topNav: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: Dimensions.get('window').width*.03,
+    paddingRight: Dimensions.get('window').width*.03,
+    top: Dimensions.get('window').height*.03,
+  },
+  title: {
+    color: 'white',
+    fontSize: 20,
+    alignSelf: 'center'
   }
 });
 

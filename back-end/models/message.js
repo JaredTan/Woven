@@ -15,9 +15,6 @@ var messageSchema = new Schema({
     name: {
       type: String
     },
-    avatar: {
-      type: String
-    },
     connectionId: {
       type: String
     }

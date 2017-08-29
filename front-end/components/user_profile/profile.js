@@ -52,13 +52,13 @@ class UserProfile extends React.Component {
       <View style={styles.topBar}>
         <View style={styles.topNav}>
           <TouchableOpacity onPress={this.handleBack}>
-            <Icon name="chevron-left" size={30} color="white"/>
+            <Icon name="chevron-left" size={24} color="white"/>
           </TouchableOpacity>
           <Text style={styles.title}>
             Profile
           </Text>
           <TouchableOpacity onPress={this.redirectToEdit}>
-            <Icon name="pencil" size={24} color="white"/>
+            <Icon name="pencil" size={20} color="white"/>
           </TouchableOpacity>
         </View>
       </View>
@@ -115,7 +115,6 @@ class UserProfile extends React.Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -132,13 +131,15 @@ const styles = StyleSheet.create({
   topNav: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingLeft: Dimensions.get('window').width*.03,
     paddingRight: Dimensions.get('window').width*.03,
     top: Dimensions.get('window').height*.03,
   },
   title: {
     color: 'white',
-    fontSize: 20
+    fontSize: 20,
+    alignSelf: 'center'
   },
   body: {
     flexDirection: 'column',
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   info: {
-    top: Dimensions.get('window').height*.08,
+    top: Dimensions.get('window').height*.10,
     height: Dimensions.get('window').height*.92,
     paddingTop: Dimensions.get('window').height*.05,
     paddingBottom: Dimensions.get('window').height*.05

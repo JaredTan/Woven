@@ -116,9 +116,7 @@ const LSForm = props => {
 
 const warn = formProps => {
   const warnings = {}
-  if (formProps.password === "123456") {
-    warnings.password = 'Too easy password.'
-  } else if (!formProps.email) {
+  if (!formProps.email) {
     warnings.email = 'Required'
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formProps.email)) {
     warnings.email = 'Invalid email address'
