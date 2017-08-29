@@ -4,10 +4,12 @@ import Plant from './plant';
 import {unauthUser, fetchPlant, updatePlant} from '../actions';
 
 const mapStateToProps = (state) => {
-  console.log(state.plant,'state plant in plant container');
+  const { currentUser, partner } = state.users;
   return {
     connectionId: state.auth.connectionId,
-    plant: Object.assign({}, state.plant)
+    plant: Object.assign({}, state.plant),
+    currentUser,
+    partner
   };
 };
 

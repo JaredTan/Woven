@@ -34,8 +34,10 @@ class Plant extends React.Component {
       lastWater: props.plant.lastWater,
       age: props.plant.age,
       happiness: props.plant.happiness,
+      messages: props.plant.messages,
 
       nextWater: 0,
+      messageType: "",
       message: ""
     };
 
@@ -57,10 +59,34 @@ class Plant extends React.Component {
     });
   }
 
-  handleUpdatePlant() {
-    const { name, health, lastWater, age, happiness } = this.state;
-    const plant = { name, health, lastWater, age, happiness };
+  componentWillUnmount() {
 
+    // console.log("UNMOUNTING STATE ", this.state);
+    let { messages } = this.state;
+    let { currentUser } = this.props;
+    messages.for[currentUser.email] = null;
+    
+    this.setState({
+      messages
+    });
+    
+    // console.log("AFTER SETTING STATE ", this.state);
+    this.handleUpdatePlant();
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    let { messages } = nextProps.plant;
+    
+    this.setState({
+      messages
+    });
+  }
+  
+  handleUpdatePlant() {
+    const { name, health, lastWater, age, happiness, messages } = this.state;
+    const plant = { name, health, lastWater, age, happiness, messages };
+    
+    console.log("UPDATING SET STATE ", this.plant);
     this.props.updatePlant(this.props.connectionId, plant);
   }
 
@@ -88,6 +114,8 @@ class Plant extends React.Component {
     if (this.state.nextWater > now ) {
       this.displayMessage("full", 700);
     } else {
+      this.displayMessage("secret", 900);
+
       this.setState({
         water: true,
         health: this.updateHealth(),
@@ -133,18 +161,24 @@ class Plant extends React.Component {
     if (lastWater)
       nextWater.setTime(new Date(lastWater).getTime());
 
-    nextWater.setMinutes(nextWater.getMinutes()+5);
+    nextWater.setMinutes(nextWater.getMinutes() + 5);
     
     return nextWater;
   }
   
   displayMessage(type, time) {
+    const { messages } = this.props.plant;
+    const { currentUser } = this.props;
+
+    const message = messages.for[currentUser.email];
+
     this.setState ({
-      message: type
+      messageType: type,
+      message
     });
     let timeout = setTimeout(()=>{
       this.setState({
-        message: ""
+        messageType: ""
       });
     }, time);
   }
@@ -179,6 +213,7 @@ class Plant extends React.Component {
           <View>
             <PlantMessage
             message={this.state.message}
+            messageType={this.state.messageType}
             name={this.props.plant.name} />
           </View>
 
@@ -186,7 +221,8 @@ class Plant extends React.Component {
             style={styles.wrapper}
             onPress={
               () => {Vibration.vibrate([0, 500, 200, 500]);
-                this.displayMessage("greeting", 900);
+                //display optional message
+                this.displayMessage("secret", 900);
               }
             }>
 

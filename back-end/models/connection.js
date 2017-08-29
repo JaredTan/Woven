@@ -16,7 +16,7 @@ var connectionSchema = new Schema({
     seeded: { type: Date, default: Date.now() },
     lastWater: { type: Date, default: Date.now() },
     messages: {
-      for: { type: Object }
+      for: { type: Object, default: {}}
     }
   }
 });
