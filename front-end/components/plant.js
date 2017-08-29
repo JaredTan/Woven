@@ -68,10 +68,9 @@ class Plant extends React.Component {
     
     this.setState({
       messages
-    });
+    }, this.handleUpdatePlant);
     
     // console.log("AFTER SETTING STATE ", this.state);
-    this.handleUpdatePlant();
   }
   
   componentWillReceiveProps(nextProps) {
