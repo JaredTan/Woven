@@ -30,7 +30,6 @@ console.log('listening on', PORT);
 server.listen(PORT);
 
 var sessionConnection = null;
-
 websocket.on('connection', (socket) => {
   socket.on('userJoined', (userId) => onUserJoined(userId, socket));
   socket.on('message', (message) => onMessageReceived(message, socket));
