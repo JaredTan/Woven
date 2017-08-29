@@ -73,20 +73,15 @@ class UserProfile extends React.Component {
             }}
           />
           <Text style={styles.name}>{currentUser.firstName} {currentUser.lastName}</Text>
-        </View>
-
-        <View style={styles.body}>
           <Text>
-           <Text style={{fontWeight: 'bold'}}>Email:</Text> {currentUser.email}
-          </Text>
-          <Text>
-           <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(currentUser.birthday).format('LL')}
-          </Text>
+            <Text style={{fontWeight: 'bold'}}>Birthday: </Text>
+              {moment(currentUser.birthday).format('LL')}
+            </Text>
         </View>
 
         <View style={styles.anniversary}>
-          <View style={{width: '90%', marginTop: 25, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
-          <Text style={{fontWeight: 'bold'}}>Your Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
+          <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
+          <Text style={{fontWeight: 'bold'}}>Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
           <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
         </View>
 
@@ -99,16 +94,12 @@ class UserProfile extends React.Component {
             }}
           />
           <Text style={styles.name}>Your partner: {partner.firstName} {partner.lastName}</Text>
+          <Text>
+            <Text style={{fontWeight: 'bold'}}>Birthday: </Text>
+             {moment(partner.birthday).format('LL')}
+            </Text>
         </View>
 
-        <View style={styles.body}>
-          <Text>
-            <Text style={{fontWeight: 'bold'}}>Email:</Text> {partner.email}
-          </Text>
-          <Text>
-            <Text style={{fontWeight: 'bold'}}>Birthday:</Text> {moment(partner.birthday).format('LL')}
-          </Text>
-        </View>
       </View>
     </View>
     );
@@ -152,18 +143,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   info: {
-    top: Dimensions.get('window').height*.10,
+    top: Dimensions.get('window').height*.08,
     height: Dimensions.get('window').height*.92,
-    paddingTop: Dimensions.get('window').height*.05,
-    paddingBottom: Dimensions.get('window').height*.05
+    paddingTop: Dimensions.get('window').height*.03,
+    paddingBottom: Dimensions.get('window').height*.05,
+    flexDirection: 'column',
+    justifyContent: 'space-around'
   },
   header: {
     alignItems: 'center',
   },
   profileImage: {
-    width: Dimensions.get('window').width*.3,
-    height: Dimensions.get('window').width*.3,
-    borderRadius: Dimensions.get('window').width*.15
+    width: Dimensions.get('window').width*.4,
+    height: Dimensions.get('window').width*.4,
+    borderRadius: Dimensions.get('window').width*.2,
+    borderColor: 'gray',
+    borderWidth: .5
   },
   anniversary: {
     alignItems: 'center'

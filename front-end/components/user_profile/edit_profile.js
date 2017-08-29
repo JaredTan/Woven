@@ -23,7 +23,7 @@ const renderInput = ({
   label,
   type,
   secureTextEntry,
-  meta: { touched, notification, warning }
+  meta: { touched}
 }) => {
   return (
     <View>
@@ -38,9 +38,7 @@ const renderInput = ({
             onChangeText={onChange}
             {...restInput} />
       </Item>
-      <View>{touched &&
-      ((notification && <Text style={styles.notification}>{notification}</Text>) ||
-        (warning && <Text style={styles.warning}>{warning}</Text>))}</View>
+      <View>{touched}</View>
     </View>
   )
 }
@@ -123,13 +121,12 @@ const EditForm = (props) => {
             <Grid style={styles.buttonGrid}>
               <Col style={styles.buttonContainer}>
                 <Button
-                  androidRippleColor='rgba(255,255,255,0.4)'
                   full
                   bordered
-                  style={styles.signupButton}
+                  style={styles.editButton}
                   transparent
                   onPress={handleSubmit(handleEdit)} >
-                  <Text uppercase={false} style={styles.signupText}>
+                  <Text>
                     update profile
                   </Text>
                 </Button>
@@ -211,30 +208,11 @@ const styles = {
   buttonContainer: {
     marginTop: 24,
     marginLeft: 6,
-    marginRight: 6
+    marginRight: 6,
+    borderRadius: 10
   },
-  signinButton: {
-    borderColor: 'black',
-  },
-  signinText: {
-    color: 'black',
-    fontSize: 12,
-  },
-  signupButton: {
-    borderColor: 'black',
-  },
-  signupText: {
-    color: 'black',
-    fontSize: 12,
-  },
-  notification: {
-    color: 'green',
-  },
-  warning: {
-    color: 'orange'
-  },
-  login: {
-    alignSelf: 'center',
-    marginTop: 10
+  editButton: {
+    borderRadius: 10,
+    borderColor: 'black'
   }
 }
