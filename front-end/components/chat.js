@@ -26,6 +26,7 @@ class Chat extends Component {
     this.onSend = this.onSend.bind(this);
     this._storeMessages = this._storeMessages.bind(this);
     this.giftedUser = this.giftedUser.bind(this);
+    this.renderAvatar = this.renderAvatar.bind(this);
 
     this.socket = io(API_URL);
     this.socket.on('message', this.onReceivedMessage);
@@ -55,9 +56,15 @@ class Chat extends Component {
     return {
       _id: this.props.users.currentUser._id.toString(),
       name: this.props.users.currentUser.firstName,
-      avatar: this.props.users.currentUser.imageUrl,
       connectionId: this.props.users.currentUser.connectionId
     };
+  }
+
+  renderAvatar() {
+    return (<Image
+      source={{uri: this.props.users.partner.imageUrl}}
+      style={[styles.avatarStyle, this.props.avatarStyle]}
+    />)
   }
 
   render() {
@@ -81,6 +88,7 @@ class Chat extends Component {
         <View style={styles.giftedChat}>
           <GiftedChat
             messages={this.state.messages}
+            renderAvatar={this.renderAvatar}
             onSend={this.onSend}
             user={this.giftedUser()}
             renderBubble={this.renderBubble.bind(this)}
@@ -143,7 +151,20 @@ const styles = StyleSheet.create({
     width: 26,
     height: 26,
     borderRadius: 13
-  }
+  },
+  avatarStyle: {
+   justifyContent: 'center',
+   alignItems: 'center',
+   width: 40,
+   height: 40,
+   borderRadius: 20,
+ },
+ textStyle: {
+   color: '#fff',
+   fontSize: 16,
+   backgroundColor: 'transparent',
+   fontWeight: '100',
+ },
 });
 
 const mapStateToProps = (state) => {
