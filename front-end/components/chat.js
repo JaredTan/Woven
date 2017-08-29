@@ -12,7 +12,8 @@ import {
 import io from 'socket.io-client';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import Dimensions from 'Dimensions';
-const API_URL = 'https://safe-peak-55084.herokuapp.com';
+// const API_URL = 'https://safe-peak-55084.herokuapp.com';
+const API_URL = 'https://damp-forest-12839.herokuapp.com';
 
 class Chat extends Component {
   constructor(props) {
