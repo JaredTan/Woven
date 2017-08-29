@@ -13,7 +13,10 @@ var connectionSchema = new Schema({
     happiness: {type: Number, default: 75},
     age: {type: Number, default: 0},
     seeded: { type: Date, default: Date.now() },
-    lastWater: { type: Date, default: Date.now() }
+    lastWater: { type: Date, default: Date.now() },
+    messages: {
+        for: { type: Object, default: {} }
+      }
   }
 });
 
