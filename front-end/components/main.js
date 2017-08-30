@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
+  Image,
   View,
   TouchableOpacity,
   NavigatorIOS,
@@ -18,6 +19,8 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import Dimensions from 'Dimensions';
+
 
 class Main extends React.Component {
   constructor(props) {
@@ -66,7 +69,7 @@ class Main extends React.Component {
         title: 'User Profile',
         navigationBarHidden: true
       });
-    })
+    });
   }
 
   handleLogOut() {
@@ -85,24 +88,32 @@ class Main extends React.Component {
             </View>
           </View>
           <View style={styles.navBar}>
+            <Image
+              source={require('../assets/navbar/navbar.png')}
+              style={styles.navBackground}>
             <TouchableOpacity onPress={this.togglePlantTab}>
-              <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
+              <Image
+                source={require('../assets/navbar/plantIcon.png')} opacity={this.state.plant ? 1 : .5 }/>
             </TouchableOpacity>
             <TouchableOpacity onPress={this.toggleChatTab}>
-              <Icon name='message-processing' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
+              <Image
+                source={require('../assets/navbar/messageIcon.png')} opacity={this.state.chat ? 1 : .5 }/>
             </TouchableOpacity>
             <TouchableOpacity onPress={this.toggleTodoTab}>
-              <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
+              <Image
+                source={require('../assets/navbar/todoIcon.png')} opacity={this.state.todo ? 1 : .5 }/>
             </TouchableOpacity>
             <Menu>
              <MenuTrigger>
-               <Icon name='chevron-up' size={38} color="#0c9258"/>
+               <Image
+                 source={require('../assets/navbar/profileIcon.png')} opacity={ .5 }/>
              </MenuTrigger>
-               <MenuOptions>
+               <MenuOptions style={styles.menuPopUp}>
                  <MenuOption onSelect={this.handleLogOut} text='Log Out' />
                  <MenuOption onSelect={this.redirectToProfile} text='Profile' />
                </MenuOptions>
            </Menu>
+           </Image>
           </View>
         </View>
       );
@@ -117,12 +128,15 @@ class Main extends React.Component {
     component: {
       flex: 9
     },
-    navBar: {
-      flex: 1,
-      backgroundColor: '#2ecc71',
+    navBackground: {
+      zIndex: -1,
+      height: Dimensions.get('window').height*.09,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-around'
+    },
+    menuPopUp: {
+      color: '#46D2D6'
     }
   });
 
