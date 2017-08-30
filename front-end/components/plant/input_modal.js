@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Text, TouchableHighlight, View, Dimensions, StyleSheet, Image } from 'react-native';
+import { Modal, Text, TouchableHighlight, View, Dimensions, StyleSheet, Image, TextInput } from 'react-native';
 
 class InputModal extends React.Component {
 
@@ -7,36 +7,66 @@ class InputModal extends React.Component {
     super(props);
     this.state = {
       modalVisible: false,
+      text: 'Leave a message with me!'
+    };
+
+    this.submitAndReset = this.submitAndReset.bind(this);
+    this.setModalVisible = this.setModalVisible.bind(this);
+    this.clearInput = this.clearInput.bind(this);
+  }
+
+  clearInput() {
+    return (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.setState({
+        text: ''
+      });
     };
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({
+      modalVisible: visible
+    });
   }
+
+  submitAndReset() {
+    return (e) => {
+      this.setModalVisible(!this.state.modalVisible);
+      this.setState({
+        text: 'Would you rather leave a different message?'
+      });
+    };
+  }
+
 
   render() {
     return (
       <View>
         <Modal
-          animationType={"fade"}
+          animationType={"none"}
           transparent={true}
           visible={this.state.modalVisible}
           onRequestClose={() => {alert("Modal has been closed.")}}
           >
-         <View style={styles.container}>
+         <TouchableHighlight  
+          style={styles.container}
+          onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
+         >
           <View
             style={styles.backdrop}
           >
-            <Text>Leave a message with me!</Text>
+            <TextInput
 
-            <TouchableHighlight onPress={() => {
-              this.setModalVisible(!this.state.modalVisible)
-            }}>
-              <Text>Hide Modal</Text>
-            </TouchableHighlight>
-
+              onChangeText={(text) => this.setState({text})}
+              onSubmitEditing={this.submitAndReset()}
+              onFocus={this.clearInput()}
+              value={this.state.text}
+              style={styles.backdrop}
+            />
           </View>
-         </View>
+         </TouchableHighlight >
         </Modal>
 
         <TouchableHighlight 
@@ -63,9 +93,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
    },
    backdrop:{
-    backgroundColor: 'white',
     width: Dimensions.get('window').width,
-    height: 80,
+    backgroundColor: 'white',
+    padding: 3,
    },
    waterIcon: {
     backgroundColor: 'transparent',
