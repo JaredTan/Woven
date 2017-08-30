@@ -35,7 +35,7 @@ class PlantMessage extends React.Component {
   }
 
   default(message) {
-    return (<Text style={styles.greeting}>{message}</Text>);
+    return (<Text style={styles.secret}>{this.props.partner.firstName} says, "{message}"</Text>);
   }
 
   full() {
@@ -64,6 +64,16 @@ class PlantMessage extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  secret: {
+    position: 'absolute',
+    top: Dimensions.get('window').height*.06,
+    right: Dimensions.get('window').height*.20,
+    width: 190,
+    fontSize: 17,
+    opacity: .6,
+    padding: 13,
+    backgroundColor: "#f2f2f2",
+  },
   greeting: {
     position: 'absolute',
     top: Dimensions.get('window').height*.15,
