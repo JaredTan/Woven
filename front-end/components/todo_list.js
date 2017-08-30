@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   StyleSheet,
+  Image,
   Text,
   View,
   TouchableOpacity,
@@ -81,7 +82,7 @@ class TodoList extends React.Component {
               placeholder="New To-Do Text"
               style={styles.input}/>
             <TouchableOpacity onPress={this.addNewTodo} style={styles.plus}>
-              <Icon name="plus" size={20} color="#0c9258"/>
+              <Icon name="plus" size={20} color="#0E9B2D"/>
             </TouchableOpacity>
           </View>
         );
@@ -90,11 +91,13 @@ class TodoList extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
+        <Image
+            source={require('../assets/navbar/navbar.png')}
+            style={styles.topBar}>
           <Text style={styles.title}>
             Shared To-Dos
           </Text>
-        </View>
+        </Image>
 
         <View style={{flex: 1}}>
           <ScrollView
@@ -125,20 +128,22 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height*.9
   },
   title: {
-    top: Dimensions.get('window').height*.03,
+    top: Dimensions.get('window').height*.04,
     color: 'white',
-    fontSize: 20,
+    fontSize: 19,
+    letterSpacing: 2,
     alignSelf: 'center'
   },
   topBar: {
     position: 'absolute',
     zIndex: 1,
-    height: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.09,
     left: 0,
     top: 0,
     width: '100%',
-    backgroundColor: '#2ecc71'
+    backgroundColor: 'transparent'
   },
+
   todoContainer: {
     top: Dimensions.get('window').height*.12,
     height: Dimensions.get('window').height*.7
@@ -148,13 +153,13 @@ const styles = StyleSheet.create({
   },
   newTodoBar: {
     alignSelf: 'center',
-    top: Dimensions.get('window').height*.1,
+    top: Dimensions.get('window').height*.12,
     width: Dimensions.get('window').width*.9,
     paddingTop: Dimensions.get('window').height*.01,
     paddingBottom: Dimensions.get('window').height*.01,
     borderRadius: 15,
     borderWidth: 3,
-    borderColor: '#2ecc71'
+    borderColor: '#46D2D6'
   },
   inputContainer: {
     paddingLeft: Dimensions.get('window').width*.03,
