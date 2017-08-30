@@ -65,7 +65,7 @@ class Chat extends Component {
     return (<Image
       source={{uri: this.props.users.partner.imageUrl}}
       style={[styles.avatarStyle, this.props.avatarStyle]}
-    />)
+    />);
   }
 
   render() {
@@ -74,18 +74,22 @@ class Chat extends Component {
     if (!currentUser || !partner ) { return null; }
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
+        <Image
+            source={require('../assets/navbar/navbar.png')}
+            style={styles.topBar}>
           <View style={styles.partner}>
           <Image
             style={styles.profileImage}
-            resizeMode='cover'
+            height={35}
+            width={35}
+            borderRadius={17.5}
             source={{
               uri: partner.imageUrl
             }}
             />
           <Text style={styles.title}>{partner.firstName} {partner.lastName}</Text>
         </View>
-        </View>
+      </Image>
         <View style={styles.giftedChat}>
           <GiftedChat
             messages={this.state.messages}
@@ -124,17 +128,18 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 19,
     alignSelf: 'center',
-    marginLeft: 5
+    marginLeft: 13,
+    letterSpacing: 1,
   },
   topBar: {
     position: 'absolute',
-    height: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.09,
     left: 0,
     top: 0,
     width: '100%',
-    backgroundColor: '#2ecc71'
+    backgroundColor: 'transparent',
   },
   partner: {
     top: Dimensions.get('window').height*.01,

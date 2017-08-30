@@ -19,8 +19,8 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import Dimensions from 'Dimensions';
 
-// import {messageIcon, navBarImage, plantIcon, profileIcon, toDoIcon} from '../assets/navbar';
 
 class Main extends React.Component {
   constructor(props) {
@@ -108,7 +108,7 @@ class Main extends React.Component {
                <Image
                  source={require('../assets/navbar/profileIcon.png')} opacity={ .5 }/>
              </MenuTrigger>
-               <MenuOptions>
+               <MenuOptions style={styles.menuPopUp}>
                  <MenuOption onSelect={this.handleLogOut} text='Log Out' />
                  <MenuOption onSelect={this.redirectToProfile} text='Profile' />
                </MenuOptions>
@@ -119,7 +119,6 @@ class Main extends React.Component {
       );
     }
   }
-  // require('../assets/navbar/waterIcon.png')
 
   const styles = StyleSheet.create({
     container: {
@@ -129,18 +128,15 @@ class Main extends React.Component {
     component: {
       flex: 9
     },
-    // navBar: {
-    //   flex: 1,
-    //   backgroundColor: '#2ecc71',
-    //   flexDirection: 'row',
-    //   alignItems: 'center',
-    //   justifyContent: 'space-around'
-    // },
     navBackground: {
       zIndex: -1,
+      height: Dimensions.get('window').height*.09,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-around'
+    },
+    menuPopUp: {
+      color: '#46D2D6'
     }
   });
 
