@@ -37,7 +37,6 @@ class InputModal extends React.Component {
       const {updatePlant, connectionId, partner, plant} = this.props;
       plant.messages.for[partner.firstName] = this.state.text;
 
-      console.log("ABOUT TO UPDATE PARTNER: ", plant);
       updatePlant(connectionId, plant);
 
       this.setModalVisible(!this.state.modalVisible);

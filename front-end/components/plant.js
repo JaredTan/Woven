@@ -15,7 +15,7 @@ import {
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
 import PlantMessage from './plant/plant_messages';
-import InputModal from './plant/input_modal';
+import InputModal from './plant/input_modal_container';
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
@@ -62,7 +62,6 @@ class Plant extends React.Component {
 
   componentWillUnmount() {
 
-    // console.log("UNMOUNTING STATE ", this.state);
     let { messages } = this.state;
     let { currentUser } = this.props;
     messages.for[currentUser.firstName] = '';
@@ -71,7 +70,6 @@ class Plant extends React.Component {
       messages
     });
     this.handleUpdatePlant();
-    // console.log("AFTER SETTING STATE ", this.state);
   }
   
   componentWillReceiveProps(nextProps) {
@@ -86,7 +84,6 @@ class Plant extends React.Component {
     const { name, health, lastWater, age, happiness, messages } = this.state;
     const plant = { name, health, lastWater, age, happiness, messages };
     
-    console.log("UPDATING SET STATE ", plant);
     this.props.updatePlant(this.props.connectionId, plant);
   }
 
