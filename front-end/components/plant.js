@@ -15,6 +15,7 @@ import {
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
 import PlantMessage from './plant/plant_messages';
+import InputModal from './plant/input_modal_container';
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
@@ -34,8 +35,10 @@ class Plant extends React.Component {
       lastWater: props.plant.lastWater,
       age: props.plant.age,
       happiness: props.plant.happiness,
+      messages: props.plant.messages,
 
       nextWater: 0,
+      messageType: "",
       message: ""
     };
 
@@ -57,10 +60,30 @@ class Plant extends React.Component {
     });
   }
 
-  handleUpdatePlant() {
-    const { name, health, lastWater, age, happiness } = this.state;
-    const plant = { name, health, lastWater, age, happiness };
+  componentWillUnmount() {
 
+    let { messages } = this.state;
+    let { currentUser } = this.props;
+    messages.for[currentUser.firstName] = '';
+    
+    this.setState({
+      messages
+    });
+    this.handleUpdatePlant();
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    let { messages } = nextProps.plant;
+    
+    this.setState({
+      messages
+    });
+  }
+  
+  handleUpdatePlant() {
+    const { name, health, lastWater, age, happiness, messages } = this.state;
+    const plant = { name, health, lastWater, age, happiness, messages };
+    
     this.props.updatePlant(this.props.connectionId, plant);
   }
 
@@ -81,30 +104,32 @@ class Plant extends React.Component {
 
     return tempHealth;
   }
-  
+
   waterPlant() {
     let now = new Date(Date.now());
 
     if (this.state.nextWater > now ) {
       this.displayMessage("full", 700);
     } else {
+      this.displayMessage("secret", 900);
+
       this.setState({
         water: true,
         health: this.updateHealth(),
         lastWater: now,
         nextWater: this.updateNextWater(),
       });
-      
+
       setTimeout(()=>{
         this.setState({
           water: false
         });
       }, 5000);
-      
+
     }
     this.handleUpdatePlant();
   }
-  
+
   getBackground(){
     let time = new Date().getHours();
     if ( time >= 20 ) {
@@ -118,9 +143,9 @@ class Plant extends React.Component {
     } else {
       return BACKGROUND['night'];
     }
-    
+
   }
-  
+
   updateHealth() {
     let health = this.state.health + 10;
     if (health > 100) {health = 100;}
@@ -133,28 +158,35 @@ class Plant extends React.Component {
     if (lastWater)
       nextWater.setTime(new Date(lastWater).getTime());
 
-    nextWater.setMinutes(nextWater.getMinutes()+5);
-    
+
+    nextWater.setMinutes(nextWater.getMinutes() + 5);
+
     return nextWater;
   }
-  
+
   displayMessage(type, time) {
+    const { messages } = this.props.plant;
+    const { currentUser } = this.props;
+
+    const message = messages.for[currentUser.firstName];
+
     this.setState ({
-      message: type
+      messageType: type,
+      message
     });
     let timeout = setTimeout(()=>{
       this.setState({
-        message: ""
+        messageType: ""
       });
     }, time);
   }
-  
+
   render() {
-    
+
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
-    
+
     let background = this.getBackground();
-    
+
     return (
       <View style={styles.container}>
           <View style={styles.background}>
@@ -176,9 +208,12 @@ class Plant extends React.Component {
             />
           </TouchableOpacity>
 
+          <InputModal />
+
           <View>
             <PlantMessage
             message={this.state.message}
+            messageType={this.state.messageType}
             name={this.props.plant.name} />
           </View>
 
@@ -186,12 +221,13 @@ class Plant extends React.Component {
             style={styles.wrapper}
             onPress={
               () => {Vibration.vibrate([0, 500, 200, 500]);
-                this.displayMessage("greeting", 900);
+                //display optional message
+                this.displayMessage("secret", 900);
               }
             }>
 
             <View style={styles.plant}>
-              {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
+              {animateSprite(PLANT, 2, 800 - (this.state.health * 10), 500, height * 0.70)}
             </View>
           </TouchableWithoutFeedback>
 
@@ -221,7 +257,7 @@ const styles = StyleSheet.create({
   },
    plant: {
      position: 'absolute',
-    top: Dimensions.get('window').height*.3,
+     top: Dimensions.get('window').height*.27,
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },

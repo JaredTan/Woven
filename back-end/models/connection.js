@@ -4,17 +4,20 @@ const Schema = mongoose.Schema;
 var connectionSchema = new Schema({
   todos: [
     {
-      text: {type: String}
+      text: { type: String }
     }
   ],
   plant: {
-    name: {type: String, default: 'Greggles'},
-    health: {type: Number, default: 10},
-    happiness: {type: Number, default: 75},
-    age: {type: Number, default: 0},
+    name: { type: String, default: 'Greggles' },
+    health: { type: Number, default: 50 },
+    happiness: { type: Number, default: 75 },
+    age: { type: Number, default: 0},
     seeded: { type: Date, default: Date.now() },
-    lastWater: { type: Date, default: Date.now() }
-  }
-});
+    lastWater: { type: Date, default: Date.now() },
+    messages:  {
+      for: {}
+    }
+  },
+}, { minimize: false } );
 
 module.exports = mongoose.model('connection', connectionSchema);
