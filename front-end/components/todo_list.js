@@ -9,8 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
   RefreshControl,
-  TextInput,
-  FlatList
+  TextInput
 } from 'react-native';
 import Dimensions from 'Dimensions';
 
@@ -52,16 +51,12 @@ class TodoList extends React.Component {
   }
 
   render() {
-    console.log(this.props.todos);
-
     let renderTodos = () => {
-      return (
-        <FlatList
-          data={this.props.todos}
-          renderItem={({item}) => (
-            <TodoItem key={item._id} text={item.text} id={item._id}/>
-          )}/>
-      );
+      return this.props.todos.map((todo) => {
+        return (
+          <TodoItem key={todo._id} text={todo.text} id={todo._id}/>
+        );
+      });
     };
     let renderScrollViewOrLoading = () => {
       if (this.state.loading) {

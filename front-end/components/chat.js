@@ -93,11 +93,10 @@ class Chat extends Component {
         <View style={styles.giftedChat}>
           <GiftedChat
             messages={this.state.messages}
+            renderAvatar={this.renderAvatar}
             onSend={this.onSend}
             user={this.giftedUser()}
-            renderAvatar={this.renderAvatar}
             renderBubble={this.renderBubble.bind(this)}
-            bottomOffset={66}
             />
         </View>
       </View>

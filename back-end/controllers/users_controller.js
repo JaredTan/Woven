@@ -22,4 +22,8 @@ exports.update = function(req, res, next) {
       res.send(user);
     });
   });
+  const messageQuery = {"user._id": req.params.user_id.toString()};
+  Message.updateMany(messageQuery, {
+    "user.avatar": req.body.imageUrl
+  }, () => {});
 };
