@@ -104,7 +104,7 @@ class Plant extends React.Component {
 
     return tempHealth;
   }
-  
+
   waterPlant() {
     let now = new Date(Date.now());
 
@@ -119,17 +119,17 @@ class Plant extends React.Component {
         lastWater: now,
         nextWater: this.updateNextWater(),
       });
-      
+
       setTimeout(()=>{
         this.setState({
           water: false
         });
       }, 5000);
-      
+
     }
     this.handleUpdatePlant();
   }
-  
+
   getBackground(){
     let time = new Date().getHours();
     if ( time >= 20 ) {
@@ -143,9 +143,9 @@ class Plant extends React.Component {
     } else {
       return BACKGROUND['night'];
     }
-    
+
   }
-  
+
   updateHealth() {
     let health = this.state.health + 10;
     if (health > 100) {health = 100;}
@@ -158,11 +158,12 @@ class Plant extends React.Component {
     if (lastWater)
       nextWater.setTime(new Date(lastWater).getTime());
 
+
     nextWater.setMinutes(nextWater.getMinutes() + 5);
-    
+
     return nextWater;
   }
-  
+
   displayMessage(type, time) {
     const { messages } = this.props.plant;
     const { currentUser } = this.props;
@@ -179,13 +180,13 @@ class Plant extends React.Component {
       });
     }, time);
   }
-  
+
   render() {
-    
+
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
-    
+
     let background = this.getBackground();
-    
+
     return (
       <View style={styles.container}>
           <View style={styles.background}>
@@ -226,7 +227,7 @@ class Plant extends React.Component {
             }>
 
             <View style={styles.plant}>
-              {animateSprite(PLANT, 3, 1500 - (this.state.health * 10), 500, height * 0.60)}
+              {animateSprite(PLANT, 2, 800 - (this.state.health * 10), 500, height * 0.70)}
             </View>
           </TouchableWithoutFeedback>
 
@@ -256,7 +257,7 @@ const styles = StyleSheet.create({
   },
    plant: {
      position: 'absolute',
-    top: Dimensions.get('window').height*.3,
+     top: Dimensions.get('window').height*.27,
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },
