@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
-import Plant from './plant';
-import {unauthUser, fetchPlant, updatePlant} from '../actions';
+import InputModal from './input_modal';
+import {fetchPlant, updatePlant} from '../../actions';
 
 const mapStateToProps = (state) => {
   const { currentUser, partner } = state.users;
@@ -13,12 +13,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchPlant: (connectionId) => dispatch(fetchPlant(connectionId)),
+const mapDispatchToProps = (dispatch) => ({
   updatePlant: (connectionId, plant) => dispatch(updatePlant(connectionId, plant))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Plant);
+)(InputModal);

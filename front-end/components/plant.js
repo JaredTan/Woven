@@ -15,6 +15,7 @@ import {
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
 import PlantMessage from './plant/plant_messages';
+import InputModal from './plant/input_modal_container';
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
@@ -34,8 +35,10 @@ class Plant extends React.Component {
       lastWater: props.plant.lastWater,
       age: props.plant.age,
       happiness: props.plant.happiness,
+      messages: props.plant.messages,
 
       nextWater: 0,
+      messageType: "",
       message: ""
     };
 
@@ -57,10 +60,30 @@ class Plant extends React.Component {
     });
   }
 
-  handleUpdatePlant() {
-    const { name, health, lastWater, age, happiness } = this.state;
-    const plant = { name, health, lastWater, age, happiness };
+  componentWillUnmount() {
 
+    let { messages } = this.state;
+    let { currentUser } = this.props;
+    messages.for[currentUser.firstName] = '';
+    
+    this.setState({
+      messages
+    });
+    this.handleUpdatePlant();
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    let { messages } = nextProps.plant;
+    
+    this.setState({
+      messages
+    });
+  }
+  
+  handleUpdatePlant() {
+    const { name, health, lastWater, age, happiness, messages } = this.state;
+    const plant = { name, health, lastWater, age, happiness, messages };
+    
     this.props.updatePlant(this.props.connectionId, plant);
   }
 
@@ -88,6 +111,8 @@ class Plant extends React.Component {
     if (this.state.nextWater > now ) {
       this.displayMessage("full", 700);
     } else {
+      this.displayMessage("secret", 900);
+
       this.setState({
         water: true,
         health: this.updateHealth(),
@@ -133,18 +158,25 @@ class Plant extends React.Component {
     if (lastWater)
       nextWater.setTime(new Date(lastWater).getTime());
 
-    nextWater.setMinutes(nextWater.getMinutes()+5);
+
+    nextWater.setMinutes(nextWater.getMinutes() + 5);
 
     return nextWater;
   }
 
   displayMessage(type, time) {
+    const { messages } = this.props.plant;
+    const { currentUser } = this.props;
+
+    const message = messages.for[currentUser.firstName];
+
     this.setState ({
-      message: type
+      messageType: type,
+      message
     });
     let timeout = setTimeout(()=>{
       this.setState({
-        message: ""
+        messageType: ""
       });
     }, time);
   }
@@ -176,9 +208,12 @@ class Plant extends React.Component {
             />
           </TouchableOpacity>
 
+          <InputModal />
+
           <View>
             <PlantMessage
             message={this.state.message}
+            messageType={this.state.messageType}
             name={this.props.plant.name} />
           </View>
 
@@ -186,7 +221,8 @@ class Plant extends React.Component {
             style={styles.wrapper}
             onPress={
               () => {Vibration.vibrate([0, 500, 200, 500]);
-                this.displayMessage("greeting", 900);
+                //display optional message
+                this.displayMessage("secret", 900);
               }
             }>
 
