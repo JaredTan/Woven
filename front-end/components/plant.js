@@ -213,6 +213,7 @@ class Plant extends React.Component {
             <PlantMessage
             message={this.state.message}
             messageType={this.state.messageType}
+            partner={this.props.partner}
             name={this.props.plant.name} />
           </View>
 
@@ -221,7 +222,7 @@ class Plant extends React.Component {
             onPress={
               () => {Vibration.vibrate([0, 500, 200, 500]);
                 //display optional message
-                this.displayMessage("secret", 900);
+                this.displayMessage("secret", 1100);
               }
             }>
 
