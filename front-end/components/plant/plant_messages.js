@@ -18,20 +18,24 @@ class PlantMessage extends React.Component {
   }
 
   displayMessage() {
-    let messageType = this.props.message;
+    const { messageType, message } = this.props;
 
     if (messageType === "full") {
       return this.full();
-    } else if (messageType === "greeting") {
-      return this.greeting();
+    } else if (messageType === "secret") {
+      return message ? this.default(message) : this.greeting();
     } else {
-      return this.default();
+      return this.blank();
     }
 
   }
 
-  default() {
+  blank() {
     return (<Text></Text>);
+  }
+
+  default(message) {
+    return (<Text style={styles.greeting}>{message}</Text>);
   }
 
   full() {
