@@ -7,7 +7,8 @@ class InputModal extends React.Component {
     super(props);
     this.state = {
       modalVisible: false,
-      text: 'Leave a message with me!'
+      text: 'Leave a message with me!',
+      messages: props.plant.messages
     };
 
     this.submitAndReset = this.submitAndReset.bind(this);
@@ -33,6 +34,12 @@ class InputModal extends React.Component {
 
   submitAndReset() {
     return (e) => {
+      const {updatePlant, connectionId, partner, plant} = this.props;
+      plant.messages.for[partner.firstName] = this.state.text;
+
+      console.log("ABOUT TO UPDATE PARTNER: ", plant);
+      updatePlant(connectionId, plant);
+
       this.setModalVisible(!this.state.modalVisible);
       this.setState({
         text: 'Would you rather leave a different message?'
@@ -58,7 +65,6 @@ class InputModal extends React.Component {
             style={styles.backdrop}
           >
             <TextInput
-
               onChangeText={(text) => this.setState({text})}
               onSubmitEditing={this.submitAndReset()}
               onFocus={this.clearInput()}
