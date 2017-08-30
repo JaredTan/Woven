@@ -64,12 +64,12 @@ class Plant extends React.Component {
     // console.log("UNMOUNTING STATE ", this.state);
     let { messages } = this.state;
     let { currentUser } = this.props;
-    messages.for[currentUser.email] = null;
+    messages.for[currentUser.firstName] = '';
     
     this.setState({
       messages
-    }, this.handleUpdatePlant);
-    
+    });
+    this.handleUpdatePlant();
     // console.log("AFTER SETTING STATE ", this.state);
   }
   
@@ -85,7 +85,7 @@ class Plant extends React.Component {
     const { name, health, lastWater, age, happiness, messages } = this.state;
     const plant = { name, health, lastWater, age, happiness, messages };
     
-    console.log("UPDATING SET STATE ", this.plant);
+    console.log("UPDATING SET STATE ", plant);
     this.props.updatePlant(this.props.connectionId, plant);
   }
 
@@ -169,7 +169,7 @@ class Plant extends React.Component {
     const { messages } = this.props.plant;
     const { currentUser } = this.props;
 
-    const message = messages.for[currentUser.email];
+    const message = messages.for[currentUser.firstName];
 
     this.setState ({
       messageType: type,
