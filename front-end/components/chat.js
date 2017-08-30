@@ -12,7 +12,8 @@ import {
 import io from 'socket.io-client';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 import Dimensions from 'Dimensions';
-const API_URL = 'https://safe-peak-55084.herokuapp.com';
+// const API_URL = 'https://safe-peak-55084.herokuapp.com';
+const API_URL = 'https://damp-forest-12839.herokuapp.com';
 
 class Chat extends Component {
   constructor(props) {
@@ -88,10 +89,11 @@ class Chat extends Component {
         <View style={styles.giftedChat}>
           <GiftedChat
             messages={this.state.messages}
-            renderAvatar={this.renderAvatar}
             onSend={this.onSend}
             user={this.giftedUser()}
+            renderAvatar={this.renderAvatar}
             renderBubble={this.renderBubble.bind(this)}
+            bottomOffset={66}
             />
         </View>
       </View>
