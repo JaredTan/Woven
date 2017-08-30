@@ -47,6 +47,10 @@ exports.signup = function(req, res, next) {
     User.findOne( {email: user.partnerEmail}, (err, partner) => {
       if (partner && partner.partnerEmail === user.email) {
         let newConnection = new Connection();
+        newConnection.plant.messages.for = { 
+          [user.firstName]: '',
+          [partner.firstName]: ''
+        };
         newConnection.save();
         const userQuery = {email: user.email};
         User.update(userQuery, {

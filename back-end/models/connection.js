@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 var connectionSchema = new Schema({
   todos: [
     {
@@ -10,15 +9,15 @@ var connectionSchema = new Schema({
   ],
   plant: {
     name: { type: String, default: 'Greggles' },
-    health: { type: Number, default: 10 },
+    health: { type: Number, default: 50 },
     happiness: { type: Number, default: 75 },
     age: { type: Number, default: 0},
     seeded: { type: Date, default: Date.now() },
     lastWater: { type: Date, default: Date.now() },
-    messages: {
-      for: { type: Object, default: {} }
+    messages:  {
+      for: {}
     }
-  }
-});
+  },
+}, { minimize: false } );
 
 module.exports = mongoose.model('connection', connectionSchema);
