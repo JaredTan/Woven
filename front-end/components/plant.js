@@ -15,6 +15,7 @@ import {
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
 import PlantMessage from './plant/plant_messages';
+import InputModal from './plant/input_modal';
 
 import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
 import BACKGROUND from '../assets/spritesheets/background/background';
@@ -208,6 +209,8 @@ class Plant extends React.Component {
               source={require('../assets/icons/waterIcon.png')}
             />
           </TouchableOpacity>
+
+          <InputModal />
 
           <View>
             <PlantMessage
