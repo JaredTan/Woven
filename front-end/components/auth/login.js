@@ -175,12 +175,13 @@ const styles = {
     marginRight: 6
   },
   signinButton: {
-    borderColor: '#12512d',
+    borderRadius: 50,
+    borderColor: 'transparent',
+    backgroundColor: '#cdf9d8',
     marginTop: 5,
-    borderRadius: 5
   },
   signinText: {
-    color: 'black',
+    color: '#12512d',
     fontSize: 12
   },
   signupButton: {

@@ -18,6 +18,7 @@ import {
   MenuOptions,
   MenuOption,
   MenuTrigger,
+  renderers
 } from 'react-native-popup-menu';
 
 class Main extends React.Component {
@@ -109,21 +110,21 @@ class Main extends React.Component {
                 opacity={this.state.todo ? 1 : .6 }
               />
             </TouchableOpacity>
-            <Menu>
+            <Menu style={styles.menu} renderer={renderers.SlideInMenu}>
              <MenuTrigger>
                <Image
                  source={require('../assets/navbar/profileIcon.png')}
                  opacity={.6}
                />
              </MenuTrigger>
-               <MenuOptions>
-                 <MenuOption style={styles.line} onSelect={this.handleLogOut} >
-                   <Text style={styles.logout}>Log Out</Text>
-                   </MenuOption>
-                 <MenuOption onSelect={this.redirectToProfile}>
-                   <Text style={styles.profile}>Profile</Text>
-                   </MenuOption>
-               </MenuOptions>
+             <MenuOptions style={styles.options}>
+               <MenuOption style={styles.profileOption} onSelect={this.redirectToProfile}>
+                 <Text style={styles.profile}>Profile</Text>
+               </MenuOption>
+               <MenuOption style={styles.logoutOption} onSelect={this.handleLogOut} >
+                 <Text style={styles.logout}>Log Out</Text>
+               </MenuOption>
+             </MenuOptions>
            </Menu>
           </Image>
           </View>
@@ -147,21 +148,24 @@ class Main extends React.Component {
       alignItems: 'center',
       justifyContent: 'space-around'
     },
+    options: {
+    },
+    logoutOption: {
+    },
     logout: {
       color: 'red',
       padding: 20,
-      fontSize: 16,
-      alignSelf: 'center'
+      fontSize: 20,
+      alignSelf: 'center',
     },
-    line: {
-      borderBottomWidth: 1,
-      borderBottomColor: 'gray'
+    profileOption: {
+      backgroundColor: '#cdf9d8'
     },
     profile: {
       color: 'gray',
       padding: 20,
-      fontSize: 16,
-      alignSelf: 'center'
+      fontSize: 20,
+      alignSelf: 'center',
     }
   });
 

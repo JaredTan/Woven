@@ -76,10 +76,10 @@ class TodoList extends React.Component {
               onChangeText={(newTodoText) => {
                 this.setState({newTodoText});
               }}
-              placeholder="New To-Do Text"
+              placeholder="New To-Do"
               style={styles.input}/>
             <TouchableOpacity onPress={this.addNewTodo} style={styles.plus}>
-              <Icon name="plus" size={24} color="#0c9258"/>
+              <Icon name="plus" size={28} color="#0c9258"/>
             </TouchableOpacity>
           </View>
         );
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   title: {
     top: Dimensions.get('window').height*.04,
     color: 'white',
-    fontSize: 20,
+    fontSize: 24,
     alignSelf: 'center'
   },
   topBar: {
@@ -147,26 +147,25 @@ const styles = StyleSheet.create({
   newTodoBar: {
     alignSelf: 'center',
     top: Dimensions.get('window').height*.12,
-    width: Dimensions.get('window').width*.9,
-    paddingTop: Dimensions.get('window').height*.01,
-    paddingBottom: Dimensions.get('window').height*.01,
-    borderRadius: 15,
+    width: Dimensions.get('window').width*.85,
+    paddingTop: Dimensions.get('window').height*.005,
+    paddingBottom: Dimensions.get('window').height*.005,
+    borderRadius: 50,
     borderWidth: 3,
     borderColor: '#2ecc71'
   },
   inputContainer: {
     paddingLeft: Dimensions.get('window').width*.03,
-    paddingRight: Dimensions.get('window').width*.03,
+    paddingRight: Dimensions.get('window').width*.01,
     flexDirection: 'row'
   },
   plus: {
-    width: 20,
     alignItems: 'center',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
   input: {
     flex: 9,
-    fontSize: 15
+    fontSize: 18
   }
 });
 

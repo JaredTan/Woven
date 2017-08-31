@@ -28,7 +28,6 @@ app.use('/v1', router);
 
 var PORT = process.env.PORT || 3000;
 
-console.log('listening on', PORT);
 server.listen(PORT);
 
 var sessionConnection = null;

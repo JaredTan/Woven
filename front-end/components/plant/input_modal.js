@@ -60,18 +60,16 @@ class InputModal extends React.Component {
           style={styles.container}
           onPress={() => {this.setModalVisible(!this.state.modalVisible)}}
          >
-          <View
-            style={styles.backdrop}
-          >
+          <View style={styles.backdrop}>
             <TextInput
               onChangeText={(text) => this.setState({text})}
               onSubmitEditing={this.submitAndReset()}
               onFocus={this.clearInput()}
               value={this.state.text}
-              style={styles.backdrop}
+              style={styles.messageText}
             />
           </View>
-         </TouchableHighlight >
+         </TouchableHighlight>
         </Modal>
 
         <TouchableHighlight
@@ -98,9 +96,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
    },
    backdrop:{
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('window').width*.8,
     backgroundColor: 'white',
-    padding: 3,
+    borderRadius: 50,
+    padding: 5,
+   },
+   messageText:{
+     paddingLeft: 10,
    },
    plantMessageIcon: {
     backgroundColor: 'transparent',
