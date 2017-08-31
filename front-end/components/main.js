@@ -99,8 +99,12 @@ class Main extends React.Component {
                <Icon name='chevron-up' size={38} color="#0c9258"/>
              </MenuTrigger>
                <MenuOptions>
-                 <MenuOption onSelect={this.handleLogOut} text='Log Out' />
-                 <MenuOption onSelect={this.redirectToProfile} text='Profile' />
+                 <MenuOption style={styles.line} onSelect={this.handleLogOut} >
+                   <Text style={styles.logout}>Log Out</Text>
+                   </MenuOption>
+                 <MenuOption onSelect={this.redirectToProfile}>
+                   <Text style={styles.profile}>Profile</Text>
+                   </MenuOption>
                </MenuOptions>
            </Menu>
           </View>
@@ -123,6 +127,22 @@ class Main extends React.Component {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-around'
+    },
+    logout: {
+      color: 'red',
+      padding: 20,
+      fontSize: 16,
+      alignSelf: 'center'
+    },
+    line: {
+      borderBottomWidth: 1,
+      borderBottomColor: 'gray'
+    },
+    profile: {
+      color: 'gray',
+      padding: 20,
+      fontSize: 16,
+      alignSelf: 'center'
     }
   });
 
