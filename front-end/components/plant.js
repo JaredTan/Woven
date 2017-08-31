@@ -65,25 +65,25 @@ class Plant extends React.Component {
     let { messages } = this.state;
     let { currentUser } = this.props;
     messages.for[currentUser.firstName] = '';
-    
+
     this.setState({
       messages
     });
     this.handleUpdatePlant();
   }
-  
+
   componentWillReceiveProps(nextProps) {
     let { messages } = nextProps.plant;
-    
+
     this.setState({
       messages
     });
   }
-  
+
   handleUpdatePlant() {
     const { name, health, lastWater, age, happiness, messages } = this.state;
     const plant = { name, health, lastWater, age, happiness, messages };
-    
+
     this.props.updatePlant(this.props.connectionId, plant);
   }
 
@@ -272,12 +272,12 @@ const styles = StyleSheet.create({
     width: 65,
     height: 65,
     top: Dimensions.get('window').height*.08,
-    left: Dimensions.get('window').width*.8,
+    left: Dimensions.get('window').width*.78,
     borderRadius: 180,
    },
    roundedIcon: {
-    width: 65,
-    height: 65,
+    width: 80,
+    height: 80,
     resizeMode: 'contain'
   }
 });
