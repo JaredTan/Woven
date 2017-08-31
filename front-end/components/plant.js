@@ -106,9 +106,9 @@ class Plant extends React.Component {
     let now = new Date(Date.now());
 
     if (this.state.nextWater > now ) {
-      this.displayMessage("full", 700);
+      this.displayMessage("full", 900);
     } else {
-      this.displayMessage("secret", 900);
+      this.displayMessage("", 900);
 
       this.setState({
         water: true,
@@ -187,8 +187,8 @@ class Plant extends React.Component {
     return (
       <View style={styles.container}>
           <View style={styles.background}>
-            <Image source={background} style={{width, height: height * 0.90}}>
-            </Image>
+            <Image source={background}
+              style={{width, height: height * 0.90}}/>
           </View>
 
           <View style={styles.healthbar}>
@@ -225,7 +225,7 @@ class Plant extends React.Component {
             }>
 
             <View style={styles.plant}>
-              {animateSprite(PLANT, 2, 800 - (this.state.health * 10), 500, height * 0.70)}
+              {animateSprite(PLANT, 2, 800 - (this.state.health * 10), 550, height * 0.70)}
             </View>
           </TouchableWithoutFeedback>
 
