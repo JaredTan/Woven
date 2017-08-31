@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Text, TouchableHighlight, View, Dimensions, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import { Modal, Text, TouchableHighlight, View, Dimensions, StyleSheet, Image, TextInput, TouchableOpacity, Button } from 'react-native';
 
 class InputModal extends React.Component {
 
@@ -7,23 +7,13 @@ class InputModal extends React.Component {
     super(props);
     this.state = {
       modalVisible: false,
-      text: 'Leave a message with me!',
+      text: '',
       messages: props.plant.messages
     };
 
     this.submitAndReset = this.submitAndReset.bind(this);
     this.setModalVisible = this.setModalVisible.bind(this);
-    this.clearInput = this.clearInput.bind(this);
-  }
-
-  clearInput() {
-    return (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      this.setState({
-        text: ''
-      });
-    };
+    this.resizeTextBox = this.resizeTextBox.bind(this);
   }
 
   setModalVisible(visible) {
@@ -41,7 +31,7 @@ class InputModal extends React.Component {
 
       this.setModalVisible(!this.state.modalVisible);
       this.setState({
-        text: 'Would you rather leave a different message?'
+        text: ''
       });
     };
   }
@@ -64,9 +54,15 @@ class InputModal extends React.Component {
             <TextInput
               onChangeText={(text) => this.setState({text})}
               onSubmitEditing={this.submitAndReset()}
-              onFocus={this.clearInput()}
               value={this.state.text}
               style={styles.messageText}
+              maxLength={50}
+              clearButtonMode={'while-editing'}
+              clearTextOnFocus={true}
+              returnKeyType={'send'}
+              autoCapitalize={'sentences'}
+              placeholder={'Leave a message with me!'}
+              autoFocus={true}
             />
           </View>
          </TouchableHighlight>
@@ -84,6 +80,10 @@ class InputModal extends React.Component {
 
       </View>
     );
+  }
+
+  resizeTextBox() {
+    
   }
 }
 
