@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Text, TouchableHighlight, View, Dimensions, StyleSheet, Image, TextInput } from 'react-native';
+import { Modal, Text, TouchableHighlight, View, Dimensions, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 
 class InputModal extends React.Component {
 
@@ -72,7 +72,7 @@ class InputModal extends React.Component {
          </TouchableHighlight>
         </Modal>
 
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={() => {this.setModalVisible(true)}}
           style={styles.plantMessageIcon}
         >
@@ -80,7 +80,7 @@ class InputModal extends React.Component {
             style={styles.roundedIcon}
             source={require('../../assets/icons/PlantMessageIcon.png')}
           />
-        </TouchableHighlight>
+        </TouchableOpacity>
 
       </View>
     );
@@ -106,11 +106,11 @@ const styles = StyleSheet.create({
    },
    plantMessageIcon: {
     backgroundColor: 'transparent',
-    width: 65,
-    height: 65,
+    width: 61,
+    height: 61,
     top: Dimensions.get('window').height*.09,
     left: Dimensions.get('window').width*.805,
-    borderRadius: 180,
+    borderRadius: 31,
    },
    roundedIcon: {
     width: 61,
