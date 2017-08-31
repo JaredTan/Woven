@@ -5,6 +5,7 @@ import {SIGNIN_URL, SIGNUP_URL} from '../api';
 import {addAlert} from './alert_actions';
 import {requestPair} from './user_actions';
 import {fetchPlant} from './plant_actions';
+import {addSuccess} from './success_actions';
 
 exports.loginUser = (email, password) => {
   return function(dispatch) {
@@ -31,7 +32,7 @@ exports.signupUser = (email, password, firstName, lastName, partnerEmail) => {
       var {user_id, token} = response.data;
       Keychain.setGenericPassword(user_id, token)
         .then(function() {
-          dispatch(addAlert("Thanks for signing up! You may login once both partners have connected."));
+          dispatch(addSuccess("Thanks for signing up! You may login once both partners have connected."));
         });
     }).catch((error) => {
       dispatch(addAlert("Could not sign up: E-mail already taken."));

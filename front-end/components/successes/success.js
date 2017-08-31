@@ -6,37 +6,36 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 import {connect} from 'react-redux';
-import {removeAlert} from '../../actions';
+import {removeSuccess} from '../../actions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-class Alert extends React.Component {
+class Success extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleRemoveAlert = this.handleRemoveAlert.bind(this);
+    this.handleRemoveSuccess = this.handleRemoveSuccess.bind(this);
 
   }
 
-  handleRemoveAlert() {
-    let {alert, dispatch} = this.props;
-    dispatch(removeAlert(alert.id));
+  handleRemoveSuccess() {
+    let {success, dispatch} = this.props;
+    dispatch(removeSuccess(success.id));
   }
 
   render() {
-    let {alert} = this.props;
+    let {success} = this.props;
         return (
-          <TouchableWithoutFeedback onPress={this.handleRemoveAlert}>
+          <TouchableWithoutFeedback onPress={this.handleRemoveSuccess}>
             <View style={styles.container2}>
               <Text style={styles.text}>
-                {alert.text}
+                {success.text}
               </Text>
-              <Icon name="close" size={15} color='#401F1C'/>
+              <Icon name="close" size={15} color='#2ecc71'/>
             </View>
           </TouchableWithoutFeedback>
         );
     }
-
 
 }
 
@@ -47,8 +46,8 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     flexDirection: 'row',
-    backgroundColor: '#FF7B71',
-    borderColor: '#BF5C55',
+    backgroundColor: '#cdf9d8',
+    borderColor: '#bbf7ca',
     borderRadius: 5,
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -61,4 +60,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(Alert);
+export default connect()(Success);

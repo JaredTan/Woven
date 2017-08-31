@@ -10,6 +10,7 @@ import {
 import AuthMain from './auth/auth_main';
 import MainNavigator from './main_navigator';
 import AlertContainer from './alerts/alert_container';
+import SuccessContainer from './successes/success_container';
 import Chat from './chat';
 import {fetchPlant} from '../actions';
 
@@ -35,6 +36,7 @@ var App = React.createClass({
       <View style={{flex: 1}}>
         {renderMainView()}
         <AlertContainer/>
+        <SuccessContainer/>
       </View>
     );
   }

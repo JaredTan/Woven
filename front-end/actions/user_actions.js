@@ -3,6 +3,7 @@ import * as Keychain from 'react-native-keychain';
 
 import {USERS_URL} from '../api';
 import {addAlert} from './alert_actions';
+import {addSuccess} from './success_actions';
 
 
 export const requestPair = (user_id) => dispatch => {
@@ -25,7 +26,7 @@ export const updateUser = (user_id, firstName, lastName, imageUrl, birthday, ann
       headers: {authorization: password}
     }).then((response) => {
       dispatch(receiveUser(response.data));
-      dispatch(addAlert("Profile updated!"));
+      dispatch(addSuccess("Profile updated!"));
     }).catch((err) => {
       dispatch(addAlert("Couldn't update user."));
     });
