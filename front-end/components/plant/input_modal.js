@@ -74,11 +74,11 @@ class InputModal extends React.Component {
 
         <TouchableHighlight
           onPress={() => {this.setModalVisible(true)}}
-          style={styles.waterIcon}
+          style={styles.plantMessageIcon}
         >
           <Image
             style={styles.roundedIcon}
-            source={require('../../assets/icons/waterIcon.png')}
+            source={require('../../assets/icons/PlantMessageIcon.png')}
           />
         </TouchableHighlight>
 
@@ -104,17 +104,17 @@ const styles = StyleSheet.create({
    messageText:{
      paddingLeft: 10,
    },
-   waterIcon: {
+   plantMessageIcon: {
     backgroundColor: 'transparent',
     width: 65,
     height: 65,
-    top: Dimensions.get('window').height*.08,
-    left: Dimensions.get('window').width*.8,
+    top: Dimensions.get('window').height*.09,
+    left: Dimensions.get('window').width*.805,
     borderRadius: 180,
    },
    roundedIcon: {
-    width: 65,
-    height: 65,
+    width: 61,
+    height: 61,
     resizeMode: 'contain'
   }
 });

@@ -101,23 +101,25 @@ const EditForm = (props) => {
                   }
                   />
               }/>
-            </View>
-            <View style={styles.date}>
-              <Text>Anniversary</Text>
-              <Field name="anniversary"
-                component={ props =>
-                  <DatePicker
-                    date={props.input.value}
-                    mode='date'
-                    confirmBtnText='Confirm'
-                    cancelBtnText='Cancel'
-                    placeholder='MM/DD/YYYY'
-                    format='MM/DD/YYYY'
-                    onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
-                    />
-              }/>
-            </View>
           </View>
+          <View style={styles.date}>
+            <Text>Anniversary</Text>
+            <Field name="anniversary"
+              component={ props =>
+                <DatePicker
+                  date={props.input.value}
+                  mode='date'
+                  confirmBtnText='Confirm'
+                  cancelBtnText='Cancel'
+                  placeholder='MM/DD/YYYY'
+                  format='MM/DD/YYYY'
+                  onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
+                  />
+              }/>
+          </View>
+        </View>
+        <Field name="firstName" label="First Name" component={renderInput} />
+        <Field name="lastName" label="Last Name" component={renderInput} />
           <Grid style={styles.buttonGrid}>
             <Col style={styles.buttonContainer}>
               <Button
@@ -162,7 +164,7 @@ const styles = {
   container: {
     paddingLeft: 42,
     paddingRight: 42,
-    marginTop: 10,
+    marginBottom: -50,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -175,10 +177,14 @@ const styles = {
   },
   form: {
   },
+  content: {
+    padding: 0,
+    margin: 0
+  },
   photo: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20
+    paddingBottom: 20
   },
   formItem:{
     marginLeft: 6,
@@ -195,8 +201,6 @@ const styles = {
   },
   input: {
     textAlign: 'center',
-  },
-  buttonGrid: {
   },
   date: {
     flexDirection: 'row',
