@@ -85,7 +85,7 @@ const EditForm = (props) => {
           <Field name="lastName" label="Last Name" component={renderInput} />
           <View style={styles.dates}>
             <View style={styles.date}>
-              <Text>Birthday</Text>
+              <Text>Birthday      </Text>
               <Field name="birthday"
                 component={ props =>
                   <DatePicker
@@ -160,13 +160,17 @@ export default EditForm;
 
 const styles = {
   container: {
-    paddingLeft: 42,
-    paddingRight: 42,
-    marginBottom: -50,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  content:{
+    top: Dimensions.get('window').height*.1,
+    paddingTop: Dimensions.get('window').height*.04,
+    paddingLeft: Dimensions.get('window').height*.04,
+    paddingRight: Dimensions.get('window').height*.04,
+    height: '100%',
   },
   title: {
     color: 'white',
@@ -174,10 +178,6 @@ const styles = {
     alignSelf: 'center'
   },
   form: {
-  },
-  content: {
-    padding: 0,
-    margin: 0
   },
   photo: {
     justifyContent: 'center',

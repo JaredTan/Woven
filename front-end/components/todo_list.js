@@ -94,11 +94,12 @@ class TodoList extends React.Component {
           </Text>
         </View>
 
-        <View style={{flex: 1}}>
+        <View>
           <ScrollView
             style={styles.todos}
             refreshControl={
               <RefreshControl
+                contentInset={50}
                 refreshing={this.state.refreshing}
                 onRefresh={this.onRefresh}/>
             }
