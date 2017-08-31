@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   topBar: {
     position: 'absolute',
     zIndex: 1,
-    height: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.1,
     left: 0,
     top: 0,
     width: '100%',
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: Dimensions.get('window').width*.03,
     paddingRight: Dimensions.get('window').width*.03,
-    top: Dimensions.get('window').height*.03,
+    top: Dimensions.get('window').height*.04,
   },
   title: {
     color: 'white',

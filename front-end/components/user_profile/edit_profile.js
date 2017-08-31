@@ -168,8 +168,6 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center'
   },
-  content: {
-  },
   title: {
     color: 'white',
     fontSize: 20,

@@ -76,22 +76,22 @@ class Chat extends Component {
       <View style={styles.container}>
         <View style={styles.topBar}>
           <View style={styles.partner}>
-          <Image
-            style={styles.profileImage}
-            resizeMode='cover'
-            source={{
-              uri: partner.imageUrl
-            }}
-            />
-          <Text style={styles.title}>{partner.firstName} {partner.lastName}</Text>
-        </View>
+            <Image
+              style={styles.profileImage}
+              resizeMode='cover'
+              source={{
+                uri: partner.imageUrl
+              }}
+              />
+            <Text style={styles.title}>{partner.firstName} {partner.lastName}</Text>
+          </View>
         </View>
         <View style={styles.giftedChat}>
           <GiftedChat
             messages={this.state.messages}
+            renderAvatar={this.renderAvatar}
             onSend={this.onSend}
             user={this.giftedUser()}
-            renderAvatar={this.renderAvatar}
             renderBubble={this.renderBubble.bind(this)}
             bottomOffset={66}
             />
@@ -126,29 +126,28 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     alignSelf: 'center',
+    top: Dimensions.get('window').height*.04,
     marginLeft: 5
   },
   topBar: {
     position: 'absolute',
-    height: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.1,
     left: 0,
     top: 0,
     width: '100%',
     backgroundColor: '#2ecc71'
   },
   partner: {
-    top: Dimensions.get('window').height*.01,
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   giftedChat: {
     top: Dimensions.get('window').height*.08,
     height: Dimensions.get('window').height*.82
   },
   profileImage: {
-    top: Dimensions.get('window').height*.02,
+    top: Dimensions.get('window').height*.04,
     alignSelf: 'flex-start',
     width: 26,
     height: 26,
