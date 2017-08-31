@@ -225,7 +225,8 @@ class Plant extends React.Component {
             }>
 
             <View style={styles.plant}>
-              {animateSprite(PLANT, 2, 800 - (this.state.health * 10), 550, height * 0.70)}
+              {/* don't set timer below 1000 */}
+              {animateSprite(PLANT, 2, 1300 - (this.state.health * 10), 550, height * 0.70)}
             </View>
           </TouchableWithoutFeedback>
 

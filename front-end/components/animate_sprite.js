@@ -47,7 +47,7 @@ class AnimatedSprite extends React.Component {
       this.setState({
         count: new Animated.Value(0)
       });
-      // this.activateAnimation();
+      this.activateAnimation();
     }
   }
 
