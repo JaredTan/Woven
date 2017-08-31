@@ -37,12 +37,17 @@ class PlantMessage extends React.Component {
 
   default(message) {
     return (
-      <View style={styles.secretContainer}>
-          <Text style={styles.secret}
-            numberOfLines={5}>
-            {this.props.partner.firstName} says, "{message}"
-          </Text>
-      </View>
+      <Image
+         style={styles.dialogueBox}
+         source={require('../../assets/plant/dialogueBox.png')}
+       >
+        <View style={styles.secretContainer}>
+            <Text style={styles.secret}
+              numberOfLines={5}>
+              {this.props.partner.firstName} says, "{message}"
+            </Text>
+        </View>
+      </Image>
     );
   }
 
