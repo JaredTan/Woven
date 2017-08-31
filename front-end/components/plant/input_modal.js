@@ -63,6 +63,7 @@ class InputModal extends React.Component {
               autoCapitalize={'sentences'}
               placeholder={'Leave a message with me!'}
               autoFocus={true}
+              enablesReturnKeyAutomatically={true}
             />
           </View>
          </TouchableHighlight>
