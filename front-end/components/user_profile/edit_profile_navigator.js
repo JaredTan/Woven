@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/Octicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
   StyleSheet,
@@ -29,7 +29,7 @@ class EditProfileNavigator extends React.Component {
         <View style={styles.topBar}>
           <View style={styles.topNav}>
             <TouchableOpacity onPress={this.handleBack}>
-              <Icon name="chevron-left" size={24} color="white"/>
+              <Icon name="chevron-left" size={30} color="white"/>
             </TouchableOpacity>
             <Text style={styles.title}>Edit Profile</Text>
             <Icon name="chevron-left" size={20} color="#2ecc71"/>

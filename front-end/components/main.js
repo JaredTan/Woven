@@ -88,34 +88,18 @@ class Main extends React.Component {
           </View>
 
           <View style={styles.navBar}>
-          <Image
-            source={require('../assets/navbar/navbar1.png')}
-            style={styles.navBar}
-          >
-            <TouchableOpacity onPress={this.togglePlantTab}>
-              <Image
-                source={require('../assets/navbar/plantIcon.png')}
-                opacity={this.state.plant ? 1 : .6 }
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.toggleChatTab}>
-              <Image
-                source={require('../assets/navbar/messageIcon.png')}
-                opacity={this.state.chat ? 1 : .6 }
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.toggleTodoTab}>
-              <Image
-                source={require('../assets/navbar/todoIcon.png')}
-                opacity={this.state.todo ? 1 : .6 }
-              />
-            </TouchableOpacity>
+          <TouchableOpacity onPress={this.togglePlantTab}>
+            <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.toggleChatTab}>
+            <Icon name='message-processing' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.toggleTodoTab}>
+            <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
+          </TouchableOpacity>
             <Menu style={styles.menu} renderer={renderers.SlideInMenu}>
-             <MenuTrigger>
-               <Image
-                 source={require('../assets/navbar/profileIcon.png')}
-                 opacity={.6}
-               />
+              <MenuTrigger>
+               <Icon name='chevron-up' size={38} color="#0c9258"/>
              </MenuTrigger>
              <MenuOptions style={styles.options}>
                <MenuOption style={styles.profileOption} onSelect={this.redirectToProfile}>
@@ -126,7 +110,6 @@ class Main extends React.Component {
                </MenuOption>
              </MenuOptions>
            </Menu>
-          </Image>
           </View>
         </View>
       );

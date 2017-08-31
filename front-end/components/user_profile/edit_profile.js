@@ -118,8 +118,6 @@ const EditForm = (props) => {
               }/>
           </View>
         </View>
-        <Field name="firstName" label="First Name" component={renderInput} />
-        <Field name="lastName" label="Last Name" component={renderInput} />
           <Grid style={styles.buttonGrid}>
             <Col style={styles.buttonContainer}>
               <Button
