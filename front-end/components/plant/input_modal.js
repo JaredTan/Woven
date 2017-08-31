@@ -56,13 +56,14 @@ class InputModal extends React.Component {
               onSubmitEditing={this.submitAndReset()}
               value={this.state.text}
               style={styles.messageText}
-              maxLength={50}
+              maxLength={60}
               clearButtonMode={'while-editing'}
               clearTextOnFocus={true}
               returnKeyType={'send'}
               autoCapitalize={'sentences'}
               placeholder={'Leave a message with me!'}
               autoFocus={true}
+              enablesReturnKeyAutomatically={true}
             />
           </View>
          </TouchableHighlight>
