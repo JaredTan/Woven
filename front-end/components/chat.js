@@ -65,7 +65,7 @@ class Chat extends Component {
     return (<Image
       source={{uri: this.props.users.partner.imageUrl}}
       style={[styles.avatarStyle, this.props.avatarStyle]}
-    />)
+    />);
   }
 
   render() {

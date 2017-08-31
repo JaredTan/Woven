@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
+  Image,
   View,
   TouchableOpacity,
   NavigatorIOS,
@@ -66,7 +67,7 @@ class Main extends React.Component {
         title: 'User Profile',
         navigationBarHidden: true
       });
-    })
+    });
   }
 
   handleLogOut() {
@@ -84,19 +85,36 @@ class Main extends React.Component {
               { this.state.todo ? <TodoList/> : null }
             </View>
           </View>
+
           <View style={styles.navBar}>
+          <Image
+            source={require('../assets/navbar/navbar1.png')}
+            style={styles.navBar}
+          >
             <TouchableOpacity onPress={this.togglePlantTab}>
-              <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
+              <Image
+                source={require('../assets/navbar/plantIcon.png')}
+                opacity={this.state.plant ? 1 : .6 }
+              />
             </TouchableOpacity>
             <TouchableOpacity onPress={this.toggleChatTab}>
-              <Icon name='message-processing' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
+              <Image
+                source={require('../assets/navbar/messageIcon.png')}
+                opacity={this.state.chat ? 1 : .6 }
+              />
             </TouchableOpacity>
             <TouchableOpacity onPress={this.toggleTodoTab}>
-              <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
+              <Image
+                source={require('../assets/navbar/todoIcon.png')}
+                opacity={this.state.todo ? 1 : .6 }
+              />
             </TouchableOpacity>
             <Menu>
              <MenuTrigger>
-               <Icon name='chevron-up' size={38} color="#0c9258"/>
+               <Image
+                 source={require('../assets/navbar/profileIcon.png')}
+                 opacity={.6}
+               />
              </MenuTrigger>
                <MenuOptions>
                  <MenuOption style={styles.line} onSelect={this.handleLogOut} >
@@ -107,6 +125,7 @@ class Main extends React.Component {
                    </MenuOption>
                </MenuOptions>
            </Menu>
+          </Image>
           </View>
         </View>
       );
