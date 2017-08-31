@@ -54,7 +54,7 @@ class TodoList extends React.Component {
     let renderTodos = () => {
       return (
         <FlatList
-          data={this.props.todos}
+          data={this.props.todos.reverse()}
           renderItem={({item}) => (
           <TodoItem key={item._id} text={item.text} id={item._id}/>
         )}/>
