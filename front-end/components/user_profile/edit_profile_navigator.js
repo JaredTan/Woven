@@ -32,7 +32,10 @@ class EditProfileNavigator extends React.Component {
               <Icon name="chevron-left" size={30} color="white"/>
             </TouchableOpacity>
             <Text style={styles.title}>Edit Profile</Text>
-            <Icon name="chevron-left" size={20} color="#2ecc71"/>
+            <TouchableOpacity>
+              <Icon name="pencil" size={24} color="#2ecc71"/>
+
+            </TouchableOpacity>
           </View>
         </View>
         <EditProfile navigator={this.props.navigator}/>
