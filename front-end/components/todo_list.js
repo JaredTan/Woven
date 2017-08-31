@@ -79,7 +79,7 @@ class TodoList extends React.Component {
               placeholder="New To-Do"
               style={styles.input}/>
             <TouchableOpacity onPress={this.addNewTodo} style={styles.plus}>
-              <Icon name="plus" size={28} color="#0c9258"/>
+              <Icon name="plus" size={30} color="#0c9258"/>
             </TouchableOpacity>
           </View>
         );

@@ -60,26 +60,26 @@ const EditForm = (props) => {
         <Content style={ styles.content }>
           <Form style={ styles.form }>
             <View style={styles.photo}>
-            <PhotoUpload
-               onPhotoSelect={b64image => {
-                 if (b64image) {
-                   props.change('imageUrl', `data:image/png;base64,${b64image}`)
-                 }
-               }}
-              >
-             <Image
-               style={{
-                 width: Dimensions.get('window').width*.3,
-                 height: Dimensions.get('window').width*.3,
-                 borderRadius: Dimensions.get('window').width*.15
-               }}
-               resizeMode='cover'
-               source={{
-                 uri: initialValues.imageUrl
-               }}
-             />
-          </PhotoUpload>
-          <Text color={'#2ecc71'} fontSize={10}>Upload Picture</Text>
+              <PhotoUpload
+                 onPhotoSelect={b64image => {
+                   if (b64image) {
+                     props.change('imageUrl', `data:image/png;base64,${b64image}`)
+                   }
+                 }}
+                >
+               <Image
+                 style={{
+                   width: Dimensions.get('window').width*.3,
+                   height: Dimensions.get('window').width*.3,
+                   borderRadius: Dimensions.get('window').width*.15
+                 }}
+                 resizeMode='cover'
+                 source={{
+                   uri: initialValues.imageUrl
+                 }}
+               />
+            </PhotoUpload>
+            <Text style={{fontSize: 10}}>Upload Picture</Text>
           </View>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
@@ -182,7 +182,7 @@ const styles = {
   photo: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 20
+    paddingBottom: 20,
   },
   formItem:{
     marginLeft: 6,
