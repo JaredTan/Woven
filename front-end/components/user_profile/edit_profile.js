@@ -85,7 +85,7 @@ const EditForm = (props) => {
           <Field name="lastName" label="Last Name" component={renderInput} />
           <View style={styles.dates}>
             <View style={styles.date}>
-              <Text>Birthday      </Text>
+              <Text>Birthday</Text>
               <Field name="birthday"
                 component={ props =>
                   <DatePicker

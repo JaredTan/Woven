@@ -28,15 +28,12 @@ class Plant extends React.Component {
     super(props);
     this.state = {
       water: false,
-
-
       name: props.plant.name,
       health: props.plant.health,
       lastWater: props.plant.lastWater,
       age: props.plant.age,
       happiness: props.plant.happiness,
       messages: props.plant.messages,
-
       nextWater: 0,
       messageType: "",
       message: ""

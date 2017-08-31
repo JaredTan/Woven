@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text: {
-    color: "gray",
+    color: "white",
     backgroundColor: 'transparent',
     padding: 5
   }
