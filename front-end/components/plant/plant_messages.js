@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
+  Image,
   Text,
   View,
   Dimensions,
@@ -35,70 +36,101 @@ class PlantMessage extends React.Component {
   }
 
   default(message) {
-    return (<Text style={styles.secret}>{this.props.partner.firstName} says, "{message}"</Text>);
+    return (
+      <View style={styles.secretContainer}>
+          <Text style={styles.secret}
+            numberOfLines={5}>
+            {this.props.partner.firstName} says, "{message}"
+          </Text>
+      </View>
+    );
   }
 
   full() {
     return (
-      <Text style={styles.full}>
-        "Greggles says I'm full!"
-      </Text>
+      <Image
+        style={styles.dialogueBox}
+        source={require('../../assets/plant/dialogueBox.png')}
+      >
+        <Text style={styles.full}>
+          Greggles says "I'm full!"
+        </Text>
+      </Image>
     );
   }
 
   greeting() {
     return (
-      <Text style={styles.greeting}>
-        {this.props.name} says Hi!
-      </Text>
+      <Image
+        style={styles.dialogueBox}
+        source={require('../../assets/plant/dialogueBox.png')}
+      >
+      <View style={styles.secretContainer}>
+        <Text style={styles.greeting}>
+          {this.props.name} says Hi!
+        </Text>
+      </View>
+      </Image>
     );
   }
 
   render() {
     return (
-        <View>
-          {this.displayMessage()}
-        </View>
+      <View>
+        {this.displayMessage()}
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  dialogueBox:{
+    zIndex: -1,
+    opacity: .45,
+    top: Dimensions.get('window').height* (-.075),
+    right: Dimensions.get('window').height*.12,
+    height: 350,
+    // width: 375,
+    resizeMode: 'contain',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  secretContainer: {
+    width: 0,
+    flex:0.5, //height (according to its parent),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   secret: {
     position: 'absolute',
-    top: Dimensions.get('window').height*.06,
-    right: Dimensions.get('window').height*.20,
-    width: 190,
+    textAlign: 'center',
+    flexWrap: 'wrap',
+    width: 155,
+    flexGrow: 1,
     fontSize: 17,
     opacity: .6,
-    padding: 13,
-    backgroundColor: "#f2f2f2",
   },
   greeting: {
     position: 'absolute',
-    top: Dimensions.get('window').height*.15,
-    right: Dimensions.get('window').height*.27,
     fontSize: 17,
-    opacity: .6,
-    padding: 13,
-    backgroundColor: "#f2f2f2",
-    transform: [{ rotate: '-20deg'}]
+    opacity: .85,
+    paddingBottom: 13,
+    // transform: [{ rotate: '-20deg'}]
   },
   full: {
    position: 'absolute',
-   color: '#f4967e',
-   top: Dimensions.get('window').height*.15,
-   right: Dimensions.get('window').height*.15,
+   color: '#D6502E',
    alignSelf: 'center',
-   fontWeight: 'bold',
+   paddingBottom: 13,
    fontSize: 14,
-   letterSpacing: 1,
-   shadowColor: '#FFF',
-   shadowOffset: { width: 0, height: 0 },
-   shadowOpacity: 0.5,
-   shadowRadius: 1,
-   transform: [{ rotate: '20deg'}]
-  },
+  //  letterSpacing: 1,
+  //  shadowColor: '#FFF',
+  //  shadowOffset: { width: 0, height: 0 },
+  //  shadowOpacity: 0.5,
+  //  shadowRadius: 1,
+  //  transform: [{ rotate: '20deg'}]
+  }
 });
 
 
