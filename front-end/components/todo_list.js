@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   ScrollView,
   RefreshControl,
-  TextInput
+  TextInput,
+  FlatList
 } from 'react-native';
 import Dimensions from 'Dimensions';
 
@@ -51,17 +52,19 @@ class TodoList extends React.Component {
 
   render() {
     let renderTodos = () => {
-      return this.props.todos.map((todo) => {
-        return (
-          <TodoItem key={todo._id} text={todo.text} id={todo._id}/>
-        );
-      });
+      return (
+        <FlatList
+          data={this.props.todos}
+          renderItem={({item}) => (
+          <TodoItem key={item._id} text={item.text} id={item._id}/>
+        )}/>
+      );
     };
     let renderScrollViewOrLoading = () => {
       if (this.state.loading) {
         return (
-          <View>
-            <Text>
+          <View style={styles.inputContainer}>
+            <Text style={styles.input}>
               Creating todo...
             </Text>
           </View>
@@ -76,7 +79,7 @@ class TodoList extends React.Component {
               placeholder="New To-Do Text"
               style={styles.input}/>
             <TouchableOpacity onPress={this.addNewTodo} style={styles.plus}>
-              <Icon name="plus" size={20} color="#0c9258"/>
+              <Icon name="plus" size={24} color="#0c9258"/>
             </TouchableOpacity>
           </View>
         );
@@ -120,7 +123,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height*.9
   },
   title: {
-    top: Dimensions.get('window').height*.03,
+    top: Dimensions.get('window').height*.04,
     color: 'white',
     fontSize: 20,
     alignSelf: 'center'
@@ -128,14 +131,14 @@ const styles = StyleSheet.create({
   topBar: {
     position: 'absolute',
     zIndex: 1,
-    height: Dimensions.get('window').height*.08,
+    height: Dimensions.get('window').height*.1,
     left: 0,
     top: 0,
     width: '100%',
     backgroundColor: '#2ecc71'
   },
   todoContainer: {
-    top: Dimensions.get('window').height*.12,
+    top: Dimensions.get('window').height*.14,
     height: Dimensions.get('window').height*.7
   },
   todos: {
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
   },
   newTodoBar: {
     alignSelf: 'center',
-    top: Dimensions.get('window').height*.1,
+    top: Dimensions.get('window').height*.12,
     width: Dimensions.get('window').width*.9,
     paddingTop: Dimensions.get('window').height*.01,
     paddingBottom: Dimensions.get('window').height*.01,
