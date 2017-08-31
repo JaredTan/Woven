@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     borderColor: '#ACB8BF'
   },
   todoItem: {
+    fontSize: 18,
     width: Dimensions.get('window').width*.85
   }
 });

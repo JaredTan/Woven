@@ -167,7 +167,10 @@ const styles = {
     fontSize: 12,
   },
   signupButton: {
-    borderColor: '#12512d',
+    borderRadius: 50,
+    borderColor: 'transparent',
+    backgroundColor: '#cdf9d8',
+    marginTop: 5,
   },
   error: {
     color: 'red',

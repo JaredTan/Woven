@@ -27,7 +27,6 @@ class Chat extends Component {
     this.onSend = this.onSend.bind(this);
     this._storeMessages = this._storeMessages.bind(this);
     this.giftedUser = this.giftedUser.bind(this);
-    this.renderAvatar = this.renderAvatar.bind(this);
 
     this.socket = io(API_URL);
     this.socket.on('message', this.onReceivedMessage);
@@ -65,7 +64,20 @@ class Chat extends Component {
     return (<Image
       source={{uri: this.props.users.partner.imageUrl}}
       style={[styles.avatarStyle, this.props.avatarStyle]}
-    />)
+    />);
+  }
+
+  renderBubble(props) {
+    return ( <Bubble {...props}
+      wrapperStyle={{
+        left: {
+          backgroundColor: '#F5F5F5',
+        },
+        right: {
+          backgroundColor: '#208e4e'
+        }
+      }} />
+    );
   }
 
   render() {
@@ -89,9 +101,9 @@ class Chat extends Component {
         <View style={styles.giftedChat}>
           <GiftedChat
             messages={this.state.messages}
-            renderAvatar={this.renderAvatar}
             onSend={this.onSend}
             user={this.giftedUser()}
+            renderAvatar={this.renderAvatar.bind(this)}
             renderBubble={this.renderBubble.bind(this)}
             bottomOffset={66}
             />
@@ -100,18 +112,6 @@ class Chat extends Component {
     );
   }
 
-  renderBubble(props) {
-    return ( <Bubble {...props}
-      wrapperStyle={{
-          left: {
-            backgroundColor: '#F5F5F5',
-          },
-          right: {
-            backgroundColor: '#208e4e'
-          }
-        }} />
-    );
-  }
 
   _storeMessages(messages) {
     this.setState(Object.assign({}, {messages: messages.concat(this.state.messages)}));
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 24,
     alignSelf: 'center',
     top: Dimensions.get('window').height*.04,
     marginLeft: 5
@@ -143,15 +143,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   giftedChat: {
-    top: Dimensions.get('window').height*.08,
-    height: Dimensions.get('window').height*.82
+    top: Dimensions.get('window').height*.1,
+    height: Dimensions.get('window').height*.8
   },
   profileImage: {
     top: Dimensions.get('window').height*.04,
     alignSelf: 'flex-start',
-    width: 26,
-    height: 26,
-    borderRadius: 13
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderColor: 'whitesmoke',
+    borderWidth: 1
   },
   avatarStyle: {
    justifyContent: 'center',
@@ -159,13 +161,7 @@ const styles = StyleSheet.create({
    width: 40,
    height: 40,
    borderRadius: 20,
- },
- textStyle: {
-   color: '#fff',
-   fontSize: 16,
-   backgroundColor: 'transparent',
-   fontWeight: '100',
- },
+ }
 });
 
 const mapStateToProps = (state) => {

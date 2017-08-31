@@ -81,9 +81,11 @@ const EditForm = (props) => {
           </PhotoUpload>
           <Text color={'#2ecc71'} fontSize={10}>Upload Picture</Text>
           </View>
+          <Field name="firstName" label="First Name" component={renderInput} />
+          <Field name="lastName" label="Last Name" component={renderInput} />
           <View style={styles.dates}>
             <View style={styles.date}>
-              <Text>Birthday</Text>
+              <Text>Birthday      </Text>
               <Field name="birthday"
                 component={ props =>
                   <DatePicker
@@ -95,10 +97,10 @@ const EditForm = (props) => {
                     format='MM/DD/YYYY'
                     onDateChange={(date) => {
                       props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))
-                      }
                     }
-                    />
-                }/>
+                  }
+                  />
+              }/>
             </View>
             <View style={styles.date}>
               <Text>Anniversary</Text>
@@ -113,25 +115,23 @@ const EditForm = (props) => {
                     format='MM/DD/YYYY'
                     onDateChange={(date) => props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))}
                     />
-                }/>
+              }/>
             </View>
           </View>
-          <Field name="firstName" label="First Name" component={renderInput} />
-          <Field name="lastName" label="Last Name" component={renderInput} />
-            <Grid style={styles.buttonGrid}>
-              <Col style={styles.buttonContainer}>
-                <Button
-                  full
-                  bordered
-                  style={styles.editButton}
-                  transparent
-                  onPress={handleSubmit(handleEdit)} >
-                  <Text>
-                    update profile
-                  </Text>
-                </Button>
-              </Col>
-            </Grid>
+          <Grid style={styles.buttonGrid}>
+            <Col style={styles.buttonContainer}>
+              <Button
+                full
+                bordered
+                style={styles.editButton}
+                transparent
+                onPress={handleSubmit(handleEdit)} >
+                <Text>
+                  update profile
+                </Text>
+              </Button>
+            </Col>
+          </Grid>
           </Form>
         </Content>
       </Container>
@@ -185,6 +185,7 @@ const styles = {
     marginRight: 6
   },
   dates: {
+    marginTop: 10,
     marginBottom: 10
   },
   label: {
@@ -210,7 +211,8 @@ const styles = {
     borderRadius: 10
   },
   editButton: {
-    borderRadius: 10,
-    borderColor: 'black'
+    borderRadius: 50,
+    borderColor: 'transparent',
+    backgroundColor: '#cdf9d8'
   }
 }

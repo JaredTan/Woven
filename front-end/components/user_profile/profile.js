@@ -124,12 +124,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingLeft: Dimensions.get('window').width*.03,
-    paddingRight: Dimensions.get('window').width*.03,
+    paddingRight: Dimensions.get('window').width*.04,
     top: Dimensions.get('window').height*.04,
   },
   title: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 24,
     alignSelf: 'center'
   },
   body: {

@@ -12,7 +12,7 @@ import {removeAlert} from '../../actions';
 const mapStateToProps = (state) => {
   return {
     alerts: state.alerts
-  }
+  };
 };
 
 
