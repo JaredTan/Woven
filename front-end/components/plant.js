@@ -57,17 +57,17 @@ class Plant extends React.Component {
     });
   }
 
-  componentWillUnmount() {
+  // componentWillUnmount() {
 
-    let { messages } = this.state;
-    let { currentUser } = this.props;
-    messages.for[currentUser.firstName] = '';
+  //   let { messages } = this.state;
+  //   let { currentUser } = this.props;
+  //   messages.for[currentUser.firstName] = '';
 
-    this.setState({
-      messages
-    });
-    this.handleUpdatePlant();
-  }
+  //   this.setState({
+  //     messages
+  //   });
+  //   this.handleUpdatePlant();
+  // }
 
   componentWillReceiveProps(nextProps) {
     let { messages } = nextProps.plant;
