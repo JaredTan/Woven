@@ -15,7 +15,8 @@ class PlantMessage extends React.Component {
     this.displayMessage = this.displayMessage.bind(this);
     this.full = this.full.bind(this);
     this.greeting = this.greeting.bind(this);
-    this.default = this.default.bind(this);
+    this.secret = this.secret.bind(this);
+    this.displayAndClearMessage = this.displayAndClearMessage.bind(this);
   }
 
   displayMessage() {
@@ -24,13 +25,22 @@ class PlantMessage extends React.Component {
     if (messageType === "full") {
       return this.full();
     } else if (messageType === "waterPlant") {
-      return message ? this.secret(message) : this.blank();
+      return message ? this.displayAndClearMessage(message) : this.blank();
     } else if (messageType === "greeting"){
-      return message ? this.secret(message) : this.greeting();
+      return message ? this.displayAndClearMessage(message) : this.greeting();
     } else {
       return this.blank();
     }
 
+  }
+
+  displayAndClearMessage(message) {
+    this.secret(message);
+
+    let { plant, currentUser, updatePlant} = this.props;
+    plant.messages.for[currentUser.firstName] = '';
+
+    this.props.updatePlant(this.props.connectionId, plant);
   }
 
   blank() {

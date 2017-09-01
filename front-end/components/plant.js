@@ -58,14 +58,6 @@ class Plant extends React.Component {
   }
 
   componentWillUnmount() {
-
-    let { messages } = this.state;
-    let { currentUser } = this.props;
-    messages.for[currentUser.firstName] = '';
-
-    this.setState({
-      messages
-    });
     this.handleUpdatePlant();
   }
 
@@ -106,9 +98,9 @@ class Plant extends React.Component {
     let now = new Date(Date.now());
 
     if (this.state.nextWater > now ) {
-      this.displayMessage("full", 1100);
+      this.displayMessage("full", 900);
     } else {
-      this.displayMessage("waterPlant", 900);
+      this.displayMessage("", 900);
 
       this.setState({
         water: true,
@@ -166,9 +158,6 @@ class Plant extends React.Component {
     const { currentUser } = this.props;
 
     const message = messages.for[currentUser.firstName];
-    if (message) {
-      time = 20000;
-    }
 
     this.setState ({
       messageType: type,
@@ -186,6 +175,9 @@ class Plant extends React.Component {
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
 
     let background = this.getBackground();
+
+    const { name, health, lastWater, age, happiness, messages } = this.state;
+    const plant = { name, health, lastWater, age, happiness, messages };
 
     return (
       <View style={styles.container}>
@@ -214,7 +206,10 @@ class Plant extends React.Component {
             <PlantMessage
             message={this.state.message}
             messageType={this.state.messageType}
+            currentUser={this.props.currentUser}
             partner={this.props.partner}
+            plant={plant}
+            updatePlant={this.props.updatePlant}
             name={this.props.plant.name} />
           </View>
 
@@ -223,7 +218,7 @@ class Plant extends React.Component {
             onPress={
               () => {Vibration.vibrate([0, 500, 200, 500]);
                 //display optional message
-                this.displayMessage("greeting", 1100);
+                this.displayMessage("secret", 1100);
               }
             }>
 
