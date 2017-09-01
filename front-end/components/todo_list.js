@@ -54,7 +54,7 @@ class TodoList extends React.Component {
     let renderTodos = () => {
       return (
         <FlatList
-          data={this.props.todos}
+          data={this.props.todos.reverse()}
           renderItem={({item}) => (
           <TodoItem key={item._id} text={item.text} id={item._id}/>
         )}/>
@@ -79,7 +79,7 @@ class TodoList extends React.Component {
               placeholder="New To-Do"
               style={styles.input}/>
             <TouchableOpacity onPress={this.addNewTodo} style={styles.plus}>
-              <Icon name="plus" size={28} color="#0c9258"/>
+              <Icon name="plus" size={30} color="#0c9258"/>
             </TouchableOpacity>
           </View>
         );
@@ -94,11 +94,12 @@ class TodoList extends React.Component {
           </Text>
         </View>
 
-        <View style={{flex: 1}}>
+        <View>
           <ScrollView
             style={styles.todos}
             refreshControl={
               <RefreshControl
+                contentInset={50}
                 refreshing={this.state.refreshing}
                 onRefresh={this.onRefresh}/>
             }

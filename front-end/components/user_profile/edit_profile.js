@@ -60,32 +60,32 @@ const EditForm = (props) => {
         <Content style={ styles.content }>
           <Form style={ styles.form }>
             <View style={styles.photo}>
-            <PhotoUpload
-               onPhotoSelect={b64image => {
-                 if (b64image) {
-                   props.change('imageUrl', `data:image/png;base64,${b64image}`)
-                 }
-               }}
-              >
-             <Image
-               style={{
-                 width: Dimensions.get('window').width*.3,
-                 height: Dimensions.get('window').width*.3,
-                 borderRadius: Dimensions.get('window').width*.15
-               }}
-               resizeMode='cover'
-               source={{
-                 uri: initialValues.imageUrl
-               }}
-             />
-          </PhotoUpload>
-          <Text color={'#2ecc71'} fontSize={10}>Upload Picture</Text>
+              <PhotoUpload
+                 onPhotoSelect={b64image => {
+                   if (b64image) {
+                     props.change('imageUrl', `data:image/png;base64,${b64image}`)
+                   }
+                 }}
+                >
+               <Image
+                 style={{
+                   width: Dimensions.get('window').width*.3,
+                   height: Dimensions.get('window').width*.3,
+                   borderRadius: Dimensions.get('window').width*.15
+                 }}
+                 resizeMode='cover'
+                 source={{
+                   uri: initialValues.imageUrl
+                 }}
+               />
+            </PhotoUpload>
+            <Text style={{fontSize: 10}}>Upload Picture</Text>
           </View>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
           <View style={styles.dates}>
             <View style={styles.date}>
-              <Text>Birthday</Text>
+              <Text>Birthday      </Text>
               <Field name="birthday"
                 component={ props =>
                   <DatePicker
@@ -160,13 +160,17 @@ export default EditForm;
 
 const styles = {
   container: {
-    paddingLeft: 42,
-    paddingRight: 42,
-    marginBottom: -50,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  content:{
+    top: Dimensions.get('window').height*.1,
+    paddingTop: Dimensions.get('window').height*.04,
+    paddingLeft: Dimensions.get('window').height*.04,
+    paddingRight: Dimensions.get('window').height*.04,
+    height: '100%',
   },
   title: {
     color: 'white',
@@ -175,14 +179,10 @@ const styles = {
   },
   form: {
   },
-  content: {
-    padding: 0,
-    margin: 0
-  },
   photo: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 20
+    paddingBottom: 20,
   },
   formItem:{
     marginLeft: 6,

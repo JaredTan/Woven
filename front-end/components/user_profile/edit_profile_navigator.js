@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     width: '100%',
-    backgroundColor: '#2ecc71'
+    backgroundColor: '#2ecc71',
   },
   topNav: {
     flexDirection: 'row',
