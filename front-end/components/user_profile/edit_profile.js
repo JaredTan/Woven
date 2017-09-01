@@ -79,13 +79,13 @@ const EditForm = (props) => {
                }}
              />
           </PhotoUpload>
-          <Text color={'#2ecc71'} fontSize={10}>Upload Picture</Text>
+          <Text style={{fontSize: 10}}>Upload Picture</Text>
           </View>
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
           <View style={styles.dates}>
             <View style={styles.date}>
-              <Text>Birthday</Text>
+              <Text>Birthday      </Text>
               <Field name="birthday"
                 component={ props =>
                   <DatePicker
@@ -160,9 +160,6 @@ export default EditForm;
 
 const styles = {
   container: {
-    paddingLeft: 42,
-    paddingRight: 42,
-    marginBottom: -50,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -176,8 +173,11 @@ const styles = {
   form: {
   },
   content: {
-    padding: 0,
-    margin: 0
+    top: Dimensions.get('window').height*.1,
+    paddingTop: Dimensions.get('window').height*.03,
+    paddingLeft: Dimensions.get('window').width*.1,
+    paddingRight: Dimensions.get('window').width*.1,
+    height: '100%'
   },
   photo: {
     justifyContent: 'center',

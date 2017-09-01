@@ -143,6 +143,7 @@ const styles = {
     justifyContent: 'center'
   },
   content: {
+    height: '100%'
   },
   title: {
     textAlign: 'center',
