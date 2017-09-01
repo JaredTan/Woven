@@ -43,7 +43,7 @@ class PlantMessage extends React.Component {
        >
         <View style={styles.secretContainer}>
             <Text style={styles.secret}
-              numberOfLines={5}>
+              numberOfLines={6}>
               {this.props.partner.firstName} says, "{message}"
             </Text>
         </View>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   secretContainer: {
     width: 0,
-    flex:0.5, //height (according to its parent),
+    flex: 1, //height (according to its parent),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -113,8 +113,10 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     width: 155,
     flexGrow: 1,
+    alignSelf: 'center',
     fontSize: 17,
-    opacity: .6,
+    opacity: .9,
+    paddingBottom: 18
   },
   greeting: {
     position: 'absolute',

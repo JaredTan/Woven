@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/Octicons';
 import SignUpNavigator from './signup_navigator';
 import Header from '../styling/header';
 import Link from '../styling/link';

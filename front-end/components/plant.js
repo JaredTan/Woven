@@ -58,11 +58,11 @@ class Plant extends React.Component {
   }
 
   // componentWillUnmount() {
-
+  //
   //   let { messages } = this.state;
   //   let { currentUser } = this.props;
   //   messages.for[currentUser.firstName] = '';
-
+  //
   //   this.setState({
   //     messages
   //   });
