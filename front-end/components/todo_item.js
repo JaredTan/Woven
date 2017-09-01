@@ -10,6 +10,7 @@ import {
   RefreshControl
 } from 'react-native';
 import Dimensions from 'Dimensions';
+import { ListItem, CheckBox } from 'native-base';
 
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 
@@ -39,10 +40,10 @@ class TodoItem extends React.Component {
         }
       };
       return (
-        <View style={styles.todoContainer}>
+        <ListItem style={styles.todoContainer}>
           <Text style={styles.todoItem}>{this.props.text}</Text>
           <View style={styles.removeTodo}>{renderDeleteButton()}</View>
-        </View>
+        </ListItem>
       );
     }
 }

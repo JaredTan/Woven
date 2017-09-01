@@ -19,7 +19,7 @@ const renderInput = ({
   label,
   type,
   secureTextEntry,
-  meta: { touched, error, warning }
+  meta: { touched, error }
 }) => {
   return (
     <View>
@@ -34,9 +34,7 @@ const renderInput = ({
           onChangeText={onChange}
           {...restInput} />
       </Item>
-      <View>{touch &&
-      ((error && <Text style={styles.error}>{error}</Text>) ||
-        (warning && <Text style={styles.warning}>{warning}</Text>))}</View>
+      <View>{touched && (error && <Text style={styles.error}>{error}</Text>)}</View>
     </View>
   )
 }
@@ -52,30 +50,30 @@ const LSForm = props => {
       <Container style={ styles.container }>
         <Content style={ styles.content }>
           <Form style={ styles.form }>
-          <Field name="email" label="Email" component={renderInput} />
-          <Field name="password" secureTextEntry={true} label="Password" component={renderInput} />
-          <Field name="firstName" label="First Name" component={renderInput} />
-          <Field name="lastName" label="Last Name" component={renderInput} />
-          <Field name="partnerEmail" label="Partner Email" component={renderInput} />
-          <Grid style={styles.buttonGrid}>
-            <Col style={styles.buttonContainer}>
-              <Button
-                androidRippleColor='rgba(255,255,255,0.4)'
-                full
-                bordered
-                style={styles.signupButton}
-                transparent
-                onPress={handleSubmit(onSignUp)} >
-                <ButtonTextStyle>
-                  <Text uppercase={false}>
-                    register
-                  </Text>
-                </ButtonTextStyle>
-              </Button>
-            </Col>
-          </Grid>
-      </Form>
-      </Content>
+            <Field name="email" label="Email" component={renderInput} />
+            <Field name="password" secureTextEntry={true} label="Password" component={renderInput} />
+            <Field name="firstName" label="First Name" component={renderInput} />
+            <Field name="lastName" label="Last Name" component={renderInput} />
+            <Field name="partnerEmail" label="Partner Email" component={renderInput} />
+            <Grid style={styles.buttonGrid}>
+              <Col style={styles.buttonContainer}>
+                <Button
+                  androidRippleColor='rgba(255,255,255,0.4)'
+                  full
+                  bordered
+                  style={styles.signupButton}
+                  transparent
+                  onPress={handleSubmit(onSignUp)} >
+                  <ButtonTextStyle>
+                    <Text uppercase={false}>
+                      register
+                    </Text>
+                  </ButtonTextStyle>
+                </Button>
+              </Col>
+            </Grid>
+          </Form>
+        </Content>
       </Container>
     )
 }
@@ -106,34 +104,28 @@ const validate = formProps => {
   return errors
 }
 
-const warn = formProps => {
-  const warnings = {}
-  if (formProps.password === "123456") {
-    warnings.password = 'Too easy password.'
-  }
-  return warnings
-}
-
 export default reduxForm({
   form: 'login',
   validate: validate,
-  warn: warn,
   fields: ['email', 'password', 'firstName', 'lastName', 'partnerEmail'],
 }, null, null)(LSForm);
 
 const styles = {
   container: {
     display: 'flex',
+    height: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   content: {
+    top: Dimensions.get('window').height*.05,
+    height: Dimensions.get('window').height*.9
   },
   form: {
     paddingLeft: Dimensions.get('window').width*.1,
     paddingRight: Dimensions.get('window').width*.1,
-    height: '100%'
+    height: '100%',
   },
   formItem:{
     marginLeft: 6,
@@ -146,8 +138,6 @@ const styles = {
   },
   input: {
     textAlign: 'center',
-  },
-  buttonGrid: {
   },
   buttonContainer: {
     marginTop: 24,
@@ -166,13 +156,10 @@ const styles = {
     borderRadius: 50,
     borderColor: 'transparent',
     backgroundColor: '#cdf9d8',
-    marginTop: 5,
+    marginTop: Dimensions.get('window').height*.05,
   },
   error: {
     color: 'red',
-  },
-  warning: {
-    color: 'orange'
   },
   login: {
     alignSelf: 'center',

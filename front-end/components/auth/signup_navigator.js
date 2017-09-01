@@ -22,14 +22,14 @@ var SignUpNavigator = React.createClass({
   render() {
     return (
       <View style={{flex: 1}}>
-      <View style={styles.topBar}>
-        <TouchableOpacity onPress={this.handleBack} style={styles.back}>
-          <Icon name="chevron-left" size={30} color='#12512d'/>
-        </TouchableOpacity>
-        <Text style={styles.title}>Sign Up</Text>
-        <Text style={styles.placeholder}></Text>
-      </View>
-      <SignUp navigator={this.props.navigator}/>
+        <View style={styles.topBar}>
+          <TouchableOpacity onPress={this.handleBack} style={styles.back}>
+            <Icon name="chevron-left" size={30} color='#12512d'/>
+          </TouchableOpacity>
+          <Text style={styles.title}>Sign Up</Text>
+          <Text style={styles.placeholder}></Text>
+        </View>
+        <SignUp navigator={this.props.navigator}/>
       </View>
     );
   }
