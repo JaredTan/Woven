@@ -6,12 +6,12 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
+import Dimensions from 'Dimensions';
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
 import { loginUser, signupUser, addAlert } from '../../actions';
 import {authUser} from '../../actions';
 import Login from './login';
-import Header from '../styling/header';
 import ButtonTextStyle from '../styling/button_text_style';
 
 const renderInput = ({
@@ -24,17 +24,17 @@ const renderInput = ({
   return (
     <View>
       <Item style={ styles.formItem } floatingLabel>
-        <Label style={ styles.label }>{label}</Label>
-          <Input
-            style={styles.input}
-            underlineColorAndroid={'transparent'}
-            selectionColor={'rgba(245,219,0,0.8)'}
-            tintColor={'rgba(245,219,0,0.8)'}
-            secureTextEntry={secureTextEntry}
-            onChangeText={onChange}
-            {...restInput} />
+        <Input
+          placeholder={label}
+          style={styles.input}
+          underlineColorAndroid={'transparent'}
+          selectionColor={'rgba(245,219,0,0.8)'}
+          tintColor={'rgba(245,219,0,0.8)'}
+          secureTextEntry={secureTextEntry}
+          onChangeText={onChange}
+          {...restInput} />
       </Item>
-      <View>{touched &&
+      <View>{touch &&
       ((error && <Text style={styles.error}>{error}</Text>) ||
         (warning && <Text style={styles.warning}>{warning}</Text>))}</View>
     </View>
@@ -51,30 +51,29 @@ const LSForm = props => {
     return (
       <Container style={ styles.container }>
         <Content style={ styles.content }>
-        <Header><Text style={styles.title}>Sign Up</Text></Header>
           <Form style={ styles.form }>
           <Field name="email" label="Email" component={renderInput} />
           <Field name="password" secureTextEntry={true} label="Password" component={renderInput} />
           <Field name="firstName" label="First Name" component={renderInput} />
           <Field name="lastName" label="Last Name" component={renderInput} />
           <Field name="partnerEmail" label="Partner Email" component={renderInput} />
-              <Grid style={styles.buttonGrid}>
-                <Col style={styles.buttonContainer}>
-                  <Button
-                    androidRippleColor='rgba(255,255,255,0.4)'
-                    full
-                    bordered
-                    style={styles.signupButton}
-                    transparent
-                    onPress={handleSubmit(onSignUp)} >
-                    <ButtonTextStyle>
-                      <Text uppercase={false}>
-                        register
-                      </Text>
-                    </ButtonTextStyle>
-                  </Button>
-                </Col>
-              </Grid>
+          <Grid style={styles.buttonGrid}>
+            <Col style={styles.buttonContainer}>
+              <Button
+                androidRippleColor='rgba(255,255,255,0.4)'
+                full
+                bordered
+                style={styles.signupButton}
+                transparent
+                onPress={handleSubmit(onSignUp)} >
+                <ButtonTextStyle>
+                  <Text uppercase={false}>
+                    register
+                  </Text>
+                </ButtonTextStyle>
+              </Button>
+            </Col>
+          </Grid>
       </Form>
       </Content>
       </Container>
@@ -124,8 +123,6 @@ export default reduxForm({
 
 const styles = {
   container: {
-    paddingLeft: 42,
-    paddingRight: 42,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -133,11 +130,10 @@ const styles = {
   },
   content: {
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 24
-  },
   form: {
+    paddingLeft: Dimensions.get('window').width*.1,
+    paddingRight: Dimensions.get('window').width*.1,
+    height: '100%'
   },
   formItem:{
     marginLeft: 6,

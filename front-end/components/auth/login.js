@@ -7,6 +7,8 @@ import {
   View,
   Image
 } from 'react-native'
+import Dimensions from 'Dimensions'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
 import { loginUser, signupUser, addAlert } from '../../actions';
@@ -23,22 +25,24 @@ const renderInput = ({
   secureTextEntry,
   meta: { touched, error, warning }
 }) => {
+  if (label === "email") {
+    icon = "email-outline"
+  } else {
+    icon = "lock-outline"
+  }
   return (
     <View>
-      <Item style={ styles.formItem } floatingLabel>
-        <Label style={ styles.label }>{label}</Label>
-          <Input
-            style={styles.input}
-            underlineColorAndroid={'transparent'}
-            selectionColor={'rgba(245,219,0,0.8)'}
-            tintColor={'rgba(245,219,0,0.8)'}
-            secureTextEntry={secureTextEntry}
-            onChangeText={onChange}
-            {...restInput} />
+      <Item style={ styles.formItem }>
+        <Icon name={`${icon}`} size={26} color='#12512d'/>
+        <Input
+          placeholder={label}
+          style={styles.input}
+          selectionColor={'#12512d'}
+          tintColor={'#12512d'}
+          secureTextEntry={secureTextEntry}
+          onChangeText={onChange}
+          {...restInput} />
       </Item>
-      <View>{touched &&
-      ((error && <Text style={styles.error}>{error}</Text>) ||
-        (warning && <Text style={styles.warning}>{warning}</Text>))}</View>
     </View>
   )
 }
@@ -61,14 +65,12 @@ const LSForm = props => {
       <Container style={ styles.container }>
         <Content style={ styles.content }>
           <Image style={styles.logo} source={require('../../assets/icons/woven-logo-copy.png')} />
-          <Header><Text>Log In</Text></Header>
           <Form style={ styles.form }>
             <Field name="email" label="email" component={renderInput} />
             <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
             <Grid style={styles.buttonGrid}>
               <Col style={styles.buttonContainer}>
                 <Button
-                  androidRippleColor='rgba(245,219,0,0.4)'
                   full
                   bordered
                   style={styles.signinButton}
@@ -80,32 +82,26 @@ const LSForm = props => {
                     </Text>
                   </ButtonTextStyle>
                 </Button>
-                <Button
-                  androidRippleColor='rgba(245,219,0,0.4)'
-                  full
-                  bordered
-                  style={styles.signinButton}
-                  transparent
-                  onPress={handleSubmit(demoLogin)} >
-                  <ButtonTextStyle>
-                    <Text uppercase={false} style={styles.signinText}>
-                      demo login
-                    </Text>
-                  </ButtonTextStyle>
-                </Button>
-                <Button
-                  androidRippleColor='rgba(245,219,0,0.4)'
-                  full
-                  bordered
-                  style={styles.signinButton}
-                  transparent
-                  onPress={handleSubmit(partnerLogin)} >
-                  <ButtonTextStyle>
-                    <Text uppercase={false} style={styles.signinText}>
-                      partner login
-                    </Text>
-                  </ButtonTextStyle>
-                </Button>
+                <View style={styles.demostuff}>
+                  <Button
+                    style={styles.demoButton}
+                    onPress={handleSubmit(demoLogin)} >
+                    <ButtonTextStyle>
+                      <Text uppercase={false} style={{fontSize: 5}}>
+                        demo login
+                      </Text>
+                    </ButtonTextStyle>
+                  </Button>
+                  <Button
+                    style={styles.demoButton}
+                    onPress={handleSubmit(partnerLogin)} >
+                    <ButtonTextStyle>
+                      <Text uppercase={false} style={{fontSize: 5}}>
+                        partner login
+                      </Text>
+                    </ButtonTextStyle>
+                  </Button>
+                </View>
               </Col>
             </Grid>
           </Form>
@@ -136,54 +132,62 @@ export default reduxForm({
 
 const styles = {
   container: {
-    padding: 42,
+    top: Dimensions.get('window').height*.03,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   content: {
-    height: '100%'
+    paddingLeft: Dimensions.get('window').width*.1,
+    paddingRight: Dimensions.get('window').width*.1,
+    height: '100%',
   },
   title: {
     textAlign: 'center',
     fontSize: 24
   },
-  form: {
-  },
   logo: {
-    width: 140,
-    height: 140,
+    width: Dimensions.get('window').width*.4,
+    height: Dimensions.get('window').width*.4,
+    margin: Dimensions.get('window').width*.2,
     alignSelf: 'center'
   },
   formItem:{
     marginLeft: 6,
     marginRight: 6
   },
+  input: {
+    paddingLeft: 30,
+    color: '#12512d'
+  },
   label: {
     color: 'black',
     textAlign: 'center',
     fontSize: 14,
   },
-  input: {
-    textAlign: 'center',
-  },
   buttonGrid: {
   },
   buttonContainer: {
-    marginTop: 24,
-    marginLeft: 6,
-    marginRight: 6
+    marginTop: Dimensions.get('window').height*.05,
   },
   signinButton: {
     borderRadius: 50,
     borderColor: 'transparent',
     backgroundColor: '#cdf9d8',
-    marginTop: 5,
+    margin: 6
   },
   signinText: {
     color: '#12512d',
     fontSize: 12
+  },
+  demostuff: {
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  demoButton: {
+    width: 50,
+    height: 20
   },
   signupButton: {
     borderColor: 'black',
