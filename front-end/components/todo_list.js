@@ -94,7 +94,7 @@ class TodoList extends React.Component {
           </Text>
         </View>
 
-        <View style={{flex: 1}}>
+        <View>
           <ScrollView
             style={styles.todos}
             refreshControl={
@@ -139,10 +139,10 @@ const styles = StyleSheet.create({
   },
   todoContainer: {
     top: Dimensions.get('window').height*.14,
-    height: Dimensions.get('window').height*.7
+    height: Dimensions.get('window').height*.7,
   },
   todos: {
-    height: Dimensions.get('window').height*.9
+    height: Dimensions.get('window').height*.9,
   },
   newTodoBar: {
     alignSelf: 'center',
