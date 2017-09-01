@@ -89,10 +89,10 @@ class Main extends React.Component {
 
           <View style={styles.navBar}>
           <TouchableOpacity onPress={this.togglePlantTab}>
-            <Icon name='flower' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
+            <Icon name='leaf' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleChatTab}>
-            <Icon name='message-processing' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
+            <Icon name='message' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.toggleTodoTab}>
             <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
