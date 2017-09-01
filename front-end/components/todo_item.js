@@ -33,7 +33,7 @@ class TodoItem extends React.Component {
         if (!this.state.deleting) {
           return (
             <TouchableOpacity onPress={this.onDelete}>
-              <Icon name="close" size={28} color='#f4967e'/>
+              <Icon name="close" size={20} color='#f4967e'/>
             </TouchableOpacity>
           );
         }

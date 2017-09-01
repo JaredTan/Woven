@@ -23,10 +23,8 @@ class PlantMessage extends React.Component {
 
     if (messageType === "full") {
       return this.full();
-    } else if (messageType === "waterPlant") {
-      return message ? this.secret(message) : this.blank();
-    } else if (messageType === "greeting"){
-      return message ? this.secret(message) : this.greeting();
+    } else if (messageType === "secret") {
+      return message ? this.default(message) : this.greeting();
     } else {
       return this.blank();
     }
@@ -37,7 +35,7 @@ class PlantMessage extends React.Component {
     return (<Text></Text>);
   }
 
-  secret(message) {
+  default(message) {
     return (
       <Image
          style={styles.dialogueBox}
@@ -45,7 +43,7 @@ class PlantMessage extends React.Component {
        >
         <View style={styles.secretContainer}>
             <Text style={styles.secret}
-              numberOfLines={6}>
+              numberOfLines={5}>
               {this.props.partner.firstName} says, "{message}"
             </Text>
         </View>
@@ -72,9 +70,11 @@ class PlantMessage extends React.Component {
         style={styles.dialogueBox}
         source={require('../../assets/plant/dialogueBox.png')}
       >
+      <View style={styles.secretContainer}>
         <Text style={styles.greeting}>
           {this.props.name} says Hi!
         </Text>
+      </View>
       </Image>
     );
   }

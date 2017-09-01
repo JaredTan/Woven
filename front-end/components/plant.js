@@ -106,9 +106,9 @@ class Plant extends React.Component {
     let now = new Date(Date.now());
 
     if (this.state.nextWater > now ) {
-      this.displayMessage("full", 1100);
+      this.displayMessage("full", 900);
     } else {
-      this.displayMessage("waterPlant", 900);
+      this.displayMessage("", 900);
 
       this.setState({
         water: true,
@@ -166,9 +166,6 @@ class Plant extends React.Component {
     const { currentUser } = this.props;
 
     const message = messages.for[currentUser.firstName];
-    if (message) {
-      time = 20000;
-    }
 
     this.setState ({
       messageType: type,
@@ -223,7 +220,7 @@ class Plant extends React.Component {
             onPress={
               () => {Vibration.vibrate([0, 500, 200, 500]);
                 //display optional message
-                this.displayMessage("greeting", 1100);
+                this.displayMessage("secret", 1100);
               }
             }>
 
