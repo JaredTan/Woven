@@ -54,10 +54,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   logIn: {
-    flex: 9
+    flex: 8
   },
   signUp: {
-    flex: 1
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });
 

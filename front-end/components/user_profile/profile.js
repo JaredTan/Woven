@@ -80,9 +80,9 @@ class UserProfile extends React.Component {
         </View>
 
         <View style={styles.anniversary}>
-          <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
+          <View style={{width: '80%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
           <Text style={{fontWeight: 'bold'}}>Anniversary:  {moment(currentUser.anniversary).format('LL')}</Text>
-          <View style={{width: '90%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
+          <View style={{width: '80%', marginTop: 10, marginBottom: 10, alignItems: 'center', justifyContent: 'center', borderBottomColor: 'gray', borderBottomWidth: 1,}}/>
         </View>
 
         <View style={styles.header}>

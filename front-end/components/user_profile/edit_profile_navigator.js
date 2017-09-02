@@ -28,14 +28,11 @@ class EditProfileNavigator extends React.Component {
       <View style={styles.container}>
         <View style={styles.topBar}>
           <View style={styles.topNav}>
-            <TouchableOpacity onPress={this.handleBack}>
+            <TouchableOpacity onPress={this.handleBack} style={styles.back}>
               <Icon name="chevron-left" size={30} color="white"/>
             </TouchableOpacity>
             <Text style={styles.title}>Edit Profile</Text>
-            <TouchableOpacity>
-              <Icon name="pencil" size={24} color="#2ecc71"/>
-
-            </TouchableOpacity>
+            <Text style={styles.placeholder}></Text>
           </View>
         </View>
         <EditProfile navigator={this.props.navigator}/>
@@ -52,6 +49,7 @@ const styles = StyleSheet.create({
   },
   topBar: {
     position: 'absolute',
+    flex: 1,
     zIndex: 1,
     height: Dimensions.get('window').height*.1,
     left: 0,
@@ -66,10 +64,17 @@ const styles = StyleSheet.create({
     paddingLeft: Dimensions.get('window').width*.03,
     top: Dimensions.get('window').height*.04,
   },
+  back: {
+    flex: 2
+  },
   title: {
     color: 'white',
     fontSize: 24,
-    alignSelf: 'center'
+    flex: 6,
+    textAlign: 'center'
+  },
+  placeholder: {
+    flex: 2
   }
 });
 

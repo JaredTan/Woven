@@ -10,6 +10,7 @@ import {
   RefreshControl
 } from 'react-native';
 import Dimensions from 'Dimensions';
+import { ListItem, CheckBox } from 'native-base';
 
 import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
 
@@ -18,45 +19,67 @@ class TodoItem extends React.Component {
     super(props);
 
     this.state = {
+      checked: false,
       deleting: false
     };
 
+    this.check = this.check.bind(this);
     this.onDelete = this.onDelete.bind(this);
   }
-    onDelete() {
-      this.setState({deleting: true});
-      this.props.dispatch(deleteTodo(this.props.connectionId, this.props.id));
-    }
 
-    render() {
-      let renderDeleteButton = () => {
-        if (!this.state.deleting) {
-          return (
-            <TouchableOpacity onPress={this.onDelete}>
-              <Icon name="close" size={20} color='#f4967e'/>
-            </TouchableOpacity>
-          );
-        }
-      };
-      return (
-        <View style={styles.todoContainer}>
-          <Text style={styles.todoItem}>{this.props.text}</Text>
-          <View style={styles.removeTodo}>{renderDeleteButton()}</View>
-        </View>
-      );
+  check() {
+    if (this.state.checked) {
+      this.setState({checked: false});
+    } else {
+      this.setState({checked: true});
     }
+  }
+
+  onDelete() {
+    this.setState({deleting: true});
+    this.props.dispatch(deleteTodo(this.props.connectionId, this.props.id));
+  }
+
+  render() {
+    let renderDeleteButton = () => {
+      if (!this.state.deleting) {
+        return (
+          <TouchableOpacity onPress={this.onDelete}>
+            <Icon name="close" size={28} color='#f4967e'/>
+          </TouchableOpacity>
+        );
+      }
+    };
+    return (
+      <ListItem style={styles.todoContainer}>
+        <View style={styles.checkbox}>
+          <CheckBox checked={this.state.checked} onPress={this.check} color='#12512d'/>
+        </View>
+        <Text style={styles.todoItem}>{this.props.text}</Text>
+        <View style={styles.removeTodo}>{renderDeleteButton()}</View>
+      </ListItem>
+    );
+  }
 }
 const styles = StyleSheet.create({
   todoContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    width: Dimensions.get('window').width*.92,
     padding: Dimensions.get('window').height*.02,
     borderBottomWidth: 2,
-    borderColor: '#ACB8BF'
+    borderColor: 'lightgrey'
+  },
+  checkbox: {
+    flex: 1,
   },
   todoItem: {
+    flex: 8,
     fontSize: 18,
-    width: Dimensions.get('window').width*.85
+  },
+  removeTodo: {
+    flex: 1
   }
 });
 
