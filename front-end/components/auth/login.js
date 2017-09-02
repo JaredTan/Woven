@@ -51,13 +51,13 @@ const onSignIn = (props, dispatch) => {
   dispatch(loginUser(props.email, props.password));
 }
 
-const demoLogin = (props, dispatch) => {
-  dispatch(loginUser('AwesomeUser@awesome.com', 'awesome'));
-}
-
-const partnerLogin = (props, dispatch) => {
-  dispatch(loginUser('AwesomePartner@awesome.com', 'awesome'));
-}
+// const demoLogin = (props, dispatch) => {
+//   dispatch(loginUser('AwesomeUser@awesome.com', 'awesome'));
+// }
+//
+// const partnerLogin = (props, dispatch) => {
+//   dispatch(loginUser('AwesomePartner@awesome.com', 'awesome'));
+// }
 
 const LSForm = props => {
     const { handleSubmit } = props;
@@ -82,26 +82,6 @@ const LSForm = props => {
                     </Text>
                   </ButtonTextStyle>
                 </Button>
-                <View style={styles.demostuff}>
-                  <Button
-                    style={styles.demoButton}
-                    onPress={handleSubmit(demoLogin)} >
-                    <ButtonTextStyle>
-                      <Text uppercase={false} style={{fontSize: 5}}>
-                        demo login
-                      </Text>
-                    </ButtonTextStyle>
-                  </Button>
-                  <Button
-                    style={styles.demoButton}
-                    onPress={handleSubmit(partnerLogin)} >
-                    <ButtonTextStyle>
-                      <Text uppercase={false} style={{fontSize: 5}}>
-                        partner login
-                      </Text>
-                    </ButtonTextStyle>
-                  </Button>
-                </View>
               </Col>
             </Grid>
           </Form>

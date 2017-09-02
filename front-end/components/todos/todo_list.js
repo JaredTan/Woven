@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Dimensions from 'Dimensions';
 
-import {unauthUser, getTodos, deleteTodo, setTodos, createTodo} from '../actions';
+import {unauthUser, getTodos, deleteTodo, setTodos, createTodo} from '../../actions';
 import TodoItem from './todo_item';
 
 class TodoList extends React.Component {
@@ -31,6 +31,9 @@ class TodoList extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.props.dispatch(getTodos(this.props.connectionId));
+  }
 
   addNewTodo() {
     let {newTodoText} = this.state;
@@ -56,7 +59,7 @@ class TodoList extends React.Component {
         <FlatList
           data={this.props.todos}
           renderItem={({item}) => (
-          <TodoItem key={item._id} text={item.text} id={item._id}/>
+          <TodoItem key={item._id} text={item.text} checked={item.checked }id={item._id}/>
         )}/>
       );
     };

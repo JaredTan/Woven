@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {requestPair} from '../actions';
+import {requestPair} from '../../actions';
 import {
   View,
   Text,

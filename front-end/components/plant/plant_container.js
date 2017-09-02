@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import Plant from './plant';
-import {unauthUser, fetchPlant, updatePlant} from '../actions';
+import {unauthUser, fetchPlant, updatePlant} from '../../actions';
 
 const mapStateToProps = (state) => {
   const { currentUser, partner } = state.users;

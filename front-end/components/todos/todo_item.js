@@ -12,27 +12,22 @@ import {
 import Dimensions from 'Dimensions';
 import { ListItem, CheckBox } from 'native-base';
 
-import {unauthUser, getTodos, deleteTodo, setTodos} from '../actions';
+import {updateTodo, getTodos, deleteTodo, setTodos} from '../../actions';
 
 class TodoItem extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      checked: false,
       deleting: false
     };
 
-    this.check = this.check.bind(this);
     this.onDelete = this.onDelete.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-  check() {
-    if (this.state.checked) {
-      this.setState({checked: false});
-    } else {
-      this.setState({checked: true});
-    }
+  handleUpdate() {
+    this.props.dispatch(updateTodo(this.props.connectionId, this.props.id));
   }
 
   onDelete() {
@@ -53,7 +48,7 @@ class TodoItem extends React.Component {
     return (
       <ListItem style={styles.todoContainer}>
         <View style={styles.checkbox}>
-          <CheckBox checked={this.state.checked} onPress={this.check} color='#12512d'/>
+          <CheckBox checked={this.props.checked} onPress={this.handleUpdate} color='#12512d'/>
         </View>
         <Text style={styles.todoItem}>{this.props.text}</Text>
         <View style={styles.removeTodo}>{renderDeleteButton()}</View>

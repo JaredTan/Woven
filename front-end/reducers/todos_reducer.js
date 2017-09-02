@@ -15,6 +15,8 @@ const todosReducer = (state=[], action) => {
           return true;
         }
       });
+    case 'RESET_TODOS':
+      return [];
     default:
       return state;
   }

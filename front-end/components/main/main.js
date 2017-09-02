@@ -9,10 +9,10 @@ import {
   ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import TodoList from './todo_list';
-import UserProfileContainer from './user_profile/profile_container';
-import PlantContainer from './plant_container';
-import Chat from './chat';
+import TodoList from '../todos/todo_list';
+import UserProfileContainer from '../user_profile/profile_container';
+import PlantContainer from '../plant/plant_container';
+import Chat from '../chat/chat';
 import {
   Menu,
   MenuOptions,
@@ -72,6 +72,7 @@ class Main extends React.Component {
   }
 
   handleLogOut() {
+    this.props.resetTodos();
     this.props.unauthUser();
   }
 

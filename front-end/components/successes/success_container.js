@@ -10,7 +10,6 @@ import Successes from './successes';
 import {removeSuccess} from '../../actions';
 
 const mapStateToProps = (state) => {
-  console.log(state,'?');
   return {
     successes: state.successes
   }
