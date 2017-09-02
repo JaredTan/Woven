@@ -14,11 +14,11 @@ import {
 
 import Healthbar from './healthbar';
 import animateSprite from './animate_sprite';
-import PlantMessage from './plant/plant_messages';
-import InputModal from './plant/input_modal_container';
+import PlantMessage from './plant_messages';
+import InputModal from './input_modal_container';
 
-import {IMAGES, WATER, PLANT} from '../assets/spritesheets/sprites';
-import BACKGROUND from '../assets/spritesheets/background/background';
+import {IMAGES, WATER, PLANT} from '../../assets/spritesheets/sprites';
+import BACKGROUND from '../../assets/spritesheets/background/background';
 
 
 const {width, height} = Dimensions.get('window');
@@ -201,7 +201,7 @@ class Plant extends React.Component {
           >
             <Image
               style={styles.roundedIcon}
-              source={require('../assets/icons/waterIcon.png')}
+              source={require('../../assets/icons/waterIcon.png')}
             />
           </TouchableOpacity>
 
