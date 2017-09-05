@@ -35,7 +35,7 @@ exports.signupUser = (email, password, firstName, lastName, partnerEmail) => {
           dispatch(addSuccess("Thanks for signing up! You may login once both partners have connected."));
         });
     }).catch((error) => {
-      dispatch(addAlert("Could not sign up: E-mail already taken."));
+      dispatch(addAlert("Could not sign up: E-mail already taken or your partner is connected with someone else."));
     });
   };
 };

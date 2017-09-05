@@ -59,7 +59,7 @@ class TodoList extends React.Component {
         <FlatList
           data={this.props.todos}
           renderItem={({item}) => (
-          <TodoItem key={item._id} text={item.text} checked={item.checked }id={item._id}/>
+          <TodoItem key={item._id} text={item.text} checked={item.checked} id={item._id}/>
         )}/>
       );
     };
