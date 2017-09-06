@@ -155,7 +155,6 @@ const styles = {
     borderRadius: 50,
     borderColor: 'transparent',
     backgroundColor: '#cdf9d8',
-    margin: 6
   },
   signinText: {
     color: '#12512d',

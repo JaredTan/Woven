@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
   signUp: {
     flex: 2,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: -1
   },
 });
 
