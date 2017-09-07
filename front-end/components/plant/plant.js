@@ -188,7 +188,11 @@ class Plant extends React.Component {
       <View style={styles.container}>
           <View style={styles.background}>
             <Image source={background}
-              style={{width, height: height * 0.90}}/>
+              style={{
+                width, 
+                height: height * 0.90,
+                resizeMode: 'stretch'
+                }}/>
           </View>
 
           <View style={styles.healthbar}>
@@ -248,7 +252,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     position: 'absolute',
-    zIndex: -1
+    zIndex: -1,
   },
   healthbar: {
     top: Dimensions.get('window').height*.1,
