@@ -81,7 +81,7 @@ class PlantMessage extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.test}>
         {this.displayMessage()}
       </View>
     );
@@ -89,12 +89,18 @@ class PlantMessage extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  test: {
+    // backgroundColor: 'white',
+    height: 0,
+  },
   dialogueBox:{
-    position: 'absolute',
+    // position: 'absolute',
     zIndex: -1,
     opacity: .45,
-    top: Dimensions.get('window').height/5,
-    right: Dimensions.get('window').height*.18,
+    // top: Dimensions.get('window').height/5,
+    // right: Dimensions.get('window').width/20,
+    right: 170,
+    bottom: 135,
     height: 350,
     // width: 375,
     resizeMode: 'contain',
@@ -102,6 +108,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   secretContainer: {
+    
     width: 0,
     flex: 1, //height (according to its parent),
     flexDirection: 'row',

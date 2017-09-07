@@ -106,7 +106,9 @@ class Plant extends React.Component {
     let now = new Date(Date.now());
 
     if (this.state.nextWater > now ) {
+      
       this.displayMessage("full", 900);
+      
     } else {
       this.displayMessage("", 900);
 
@@ -213,31 +215,33 @@ class Plant extends React.Component {
             <InputModal />
           </View>
 
-          <View>
-            <PlantMessage
-            message={this.state.message}
-            messageType={this.state.messageType}
-            partner={this.props.partner}
-            name={this.props.plant.name} />
-          </View>
-
-          <TouchableWithoutFeedback
-            style={styles.wrapper}
-            onPress={
-              () => {Vibration.vibrate([0, 500, 200, 500]);
-                //display optional message
-                this.displayMessage("secret", 1100);
-              }
-            }>
-
-            <View style={styles.plant}>
-              {/* don't set timer below 1001 */}
-              {animateSprite(PLANT, 2, 1300 - (this.state.health * 10), 550, height * 0.70)}
+          <View style={styles.centerBody}>
+            <View>
+              <PlantMessage
+              message={this.state.message}
+              messageType={this.state.messageType}
+              partner={this.props.partner}
+              name={this.props.plant.name} />
             </View>
-          </TouchableWithoutFeedback>
 
-          <View style={styles.water}>
-            {water}
+            <TouchableWithoutFeedback
+              style={styles.wrapper}
+              onPress={
+                () => {Vibration.vibrate([0, 500, 200, 500]);
+                  //display optional message
+                  this.displayMessage("secret", 1100);
+                }
+              }>
+
+              <View style={styles.plant}>
+                {/* don't set timer below 1001 */}
+                {animateSprite(PLANT, 2, 1300 - (this.state.health * 10), 550, height * 0.70)}
+              </View>
+            </TouchableWithoutFeedback>
+
+            <View style={styles.water}>
+              {water}
+            </View>
           </View>
       </View>
     );
@@ -250,6 +254,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'transparent',
     alignItems: 'stretch',
+  },
+  centerBody: {
+    left: (Dimensions.get('window').width/2) - 100,
+    top: (Dimensions.get('window').height) - (Dimensions.get('window').height*.76),
+    height: 300,
+    width: 200,
   },
   buttons: {
     position: 'absolute',
@@ -271,14 +281,12 @@ const styles = StyleSheet.create({
     left: Dimensions.get('window').width*.04
   },
    plant: {
-     position: 'absolute',
-     top: Dimensions.get('window').height*.27,
+    //  bottom: 15,
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },
    water: {
      position: 'absolute',
-     top: Dimensions.get('window').height*.3,
      alignSelf: 'center'
    },
    waterIcon: {
