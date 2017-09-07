@@ -107,11 +107,9 @@ const styles = StyleSheet.create({
    },
    plantMessageIcon: {
     backgroundColor: 'transparent',
-    width: 65,
-    height: 55,
-    top: Dimensions.get('window').height*.09,
-    left: Dimensions.get('window').width*.79,
-    borderRadius: 31,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
    },
    roundedIcon: {
     width: 61,

@@ -198,18 +198,20 @@ class Plant extends React.Component {
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
+          
+          <View style={styles.buttons}>
+            <TouchableOpacity
+              onPress={this.waterPlant}
+              style={styles.waterIcon}
+            >
+              <Image
+                style={styles.roundedIcon}
+                source={require('../../assets/icons/waterIcon.png')}
+              />
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={this.waterPlant}
-            style={styles.waterIcon}
-          >
-            <Image
-              style={styles.roundedIcon}
-              source={require('../../assets/icons/waterIcon.png')}
-            />
-          </TouchableOpacity>
-
-          <InputModal />
+            <InputModal />
+          </View>
 
           <View>
             <PlantMessage
@@ -249,6 +251,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     alignItems: 'stretch',
   },
+  buttons: {
+    position: 'absolute',
+    zIndex: 1,
+    height: 150,
+    width: 100,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    right: Dimensions.get('window').width*.02,
+    top: Dimensions.get('window').height*0.14
+  },
   background: {
     flex: 1,
     position: 'absolute',
@@ -256,7 +268,7 @@ const styles = StyleSheet.create({
   },
   healthbar: {
     top: Dimensions.get('window').height*.1,
-    left: Dimensions.get('window').width*.02
+    left: Dimensions.get('window').width*.04
   },
    plant: {
      position: 'absolute',
@@ -271,13 +283,13 @@ const styles = StyleSheet.create({
    },
    waterIcon: {
     backgroundColor: 'transparent',
-    width: 65,
-    height: 65,
-    top: Dimensions.get('window').height*.08,
-    left: Dimensions.get('window').width*.78,
-    borderRadius: 180,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
    },
    roundedIcon: {
+    right: 10,
+    bottom: 10,
     width: 80,
     height: 80,
     resizeMode: 'contain'
