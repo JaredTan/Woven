@@ -90,10 +90,11 @@ class PlantMessage extends React.Component {
 
 const styles = StyleSheet.create({
   dialogueBox:{
+    position: 'absolute',
     zIndex: -1,
     opacity: .45,
-    top: Dimensions.get('window').height* (-.075),
-    right: Dimensions.get('window').height*.12,
+    top: Dimensions.get('window').height/5,
+    right: Dimensions.get('window').height*.18,
     height: 350,
     // width: 375,
     resizeMode: 'contain',

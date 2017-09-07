@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
      paddingLeft: 10,
    },
    plantMessageIcon: {
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     width: 65,
     height: 55,
     top: Dimensions.get('window').height*.09,
