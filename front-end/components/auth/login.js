@@ -51,13 +51,13 @@ const onSignIn = (props, dispatch) => {
   dispatch(loginUser(props.email, props.password));
 }
 
-// const demoLogin = (props, dispatch) => {
-//   dispatch(loginUser('AwesomeUser@awesome.com', 'awesome'));
-// }
-//
-// const partnerLogin = (props, dispatch) => {
-//   dispatch(loginUser('AwesomePartner@awesome.com', 'awesome'));
-// }
+  const demoLogin = (props, dispatch) => {
+    dispatch(loginUser('AwesomeUser@awesome.com', 'awesome'));
+  }
+
+  const partnerLogin = (props, dispatch) => {
+    dispatch(loginUser('AwesomePartner@awesome.com', 'awesome'));
+  }
 
 const LSForm = props => {
     const { handleSubmit } = props;
@@ -75,10 +75,10 @@ const LSForm = props => {
                   bordered
                   style={styles.signinButton}
                   transparent
-                  onPress={handleSubmit(onSignIn)} >
+                  onPress={handleSubmit(demoLogin)} >
                   <ButtonTextStyle>
                     <Text uppercase={false} style={styles.signinText}>
-                    login
+                    Demo User
                     </Text>
                   </ButtonTextStyle>
                 </Button>
