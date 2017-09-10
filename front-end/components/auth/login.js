@@ -75,10 +75,10 @@ const LSForm = props => {
                   bordered
                   style={styles.signinButton}
                   transparent
-                  onPress={handleSubmit(demoLogin)} >
+                  onPress={handleSubmit(partnerLogin)} >
                   <ButtonTextStyle>
                     <Text uppercase={false} style={styles.signinText}>
-                    Demo User
+                    Demo Partner
                     </Text>
                   </ButtonTextStyle>
                 </Button>
