@@ -14,12 +14,13 @@ import SuccessContainer from './successes/success_container';
 import Chat from './chat/chat';
 import {fetchPlant} from '../actions';
 
-var App = React.createClass({
-  getInitialState() {
-    return {};
-  },
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
-    var renderMainView = () => {
+    const renderMainView = () => {
       if (this.props.user_id) {
         return (
           <MainNavigator
@@ -40,7 +41,8 @@ var App = React.createClass({
       </View>
     );
   }
-});
+
+}
 
 const styles = StyleSheet.create({
   container: {
