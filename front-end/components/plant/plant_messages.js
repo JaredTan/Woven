@@ -90,30 +90,24 @@ class PlantMessage extends React.Component {
 
 const styles = StyleSheet.create({
   test: {
-    // backgroundColor: 'white',
-    height: 0,
+    height: 0
   },
   dialogueBox:{
-    // position: 'absolute',
     zIndex: -1,
     opacity: .45,
-    // top: Dimensions.get('window').height/5,
-    // right: Dimensions.get('window').width/20,
     right: 170,
     bottom: 135,
     height: 350,
-    // width: 375,
     resizeMode: 'contain',
     alignItems: 'center',
     justifyContent: 'center'
   },
   secretContainer: {
-    
     width: 0,
-    flex: 1, //height (according to its parent),
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   secret: {
     position: 'absolute',
@@ -130,21 +124,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     fontSize: 17,
     opacity: .85,
-    paddingBottom: 13,
-    // transform: [{ rotate: '-20deg'}]
+    paddingBottom: 13
   },
   full: {
    position: 'absolute',
    color: '#D6502E',
    alignSelf: 'center',
    paddingBottom: 13,
-   fontSize: 14,
-  //  letterSpacing: 1,
-  //  shadowColor: '#FFF',
-  //  shadowOffset: { width: 0, height: 0 },
-  //  shadowOpacity: 0.5,
-  //  shadowRadius: 1,
-  //  transform: [{ rotate: '20deg'}]
+   fontSize: 14
   }
 });
 

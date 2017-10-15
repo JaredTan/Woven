@@ -1,8 +1,18 @@
 import React from 'react';
-import { Modal, Text, TouchableHighlight, View, Dimensions, StyleSheet, Image, TextInput, TouchableOpacity, Button } from 'react-native';
+import {
+  Modal,
+  Text,
+  TouchableHighlight,
+  View,
+  Dimensions,
+  StyleSheet,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Button
+} from 'react-native';
 
 class InputModal extends React.Component {
-
   constructor(props){
     super(props);
     this.state = {
@@ -13,7 +23,6 @@ class InputModal extends React.Component {
 
     this.submitAndReset = this.submitAndReset.bind(this);
     this.setModalVisible = this.setModalVisible.bind(this);
-    this.resizeTextBox = this.resizeTextBox.bind(this);
   }
 
   setModalVisible(visible) {
@@ -26,16 +35,13 @@ class InputModal extends React.Component {
     return (e) => {
       const {updatePlant, connectionId, partner, plant} = this.props;
       plant.messages.for[partner.firstName] = this.state.text;
-
       updatePlant(connectionId, plant);
-
       this.setModalVisible(!this.state.modalVisible);
       this.setState({
         text: ''
       });
     };
   }
-
 
   render() {
     return (
@@ -68,7 +74,6 @@ class InputModal extends React.Component {
           </View>
          </TouchableHighlight>
         </Modal>
-
         <TouchableOpacity
           onPress={() => {this.setModalVisible(true)}}
           style={styles.plantMessageIcon}
@@ -78,14 +83,10 @@ class InputModal extends React.Component {
             source={require('../../assets/icons/PlantMessageIcon.png')}
           />
         </TouchableOpacity>
-
       </View>
     );
   }
 
-  resizeTextBox() {
-    
-  }
 }
 
 const styles = StyleSheet.create({

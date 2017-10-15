@@ -1,10 +1,10 @@
 import uuid from 'uuid';
 
-var defaultState = [];
+import {ADD_SUCCESS, REMOVE_SUCCESS} from '../actions';
 
-module.exports = (state=defaultState, action) => {
+const successesReducer = (state=[], action) => {
   switch(action.type) {
-    case 'ADD_SUCCESS':
+    case ADD_SUCCESS:
       return [
         ...state,
         {
@@ -12,8 +12,7 @@ module.exports = (state=defaultState, action) => {
           id: uuid.v4()
         }
       ];
-
-    case 'REMOVE_SUCCESS':
+    case REMOVE_SUCCESS:
       return state.filter((success) => {
         if (success.id === action.id) {
           return false;
@@ -21,8 +20,9 @@ module.exports = (state=defaultState, action) => {
           return true;
         }
       });
-
     default:
       return state;
   }
-}
+};
+
+export default successesReducer;

@@ -9,37 +9,33 @@ import {connect} from 'react-redux';
 import {removeAlert} from '../../actions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 class Alert extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleRemoveAlert = this.handleRemoveAlert.bind(this);
-
   }
 
   handleRemoveAlert() {
-    let {alert, dispatch} = this.props;
-    dispatch(removeAlert(alert.id));
+    let {alert} = this.props;
+    this.props.removeAlert(alert.id);
   }
 
   render() {
     let {alert} = this.props;
-        return (
-          <TouchableWithoutFeedback onPress={this.handleRemoveAlert}>
-            <View style={styles.container2}>
-              <Text style={styles.text}>
-                {alert.text}
-              </Text>
-              <Icon name="close" size={15} color='#401F1C'/>
-            </View>
-          </TouchableWithoutFeedback>
-        );
-    }
-
+    return (
+      <TouchableWithoutFeedback onPress={this.handleRemoveAlert}>
+        <View style={styles.container2}>
+          <Text style={styles.text}>
+            {alert.text}
+          </Text>
+          <Icon name="close" size={15} color='#401F1C'/>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
 
 }
-
 
 const styles = StyleSheet.create({
   container2: {
@@ -61,4 +57,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(Alert);
+const mapDispatchToProps = dispatch => {
+  return {
+    removeAlert: id => dispatch(removeAlert(id))
+  }
+};
+
+export default connect(null, mapDispatchToProps)(Alert);

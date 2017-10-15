@@ -51,6 +51,7 @@ const onSignIn = (props, dispatch) => {
   dispatch(loginUser(props.email, props.password));
 }
 
+// DEMO LOGINS
 // const demoLogin = (props, dispatch) => {
 //   dispatch(loginUser('AwesomeUser@awesome.com', 'awesome'));
 // }

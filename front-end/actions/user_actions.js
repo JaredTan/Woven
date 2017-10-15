@@ -1,10 +1,12 @@
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
-
 import {USERS_URL} from '../api';
 import {addAlert} from './alert_actions';
 import {addSuccess} from './success_actions';
 
+export const RECEIVE_PAIR = "RECEIVE_PAIR";
+export const RECEIVE_USER = "RECEIVE_USER";
+export const RESET_PAIR = "RESET_PAIR";
 
 export const requestPair = (user_id) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {

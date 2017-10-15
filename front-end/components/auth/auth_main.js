@@ -6,10 +6,13 @@ import {
   TouchableOpacity,
   NavigatorIOS
 } from 'react-native';
-import AuthMainNavigator from './auth_main_navigator';
 import LogInNavigator from './login_navigator';
 
-var AuthMain = React.createClass({
+class AuthMain extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <NavigatorIOS
@@ -20,7 +23,8 @@ var AuthMain = React.createClass({
         }}
         style={{flex: 1}}/>
     );
-  }
-});
+  };
 
-module.exports = AuthMain;
+}
+
+export default AuthMain;

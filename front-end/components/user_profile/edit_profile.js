@@ -43,7 +43,6 @@ const renderInput = ({
   )
 }
 
-
 const handleEdit = (props, dispatch, payload) => {
   let newBirthday = new Date(props.birthday);
   newBirthday.setMinutes( newBirthday.getMinutes() + newBirthday.getTimezoneOffset() );
@@ -54,12 +53,12 @@ const handleEdit = (props, dispatch, payload) => {
 }
 
 const EditForm = (props) => {
-    const { handleSubmit, initialValues } = props;
-    return (
-      <Container style={ styles.container }>
-        <Content style={ styles.content }>
-          <Form style={ styles.form }>
-            <View style={styles.photo}>
+  const { handleSubmit, initialValues } = props;
+  return (
+    <Container style={ styles.container }>
+      <Content style={ styles.content }>
+        <Form style={ styles.form }>
+          <View style={styles.photo}>
             <PhotoUpload
                onPhotoSelect={b64image => {
                  if (b64image) {
@@ -80,27 +79,27 @@ const EditForm = (props) => {
              />
           </PhotoUpload>
           <Text style={{fontSize: 10}}>Upload Picture</Text>
-          </View>
-          <Field name="firstName" label="First Name" component={renderInput} />
-          <Field name="lastName" label="Last Name" component={renderInput} />
-          <View style={styles.dates}>
-            <View style={styles.date}>
-              <Text>Birthday      </Text>
-              <Field name="birthday"
-                component={ props =>
-                  <DatePicker
-                    date={props.input.value}
-                    mode='date'
-                    confirmBtnText='Confirm'
-                    cancelBtnText='Cancel'
-                    placeholder='MM/DD/YYYY'
-                    format='MM/DD/YYYY'
-                    onDateChange={(date) => {
-                      props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))
-                    }
+        </View>
+        <Field name="firstName" label="First Name" component={renderInput} />
+        <Field name="lastName" label="Last Name" component={renderInput} />
+        <View style={styles.dates}>
+          <View style={styles.date}>
+            <Text>Birthday      </Text>
+            <Field name="birthday"
+              component={ props =>
+                <DatePicker
+                  date={props.input.value}
+                  mode='date'
+                  confirmBtnText='Confirm'
+                  cancelBtnText='Cancel'
+                  placeholder='MM/DD/YYYY'
+                  format='MM/DD/YYYY'
+                  onDateChange={(date) => {
+                    props.input.onChange(moment(new Date(date)).format("MM/DD/YYYY"))
                   }
-                  />
-              }/>
+                }
+                />
+            }/>
           </View>
           <View style={styles.date}>
             <Text>Anniversary</Text>
@@ -132,10 +131,10 @@ const EditForm = (props) => {
               </Button>
             </Col>
           </Grid>
-          </Form>
-        </Content>
-      </Container>
-    )
+        </Form>
+      </Content>
+    </Container>
+  )
 }
 
 EditForm = reduxForm({
@@ -155,8 +154,6 @@ EditForm = connect(
     }
   })
 )(EditForm)
-
-export default EditForm;
 
 const styles = {
   container: {
@@ -217,4 +214,6 @@ const styles = {
     borderColor: 'transparent',
     backgroundColor: '#cdf9d8'
   }
-}
+};
+
+export default EditForm;
