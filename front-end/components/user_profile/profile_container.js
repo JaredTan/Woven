@@ -10,10 +10,12 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  unauthUser: () => dispatch(unauthUser),
-  requestPair: (userId) => dispatch(requestPair(userId)),
-  resetPair: () => dispatch(resetPair())
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    unauthUser: () => dispatch(unauthUser),
+    requestPair: (userId) => dispatch(requestPair(userId)),
+    resetPair: () => dispatch(resetPair())
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

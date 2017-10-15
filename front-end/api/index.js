@@ -1,5 +1,4 @@
-// var API_URL = 'http://localhost:3000/v1';
-// const API_URL = 'https://safe-peak-55084.herokuapp.com/v1';
+// const API_URL = 'http://localhost:3000/v1';
 const API_URL = 'https://damp-forest-12839.herokuapp.com/v1';
 export const SIGNIN_URL = `${API_URL}/signin`;
 export const SIGNUP_URL = `${API_URL}/signup`;

@@ -5,9 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
-
 import Alerts from './alerts';
-import {removeAlert} from '../../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,5 +13,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-
-module.exports = connect(mapStateToProps, null)(Alerts);
+export default connect(mapStateToProps, null)(Alerts);

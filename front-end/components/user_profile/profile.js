@@ -94,10 +94,8 @@ class UserProfile extends React.Component {
             }}
           />
           <Text style={styles.name}>Your partner: {partner.firstName} {partner.lastName}</Text>
-          <Text>
-            <Text style={{fontWeight: 'bold'}}>Birthday: </Text>
-             {moment(partner.birthday).format('LL')}
-            </Text>
+          <Text style={{fontWeight: 'bold'}}>Birthday: </Text>
+          <Text> {moment(partner.birthday).format('LL')} </Text>
         </View>
 
       </View>

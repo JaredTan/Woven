@@ -1,6 +1,5 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import {
   StyleSheet,
   Text,
@@ -8,7 +7,6 @@ import {
   TouchableOpacity,
   NavigatorIOS
 } from 'react-native';
-
 import Dimensions from 'Dimensions';
 import EditProfile from './edit_profile';
 
@@ -39,7 +37,6 @@ class EditProfileNavigator extends React.Component {
       </View>
     );
   }
-
 
 }
 
@@ -79,4 +76,4 @@ const styles = StyleSheet.create({
 });
 
 
-module.exports = EditProfileNavigator;
+export default EditProfileNavigator;

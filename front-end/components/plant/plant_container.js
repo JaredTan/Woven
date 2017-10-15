@@ -1,5 +1,4 @@
 import {connect} from 'react-redux';
-
 import Plant from './plant';
 import {unauthUser, fetchPlant, updatePlant} from '../../actions';
 
@@ -18,7 +17,4 @@ const mapDispatchToProps = dispatch => ({
   updatePlant: (connectionId, plant) => dispatch(updatePlant(connectionId, plant))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Plant);
+export default connect(mapStateToProps, mapDispatchToProps)(Plant);

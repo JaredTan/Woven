@@ -6,11 +6,10 @@ import {
   View,
   StatusBar
 } from 'react-native';
-
 import AuthMain from './auth/auth_main';
 import MainNavigator from './main/main_navigator';
-import AlertContainer from './alerts/alert_container';
-import SuccessContainer from './successes/success_container';
+import AlertsContainer from './alerts/alerts_container';
+import SuccessesContainer from './successes/successes_container';
 import Chat from './chat/chat';
 import {fetchPlant} from '../actions';
 
@@ -36,8 +35,8 @@ class App extends React.Component {
     return (
       <View style={{flex: 1}}>
         {renderMainView()}
-        <AlertContainer/>
-        <SuccessContainer/>
+        <AlertsContainer/>
+        <SuccessesContainer/>
       </View>
     );
   }
@@ -54,17 +53,17 @@ const styles = StyleSheet.create({
   },
 });
 
-var mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     user_id: state.auth.user_id,
     connectionId: state.auth.connectionId
   };
 };
 
-var mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     fetchPlant: (connectionId) => dispatch(fetchPlant(connectionId))
   }
 }
 
-module.exports = connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App);

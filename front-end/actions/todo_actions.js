@@ -1,10 +1,14 @@
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
-
 import {TODOS_URL, TODO_URL} from '../api';
 import {addAlert} from './alert_actions';
 
-exports.createTodo = (connectionId, text) => {
+export const ADD_TODO = "ADD_TODO";
+export const REMOVE_TODO = "REMOVE_TODO";
+export const SET_TODOS = "SET_TODOS";
+export const RESET_TODOS = "RESET_TODOS";
+
+export const createTodo = (connectionId, text) => {
   return function(dispatch) {
     return Keychain.getGenericPassword().then((credentials) => {
       const {username, password} = credentials;
@@ -19,7 +23,7 @@ exports.createTodo = (connectionId, text) => {
   };
 };
 
-exports.getTodos = (connectionId) => dispatch => {
+export const getTodos = (connectionId) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     const {username, password} = credentials;
     return axios.get(TODOS_URL(connectionId), {
@@ -32,7 +36,7 @@ exports.getTodos = (connectionId) => dispatch => {
   });
 };
 
-exports.deleteTodo = (connectionId, todoId) => {
+export const deleteTodo = (connectionId, todoId) => {
   return function(dispatch) {
     return Keychain.getGenericPassword().then((credentials) => {
       const {username, password} = credentials;
@@ -47,7 +51,7 @@ exports.deleteTodo = (connectionId, todoId) => {
   };
 };
 
-exports.updateTodo = (connectionId, todoId) => dispatch => {
+export const updateTodo = (connectionId, todoId) => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     const {username, password} = credentials;
     return axios.patch(TODO_URL(connectionId, todoId), {
@@ -55,19 +59,19 @@ exports.updateTodo = (connectionId, todoId) => dispatch => {
     }).then((response) => {
       dispatch(setTodos(response.data.todos));
     }).catch((err) => {
-      dispatch(addAlert("Couldn't update todo."))
+      dispatch(addAlert("Couldn't update todo."));
     });
   });
-}
+};
 
-const addTodo = (newTodo) => {
+export const addTodo = (newTodo) => {
   return {
     type: 'ADD_TODO',
     newTodo
   };
 };
 
-const removeTodo = (todoId) => {
+export const removeTodo = (todoId) => {
   return {
     type: 'REMOVE_TODO',
     todoId
@@ -84,5 +88,5 @@ export const setTodos = (todos) => {
 export const resetTodos = () => {
   return {
     type: 'RESET_TODOS'
-  }
-}
+  };
+};

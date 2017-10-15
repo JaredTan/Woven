@@ -7,7 +7,10 @@ import {requestPair} from './user_actions';
 import {fetchPlant} from './plant_actions';
 import {addSuccess} from './success_actions';
 
-exports.loginUser = (email, password) => {
+export const AUTH_USER = 'AUTH_USER';
+export const UNAUTH_USER = 'UNAUTH_USER';
+
+export const loginUser = (email, password) => {
   return function(dispatch) {
     return axios.post(SIGNIN_URL, {email, password}).then((response) => {
       var {user_id, token, connectionId} = response.data;
@@ -26,7 +29,7 @@ exports.loginUser = (email, password) => {
   };
 };
 
-exports.signupUser = (email, password, firstName, lastName, partnerEmail) => {
+export const signupUser = (email, password, firstName, lastName, partnerEmail) => {
   return function(dispatch) {
     return axios.post(SIGNUP_URL, {email, password, firstName, lastName, partnerEmail}).then((response) => {
       var {user_id, token} = response.data;
@@ -40,14 +43,14 @@ exports.signupUser = (email, password, firstName, lastName, partnerEmail) => {
   };
 };
 
-var authUser = (user_id, connectionId) => {
+const authUser = (user_id, connectionId) => {
   return {
     type: 'AUTH_USER',
     user_id,
     connectionId
-  }
-}
+  };
+};
 
-exports.unauthUser = {
+export const unauthUser = {
   type: 'UNAUTH_USER'
-}
+};

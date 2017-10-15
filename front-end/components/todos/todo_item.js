@@ -10,8 +10,7 @@ import {
   RefreshControl
 } from 'react-native';
 import Dimensions from 'Dimensions';
-import { ListItem, CheckBox } from 'native-base';
-
+import {ListItem, CheckBox} from 'native-base';
 import {updateTodo, getTodos, deleteTodo, setTodos} from '../../actions';
 
 class TodoItem extends React.Component {
@@ -85,4 +84,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TodoItem);
+export default connect(mapStateToProps, null)(TodoItem);

@@ -76,82 +76,80 @@ class Main extends React.Component {
     this.props.unauthUser();
   }
 
-
-    render() {
-      return (
-        <View style={styles.container}>
-          <View style={styles.component}>
-            <View>
-              { this.state.plant ? <PlantContainer/> : null }
-              { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
-              { this.state.todo ? <TodoList/> : null }
-            </View>
-          </View>
-
-          <View style={styles.navBar}>
-          <TouchableOpacity onPress={this.togglePlantTab}>
-            <Icon name='leaf' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.toggleChatTab}>
-            <Icon name='message' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.toggleTodoTab}>
-            <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-            <Menu style={styles.menu} renderer={renderers.SlideInMenu}>
-              <MenuTrigger>
-               <Icon name='chevron-up' size={38} color="#0c9258"/>
-             </MenuTrigger>
-             <MenuOptions style={styles.options}>
-               <MenuOption style={styles.profileOption} onSelect={this.redirectToProfile}>
-                 <Text style={styles.profile}>Profile</Text>
-               </MenuOption>
-               <MenuOption style={styles.logoutOption} onSelect={this.handleLogOut} >
-                 <Text style={styles.logout}>Log Out</Text>
-               </MenuOption>
-             </MenuOptions>
-           </Menu>
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.component}>
+          <View>
+            { this.state.plant ? <PlantContainer/> : null }
+            { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
+            { this.state.todo ? <TodoList/> : null }
           </View>
         </View>
-      );
-    }
+        <View style={styles.navBar}>
+        <TouchableOpacity onPress={this.togglePlantTab}>
+          <Icon name='leaf' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.toggleChatTab}>
+          <Icon name='message' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.toggleTodoTab}>
+          <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
+        </TouchableOpacity>
+          <Menu style={styles.menu} renderer={renderers.SlideInMenu}>
+            <MenuTrigger>
+             <Icon name='chevron-up' size={38} color="#0c9258"/>
+           </MenuTrigger>
+           <MenuOptions style={styles.options}>
+             <MenuOption style={styles.profileOption} onSelect={this.redirectToProfile}>
+               <Text style={styles.profile}>Profile</Text>
+             </MenuOption>
+             <MenuOption style={styles.logoutOption} onSelect={this.handleLogOut} >
+               <Text style={styles.logout}>Log Out</Text>
+             </MenuOption>
+           </MenuOptions>
+         </Menu>
+        </View>
+      </View>
+    );
   }
+}
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'column'
-    },
-    component: {
-      flex: 9
-    },
-    navBar: {
-      flex: 1,
-      backgroundColor: '#2ecc71',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-around'
-    },
-    options: {
-    },
-    logoutOption: {
-    },
-    logout: {
-      color: 'red',
-      padding: 20,
-      fontSize: 20,
-      alignSelf: 'center',
-    },
-    profileOption: {
-      backgroundColor: '#cdf9d8'
-    },
-    profile: {
-      color: 'gray',
-      padding: 20,
-      fontSize: 20,
-      alignSelf: 'center',
-    }
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  component: {
+    flex: 9
+  },
+  navBar: {
+    flex: 1,
+    backgroundColor: '#2ecc71',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  options: {
+  },
+  logoutOption: {
+  },
+  logout: {
+    color: 'red',
+    padding: 20,
+    fontSize: 20,
+    alignSelf: 'center',
+  },
+  profileOption: {
+    backgroundColor: '#cdf9d8'
+  },
+  profile: {
+    color: 'gray',
+    padding: 20,
+    fontSize: 20,
+    alignSelf: 'center',
+  }
+});
 
 
-  export default Main;
+export default Main;
