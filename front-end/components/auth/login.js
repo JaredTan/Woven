@@ -51,7 +51,7 @@ const onSignIn = (props, dispatch) => {
   dispatch(loginUser(props.email, props.password));
 }
 
-// DEMO LOGINS
+// ---- DEMO LOGINS ----
 // const demoLogin = (props, dispatch) => {
 //   dispatch(loginUser('AwesomeUser@awesome.com', 'awesome'));
 // }
@@ -61,34 +61,34 @@ const onSignIn = (props, dispatch) => {
 // }
 
 const LSForm = props => {
-    const { handleSubmit } = props;
-    return (
-      <Container style={ styles.container }>
-        <Content style={ styles.content }>
-          <Image style={styles.logo} source={require('../../assets/icons/woven-logo-copy.png')} />
-          <Form style={ styles.form }>
-            <Field name="email" label="email" component={renderInput} />
-            <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
-            <Grid style={styles.buttonGrid}>
-              <Col style={styles.buttonContainer}>
-                <Button
-                  full
-                  bordered
-                  style={styles.signinButton}
-                  transparent
-                  onPress={handleSubmit(onSignIn)} >
-                  <ButtonTextStyle>
-                    <Text uppercase={false} style={styles.signinText}>
-                    login
-                    </Text>
-                  </ButtonTextStyle>
-                </Button>
-              </Col>
-            </Grid>
-          </Form>
-        </Content>
-      </Container>
-    )
+  const { handleSubmit } = props;
+  return (
+    <Container style={ styles.container }>
+      <Content style={ styles.content }>
+        <Image style={styles.logo} source={require('../../assets/icons/woven-logo-copy.png')} />
+        <Form style={ styles.form }>
+          <Field name="email" label="email" component={renderInput} />
+          <Field name="password" secureTextEntry={true} label="password" component={renderInput} />
+          <Grid style={styles.buttonGrid}>
+            <Col style={styles.buttonContainer}>
+              <Button
+                full
+                bordered
+                style={styles.signinButton}
+                transparent
+                onPress={handleSubmit(onSignIn)} >
+                <ButtonTextStyle>
+                  <Text uppercase={false} style={styles.signinText}>
+                  login
+                  </Text>
+                </ButtonTextStyle>
+              </Button>
+            </Col>
+          </Grid>
+        </Form>
+      </Content>
+    </Container>
+  )
 }
 
 const warn = formProps => {

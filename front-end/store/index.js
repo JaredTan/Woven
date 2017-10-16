@@ -4,7 +4,7 @@ import {AsyncStorage} from 'react-native';
 import {persistStore, autoRehydrate} from 'redux-persist';
 import rootReducer from '../reducers/root_reducer';
 
-const configureStore = (initialState={}) => {
+const configureStore = (initialState) => {
   let store = createStore(rootReducer, initialState, compose(
     applyMiddleware(thunk),
     autoRehydrate()
