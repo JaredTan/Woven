@@ -1,16 +1,12 @@
 import React from 'react';
 import SignUpNavigator from './signup_navigator';
-import Header from '../styling/header';
 import Link from '../styling/link';
 import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  NavigatorIOS,
-  Image
+  TouchableOpacity
 } from 'react-native';
-import Dimensions from 'Dimensions';
 import LogIn from './login';
 
 class LogInNavigator extends React.Component {

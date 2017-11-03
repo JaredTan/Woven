@@ -2,11 +2,8 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  Image,
   View,
-  TouchableOpacity,
-  NavigatorIOS,
-  ScrollView
+  TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TodoList from '../todos/todo_list';
@@ -130,10 +127,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around'
   },
-  options: {
-  },
-  logoutOption: {
-  },
   logout: {
     color: 'red',
     padding: 20,
@@ -150,6 +143,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   }
 });
-
 
 export default Main;

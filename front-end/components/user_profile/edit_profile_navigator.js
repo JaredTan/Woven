@@ -4,8 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  NavigatorIOS
+  TouchableOpacity
 } from 'react-native';
 import Dimensions from 'Dimensions';
 import EditProfile from './edit_profile';
@@ -74,6 +73,5 @@ const styles = StyleSheet.create({
     flex: 2
   }
 });
-
 
 export default EditProfileNavigator;

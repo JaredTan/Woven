@@ -4,11 +4,9 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  NavigatorIOS
+  TouchableOpacity
 } from 'react-native';
 import Dimensions from 'Dimensions';``
-import LogIn from './login';
 import SignUp from './signup';
 
 class SignUpNavigator extends React.Component {

@@ -10,8 +10,6 @@ import Dimensions from 'Dimensions';
 import { Field, reduxForm } from 'redux-form'
 import { Container, Content, Grid, Col, Form, Item, Input, Label, Button } from 'native-base';
 import { loginUser, signupUser, addAlert } from '../../actions';
-import {authUser} from '../../actions';
-import Login from './login';
 import ButtonTextStyle from '../styling/button_text_style';
 
 const renderInput = ({
