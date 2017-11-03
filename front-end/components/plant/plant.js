@@ -20,7 +20,6 @@ import InputModal from './input_modal_container';
 import {IMAGES, WATER, PLANT} from '../../assets/spritesheets/sprites';
 import BACKGROUND from '../../assets/spritesheets/background/background';
 
-
 const {width, height} = Dimensions.get('window');
 
 class Plant extends React.Component {
@@ -56,18 +55,6 @@ class Plant extends React.Component {
       });
     });
   }
-
-  // componentWillUnmount() {
-  //
-  //   let { messages } = this.state;
-  //   let { currentUser } = this.props;
-  //   messages.for[currentUser.firstName] = '';
-  //
-  //   this.setState({
-  //     messages
-  //   });
-  //   this.handleUpdatePlant();
-  // }
 
   componentWillReceiveProps(nextProps) {
     let { messages } = nextProps.plant;
@@ -106,9 +93,9 @@ class Plant extends React.Component {
     let now = new Date(Date.now());
 
     if (this.state.nextWater > now ) {
-      
+
       this.displayMessage("full", 900);
-      
+
     } else {
       this.displayMessage("", 900);
 
@@ -181,17 +168,14 @@ class Plant extends React.Component {
   }
 
   render() {
-
     let water = this.state.water ? animateSprite(WATER, 4, 500, 100, 100) : (<Text> </Text>);
-
     let background = this.getBackground();
-
     return (
       <View style={styles.container}>
           <View style={styles.background}>
             <Image source={background}
               style={{
-                width, 
+                width,
                 height: height * 0.90,
                 resizeMode: 'stretch'
                 }}/>
@@ -200,7 +184,7 @@ class Plant extends React.Component {
           <View style={styles.healthbar}>
             <Healthbar health={this.state.health} />
           </View>
-          
+
           <View style={styles.buttons}>
             <TouchableOpacity
               onPress={this.waterPlant}
@@ -234,7 +218,6 @@ class Plant extends React.Component {
               }>
 
               <View style={styles.plant}>
-                {/* don't set timer below 1001 */}
                 {animateSprite(PLANT, 2, 1300 - (this.state.health * 10), 550, height * 0.70)}
               </View>
             </TouchableWithoutFeedback>
@@ -281,7 +264,6 @@ const styles = StyleSheet.create({
     left: Dimensions.get('window').width*.04
   },
    plant: {
-    //  bottom: 15,
      alignSelf: 'center',
      backgroundColor: 'transparent',
    },
@@ -303,6 +285,5 @@ const styles = StyleSheet.create({
     resizeMode: 'contain'
   }
 });
-
 
 export default Plant;

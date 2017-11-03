@@ -217,4 +217,4 @@ const styles = {
     borderColor: 'transparent',
     backgroundColor: '#cdf9d8'
   }
-}
+};
