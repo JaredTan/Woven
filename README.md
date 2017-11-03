@@ -1,8 +1,8 @@
 # Woven
 
-[Link to Demo](http://woven-app.com)
+[Link to Demo Site](http://woven-app.com)
 
-[Link to iOS App Store Site](https://itunes.apple.com/us/app/woven-private-digital-space-for-two/id1279599924?mt=8)
+[Link to iOS App Store Preview](https://itunes.apple.com/us/app/woven-private-digital-space-for-two/id1279599924?mt=8)
 
 [Link to Node.js Server Repo](https://github.com/JaredTan/WovenBackendLive)
 
@@ -238,12 +238,8 @@ class Chat extends Component {
 
 ### Activity Planner
 
-The pair using the app would likely plan activities or dates together, so having a feature that implements the Google Maps API for locations and/or Google Maps Calendar would provide a useful logistical service for Woven users.
-
-### iOS App Store
-
-We plan to deploy Woven to the App store as a full-fledged iOS mobile application. To market and publicize the product, Woven will be displayed on high traffic sites such as Reddit and Product Hunt.
+The shared activities could integrate Google Maps API for locations and/or Google Maps Calendar to provide a useful logistical service for Woven users.
 
 ### Android / Web
 
-Once optimized for iOS, this app can be cloned into a React Native Android application and web application to become accessible to more users.
+This app can be cloned into a React Native Android application and web application to become accessible to more users.
