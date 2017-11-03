@@ -1,10 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
-  Text,
-  View,
-  StatusBar
+  View
 } from 'react-native';
 
 import AuthMain from './auth/auth_main';
@@ -21,11 +19,9 @@ class App extends React.Component {
 
   render() {
     const renderMainView = () => {
-      if (this.props.user_id) {
+      if (this.props.userId) {
         return (
-          <MainNavigator
-            fetchPlant={this.props.fetchPlant}
-            connectionId={this.props.connectionId} />
+          <MainNavigator/>
         );
       } else {
         return (
@@ -54,17 +50,11 @@ const styles = StyleSheet.create({
   },
 });
 
-var mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    user_id: state.auth.user_id,
+    userId: state.auth.user_id,
     connectionId: state.auth.connectionId
   };
 };
 
-var mapDispatchToProps = dispatch => {
-  return {
-    fetchPlant: (connectionId) => dispatch(fetchPlant(connectionId))
-  }
-}
-
-module.exports = connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App);

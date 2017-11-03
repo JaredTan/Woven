@@ -2,11 +2,8 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  Image,
   View,
-  TouchableOpacity,
-  NavigatorIOS,
-  ScrollView
+  TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import TodoList from '../todos/todo_list';
@@ -76,46 +73,45 @@ class Main extends React.Component {
     this.props.unauthUser();
   }
 
-
-    render() {
-      return (
-        <View style={styles.container}>
-          <View style={styles.component}>
-            <View>
-              { this.state.plant ? <PlantContainer/> : null }
-              { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
-              { this.state.todo ? <TodoList/> : null }
-            </View>
-          </View>
-
-          <View style={styles.navBar}>
-          <TouchableOpacity onPress={this.togglePlantTab}>
-            <Icon name='leaf' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.toggleChatTab}>
-            <Icon name='message' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.toggleTodoTab}>
-            <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
-          </TouchableOpacity>
-            <Menu style={styles.menu} renderer={renderers.SlideInMenu}>
-              <MenuTrigger>
-               <Icon name='chevron-up' size={38} color="#0c9258"/>
-             </MenuTrigger>
-             <MenuOptions style={styles.options}>
-               <MenuOption style={styles.profileOption} onSelect={this.redirectToProfile}>
-                 <Text style={styles.profile}>Profile</Text>
-               </MenuOption>
-               <MenuOption style={styles.logoutOption} onSelect={this.handleLogOut} >
-                 <Text style={styles.logout}>Log Out</Text>
-               </MenuOption>
-             </MenuOptions>
-           </Menu>
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.component}>
+          <View>
+            { this.state.plant ? <PlantContainer/> : null }
+            { this.state.chat ? <Chat currentUserId={this.props.currentUserId}/> : null }
+            { this.state.todo ? <TodoList/> : null }
           </View>
         </View>
-      );
-    }
+
+        <View style={styles.navBar}>
+        <TouchableOpacity onPress={this.togglePlantTab}>
+          <Icon name='leaf' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.toggleChatTab}>
+          <Icon name='message' size={38} color={this.state.chat ? "white" : "#0c9258" }/>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.toggleTodoTab}>
+          <Icon name='lightbulb' size={38} color={this.state.todo ? "white" : "#0c9258" }/>
+        </TouchableOpacity>
+          <Menu style={styles.menu} renderer={renderers.SlideInMenu}>
+            <MenuTrigger>
+             <Icon name='chevron-up' size={38} color="#0c9258"/>
+           </MenuTrigger>
+           <MenuOptions style={styles.options}>
+             <MenuOption style={styles.profileOption} onSelect={this.redirectToProfile}>
+               <Text style={styles.profile}>Profile</Text>
+             </MenuOption>
+             <MenuOption style={styles.logoutOption} onSelect={this.handleLogOut} >
+               <Text style={styles.logout}>Log Out</Text>
+             </MenuOption>
+           </MenuOptions>
+         </Menu>
+        </View>
+      </View>
+    );
   }
+}
 
   const styles = StyleSheet.create({
     container: {
@@ -131,10 +127,6 @@ class Main extends React.Component {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-around'
-    },
-    options: {
-    },
-    logoutOption: {
     },
     logout: {
       color: 'red',
@@ -152,6 +144,5 @@ class Main extends React.Component {
       alignSelf: 'center',
     }
   });
-
 
   export default Main;
