@@ -1,23 +1,24 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  NavigatorIOS
+  TouchableOpacity
 } from 'react-native';
-import Dimensions from 'Dimensions';
-
-import LogIn from './login';
+import Dimensions from 'Dimensions';``
 import SignUp from './signup';
 
-var SignUpNavigator = React.createClass({
+class SignUpNavigator extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleBack = this.handleBack.bind(this);
+  }
 
   handleBack() {
     this.props.navigator.pop();
-  },
+  }
 
   render() {
     return (
@@ -33,7 +34,8 @@ var SignUpNavigator = React.createClass({
       </View>
     );
   }
-});
+
+}
 
 const styles = StyleSheet.create({
   topBar: {
@@ -64,5 +66,4 @@ const styles = StyleSheet.create({
   }
 });
 
-
-module.exports = SignUpNavigator;
+export default SignUpNavigator;

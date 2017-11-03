@@ -1,6 +1,5 @@
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
-
 import {PLANT_URL} from '../api';
 import {addAlert} from './alert_actions';
 
@@ -13,7 +12,7 @@ export const setPlant = plant => {
   };
 };
 
-exports.fetchPlant = connectionId => function(dispatch) {
+export const fetchPlant = connectionId => dispatch => {
   return Keychain.getGenericPassword().then((credentials) => {
     var {username, password} = credentials;
     return axios.get(PLANT_URL(connectionId), {

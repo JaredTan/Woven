@@ -1,25 +1,25 @@
 import React from 'react';
 import SignUpNavigator from './signup_navigator';
-import Header from '../styling/header';
 import Link from '../styling/link';
-
 import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  NavigatorIOS,
-  Image
+  TouchableOpacity
 } from 'react-native';
-import Dimensions from 'Dimensions';
-
 import LogIn from './login';
 
-var LogInNavigator = React.createClass({
+class LogInNavigator extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleBack = this.handleBack.bind(this);
+    this.redirectToSignUp = this.redirectToSignUp.bind(this);
+  }
 
   handleBack() {
     this.props.navigator.pop();
-  },
+  }
 
   redirectToSignUp() {
     this.props.navigator.push({
@@ -27,7 +27,7 @@ var LogInNavigator = React.createClass({
       title: 'Sign Up Navigator',
       navigationBarHidden: true
     });
-  },
+  }
 
   render() {
     return (
@@ -43,7 +43,7 @@ var LogInNavigator = React.createClass({
       </View>
     );
   }
-});
+}
 
 const styles = StyleSheet.create({
   content: {
@@ -64,5 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-
-module.exports = LogInNavigator;
+export default LogInNavigator;

@@ -4,11 +4,10 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-
 import AuthMain from './auth/auth_main';
 import MainNavigator from './main/main_navigator';
-import AlertContainer from './alerts/alert_container';
-import SuccessContainer from './successes/success_container';
+import AlertsContainer from './alerts/alerts_container';
+import SuccessesContainer from './successes/successes_container';
 import Chat from './chat/chat';
 import {fetchPlant} from '../actions';
 
@@ -32,8 +31,8 @@ class App extends React.Component {
     return (
       <View style={{flex: 1}}>
         {renderMainView()}
-        <AlertContainer/>
-        <SuccessContainer/>
+        <AlertsContainer/>
+        <SuccessesContainer/>
       </View>
     );
   }

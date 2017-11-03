@@ -10,17 +10,17 @@ class MainNavigator extends React.Component {
 
   render() {
     return (
-        <MenuContext>
-          <NavigatorIOS
-            initialRoute={{
-              component: MainContainer,
-              title: 'Main',
-              navigationBarHidden: true
-            }}
-            style={{flex: 1}}
-            interactivePopGestureEnabled={true}
-            />
-        </MenuContext>
+      <MenuContext>
+        <NavigatorIOS
+          initialRoute={{
+            component: MainContainer,
+            title: 'Main',
+            navigationBarHidden: true
+          }}
+          style={{flex: 1}}
+          interactivePopGestureEnabled={true}
+          />
+      </MenuContext>
     );
   }
 

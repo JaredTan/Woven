@@ -15,30 +15,28 @@ class Success extends React.Component {
     super(props);
 
     this.handleRemoveSuccess = this.handleRemoveSuccess.bind(this);
-
   }
 
   handleRemoveSuccess() {
-    let {success, dispatch} = this.props;
-    dispatch(removeSuccess(success.id));
+    let {success} = this.props;
+    this.props.removeSuccess(success.id);
   }
 
   render() {
     let {success} = this.props;
-        return (
-          <TouchableWithoutFeedback onPress={this.handleRemoveSuccess}>
-            <View style={styles.container2}>
-              <Text style={styles.text}>
-                {success.text}
-              </Text>
-              <Icon name="close" size={15} color='#2ecc71'/>
-            </View>
-          </TouchableWithoutFeedback>
-        );
-    }
+    return (
+      <TouchableWithoutFeedback onPress={this.handleRemoveSuccess}>
+        <View style={styles.container2}>
+          <Text style={styles.text}>
+            {success.text}
+          </Text>
+          <Icon name="close" size={15} color='#2ecc71'/>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  }
 
 }
-
 
 const styles = StyleSheet.create({
   container2: {
@@ -60,4 +58,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(Success);
+const mapDispatchToProps = dispatch => {
+  return {
+    removeSuccess: id => dispatch(removeSuccess(id))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Success);

@@ -5,7 +5,6 @@ import {
   Text,
   View
 } from 'react-native';
-
 import Successes from './successes';
 import {removeSuccess} from '../../actions';
 
@@ -15,5 +14,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-
-module.exports = connect(mapStateToProps, null)(Successes);
+export default connect(mapStateToProps)(Successes);

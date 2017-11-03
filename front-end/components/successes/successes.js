@@ -13,7 +13,6 @@ class Successes extends React.Component {
     super(props);
   }
 
-
   render() {
     let renderSuccesses = () => {
       return this.props.successes.map((success) => {
@@ -28,7 +27,6 @@ class Successes extends React.Component {
       </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({

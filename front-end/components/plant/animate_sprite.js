@@ -3,8 +3,6 @@ import {
   Animated
 } from 'react-native';
 
-
-
 class AnimatedSprite extends React.Component {
   constructor(props) {
     super(props);
@@ -75,8 +73,7 @@ class AnimatedSprite extends React.Component {
   }
 }
 
-
-function animateSprite(spriteSheet, frameCount, fps=60, width=100, height=100) {
+const animateSprite = (spriteSheet, frameCount, fps=60, width=100, height=100) => {
   return (
     <AnimatedSprite
       spriteSheet={spriteSheet}
@@ -84,9 +81,8 @@ function animateSprite(spriteSheet, frameCount, fps=60, width=100, height=100) {
       fps={fps}
       width={width}
       height={height}
-
     />
   );
-}
+};
 
 export default animateSprite;

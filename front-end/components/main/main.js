@@ -83,7 +83,6 @@ class Main extends React.Component {
             { this.state.todo ? <TodoList/> : null }
           </View>
         </View>
-
         <View style={styles.navBar}>
         <TouchableOpacity onPress={this.togglePlantTab}>
           <Icon name='leaf' size={38} color={this.state.plant ? "white" : "#0c9258" }/>
@@ -113,36 +112,36 @@ class Main extends React.Component {
   }
 }
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'column'
-    },
-    component: {
-      flex: 9
-    },
-    navBar: {
-      flex: 1,
-      backgroundColor: '#2ecc71',
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-around'
-    },
-    logout: {
-      color: 'red',
-      padding: 20,
-      fontSize: 20,
-      alignSelf: 'center',
-    },
-    profileOption: {
-      backgroundColor: '#cdf9d8'
-    },
-    profile: {
-      color: 'gray',
-      padding: 20,
-      fontSize: 20,
-      alignSelf: 'center',
-    }
-  });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column'
+  },
+  component: {
+    flex: 9
+  },
+  navBar: {
+    flex: 1,
+    backgroundColor: '#2ecc71',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  logout: {
+    color: 'red',
+    padding: 20,
+    fontSize: 20,
+    alignSelf: 'center',
+  },
+  profileOption: {
+    backgroundColor: '#cdf9d8'
+  },
+  profile: {
+    color: 'gray',
+    padding: 20,
+    fontSize: 20,
+    alignSelf: 'center',
+  }
+});
 
-  export default Main;
+export default Main;
