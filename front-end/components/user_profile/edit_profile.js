@@ -17,7 +17,6 @@ import PhotoUpload from 'react-native-photo-upload';
 import DatePicker from 'react-native-datepicker';
 import moment from 'moment';
 
-
 const renderInput = ({
   input: { onChange, ...restInput },
   label,
@@ -41,7 +40,7 @@ const renderInput = ({
       <View>{touched}</View>
     </View>
   )
-}
+};
 
 const handleEdit = (props, dispatch, payload) => {
   let newBirthday = new Date(props.birthday);
@@ -50,7 +49,9 @@ const handleEdit = (props, dispatch, payload) => {
   newAnniversary.setMinutes( newAnniversary.getMinutes() + newAnniversary.getTimezoneOffset() );
   dispatch(updateUser(payload.initialValues.currentUserId, props.firstName, props.lastName, props.imageUrl, newBirthday, newAnniversary));
   payload.navigator.pop();
-}
+};
+
+// ReduxForm View
 
 const EditForm = (props) => {
   const { handleSubmit, initialValues } = props;
@@ -135,7 +136,9 @@ const EditForm = (props) => {
       </Content>
     </Container>
   )
-}
+};
+
+// Integrate into reduxForm + redux
 
 EditForm = reduxForm({
   form: 'edit-form',
