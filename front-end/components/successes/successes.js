@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
-  View,
-  TouchableWithoutFeedback
+  View
 } from 'react-native';
 import Success from './success';
 import Dimensions from 'Dimensions';

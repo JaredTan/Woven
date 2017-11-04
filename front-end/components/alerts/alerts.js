@@ -2,8 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  View,
-  TouchableWithoutFeedback
+  View
 } from 'react-native';
 import Alert from './alert';
 import Dimensions from 'Dimensions';

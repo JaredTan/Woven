@@ -9,7 +9,6 @@ import {connect} from 'react-redux';
 import {removeSuccess} from '../../actions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 class Success extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +25,7 @@ class Success extends React.Component {
     let {success} = this.props;
     return (
       <TouchableWithoutFeedback onPress={this.handleRemoveSuccess}>
-        <View style={styles.container2}>
+        <View style={styles.container}>
           <Text style={styles.text}>
             {success.text}
           </Text>
@@ -39,7 +38,7 @@ class Success extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container2: {
+  container: {
     flex: 1,
     padding: 10,
     margin: 5,
@@ -62,6 +61,6 @@ const mapDispatchToProps = dispatch => {
   return {
     removeSuccess: id => dispatch(removeSuccess(id))
   }
-}
+};
 
 export default connect(null, mapDispatchToProps)(Success);

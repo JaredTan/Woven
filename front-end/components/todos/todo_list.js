@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Dimensions from 'Dimensions';
 
-import {unauthUser, getTodos, deleteTodo, setTodos, createTodo} from '../../actions';
+import {getTodos, createTodo} from '../../actions';
 import TodoItem from './todo_item';
 
 class TodoList extends React.Component {
@@ -28,7 +28,6 @@ class TodoList extends React.Component {
 
     this.addNewTodo = this.addNewTodo.bind(this);
     this.onRefresh = this.onRefresh.bind(this);
-
   }
 
   componentDidMount() {

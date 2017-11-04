@@ -25,7 +25,7 @@ class Alert extends React.Component {
     let {alert} = this.props;
     return (
       <TouchableWithoutFeedback onPress={this.handleRemoveAlert}>
-        <View style={styles.container2}>
+        <View style={styles.container}>
           <Text style={styles.text}>
             {alert.text}
           </Text>
@@ -38,7 +38,7 @@ class Alert extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container2: {
+  container: {
     flex: 1,
     padding: 10,
     margin: 5,
