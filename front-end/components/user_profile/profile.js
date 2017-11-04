@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 import Dimensions from 'Dimensions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import PhotoUpload from 'react-native-photo-upload';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import EditProfileNavigator from './edit_profile_navigator';
 import moment from 'moment';
 
@@ -42,7 +41,7 @@ class UserProfile extends React.Component {
 
   render() {
     let {currentUser, partner} = this.props.users;
-    let {connectionId } = this.props;
+    let {connectionId} = this.props;
     if (!currentUser || !partner) {
       return null;
     };

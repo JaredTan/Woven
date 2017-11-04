@@ -5,9 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
-  ScrollView,
-  RefreshControl
+  TouchableOpacity
 } from 'react-native';
 import Dimensions from 'Dimensions';
 import {ListItem, CheckBox} from 'native-base';
@@ -55,6 +53,7 @@ class TodoItem extends React.Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   todoContainer: {
     flex: 1,

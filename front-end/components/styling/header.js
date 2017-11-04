@@ -1,13 +1,6 @@
 import React from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  NavigatorIOS,
-  Animated,
-  Dimensions
+  Text
 } from 'react-native';
 
 class Header extends React.Component {

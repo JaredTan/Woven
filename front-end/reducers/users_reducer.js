@@ -6,7 +6,7 @@ const defaultState = {
   partner: undefined
 };
 
-const userReducer = (state=defaultState, action) => {
+const userReducer = (state = defaultState, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_PAIR:
