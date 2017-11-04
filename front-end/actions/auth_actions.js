@@ -1,6 +1,5 @@
 import axios from 'axios';
 import * as Keychain from 'react-native-keychain';
-//
 import {SIGNIN_URL, SIGNUP_URL} from '../api';
 import {addAlert} from './alert_actions';
 import {requestPair} from './user_actions';

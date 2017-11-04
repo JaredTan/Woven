@@ -1,6 +1,6 @@
 import {ADD_TODO, SET_TODOS, REMOVE_TODO, RESET_TODOS} from '../actions';
 
-const todosReducer = (state=[], action) => {
+const todosReducer = (state = [], action) => {
   switch(action.type) {
     case ADD_TODO:
       return [

@@ -1,5 +1,4 @@
 import uuid from 'uuid';
-
 import {ADD_SUCCESS, REMOVE_SUCCESS} from '../actions';
 
 const successesReducer = (state=[], action) => {

@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {requestPair} from '../../actions';
 import {
   View,
   Text,
   StyleSheet,
-  AsyncStorage,
-  TouchableOpacity,
   Image
 } from 'react-native';
 import io from 'socket.io-client';
-import { GiftedChat, Bubble } from 'react-native-gifted-chat';
+import {GiftedChat, Bubble} from 'react-native-gifted-chat';
 import Dimensions from 'Dimensions';
 const API_URL = 'https://damp-forest-12839.herokuapp.com';
 
-class Chat extends Component {
+class Chat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -78,6 +76,10 @@ class Chat extends Component {
     );
   }
 
+  _storeMessages(messages) {
+    this.setState(Object.assign({}, {messages: messages.concat(this.state.messages)}));
+  }
+
   render() {
     let {currentUser, partner} = this.props.users;
     console.disableYellowBox = true;
@@ -108,11 +110,6 @@ class Chat extends Component {
         </View>
       </View>
     );
-  }
-
-
-  _storeMessages(messages) {
-    this.setState(Object.assign({}, {messages: messages.concat(this.state.messages)}));
   }
 }
 
@@ -162,7 +159,7 @@ const styles = StyleSheet.create({
  }
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {users: state.users};
 };
 

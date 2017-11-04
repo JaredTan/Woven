@@ -5,7 +5,7 @@ const defaultState = {
   connectionId: undefined
 };
 
-const authReducer = (state=defaultState, action) => {
+const authReducer = (state = defaultState, action) => {
   switch(action.type) {
     case AUTH_USER:
       return {
